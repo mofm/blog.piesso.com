@@ -1,3 +1,0 @@
-<html><body><img class="alignnone" title="Scientific Linux" src="http://www.scientificlinux.org/documentation/graphics/logo/sl-logo-96.png" alt="" width="96" height="96"><a href="http://www.montanalinux.org" target="_blank"></a>
-
-<a href="http://www.montanalinux.org" target="_blank">Montonalinux.org</a> tarafından Scientific Linux geliştiricilerinden Troy Dawson ile yapılan <a href="http://www.montanalinux.org/interview-troy-dawson-scientific-linux-june2011.html" target="_blank">röportaj</a>.</body></html>

@@ -1,1 +1,0 @@
-<html><body><p>[contact-form 1 "İletişim formu 1"]﻿</p></body></html>

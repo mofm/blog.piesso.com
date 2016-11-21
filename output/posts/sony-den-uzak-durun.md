@@ -1,4 +1,0 @@
-<html><body><p>Intel-VT desteğini kapatan Sony Vaio ürünlerinden uzak durun.Biraz önce bir Sony Vaio üzerine KVM Virtualization yapılandırmasında "kvm:disabled by bios" uyarısını görünce kendilerini bolca andım !
-</p><pre><a href="http://www.designisphilosophy.com/windows-7/sony-confirms-no-hardware-virtualization-on-vaio-computers-past-present-or-future/" target="_blank">Sony Confirms No Hardware Virtualization on Vaio Computers Past, Present or Future</a>
-
-Ama yine de biri ( Igor Levicki ) bunun için bios yaması yazmış :) Göz atmak için <a href="http://levicki.net/articles/tips/2009/02/20/HOWTO_Enable_Intel_VT_on_Sony_VAIO_notebook_with_AMI_Aptio_EFI_BIOS.php" target="_blank">buradan</a> .</pre></body></html>

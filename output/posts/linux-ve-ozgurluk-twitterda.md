@@ -1,3 +1,0 @@
-<html><body><a href="http://blogs.oracle.com/xmlpublisher/images/twitter-logo.png"><img title="twitter logo" src="http://blogs.oracle.com/xmlpublisher/images/twitter-logo.png" alt="" width="257" height="257"></a>
-
-"Linux ve Özgürlük" artık twitter'da.Sitemizi twitter sosyal ağından takip edebilirsiniz.Twitter adresimize <a href="http://twitter.com/linuxveozgurluk">buradan</a> ulaşabilirsiniz.<!--more--></body></html>

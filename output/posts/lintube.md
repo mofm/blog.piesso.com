@@ -1,3 +1,0 @@
-<html><body><a href="http://lintube.com/templates/ja_procyon/images/header-logo.gif"><img title="Lintube" src="http://lintube.com/templates/ja_procyon/images/header-logo.gif" alt="" width="350" height="108"></a>
-
-Lintube linux ile ilgili çeşitli videoların toplanmış olduğu site.İçerisinde linux ekran görüntüleri,program kurumlumları,ipuçları,çözüm yolları ve redhat gibi ticari linux markalarının reklamlarını bulabileceğiniz internet video paylaşım sitesi.Lintube'ye girmek için <a href="http://www.lintube.com">buradan</a> .</body></html>
