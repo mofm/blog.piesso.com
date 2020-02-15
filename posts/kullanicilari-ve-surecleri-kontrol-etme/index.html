@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Kullanıcıları ve süreçleri kontrol etme | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/kullanicilari-ve-surecleri-kontrol-etme/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../qmail-toaster-kaldirmak-icin-script/" title="Qmail-Toaster kaldırmak için script" type="text/html">
+<link rel="next" href="../dns-sunucunuzun-versiyonunu-gizleyin/" title="DNS sunucunuzun versiyonunu gizleyin" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Kullanıcıları ve süreçleri kontrol etme">
+<meta property="og:url" content="https://blog.piesso.com/posts/kullanicilari-ve-surecleri-kontrol-etme/">
+<meta property="og:description" content="Sistem üzerinde tam denetim sağlamak özellikle güvenlik açısından çok önemlidir.Çünkü herhangi bir saldırı sadece dışardan değil , içerden de gelebilir ve ya kullanıcı sistem üzerinde zararlı bir prog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-01-22T15:36:47+02:00">
+<meta property="article:tag" content="Genel">
+<meta property="article:tag" content="gezegen">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Kullanıcıları ve süreçleri kontrol etme</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-01-22T15:36:47+02:00" itemprop="datePublished" title="2011-01-22 15:36">2011-01-22 15:36</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/kullanicilari-ve-surecleri-kontrol-etme.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
+            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>Sistem üzerinde tam denetim sağlamak özellikle güvenlik açısından çok önemlidir.Çünkü herhangi bir saldırı sadece dışardan değil , içerden de gelebilir ve ya kullanıcı sistem üzerinde zararlı bir program çalıştırabilir.İşte bu nokta da kullanıcıları ve süreçleri  kontrol altında tutmak gerekir.</p>
+<p>GNU/Linux üzerinde "<a href="http://www.gnu.org/software/acct/" target="_blank"><strong>acct</strong></a>" (<em>GNU Accounting Utilities</em> ) adlı araçla kullanıcı ve süreçleri izleyebiliriz.İlk olarak eğer sistem üzerinde "<strong>acct</strong>" kurulu değil ise kurulumunu yapalım.
+</p>
+<pre># yum install psacct ( CentOS için )</pre>
+Diğer bazı dağıtımlarda "<strong>psacct</strong>" yerine "<strong>acct</strong>" yazarak kurabilirsiniz.Örneğin ;
+<pre># emerge acct   (Gentoo için)</pre>
+<pre># yum install acct ( Suse için )</pre>
+Kurulum yaptıktan sonra "<strong>/var</strong>" dizini altında "<em>account</em>" adlı bir klasör ve bu klasörün içinde "<em>pacct</em>" adlı dosya oluşturması gerekir.Eğer bu klasör ve dosyayı oluşturmamışsa elle oluşturalım.
+<pre># mkdir /var/account</pre>
+<pre># touch /var/account/pacct</pre>
+<pre># chmod 660 /var/account/pacct</pre>
+Süreç kayıtlarını aktif hale getirelim.
+<pre># accton /var/account/pacct</pre>
+"<strong>acct</strong>" uygulamasını başlangıça ekleyelim ve çalıştıralım.( <em>CentOS</em> )
+<pre># chkconfig psacct on</pre>
+<pre># service psacct start</pre>
+Artık "<strong>acct</strong>" uygulaması ile gelen bazı yararlı komutları inceleyelim."<strong>ac</strong>" komutu ile başlayalım."<strong>ac</strong>" komutu kullanıcının sistem üzerinde ne kadar süredir bağlı kaldığını gösterir.
+<pre> # ac
+ total      537.71
+</pre>
+Yukarda görüldüğü gibi "<strong>ac</strong>" komutu hiç bir parametre almadan sadece komutu veren kullanıcının ne kadar süre sistemde olduğunu gösteriyor.Eğer sistem üzerinde tüm kullanıcıların ne kadar süre sistem üzerinde olduklarını görmek için ise "<strong>-p</strong>"(people)  parametresi kullanıyoruz.
+<pre># ac -p
+ ares                           537.95</pre>
+<pre> zeus                           100.00
+ total      637.95</pre>
+* İkinci yararlı komutumuz ise "<strong>lastcomm</strong>" . "<strong>lastcomm</strong>" komutu ile hangi komutu kim,ne zaman,nerede verildiği hakkında bilgi verir.
+<pre># lastcomm</pre>
+<pre>grep                   root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sed                    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sed                    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+grep                   root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sed                    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sed                    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+grep                   root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
+sed                    root     pts/0      0.00 secs Fri Jan 21 06:56
+</pre>
+"<strong>lastcomm</strong>" komutu parametresiz sistem üzerinde verilen tüm komutları listeler.Eğer belli bir kullanıcının verdiği komutları görmek istersek "<strong>lastcomm</strong>" komutundan sonra "<strong>kullanıcı adı</strong>"nı yazıyoruz.
+<pre># lastcomm ares</pre>
+<pre>bash                   ares pts/1      0.02 secs Fri Jan 21 03:46</pre>
+<pre>clear                  ares pts/1      0.00 secs Fri Jan 21 04:43</pre>
+<pre>bash              F    ares pts/1      0.00 secs Fri Jan 21 04:43</pre>
+<pre>bash              F    ares pts/1      0.00 secs Fri Jan 21 04:43</pre>
+<pre>bash                   ares pts/0      0.04 secs Thu Jan 20 19:39</pre>
+<pre>clear                  ares pts/0      0.00 secs Fri Jan 21 04:43</pre>
+<pre>ssh                    ares pts/1      0.03 secs Fri Jan 21 03:46</pre>
+<pre>firefox              X ares <strong>       1860.00 secs Thu Jan 20 16:24</strong></pre>
+<pre>plugin-containe        ares        454.73 secs Thu Jan 20 16:24</pre>
+<pre>task1                X ares <strong>         0.35 secs Fri Jan 21 04:35</strong></pre>
+<pre>gnome-panel       F    ares          0.00 secs Fri Jan 21 04:35</pre>
+<pre>xauth            S     ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
+<pre>whoami                 ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
+<pre>uname                  ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
+<pre>uname                  ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
+* Diğer bir komut ise "<strong>sa</strong>" . "<strong>sa</strong>" komutu ile kayıt altına komutları ve bu komutların kaç defa çalıştırıldığını gösterir.
+<pre># sa</pre>
+<pre>8014       0.16re       0.00cp         0avio      4475k   mv</pre>
+<pre> 5495       0.01re       0.00cp         0avio      2052k   dirname</pre>
+<pre> 5484       0.78re       0.00cp         0avio      5707k   libtoolize<em></em></pre>
+<pre> 4377       0.18re       0.00cp         0avio      2071k   stty</pre>
+<pre> 3621       0.02re       0.00cp         0avio      3445k   touch</pre>
+<pre> 3258       0.09re       0.00cp         0avio      2326k   tr</pre>
+<pre> 3214       0.14re       0.00cp         0avio      2319k   mkdir</pre>
+<pre> 3055       0.01re       0.00cp         0avio      3365k   true</pre>
+<pre> 2711       7.00re       0.00cp         0avio      2251k   collect2</pre>
+<pre> 2687       0.13re       0.00cp         0avio      2658k   head</pre>
+<pre> 2557       0.01re       0.00cp         0avio      2034k   expr</pre>
+<pre> 2118       0.28re       0.00cp         0avio      2752k   sort</pre>
+<pre> 1868       0.00re       0.00cp         0avio      2183k   uname</pre>
+<pre> 1860       0.08re       0.00cp         0avio      5617k   autoconf-2.65</pre>
+<pre> 1610       0.09re       0.00cp         0avio     17421k   python2.6<em></em></pre>
+<pre> 1466       0.02re       0.00cp         0avio      1894k   ln</pre>
+<pre> 1320       0.00re       0.00cp         0avio      3721k   chgrp</pre>
+<pre> 1225       0.00re       0.00cp         0avio      5547k   shtool</pre>
+"acct" ile gelen diğer bazı komutlar ise ;
+<p><strong>last =</strong>Sisteme en son giriş yapan kullanıcılar listeler.</p>
+<p><strong>dump-acct =</strong> Kayıt dosyasını okunabilir  şekilde ekrana yazdırır.</p>
+<p>"<strong>acct</strong>" ve komutları hakkında daha fazla bilgi için man sayfalarına ve <a href="http://www.gnu.org/software/acct/manual/html_chapter/accounting.html" target="_blank">şuraya</a> bakabilirsiniz.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../qmail-toaster-kaldirmak-icin-script/" rel="prev" title="Qmail-Toaster kaldırmak için script">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../dns-sunucunuzun-versiyonunu-gizleyin/" rel="next" title="DNS sunucunuzun versiyonunu gizleyin">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/kullanicilari-ve-surecleri-kontrol-etme/",
+        disqus_title="Kullan\u0131c\u0131lar\u0131 ve s\u00fcre\u00e7leri kontrol etme",
+        disqus_identifier="cache/posts/kullanicilari-ve-surecleri-kontrol-etme.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Ignotum Per Ignotius">
+<meta name="viewport" content="width=device-width">
+<title>hardened .*(nt|log)s? (old posts, page 13) | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/index-13.html">
+<link rel="prev" href="index-14.html" type="text/html">
+<link rel="next" href="index-12.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/opensolaris-nvidia-driver/" class="u-url">OpenSolaris Nvidia Driver</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/opensolaris-nvidia-driver/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-23T05:01:13+03:00" title="2010-09-23 05:01">2010-09-23 05:01</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/opensolaris-nvidia-driver/#disqus_thread" data-disqus-identifier="cache/posts/opensolaris-nvidia-driver.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="OpenSolaris" src="http://4.bp.blogspot.com/_b7TOyTq06Us/SvxiLBRV6eI/AAAAAAAAAZ4/epfS5wbNuFc/s200/opensolaris.jpg" alt="" width="200" height="200">OpenSolaris Nvidia Ekran kartınızı tanımıyorsa yapmanız gereken adımlar:
+<ol>
+<li>" <a href="http://www.nvidia.com/object/unix.html" target="_blank">http://www.nvidia.com/object/unix.html</a> " adresinden Solaris için sürümlerine bakabilirsiniz ve kartınızın desteklenip desteklenmediğini kontrol edin.</li>
+</ol>
+<p>2.Eğer destekliyorsa "Nvidia Driver"ını bilgisayarınıza indirin.Örnek : 173.14.27</p>
+<p>3.Uçbiriminizi açın ve root olun.</p>
+<h2><em> pkg uninstall NVDAgraphics</em></h2>
+<p>yukardaki komut ile sistemde bulunan nvidia sürücüsünü kaldırın.</p>
+<p>4."Nvidia Driver"ını  indirdiğinize gelip,</p>
+<h2><em>sh ./Nvidia.173.14.XX </em></h2>
+<p>komutunu yazarak driverı yükleyin.Sisteminizi yeniden başlatın.</p>
+<p>Kolay gelsin :)</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/opensolariste-ext2ext3-bolumlerini-baglama/" class="u-url">OpenSolaris'te Ext2/Ext3 bölümlerini Bağlama</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/opensolariste-ext2ext3-bolumlerini-baglama/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-23T04:21:05+03:00" title="2010-09-23 04:21">2010-09-23 04:21</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/opensolariste-ext2ext3-bolumlerini-baglama/#disqus_thread" data-disqus-identifier="cache/posts/opensolariste-ext2ext3-bolumlerini-baglama.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="OpenSolaris" src="http://4.bp.blogspot.com/_b7TOyTq06Us/SvxiLBRV6eI/AAAAAAAAAZ4/epfS5wbNuFc/s200/opensolaris.jpg" alt="" width="200" height="200">OpenSolaris ile bugünlerde haşır neşir oluyorum ve bazı noktaları buraya not düşüyorum.OpenSolaris ile ext2 ve ext3 disk bölümlerini bağlamak için gereken adımlar:
+<ol>
+<li><a title="FSWpart" href="http://www.belenix.org/binfiles/FSWpart.tar.gz">FSWpart</a></li>
+</ol>
+<p><a title="FSWmisc" href="http://www.belenix.org/binfiles/FSWfsmisc.tar.gz">FSWfsmisc </a></p>
+<p>Yukardaki iki paketi indirin.</p>
+<ol>
+<li>" tar xvf  <span style="font-family: courier new,courier,monospace;">FSWpart.tar.gz " ve " tar xvf </span><span style="font-family: courier new,courier,monospace;">FSWfsmisc.tar.gz" komutları ile paketleri açın.</span>
+</li>
+</ol>
+<p><span style="font-family: courier new,courier,monospace;">3.root olun ve " pkgadd -d </span><span style="font-family: courier new,courier,monospace;">. FSWpart " ve " pkgadd -d . FSWfsmisc " komutları ile paketleri sisteme kurun.</span></p>
+<p><span style="font-family: courier new,courier,monospace;">4." prtpart " komutu ile bağlı olun diskleri görüntüleyin.</span></p>
+<p><span style="font-family: courier new,courier,monospace;">Örnek olarak:</span></p>
+<p>/dev/rdsk/c7d0p0
+/dev/rdsk/c7d1p0</p>
+<p>Yukardaki gibi sisteme bağlı diskler listelenecektir.</p>
+<p>5.  " prtpart /dev/rdsk/c7d0p0 -ldevs " komutu ile diskin dosya sistemini öğrenelim.</p>
+<p>Örnek:</p>
+<p>Fdisk information for device /dev/rdsk/c7d0p0</p>
+<p><strong> NOTE </strong>
+/dev/dsk/c7d0p0      - Physical device referring to entire physical disk
+/dev/dsk/c7d0p1 - p4 - Physical devices referring to the 4 primary partitions
+/dev/dsk/c7d0p5 ...  - Virtual devices referring to logical partitions</p>
+<p>Virtual device names can be used to access EXT2 and NTFS on logical partitions</p>
+<p>/dev/dsk/c7d0p1    Linux native</p>
+<p>Yukarda gördüğünüz gibi " /dev/dsk/c7d0p1" diski bir linux dosya sistemi.Şimdi bu linux bölümünü  sistemimize bağlıyalım.</p>
+<ol>
+<li>İlk önce bir bağlama noktası oluşturalım.</li>
+</ol>
+<h2>mkdir /mnt/ext</h2>
+<p>ve şimdi diski bağlayalım.</p>
+<h2>mount -F ext2fs /dev/dsk/c7d0p2 /mnt/ext</h2>
+<p>Kolay gelsin :)</p>
+<p><span style="font-family: courier new,courier,monospace;">
+</span></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/opensolaris-emu10k1x-driver/" class="u-url">OpenSolaris EMU10k1X Driver</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/opensolaris-emu10k1x-driver/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-23T03:53:37+03:00" title="2010-09-23 03:53">2010-09-23 03:53</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/opensolaris-emu10k1x-driver/#disqus_thread" data-disqus-identifier="cache/posts/opensolaris-emu10k1x-driver.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="OpenSolaris" src="http://4.bp.blogspot.com/_b7TOyTq06Us/SvxiLBRV6eI/AAAAAAAAAZ4/epfS5wbNuFc/s200/opensolaris.jpg" alt="" width="200" height="200">OpenSolaris "Creative Sound Live! EMU10k1X " ses kartınızı tanıtmanız için gereken adımlar:
+<ol>
+<li>
+<a href="http://www.opensound.com/" target="_blank">http://www.opensound.com/</a> sitesinden " <a href="http://www.4front-tech.com/release/oss-solaris-v4.0-1002-i386.pkg" target="_blank">oss-solaris-v4.0-1002-i386.pkg</a> " adlı paketini indirin.
+2.Uçbirimi açın ve root olun.</li>
+<li>" <em>pkgadd -d oss-solaris-v4.0-1002-i386.pkg</em> " komutu ile kurun.
+4." <em>osstest</em> " komutu ile test edin.</li>
+</ol>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/gentoo-mail-list/" class="u-url">Gentoo Mail Listesi</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/gentoo-mail-list/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-10T04:56:48+03:00" title="2010-09-10 04:56">2010-09-10 04:56</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/gentoo-mail-list/#disqus_thread" data-disqus-identifier="cache/posts/gentoo-mail-list.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="Gentoo" src="http://www.uz-freiburg.com/gentoo-logo.png" alt="" width="106" height="108"><p>Nisan ayında Gentoo'dan Türkiye'deki kullanıcılar için bir mail listesi açmalarını istemiştik.Açılan bug'a <a href="http://bugs.gentoo.org/show_bug.cgi?id=316285" target="_blank">buradan</a> bakabilirsiniz.Aradan geçen uzun zaman sonra Gentoo ekibi Türkiye'deki Linux kullanıcıları için <a href="http://www.gentoo.org/main/en/lists.xml" target="_blank">mail listesi</a>ni açtı.Listeye kayıt olmak için " <a href="mailto:gentoo-user-tr+subscribe@lists.gentoo.org">gentoo-user-tr+subscribe@lists.gentoo.org</a>" adresine boş bir mail atın ve gelen onay mesajını direk cevaplayın.
+Bu listenin tüm Gentoo kullanıcılarına hayırlı olması dileğiyle.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ttnet/" class="u-url">TTNET</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/ttnet/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-09T23:45:18+03:00" title="2010-09-09 23:45">2010-09-09 23:45</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/ttnet/#disqus_thread" data-disqus-identifier="cache/posts/ttnet.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Türkiye'nin en büyük servis sağlayıcısı ve internet servisinden,müşteri hizmetlerine dünyadaki en kötü servis sağlayıcı şirket.Bu şirketin en çok çalışan birimi sanırımı "Çağrı Merkezi" ,başka bir birimi bu kadar çalışmıyordur.Çağrı Merkezinde çalışan insanlara kolay gelsin. 
+Dört gün boyunca üst üste telefon ile 3 tane arıza kaydı ve internet üzerinden de 3 kez destek maili atarak internetimi vermelerini istedim.Fakat nafile!En sonunda bugün birisi aradı.Arayan Teknik ekibten birisi ama bilgisayar başına hiç oturmamış olduğu belli.Sorununuz nedir? diye soruyor,anlatıyorum adsl sinyali ritmik olarak gidiyor geliyor ve internet geldiğinde de işe yaramayacak seviyede.Öyle ki Google ana sayfası 4 sn de açılıyor ve normalde 106 kb ile indirdiğim yerden 5-6 kb ile indiriyorum(Özellikle işin komik tarafı adama 5 kb ile indiriyorum deyine adam sizin zaten 1 mbit'miş normal demesi!).Görevlinin cevabı bilgisayarınıza virus girmiştir.Linux kullanıyorum beyefendi diyorum adam halen bilgisayarınızı antivirüs ile tararıp temizleyin diyor.Ne desem boş,bu adam teknik ekipte ve adsl sinyalinin gittiğini söylüyorum halen virüsten bahsediyor.Ya sabır!!!
+Görevli şimdi "internetiniz nasıl,bakın" dedi baktım internet normale dönmüş.Ne yaptınız dedim bilgileri tazeledik filan falan dedi.Hızı ölçtük güzel normal.Ama telefonu kapattıktan sonra 15 dakika içinde yine gitti internet....
+1.TTNET ne dolandırıcılık yapıyorsun,halka açıkla.İnternetim görevli aradığında güzel de sonra niye gidiyor?
+2.TTNET'te çalışan bu insanlar nasıl orada işe girmişler?
+3.Bu görevliler ve bu anlayış ile size en fazla 15 yıl ömür biçiyorum.
+4.İnternetimi vermiyorsan paramı ver lütfen.!
+5.Her reklamınızda içimden küfretmek geçiyor.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/embdemid-linux-english/" class="u-url">Embdemid Linux (english)</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/embdemid-linux-english/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-08-27T15:11:40+03:00" title="2010-08-27 15:11">2010-08-27 15:11</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/embdemid-linux-english/#disqus_thread" data-disqus-identifier="cache/posts/embdemid-linux-english.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>“embdemid GNU/Linux” is an embedded-linux project based on emdebian for mobile internet devices like Compal JAX 10,Aigo P8860,Aigo P8888."embdemid linux" can be installed on usb flash memories.It's an embedded distro which can perfectly work wired and wireless internet on Compal and Aigo MIDs.My tryings are still continue to run bluetooth function.If you have got a MID too, i strongly recommend you to try this distro.”embdemid linux” was configured for MID but with a couple of changes you can also work it on all x86 platforms.You can download ”embdemid linux” from “<a href="http://sourceforge.net/projects/embdemid/" target="_blank">http://sourceforge.net/projects/embdemid/</a>”
+</p>
+<h4>Installing Embdemid Linux on USB Flash Memory:</h4>
+<strong>1-</strong>Firstly download the file named "embdemid-0.0.1.tar.bz2(56 MB)" from the internet address above.Then extract it;
+<p>$ <em>tar xjvf  embdemid-0.0.1.tar.bz2</em></p>
+<p><strong>2-</strong>Prepare our USB Flash memory for downloading.(it should at least 180 MB space)</p>
+<h2><em>su</em></h2>
+<h2><em> fdisk -l</em></h2>
+<h2>
+<em>umount /dev/sda1</em> (if usb flash disc mounted the system)</h2>
+<p>I'm using the “/dev/sda” device as a sample.It can be different in your system.</p>
+<h2><em>fdisk /dev/sda</em></h2>
+<p><em>&gt; d </em>(with this command erase the previous partitions.if there is more than one partition erase them all with ” d ”)</p>
+<p><em>&gt;p</em> (with this command, be sure that all partitions in flash disc are erased)</p>
+<p><em>&gt; n ,  p  ,  1 , enter , enter</em> (make these commands step by step.don't forget we are in fdisc programme!)</p>
+<p><em>&gt; p </em>(be sure that our partition is emerged)</p>
+<p><em>&gt;w</em></p>
+<p><em>3-</em>If you applied the steps above, partition which is in your flash disc need to be ready and we can format this partition with ext2.</p>
+<h2><em>mkfs.ext2 /dev/sda1</em></h2>
+<h2><em>tune2fs -i 0 /dev/sda1</em></h2>
+<p><strong>4-</strong>Mount our USB Flash disc to the system.</p>
+<h2><em>mkdir /mnt/flash</em></h2>
+<h2><em>mount -t ext2 /dev/sda1 /mnt/flash</em></h2>
+<p><strong>5-</strong>Copy the downloaded “embdemid-0.0.1″ contents on flash disc.</p>
+<h2><em>cp -r /your-path/embdemid-0.0.1/* /mnt/flash</em></h2>
+<p><em>6-</em>Finally, we load a group on flash disc.</p>
+<h2><em>echo ‘(hd0) /dev/sda’ &gt; /mnt/flash/boot/grub/device.map</em></h2>
+<h2><em>grub-install –root-directory=/mnt/flash /dev/sda</em></h2>
+<p>Note:There are two default users:
+<strong>1-root
+password:embedded
+2-linux
+password:123456</strong></p>
+<p>All steps are done, your system is ready, mount the flash disc to MID and test it.Have fun:)</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/embdemid-gnulinux/" class="u-url">Embdemid GNU/Linux</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/embdemid-gnulinux/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-08-27T13:54:52+03:00" title="2010-08-27 13:54">2010-08-27 13:54</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/embdemid-gnulinux/#disqus_thread" data-disqus-identifier="cache/posts/embdemid-gnulinux.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>"embdemid GNU/Linux" mobil internet araçları(Compal JAX 10,Aigo P8860,Aigo P8888) için emdebian tabanlı oluşturduğum bir embedded linux projesi."embdemid linux" usb flash belleklere kurulabilir.Compal ve Aigo MID'ler üzerinde kablolu ve kablosuz interneti mükemmel çalışan bir embedded dağıtım.Yakında bluetooth'u da tanıması üzerine çalışmalarım sürmekte. Eğer sizde bir MID'e sahipseniz mutlaka denemenizi tavsiye ediyorum."embdemid linux" MID için konfigure edildi fakat ufak birkaç değişiklikle tüm x86 platformlarında çalıştırabilirsiniz."embdemid linux"u sourceforge "<a href="http://sourceforge.net/projects/embdemid/" target="_blank">http://sourceforge.net/projects/embdemid/</a>" adresinden inderebilirsiniz.
+</p>
+<h4>Embdemid Linux'u USB Flash Belleğe Kurmak :</h4>
+<strong>1-</strong> İlk olarak yukardaki adresten embdemid-0.0.1.tar.bz2(56 MB)   adlı dosyayı indirin ve açın;
+<p>$ <em>tar xjvf  embdemid-0.0.1.tar.bz2</em></p>
+<p><strong>2-</strong> USB Flash belleğimizi yüklemeye hazır hale getirelim.(Minimum 180 MB alan gereklidir.)</p>
+<h2><em>su</em></h2>
+<h2><em> fdisk -l</em></h2>
+<h2>
+<em>umount /dev/sda1 </em> (Eğer usb flask disk sisteme bağlıysa ayıralım.)</h2>
+<p>Ben örnek olarak "/dev/sda" aygıtını baz alarak anlatacağım.Sizin sisteminizde "/dev/sdX" şeklinde farklı olabilir,ona göre bu bölümleri değiştirmelisiniz.</p>
+<h2><em>fdisk /dev/sda</em></h2>
+<p>&gt; d   (Bu komutla önceki bölümleri silelim.Eğer birden fazla bölüm varsa " d " ile hepsini silin.)</p>
+<p>&gt;p  (Bu komutla flash diskte tüm bölümlerin silindiğine emin olun.)</p>
+<p>&gt; n ,  p  ,  1 , enter , enter  (Bu komutları sırasıyla arda arda yapın.Unutmayın fdisk programının içindeyiz!)</p>
+<p>&gt; p  (Bölümümüzün oluştuğuna emin olalım.)</p>
+<p>&gt;w</p>
+<p><strong>3-</strong> Yukardaki adımları uyguladıysanız flash diskinizdeki bölümün hazır olması lazım ve bu bölümü ext2 ile şekillendirelim.</p>
+<h2><em>mkfs.ext2 /dev/sda1</em></h2>
+<h2><em> tune2fs -i 0 /dev/sda1</em></h2>
+<p><strong>4-</strong>USB Flash diskimizi sisteme bağlayalım.</p>
+<h2><em>mkdir /mnt/flash</em></h2>
+<h2><em>mount -t ext2 /dev/sda1 /mnt/flash</em></h2>
+<p><strong>5-</strong> İndirdiğimiz "embdemid-0.0.1" in içindekiler flash diske kopyalalım.</p>
+<h2><em>cp -r /nereye-indirdiyseniz-oranın-yolu/embdemid-0.0.1/* /mnt/flash</em></h2>
+<p><strong>6- </strong>Artık son olarak flash diske grub yükleyerek bitirelim.</p>
+<h2>
+<em>echo '(hd0) /dev/sda' &gt; /mnt/flash/boot/grub/device.map</em> (Eğer sisteminizde Usb Flash disk  sizinde "/dev/sda" da  ise bu adımı yapmanıza gerek yok.</h2>
+<h2><em>grub-install --root-directory=/mnt/flash /dev/sda</em></h2>
+<p><em>Öntanımlı olarak sistemde iki kullanıcı mevcut.Bu kullanıcılar ile sisteme giriş yapabilirsiniz.</em></p>
+<p><strong><em>1- root</em></strong></p>
+<p><strong><em>parola= embedded</em></strong></p>
+<p><strong><em>2- linux</em></strong></p>
+<p><em><strong>parola= 123456</strong>
+</em></p>
+<p>Tüm adımlar bu kadar sisteminiz hazır, flash diski MID'e takarak test edebilirsiniz ,bol eğlenceler.</p>
+<p><strong><strong> </strong><strong> </strong></strong><strong><strong>
+</strong></strong></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/usb-flash-diskten-linux-kurulumu/" class="u-url">Usb Flash Diskten Linux Kurulumu</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/usb-flash-diskten-linux-kurulumu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-08-27T09:10:52+03:00" title="2010-08-27 09:10">2010-08-27 09:10</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/usb-flash-diskten-linux-kurulumu/#disqus_thread" data-disqus-identifier="cache/posts/usb-flash-diskten-linux-kurulumu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Bilgisayarımıza kurmak istediğimiz herhangi bir dağıtımın ".iso" uzantılı cd ya da dvd kalıbı indirdiniz.Fakat bunun için cd ya da dvd harcama niyetinde değil de,"usb flash belleğim var ben bununla kurulum yapmak istiyorum" diyorsanız aşağıdaki adımları izleyin.</p>
+<p><strong>1-</strong> İlk olarak sistem üzerindeki flash diskimizi görelim.</p>
+<h2><em>fdisk -l</em></h2>
+<p>bu komutun çıktısına göre sisteminize bağlı "/dev/sdX" şeklinde bir usb flash belleğin bağlı olduğunu göreceksiniz.Ben ön tanımlı olarak "/dev/sda" olarak alacam.</p>
+<p><strong>2-</strong>Flash belleğimiz "/dev/sda" noktasına bağlı.Bu bölüm sisteme bağlı ise kaldıralım ve flash bellekte bulunan bölümleri silip,boot sektör oluşturalım.</p>
+<h2><em>umount /dev/sda1</em></h2>
+<h2><em>dd  if=/dev/zero of=/dev/sda count=1024</em></h2>
+<p><strong>3-</strong>Flash bellekte yeni bir bölüm oluşturalım.Fdisk yazılımını kullanmasını az buçuk aşina olmanız lazım.</p>
+<h2>
+<em> fdisk /dev/sda </em>(Bu komuttan sonra sırayla aşağıdaki adımları uygulayın!)</h2>
+<p><em>&gt;p</em></p>
+<p><em>&gt;n  , p , 1 , enter enter</em></p>
+<p><em>&gt;p</em></p>
+<p><em>&gt;a ,1</em></p>
+<p><em>&gt;p</em></p>
+<p><em>&gt;w</em></p>
+<p><strong>4-</strong> Yukardaki adımdan sonra flash bellek üzerinde "/dev/sda1" bölümünü oluşturduk ve bu bölümü şimdi ext2 ile şekillendirelim.</p>
+<h2><em>mkfs.ext2 /dev/sda1</em></h2>
+<h2><em>tune2fs -i 0 /dev/sda1</em></h2>
+<p>5-Bu adımda flash belleğimize "mbr" yükleyecez fakat daha önceden sisteminizde "syslinux" adlı yazılımın bulunması lazım.Eğer yoksa paket yöneticisi yardımıyla hemen indirin.(Örnek: " apt-get install syslinux" "emerge syslinux" )</p>
+<h2><em>cat /usr/share/syslinux/mbr.bin &gt; /dev/sda</em></h2>
+<p>6-İndirdiğimiz iso kalıbını ve flash belleğimizi sisteme bağlayalım.(Not:Ben indirdiğimiz iso kalıbına örnek olarak "debian-5.0.iso" adını verdim.Siz indirdiğiniz iso kalıbının adı ve bilgisayarınızdaki yolu neyse onu yazacaksınız.</p>
+<h2><em>mkdir /mnt/flash</em></h2>
+<h2><em>mkdir /mnt/iso</em></h2>
+<h2><em>mount -t ext2 /dev/sda1 /mnt/flash</em></h2>
+<p>$<em>mount -t iso9660 -o loop,user /home/user/downloads/debian-5.0.iso /mnt/iso</em></p>
+<p><strong>7-</strong> iso kalıbının içindekileri usb flash belleğimize kopyalım.</p>
+<h2><em>cd /mnt/flash</em></h2>
+<h2><em>cp -r /mnt/iso/* /mnt/flash</em></h2>
+<p><strong>8-</strong>İso kalıbının usb flash bellekten yüklenebilmesi için birkaç düzeltme ve bootloader yükleyelim.</p>
+<h2><em>mv isolinux extlinux</em></h2>
+<h2><em>mv extlinux/isolinux.cfg extlinux/extlinux.conf</em></h2>
+<h2><em>rm extlinux/isolinux.bin</em></h2>
+<h2><em>cd ..</em></h2>
+<h2><em>extlinux -i /mnt/flash/extlinux</em></h2>
+<p><strong>9-</strong>Bu adıma kadar hata almadan gelebilmişseniz herşey doğru ve artık usb flash bellekten kuruluma hazırdır.Bunun içinde ilk önce flash belleğimizi sistemden ayırıp,daha sonra kendiniz biostan usb 'den boot seçeneğini aktif ederek kuruluma başlayabilirsiniz.</p>
+<h2><em>umount /mnt/flash</em></h2>
+<p>Kolay gelsin :)</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sources-list-generator/" class="u-url">Sources.list Generator</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/sources-list-generator/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-08-27T08:27:32+03:00" title="2010-08-27 08:27">2010-08-27 08:27</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/sources-list-generator/#disqus_thread" data-disqus-identifier="cache/posts/sources-list-generator.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignnone" title="Generator" src="http://linuxdecals.com/jpeg/01098.jpg" alt="" width="202" height="249"><p>Debian ve Ubuntu kullananlar için istediğiniz depoları ekleyip,çıkartabileceğiniz sources.list generator.Bu generatorda neredeyse işine lazım olan ve .deb deposu olan tüm yazılımlar listelenmiş.</p>
+<p>Debian için : <a href="http://debgen.simplylinux.ch/" target="_blank">http://debgen.simplylinux.ch/</a></p>
+<p>Ubuntu için : <a href="http://repogen.simplylinux.ch/" target="_blank">http://repogen.simplylinux.ch/</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/turkiyedeki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet/" class="u-url">Türkiye’deki Linux kullanıcıları için özgür sosyal ağ: Tuxweet</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/turkiyedeki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-06-19T22:40:22+03:00" title="2010-06-19 22:40">2010-06-19 22:40</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/turkiyedeki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet/#disqus_thread" data-disqus-identifier="cache/posts/turkiyedeki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<a href="http://tuxweet.linux.org.tr"><img title="Tuxweet" src="http://gunluk.lkd.org.tr/wp-content/uploads/2010/06/tuxweet_0610.jpg" alt="tuxweet" width="200" height="134"></a>
+<p>Dernek üyelerinden Emre Eryılmaz, Linux kullanıcılarının hepsinin bir yerde toplanması ve iletişimi için Tuxweet isimli servis kurdu.</p>
+<p>Twitter ve Facebook hesabınızla da siteye üye olabilir, mesajlarınızın tuxweet’te de görünmesini sağlayabilirsiniz. Sitenizin, günlüğünüzün RSS besleme adresini ekleyip yazılarınızı burada da yayınlayabilirsiniz. Gmail, Yahoo, Facebook, Twitter listenizde bulunan arkadaşlarınızı davet edebilirsiniz.</p>
+<p><a href="http://tuxweet.linux.org.tr" target="_blank">http://tuxweet.linux.org.tr</a> adresinden bağlanabileceğiniz Tuxweet‘in altyapısında Sharetronix özgür yazılımı kullanılıyor.</p>
+<p>(kaynak: http://gunluk.lkd.org.tr )</p>
+</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index-14.html" rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-12.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Enterasys yedek almak | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/enterasys-yedek-almak/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../enterasys-firmware-yukseltme/" title="Enterasys firmware yükseltme" type="text/html">
+<link rel="next" href="../enterasys-admin-password-reset-i/" title="Enterasys admin password reset - I" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Enterasys yedek almak">
+<meta property="og:url" content="https://blog.piesso.com/posts/enterasys-yedek-almak/">
+<meta property="og:description" content="Büyük bir ağa bakıyorsanız ve ağ üzerinde kenar switchler farklı konfigurasyonlara sahip ise bunları yedeklemek ve herhangi bir sorun anında yedeklerden restore etmek büyük bir önem taşıyor.
+Enterasys">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-10-26T21:04:00+03:00">
+<meta property="article:tag" content="Genel">
+<meta property="article:tag" content="gezegen">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Enterasys yedek almak</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-10-26T21:04:00+03:00" itemprop="datePublished" title="2011-10-26 21:04">2011-10-26 21:04</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/enterasys-yedek-almak.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
+            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>Büyük bir ağa bakıyorsanız ve ağ üzerinde kenar switchler farklı konfigurasyonlara sahip ise bunları yedeklemek ve herhangi bir sorun anında yedeklerden restore etmek büyük bir önem taşıyor.</p>
+<p>Enterasys kenar switchlerde konfigurasyonları yedeklemek ve bu yedeği bir TFTP sunucusuna aktarmak için birkaç adım :
+</p>
+<h5>1.Adım:</h5>
+Eğer varsa eski konfigurasyonları listeleyelim :
+<p><strong>#  dir </strong> <em></em></p>
+<h2>Images:</h2>
+<p>Filename:      c2-series_05.00.75
+Version:       05.00.75
+Size:          7677952 (bytes)
+Date:          Tue Aug  7 09:41:04 2007
+CheckSum:      4d76baca7158f071f9ef1245d22c5466
+Compatibility: C2G124-24, C2G124-48, C2H124-48, C2G124-48P, C2H124-48P
+C2K122-24, C2G170-24, C2G134-24P, C3G124-24, C3G124-24P
+C3G124-48, C3G124-48P</p>
+<p>Filename:      c2-series_05.02.07.0006 (Active) (Boot)
+Version:       05.02.07.0006
+Size:          9479168 (bytes)
+Date:          Sat Oct 10 15:22:25 2009
+CheckSum:      06bebc6af033e7e27a0327f04c991164
+Compatibility: C2G124-24, C2G124-48, C2H124-48, C2G124-48P, C2H124-48P
+C2K122-24, C2G170-24, C2G134-24P, C3G124-24, C3G124-24P
+C3G124-48, C3G124-48P, C3K122-24, C3K122-24P, C3K172-24</p>
+<p>Files:                           Size
+================================ ========
+configs:
+07102011                         12389
+logs:
+current.log                      167441</p>
+<p>Yukarıda görüldüğü gibi "<em>07102011</em>" dosya isimli bir yedek mevcut.
+</p>
+<h5>2.Adım:</h5>
+Switch üzerindeki şu anki konfigurasyonun yeni yedeğini alalım,
+<p><strong># show config outfile configs/26102011</strong></p>
+<p>"<em>26102011</em>" dosya ismiyle yedeğimizi oluşturduk.
+</p>
+<h5>3.Adım:</h5>
+Şimdi yedeğini aldığımız konfigurasyon dosyasını uzaktaki TFTP sunucusuna yükleyelim.
+<p><strong># copy configs/26102011 tftp://192.168.1.12/26102011</strong><a href="http://10.1.60.7/c2-series_05.02.13.0003" target="_blank"></a></p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../enterasys-firmware-yukseltme/" rel="prev" title="Enterasys firmware yükseltme">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../enterasys-admin-password-reset-i/" rel="next" title="Enterasys admin password reset - I">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/enterasys-yedek-almak/",
+        disqus_title="Enterasys yedek almak",
+        disqus_identifier="cache/posts/enterasys-yedek-almak.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

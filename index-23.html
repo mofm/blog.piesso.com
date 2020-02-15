@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Ignotum Per Ignotius">
+<meta name="viewport" content="width=device-width">
+<title>hardened .*(nt|log)s? (old posts, page 23) | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/index-23.html">
+<link rel="prev" href="." type="text/html">
+<link rel="next" href="index-22.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/gentoo-ve-systemd/" class="u-url">Gentoo ve Systemd</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/gentoo-ve-systemd/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2013-10-22T09:24:38+03:00" title="2013-10-22 09:24">2013-10-22 09:24</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/gentoo-ve-systemd/#disqus_thread" data-disqus-identifier="cache/posts/gentoo-ve-systemd.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Systemd büyük bir hızla ,öncelikle güncel linux dağıtımlarında yerini almaya başladı.Systemd linux çekirdeği için geliştirilen ve klasik init sistemlerinin(openrc vs.) yerine geçecek olan daha hızlı ve kararlı bir sistem yönetim daemonu.</p>
+<p><img class="  " alt="systemd pstree çıktısı" src="https://raw.githubusercontent.com/hut/minirc/master/screenshot.png" width="368" height="277"> systemd pstree çıktısı</p>
+<p><img class=" " alt="init pstree çıktısı" src="https://cdn-images-1.medium.com/max/582/1*-QPL92V3VJo6BuGRJ6qJ-w.png" width="357" height="251"> init pstree çıktısı
+ 
+</p>
+<p>Yukardaki ekran görüntüleri örneklerinde de gördüğünüz gibi systemd 'nin sistem üzerindeki ilk daemon(ve proses) olduğu ve userspace üzerinde çalışacak olan tüm prosesler klasik init sistemlerinde olduğu gibi systemd'nin alt proseslerini oluşturmaktadir.Systemd'nin yapısını biraz daha iyi anlamak için aşağıdaki şema yardımcı olacaktır.
+</p>
+<img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri
+<p>Binary Linux Dağıtımlarında eğer systemd'ye geçilmişse ayrıca birşey yapmanıza gerek yok.Fakat Gentoo Linux dağıtımında şu an stage 3'te öntanımlı gelmediği için kendiniz yardımcı araçlarla geçebilirsiniz.(ki gentoo geliştiricileri bunun için birçok şeyi hazırlamış bulunmakta.)</p>
+<p>Kısa adımlarla systemd'ye geçişten bahsedebilirim:</p>
+<ol>
+<li>İlk olarak çekirdeğimize systemd için gerekli destekleri verelim.Gentoo geliştiricileri bu konuda kullanıcıları rahatlamak için güncel kernel sürümlerinde <em>"kernel konfigürasyon menüsü"</em>ne eklenen <em>"Gentoo Linux"</em> sekmesinin altında bulunan <em>"Support for init systems, system and service managers"</em> alt sekmesinin içinde bulunan <em>"systemd"</em> seçeneğini seçerek kernel için gerekli tüm destekleri kolayca verebilirsiniz.Bu seçenek sizin zorunlu olan destekleri tek tek elle vermek yerine hızlıca yapmanizi sağlayan bir kısayol.</li>
+</ol>
+<p>Gerekli destekleri verdikten sonra kernelimizi ve modüllerimizi yeniden derleyin.</p>
+<ol>
+<li>Kullandığınız herhangi grafik arabirimi ya da hangi sistem ise "Gentoo" profilinizi "systemd" profiline değiştirerek gerekli profil değişiklerini tanımlayın.
+<pre># eselect profile list</pre>
+</li>
+</ol>
+<p>Available profile symlink targets:
+[1]   default/linux/amd64/13.0
+[2]   default/linux/amd64/13.0/selinux
+[3]   default/linux/amd64/13.0/desktop
+[4]   default/linux/amd64/13.0/desktop/gnome *
+[5]   default/linux/amd64/13.0/desktop/gnome/systemd
+[6]   default/linux/amd64/13.0/desktop/kde
+[7]   default/linux/amd64/13.0/desktop/kde/systemd
+[8]   default/linux/amd64/13.0/developer
+[9]   default/linux/amd64/13.0/no-multilib
+[10]  default/linux/amd64/13.0/x32
+[11]  hardened/linux/amd64
+[12]  hardened/linux/amd64/selinux
+[13]  hardened/linux/amd64/no-multilib
+[14]  hardened/linux/amd64/no-multilib/selinux
+[15]  hardened/linux/amd64/x32
+[16]  hardened/linux/uclibc/amd64
+Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.
+</p>
+<pre># eselect profile set 5</pre>
+ 
+<ol>
+<li>Bu adımda <i>"systemd"</i>yi yükleyelim.
+<pre># emerge --ask systemd</pre>
+</li>
+<li>
+<p>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
+</p>
+<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
+şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.
+<pre># emerge -NuDa world</pre>
+Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.
+</li>
+<li>
+<p>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</p>
+</li>
+</ol>
+<p>( /boot/grub/menu.lst )
+</p>
+<pre>kernel /vmlinuz-3.7.10-r1 root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
+Grub 2 için;
+<p>( /boot/grub/grub.cfg )
+</p>
+<pre>linux /vmlinuz-3.7.10-r1 root=UUID=21312312-12312312-1231121 init=/usr/lib/systemd/systemd</pre>
+UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
+"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;
+<pre>root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
+6.Sistemi yeniden başlatın.
+<p>7.Sistem yeniden başladıktan sonra eski(Openrc vs.) init sistemi üzerinde tanımladığımız hostname,locale ayarları artık systemd üzerinde geçerli olmayacaktır.</p>
+<p>Systemd hostname ayarlamak için;
+</p>
+<pre># hostnamectl set-hostname benimpc</pre>
+Systemd klavye ayarları için;
+<pre># localectl set-keymap trq</pre>
+X11 için;
+<pre># localectl set-x11-keymap tr</pre>
+Sistem locale ayarı için;
+<pre># localectl set-locale LANG=en_US.UTF-8</pre>
+Türkçe için;
+<pre># localectl set-locale LANG=tr_TR.UTF-8</pre>
+8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.
+<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;
+</p>
+<pre># systemctl</pre>
+Aktif ve deaktif tüm servislerin durumunu görmek için;
+<pre># systemctl list-unit-files</pre>
+Herhangi bir servisi sistem açılışına eklemek için;
+<pre># systemd enable vixie-cron.service</pre>
+Herhangi bir servisi çalıştırmak için;
+<pre># systemctl start syslog-ng.service</pre>
+<b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.
+<p>Herhangi bir servisin durumunu görmek için;
+</p>
+<pre># systemctl status NetworkManager.service</pre>
+Herhangi bir servisi durdurmak için;
+<pre># systemctl stop upower.service</pre>
+Herhangi bir servisi yeniden başlatmak için;
+<pre># systemctl restart dhcpcd.service</pre>
+<b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;
+<pre># systemctl enable xdm.service</pre>
+Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;
+<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,
+</p>
+<pre>[Service]
+ExecStart=/usr/bin/xdm -nodaemon</pre>
+--&gt; satırını;
+<p>(GDM için)
+</p>
+<pre>[Service]
+ExecStart=/usr/bin/gdm</pre>
+---&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.
+<ol>
+<li>Değinebileceğim diğer bir nokta ise açılışta otomatik yüklenmesi istediğiniz modüller ve network ayarları.</li>
+</ol>
+<p>Sistem açılışında otomatik yüklenmesi istediğiniz modül ya da  modülleri <b>"/etc/modules-load.d"</b> dizini içerisine isterseniz ayrı ayrı,istediğiniz sekilde isimlendirdiğiniz dosyaların içerisine ilk satıra ve ya tek bir dosya içerisinde her modül tek satırda olacak şekilde yazabilirsiniz.Örnek:</p>
+<p>( /etc/modules-load.d/modullerim.conf )
+</p>
+<pre>bridge
+<p>tun</p></pre>
+<pre>şeklinde ekleyebilirsiniz.
+<p>Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</p></pre>
+<pre># systemctl enable dhcpcd.service</pre>
+Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;
+<pre># systemctl enable NetworkManager.service</pre>
+Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;
+<p>( /etc/systemd/system/mynetwork.service )
+</p>
+<pre>[Unit]
+Description=network ayarlarim
+After=network.target
+<p>[Service]
+Type=oneshot
+RemainAfterExit=yes</p>
+<p>EnvironmentFile=/etc/conf.d/bridge.conf</p>
+<p>ExecStart=/bin/ifconfig eth0 up
+ExecStart=/bin/ifconfig eth1 up
+ExecStart=/usr/bin/tunctl -b -u rico -t tap0
+ExecStart=/bin/ifconfig tap0 up promisc
+ExecStart=/sbin/brctl addbr br0
+ExecStart=/sbin/brctl addif br0 eth0
+ExecStart=/sbin/brctl addif br0 eth1
+ExecStart=/sbin/brctl addif br0 tap0
+ExecStart=/sbin/dhcpcd br0</p>
+<p>ExecStop=/usr/bin/killall dhcpcd
+ExecStop=/bin/ifconfig eth0 down
+ExecStop=/bin/ifconfig eth1 down
+ExecStop=/bin/ifconfig tap0 down
+ExecStop=/sbin/brctl delif br0 tap0
+ExecStop=/usr/bin/tunctl -d tap0
+ExecStop=/sbin/brctl delif br0 eth0
+ExecStop=/sbin/brctl delif br0 eth1
+ExecStop=/bin/ifconfig br0 down
+ExexStop=/sbin/brctl delbr br0</p>
+<p>[Install]
+WantedBy=multi-user.target</p></pre>
+Systemd ile iyi keyifler :)</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alcatel-lucent-switch-konsol-pin-siralamas/" class="u-url">Alcatel-Lucent Switch Konsol Pin Sıralaması</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/alcatel-lucent-switch-konsol-pin-siralamas/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2013-07-15T00:17:43+03:00" title="2013-07-15 00:17">2013-07-15 00:17</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/alcatel-lucent-switch-konsol-pin-siralamas/#disqus_thread" data-disqus-identifier="cache/posts/alcatel-lucent-switch-konsol-pin-siralamas.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Elinizde cihazın (<em>Alcatel-Lucent</em>) <a title="Seri Port" href="http://tr.wikipedia.org/wiki/Seri_port" target="_blank">seri port</a> (<a title="RS-232" href="http://tr.wikipedia.org/wiki/RS-232" target="_blank">RS -232</a> bakın.) bağlantı kablosu kayıp ve ya yoksa üzülmeyin.Aramanıza ya da yeni bir tane sipariş etmekte harcayacağınız enerjinizi kendize hemen bir tane yaparak çözüm sağlayabilirsiniz.Daha önce de <a title="Enterasys N/X Serisi Konsol Bağlantısı" href="http://linux.piesso.com/enterasys-n-ve-x-serisi-konsol-baglantisi" target="_blank">Enterasys N7 backbone</a> cihazları için pin sırasını vermiştim.Şimdi Alcatel-Lucent marka switch'lerin ( <em>örn: 6850 ve 9800</em> ) DB9 ve RJ45 pin sırası:
+<img alt="console pin" src="http://4.bp.blogspot.com/_Fduwa95b3Ac/TMB9s0Bq6AI/AAAAAAAADNE/grUS0E2yqMI/s1600/Alcatel+console.jpg" width="437" height="452"></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/google-reader-ozgur-alternatif-newsblur/" class="u-url">Google Reader'a Özgür Alternatif : NewsBlur</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/google-reader-ozgur-alternatif-newsblur/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2013-01-29T12:18:41+02:00" title="2013-01-29 12:18">2013-01-29 12:18</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/google-reader-ozgur-alternatif-newsblur/#disqus_thread" data-disqus-identifier="cache/posts/google-reader-ozgur-alternatif-newsblur.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" alt="NewsBlur" src="http://media.tumblr.com/tumblr_li3v0f3zPR1qg4k90.png" width="180" height="180">Google Reader servisinin özgür yazılım alternatifi olan "<em>NewsBlur</em>" ile istediginiz blog ya da web adreslerinin RSS'lerini tarayıcınızdan takip edebilirsiniz.NewsBlur'un websitesine[ <a title="NewsBlur" href="https://www.newsblur.com/" target="_blank">https://www.newsblur.com/</a> ] birkaç adımda kayıt olarak online takip etmeye başlayabilir ya da GitHub[ <a title="NewsBlur" href="https://github.com/samuelclay/NewsBlur" target="_blank">https://github.com/samuelclay/NewsBlur</a> ] üzerinden kaynak kodlarını( <em>MIT Lisansı ile</em>) indirip kendiniz kurabilirsiniz.
+<p><strong>Mimarisi:</strong></p>
+<p><code>* Django
+* Celery &amp; RabbitMQ
+* MongoDB, Pymongo, &amp; Mongoengine
+* PostgreSQL</code></p>
+</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="." rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-22.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

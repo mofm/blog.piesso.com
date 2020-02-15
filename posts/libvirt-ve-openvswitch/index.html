@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Libvirt ve OpenvSwitch | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../ansible-gentoo-portage-update/" title="Ansible Gentoo-Portage Update" type="text/html">
+<link rel="next" href="../openldap-schema-for-postfix/" title="OpenLDAP Schema for Postfix" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Libvirt ve OpenvSwitch">
+<meta property="og:url" content="https://blog.piesso.com/posts/libvirt-ve-openvswitch/">
+<meta property="og:description" content="Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
+once bu iki yazilim nedir, ne degildir onlari taniyalim.
+Libvirt 1 , Redhat t">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-01-15T00:13:52+03:00">
+<meta property="article:tag" content="kvm">
+<meta property="article:tag" content="libvirt">
+<meta property="article:tag" content="openvswitch">
+<meta property="article:tag" content="qemu">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Libvirt ve OpenvSwitch</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2018-01-15T00:13:52+03:00" itemprop="datePublished" title="2018-01-15 00:13">2018-01-15 00:13</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/libvirt-ve-openvswitch.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.rst" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/kvm/" rel="tag">kvm</a></li>
+            <li><a class="tag p-category" href="../../categories/libvirt/" rel="tag">libvirt</a></li>
+            <li><a class="tag p-category" href="../../categories/openvswitch/" rel="tag">openvswitch</a></li>
+            <li><a class="tag p-category" href="../../categories/qemu/" rel="tag">qemu</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
+once bu iki yazilim nedir, ne degildir onlari taniyalim.</p>
+<p><strong>Libvirt</strong> <a class="footnote-reference brackets" href="#id3" id="id1">1</a> , Redhat tarafindan 2005'ten bu yana gelistirilmeye devam eden sanallastirma ortamlari icin daemon, API ve
+yonetim aracidir.</p>
+<img alt="/images/libvirt_hypervisors.png" src="../../images/libvirt_hypervisors.png"><p>Libvirt bilinen bir cok hypervisor'u desteklemektedir. Iste bunlardan bazilari:</p>
+<ul class="simple">
+<li><p>KVM</p></li>
+<li><p>LXC</p></li>
+<li><p>OpenVZ</p></li>
+<li><p>Xen</p></li>
+<li><p>User-mode Linux (UML)</p></li>
+<li><p>Virtualbox</p></li>
+<li><p>VMware ESX</p></li>
+<li><p>VMware Workstation</p></li>
+<li><p>Hyper-V</p></li>
+<li><p>PowerVM</p></li>
+<li><p>Parallels Workstation</p></li>
+<li><p>Bhyve</p></li>
+</ul>
+<p><strong>OpenvSwitch</strong> <a class="footnote-reference brackets" href="#id4" id="id2">2</a> , kisaca sanal multilayer network switchtir. OpenvSwitch, bir SDN switch olarak hypervisor uzerindeki sanal makineleri
+fiziksel olarak ayri bulunan network switchler ile entegre calisarak yonetebilir.</p>
+<img alt="/images/Distributed_Open_vSwitch_instance.png" src="../../images/Distributed_Open_vSwitch_instance.png"><p>Birden fazla protokolu desteklemektedir:</p>
+<ul class="simple">
+<li><p>NetFlow</p></li>
+<li><p>sFlow</p></li>
+<li><p>SPAN</p></li>
+<li><p>RSPAN</p></li>
+<li><p>CLI</p></li>
+<li><p>LACP</p></li>
+<li><p>802.1ag</p></li>
+</ul>
+<div class="section" id="kurulum">
+<h2>Kurulum:</h2>
+<p>Paket yoneticiniz ile libvirt ve openvswitch kurulumunu yapalim. Siz kendi dagitiminiza ve paket yoneticinize gore kurulumu yapabilirsiniz.
+Gentoo uzerinde, libvirt icin gerekli "USE FLAG"lari aktif edip kurulumunu yapalim.Binary dagitimlar icin buna gerek yoktur. Siz direk paket yoneticiniz ile kurulumu yapin.</p>
+<p>/etc/portage/package.use/libvirt:</p>
+<pre class="literal-block">app-emulation/libvirt macvtap vepa qemu virt-network</pre>
+<p>Simdi kurulumu yapabiliriz.</p>
+<pre class="code bash"><a name="rest_code_233e814fd59049d6bc8709f91c52d60e-1"></a><span class="c1"># emerge -av libvirt</span>
+</pre>
+<p>OpenvSwitch kurulumunu yapalim.</p>
+<pre class="code bash"><a name="rest_code_280c897323ec40489e2938c04a8e15e7-1"></a><span class="c1"># emerge -av openvswitch</span>
+</pre>
+<p>Sistem baslangici icin bu servisleri enable edelim.</p>
+<pre class="code bash"><a name="rest_code_190780bdf81940b4aaaca45332b7af49-1"></a><span class="c1"># rc-update add ovsdb-server default</span>
+<a name="rest_code_190780bdf81940b4aaaca45332b7af49-2"></a><span class="c1"># rc-update add ovs-vswitchd default</span>
+<a name="rest_code_190780bdf81940b4aaaca45332b7af49-3"></a><span class="c1"># rc-update add libvirtd default</span>
+<a name="rest_code_190780bdf81940b4aaaca45332b7af49-4"></a><span class="c1"># rc-update add libvirt-guests default</span>
+</pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>openvswitch ve kvm kernel modullerinin yuklendiginden emin olunuz. Kernel uzerinde aktif etmek icin <a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU_with_Open_vSwitch_network">openvswitch</a> , <a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU">qemu</a>.</p>
+</div>
+<p>Sistem acilisinda bu modullerin yuklenmesi icin</p>
+<p>/etc/conf.d/modules:</p>
+<pre class="literal-block">modules_4="openvswitch kvm kvm_intel tun"</pre>
+<p>Servisleri baslatalim.</p>
+<pre class="code bash"><a name="rest_code_c806b4546a5149f58d217bbe04934684-1"></a><span class="c1"># /etc/init.d/ovsdb-server start</span>
+<a name="rest_code_c806b4546a5149f58d217bbe04934684-2"></a><span class="c1"># /etc/init.d/ovs-vswitchd start</span>
+<a name="rest_code_c806b4546a5149f58d217bbe04934684-3"></a><span class="c1"># /etc/init.d/libvirtd start</span>
+<a name="rest_code_c806b4546a5149f58d217bbe04934684-4"></a><span class="c1"># /etc/init.d/libvirt-guests start</span>
+</pre>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd>
+<p><a class="reference external" href="https://libvirt.org/">https://libvirt.org/</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd>
+<p><a class="reference external" href="http://openvswitch.org">http://openvswitch.org</a></p>
+</dd>
+</dl>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../ansible-gentoo-portage-update/" rel="prev" title="Ansible Gentoo-Portage Update">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../openldap-schema-for-postfix/" rel="next" title="OpenLDAP Schema for Postfix">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/libvirt-ve-openvswitch/",
+        disqus_title="Libvirt ve OpenvSwitch",
+        disqus_identifier="cache/posts/libvirt-ve-openvswitch.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

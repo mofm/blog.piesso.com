@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Freetalk - konsol tabanlı jabber client | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/freetalk-konsol-tabanli-jabber-client/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../gnu-nedirlinux-ile-gnu-arasindaki-iliski/" title="GNU nedir?Linux ile GNU arasındaki ilişki" type="text/html">
+<link rel="next" href="../opendns-dinamik-ip-updater/" title="OpenDns dinamik ip updater" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Freetalk - konsol tabanlı jabber client">
+<meta property="og:url" content="https://blog.piesso.com/posts/freetalk-konsol-tabanli-jabber-client/">
+<meta property="og:description" content=",           ,
+ /             \
+((-^^-,-^^-))
+ -_---'---_-'
+  --|o 'o|--'
+     \  `  /
+      ): :(
+      :o_o:
+       &quot;-&quot;
+Freetalk konsol tabanlı bir jabber client'tır.Konsoldan freetalk programı ile j">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2009-12-20T06:18:14+02:00">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Freetalk - konsol tabanlı jabber client</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2009-12-20T06:18:14+02:00" itemprop="datePublished" title="2009-12-20 06:18">2009-12-20 06:18</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/freetalk-konsol-tabanli-jabber-client.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<pre>  ,           ,
+ /             \
+((<strong>-^^-,-^^-</strong>))
+ <code>-_---'</code>---_-'
+  <code>--|o</code> 'o|--'
+     \  `  /
+      ): :(
+      :o_o:
+       "-"</pre>
+Freetalk konsol tabanlı bir jabber client'tır.Konsoldan freetalk programı ile jabber'a bağlanıp özgürce iletişim kurabilirsiniz. Özgürce kullanabileceğiniz,konfigure edilebilen,isterseniz geliştirilebilen özgür bir yazılımdır.Son kararlı sürümü "freetalk-3.2"dir. Freetalk indirmek için <a href="http://savannah.gnu.org/download/freetalk/freetalk-3.2.tar.gz">buradan </a>
+<p><strong>Freetalk kullanımı:</strong></p>
+<p>freetalk  [<var>seçenek</var>] örnek [seçenek] : - j=Jabber id , -jid=jabber-id(Jabber kullanıcı id'si)</p>
+<p>Script kullanımı ; -s=<var>SCRIPT-FILE</var> | –script=<var>SCRIPT-FILE </var></p>
+<p>-V  | -version = version numarasını gösterir.</p>
+<p>-? | –help | –usage = yardım ekranını getirir.
+</p>
+<h4><strong>Feetalk komutları :</strong></h4>
+<h4><strong>connect</strong></h4>
+<strong>komut:</strong> /connect
+<p>Konfigure edilmiş servera bağlanır.
+</p>
+<pre>~\/~ /connect
+Connecting...
+~\/~</pre>
+Eğer sunucu konfigure edilmemişse,hata mesajı verir ve durur;
+<pre>~\/~ /connect
+Server not set
+~\/~</pre>
+<h4>disconnect</h4>
+<strong>komut :</strong> /disconnect
+<p>O an bağlı bulunan server ile bağlantısını keser.
+</p>
+<pre>~\/~ /disconnect
+Disconnected from <var>server</var>. Reason (0): User request
+~\/~</pre>
+<h4>server</h4>
+<strong>komut:</strong> <strong>/server </strong><em> [servername]</em>
+<p><em>Bağlanmak istediğiniz herhangi biri servere bağlar ya da bağlı bulunduğunuz serverı size gösterir.</em>
+</p>
+<pre>~\/~ /server
+Current server:
+~\/~ /server jabber.org
+~\/~ /server
+Current server: jabber.org
+~\/~</pre>
+<h4>jid</h4>
+<strong>komut:</strong> <strong>/jid</strong><em> [kullanıcı_adı@domain[/kaynak]]</em>
+<p><em>Kayıtlı olduğunuz kullanıcı adı ile bağlanmak için ya da bağlı bulunan kullanıcının adını ekrana yazdırır.</em>
+</p>
+<pre>~\/~ /jid
+Current JID:
+~\/~ /jid avati@jabber.org
+~\/~ /jid
+Current JID: avati@jabber.org</pre>
+<em>
+</em>
+<h4>add</h4>
+<strong>komut:</strong> <strong>/add</strong><em> kullanıcı_adı@domain</em>
+<p><em>Bu komut adresini yazdığınız adresi sizin buddy list'ize ekler.</em>
+</p>
+<pre>~\/~ /add harshavardhanacool@gmail.com
+~\/~
+<h4>allow</h4>
+<strong>komut :</strong> <strong>/allow</strong><em> kullanıcı_adı@domain
+<p></p></em><em> </em></pre>
+Adresini yazdığınız kullanıcının sizin durumunuzu görmesine izin verir.
+<pre>~\/~ /allow haddock@marlinspike.org</pre>
+<h4>deny</h4>
+<strong>komut:</strong> <strong>/deny</strong><em> kullanıcı_adı@domain</em>
+<p><em>Yazdığınız kişi sizin durumunuzu görmesini engellersiniz.</em>
+</p>
+<pre>~\/~ /deny cacafonix@village.gl</pre>
+<h4>quit</h4>
+<strong>komut:</strong><strong> </strong><strong>/quit</strong><em> mesaj</em>
+<p><em>Freetalk programından çıkmanızı sağlar.</em>
+</p>
+<pre>~\/~ /quit
+shell$</pre>
+<h4>restart</h4>
+<strong>komut:</strong> <strong>/restart</strong>
+<p><strong>Bu komutla programı yeniden başlatırsınız.</strong>
+</p>
+<pre>~\/~ /restart
+Loading dictionary [/usr/share/dict/words]... [38619] words
+Jabber ID:
+<h4>who</h4>
+</pre>
+<strong>komut:</strong> <strong>/who</strong>
+<p><strong>Bu komut listenizde bulunan kişileri durumları ile birlikte gösterir.</strong>
+</p>
+<pre>~\/~ /who
+ * abindian@gmail.com (ab)
+   twistedlogix@gmail.com
+ * tejasvk@gmail.com -&gt; [Away] (on metarnity leave)
+   basavanagowda@gmail.com
+   amarts@gmail.com (ts3)
+~\/~
+<h4>status</h4>
+</pre>
+<strong>komut:</strong><strong> /status</strong><em> [online|away|chat|xa|dnd] [Mesaj]</em>
+<p><em>Bu komutla durumunuzu değiştirebilirsiniz.</em>
+</p>
+<pre>~\/~ /status online Using Freetalk
+~\/~ /status
+Current status: online Using Freetalk
+~\/~
+<h4>whoami</h4>
+</pre>
+<strong>komut:</strong> <strong>/whoami</strong>
+<p><strong>O an hangi kimlikle giriş yaptığınızı gösterir.</strong>
+</p>
+<pre>~\/~ /whoami
+~\/~ /whoami
+Jabber ID: avati@zresearch.com
+Jabber Server: jabber.org
+Status: hacking
+~\/~</pre>
+<h4>version</h4>
+<strong>komut:</strong> <strong>/version</strong>
+<p><strong>Freetalk programının versiyonunu ekrana yazar.</strong>
+</p>
+<pre>~\/~ /version
+freetalk (Freetalk) 3.2
+Copyright (C) 2005, 2007 FreeTalk Core Team
+…
+<p>~\/~</p></pre>
+<h4>logout</h4>
+<strong>komut:</strong> <strong>/logout</strong>
+<p><strong>Bu komut /disconnect komutu ile aynıdır.</strong>
+</p>
+<pre>~\/~ /logout
+Disconnected from <var>server</var>, reason(0): User request
+~\/~</pre>
+<h4>history</h4>
+<strong>komut: </strong><strong>/history</strong><em> [kullanıcı_adı]</em>
+<p>Bu komutla geçmiş görüşmeleri ekrana yazdırabilirsin.Eğer kullanıcı adı girilmemişse o an ki açık olan oturumdaki geçmişi gösterir.
+</p>
+<pre>~\/~ /history emre.eryilmaz@jabber.org
+<p>Prints the history of messages with</p></pre>
+<pre>emre.eryilmaz@jabber.org paginated by <code>less</code>.</pre>
+~\/~ /history
+<p>Prints this history of messages of the current session.</p>
+<p>~\/~
+</p>
+<h4>login</h4>
+<strong>komut:</strong> <strong>/login</strong>
+<p><strong>/disconnect ile çıkış yaptıktan daha sonra bu komutla normal giriş yapabilirsiniz.</strong>
+</p>
+<pre>~\/~ /login
+Jabber ID: emre.eryilmaz@jabber.org
+Password:
+Enable TLS/SSL (Y/N)? [Y]: y
+Port [5223]: 2401
+Connecting...
+~\/~
+<h4>help</h4>
+</pre>
+<strong>komut:</strong> <strong>/help</strong><em> [freetalk-komutu]</em>
+<p><em>/help komutu yanına yazılan diğer komut hakkında bilgi gösterir.</em>
+</p>
+<pre>~\/~ /help /history
+/history - /history [BUDDY]
+         Display history page by page
+~\/~</pre>
+<h4>freetalk</h4>
+<strong>komut:</strong> <strong>/freetalk</strong><em> kullanıcı_adı</em>
+<p><em>Bu komutla yazdığınız kullanıcının freetalk kullanıp kullanmadığını öğrenirsiniz.</em>
+</p>
+<pre>~\/~ /freetalk emre.eryilmaz@jabber.org
+<p>Yes emre.eryilmaz@jabber.org is using freetalk.</p>
+<p>~\/~</p></pre>
+Şimdilik en önemli olan komutlardan bahsettik.
+<p>Eğer freetalk programının açıldığında otomatik olarak giriş yapmasını istiyorsak</p>
+<p>"<tt><em><strong>~/.freetalk/freetalk.scm</strong></em>"  yolundaki dosyayı aşağıdaki örnekteki gibi editleyebiliriz.</tt>
+</p>
+<pre>;; Sample ~/.freetalk/freetalk.scm
+;; It sets connection parameters and tries to connect on
+;; starting freetalk
+(and (strings=? (ft-get-jid) "")
+                (ft-set-jid! "emre.eryilmaz@jabber.org")
+                (ft-set-password! "f00b4r")
+                (ft-set-sslconn! 1)
+                (ft-set-server! "jabber.org")
+                ;; Proxy support
+                (ft-set-proxyserver! "your.proxy.org")
+                (ft-set-proxyport! "8080"))</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../gnu-nedirlinux-ile-gnu-arasindaki-iliski/" rel="prev" title="GNU nedir?Linux ile GNU arasındaki ilişki">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../opendns-dinamik-ip-updater/" rel="next" title="OpenDns dinamik ip updater">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/freetalk-konsol-tabanli-jabber-client/",
+        disqus_title="Freetalk - konsol tabanl\u0131 jabber client",
+        disqus_identifier="cache/posts/freetalk-konsol-tabanli-jabber-client.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

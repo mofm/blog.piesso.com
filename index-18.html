@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Ignotum Per Ignotius">
+<meta name="viewport" content="width=device-width">
+<title>hardened .*(nt|log)s? (old posts, page 18) | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/index-18.html">
+<link rel="prev" href="index-19.html" type="text/html">
+<link rel="next" href="index-17.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/debian-openvz-web-panel/" class="u-url">Debian OpenVZ-Web panel</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/debian-openvz-web-panel/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-08-11T20:20:56+03:00" title="2011-08-11 20:20">2011-08-11 20:20</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/debian-openvz-web-panel/#disqus_thread" data-disqus-identifier="cache/posts/debian-openvz-web-panel.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="OpenVZ" src="http://www.admon.org/wp-content/uploads/2010/04/openvz.png" alt="" width="135" height="135">Birkaç adımda <a href="http://www.debian.org" target="_blank">Debian</a> Squeeze üzerine <a href="http://wiki.openvz.org/Main_Page" target="_blank">OpenVZ</a> ve entegre kolay yönetebilir web paneli kurulumu .
+<p><strong>OpenVZ Nedir?</strong>
+OpenVZ; Linux tabanlı, işletim sistemi düzeyinde sunucu sanallaştırma yazılımıdır. OpenVZ
+aynı fiziksel sunucu üzerinde birden fazla yalıtılmış ve güvenli sanal ortamlar (Virtual
+Environments – VEs veya Virtual Private Servers – VPSs diyebiliriz) oluşturur. Her sanal
+ortam, fiziksel makine üzerinde sadece kendisi varmış gibi çalışır. Tüm sanal ortamlar
+birbirinden bağımsız olarak yeniden başlatılabilir ve her sanal ortamın farklı sistem
+kullanıcıları, IP adresleri, belleği, dosyaları, uygulamaları, sistem kütüphaneleri ve
+yapılandırmaları vardır.
+OpenVZ, SWsoft tarafından desteklenen açık kaynak kodlu, <em>GNU GPL</em> lisanslı bir projedir ve
+yine bu firmanın ticari bir ürünü olan <em>VirtuozzoTM</em> temellidir.
+OpenVZ altında çalışan bir sanal sistem en fazla <strong>64 GB</strong> belleği (RAM) destekleyebilir. Ayrıca
+bir OpenVZ çekirdeği aynı anda en fazla <strong>100</strong> sanal işletim sistemi yönetebilir. [<a href="http://www.enderunix.org/docs/openvz.pdf" target="_blank">1</a>]</p>
+<p><strong>Debian Squeeze OpenVZ Kurulumu</strong></p>
+<p>Debian Squeeze üzerine OpenVZ ve gerekli araçları kurmak için ,</p>
+<p>İlk önce depolarımızı güncelleyelim:
+</p>
+<pre><strong># apt-get update</strong></pre>
+OpenVZ kernelimizi ve araçları yükleyelim:
+<pre><strong># apt-get install linux-image-openvz-amd64 vzctl vzquota vzdump rsync iproute libatml</strong></pre>
+Yeni kernelimiz ve araçlarımız yüklendikten sonra kernelimizdeki gerekli değişiklikleri yapalım.Bunun için "<strong>/etc/sysctl.conf</strong>" dosyasında bazı değişiklikler yapıyoruz.Kendi "<em>sysctl.conf</em>" dosyanızda aşağıdaki değişikleri ya da eklemeleri yapın:
+<pre>[...]
+<h2>On Hardware Node we generally need</h2>
+<h2>packet forwarding enabled and proxy arp disabled</h2>
+<p>net.ipv4.conf.default.forwarding=1
+net.ipv4.conf.default.proxy_arp=0
+net.ipv4.ip_forward=1</p>
+<h2>Enables source route verification</h2>
+<p>net.ipv4.conf.all.rp_filter=1</p>
+<h2>Enables the magic-sysrq key</h2>
+<p>kernel.sysrq=1</p>
+<h2>TCP Explict Congestion Notification</h2>
+<h2>net.ipv4.tcp_ecn=0</h2>
+<h2>we do not want all our interfaces to send redirects</h2>
+<p>net.ipv4.conf.default.send_redirects=1
+net.ipv4.conf.all.send_redirects=0</p>
+<p>[...]
+</p></pre>
+Dosyada gerekli değişikleri yaptıysanız , yeni kernelimizle sistemimizi başlatalım:
+<pre><strong># reboot</strong></pre>
+Sistem açıldıktan sonra kontrollerimizi yapalım :
+<pre><strong># uname -r</strong>
+2.6.32-5-openvz-amd64</pre>
+<pre><strong># ps ax | grep vz</strong>
+</pre>
+<pre>1801 ?        S      0:00 [vzmond]</pre>
+<pre><strong># ifconfig</strong></pre>
+<pre>venet0    Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00 
+ UP BROADCAST POINTOPOINT RUNNING NOARP  MTU:1500  Metric:1
+ RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+ TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+ collisions:0 txqueuelen:0
+ RX bytes:0 (0.0 B)  TX bytes:252 (252.0 B)</pre>
+<strong>Yeni SANAL Makina Oluşturalım </strong>
+<p>Sanal makina oluşturmadan önce bir tane template indirelim:
+</p>
+<pre><strong># cd /var/lib/vz/template/cache</strong></pre>
+<pre><strong># wget http://download.openvz.org/template/precreated/contrib/debian-6.0-amd64-minimal.tar.gz</strong>
+<strong># vzctl create 01 --ostemplate debian-6.0-amd64-minimal</strong> (yeni makinamızı oluşturalım.)
+<strong># vzctl set 01 --ipadd 10.1.0.100 --save</strong> (sanal makinamıza ip verelim.)
+<strong># vzctl set 01 --nameserver 192.168.1.130 --save</strong> ( öntanımlı DNS ekleyelim.)
+<strong># vzctl set 01 --hostname piesso.com --save</strong> (hostname'i ayarlayalım.)
+<strong># vzctl start 01</strong> (Sanal makinamızı başlatalım.)
+<strong># ping 10.1.0.100</strong> ( verdiğimiz ip'yi test edelim.)
+<strong># vzctl exec 01 parola</strong> ( parola atayalım.)
+<strong># vzctl enter 01</strong> ( Sanal makinaya geçiş yapalım. )</pre>
+Daha detaylı bilgi için <a href="http://wiki.openvz.org/Man/vzctl.8" target="_blank">vzctl</a> , <a href="http://wiki.openvz.org/Man/vzlist.8" target="_blank">vzlist</a> , <a href="http://wiki.openvz.org/Man/vz.conf.5" target="_blank">vz.conf </a>man sayfalarına bakabilirsiniz ya da daha kolay yönetilebileceğiniz "OpenVZ Web Panel"i yükleyebilirsiniz.
+<h2>OpenVZ Web Panel Kurulumu</h2>
+OpenVZ'i daha rahat yönetebilmek ve diğer kullanıcılarında yetkileriyle kendi VPS'lerini yönetebilmesi için "<a href="http://code.google.com/p/ovz-web-panel/" target="_blank">OpenVZ Web Panel</a>"i tek satırda kuralım:
+<pre><strong># <tt>wget -O - http://ovz-web-panel.googlecode.com/svn/installer/ai.sh | sh</tt></strong></pre>
+Bu komuttan sonra eksik "ruby" paketleri sisteme kurulup paneliniz  burada "<strong>http://adresiniz:3000</strong>" hazır durumdadır.
+<p><img class="alignnone" title="OpenVZ Web Panel" src="http://ovz-web-panel.googlecode.com/svn/wiki/images/promo.png" alt="" width="650" height="500"></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/nagios-png-to-gd2/" class="u-url">Nagios png to gd2</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/nagios-png-to-gd2/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-08-11T11:23:48+03:00" title="2011-08-11 11:23">2011-08-11 11:23</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/nagios-png-to-gd2/#disqus_thread" data-disqus-identifier="cache/posts/nagios-png-to-gd2.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="Nagios" src="http://lh6.ggpht.com/_lrGAZKHmne0/TJkj9rB--CI/AAAAAAAACmk/VaJDtsbBq-Y/nagios-150x150%5B2%5D.png?imgmax=800" alt="" width="150" height="150">Debian Squeeze <em>nagios-images</em> paketi ile kurulan iconlardan "<em>ubuntu.gd2</em>" paketlenirken yanlış çevrildiği için nagios "status map"'de "<em>unknown</em>" işareti ile gösterilebilir.
+Eğer düzgün bir şekilde ubuntu logosunun gözükmesini istiyorsanız "<em>ubuntu.png</em>" dosyasını düzgün bir şekilde <strong>gd2</strong> formatına çevirmemiz gerekir.
+Bu çevirme işlemi için pngtogd2 aracı sistemimizde yüklü olması lazım.Eğer yüklü değilse "libgd-tools" paketini kurun.
+<p><em><strong>#</strong> apt-get install libgd-tools</em></p>
+<p>Şimdi de logos/base dizininde bulunan "<em>ubuntu.png</em>" iconunu "<strong>.gd2</strong>" formatına çevirelim.</p>
+<p><strong>#</strong> <em>pngtogd2 ubuntu.png ubuntu.gd2 0 1</em></p>
+<p>Çevirme işlemi tamamlandıktan sonra "<em>extinfo_nagios2.cfg</em>" dosyasında gerekli yere "<em>statusmap_image  base/ubuntu.gd2</em>" şeklinde düzeltin.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/kampin-ardindan/" class="u-url">Kampın ardından</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/kampin-ardindan/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-08-01T22:02:20+03:00" title="2011-08-01 22:02">2011-08-01 22:02</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/kampin-ardindan/#disqus_thread" data-disqus-identifier="cache/posts/kampin-ardindan.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>16-30 Temmuz tarihleri arasında Düzce Üniversitesi'de yapılan Linux kampı(Abant gezisi ile!!) sona erdi.Sahah 9:30'da başlayıp gece 10-11'lere kadar süren yoğun tempodan sonra herkes evlerinde kampta tüm tüm yuttuklarını hazmetmeye çalışıyorlardır sanırım :)</p>
+<p>Katılımcıların sıcak ve istekli olması,arada renkli kişilerin olması kampı daha zevkli hale getirdi.Katılımcıların derslere aksatmadan gelmesi eğitmenlere şevk verdi.Tabi arada kacamaklar yapanlarda olmadı değil.Mesela yurtta uyunamayanlar :)</p>
+<p>Yoğun ve güzel kampın ardından , seneye Türkiye'nin herhangi bir köşesindeki kampta görüşmek üzere.</p>
+<p><img class="alignnone" title="akcakoca" src="http://img641.imageshack.us/img641/8459/20110727160627.jpg" alt="" width="480" height="360"></p>
+<p>-------------------------Akcakoca ------</p>
+<p><img class="alignnone" title="abant" src="http://img508.imageshack.us/img508/2878/20110730200118.jpg" alt="" width="480" height="360"></p>
+<p>------------------Abant --------------------------------</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sony-den-uzak-durun/" class="u-url">Sony'den uzak durun!</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/sony-den-uzak-durun/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-07-30T02:16:36+03:00" title="2011-07-30 02:16">2011-07-30 02:16</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/sony-den-uzak-durun/#disqus_thread" data-disqus-identifier="cache/posts/sony-den-uzak-durun.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Intel-VT desteğini kapatan Sony Vaio ürünlerinden uzak durun.Biraz önce bir Sony Vaio üzerine KVM Virtualization yapılandırmasında "kvm:disabled by bios" uyarısını görünce kendilerini bolca andım !
+</p>
+<pre><a href="http://www.designisphilosophy.com/windows-7/sony-confirms-no-hardware-virtualization-on-vaio-computers-past-present-or-future/" target="_blank">Sony Confirms No Hardware Virtualization on Vaio Computers Past, Present or Future</a>
+<p>Ama yine de biri ( Igor Levicki ) bunun için bios yaması yazmış :) Göz atmak için <a href="http://levicki.net/articles/tips/2009/02/20/HOWTO_Enable_Intel_VT_on_Sony_VAIO_notebook_with_AMI_Aptio_EFI_BIOS.php" target="_blank">buradan</a> .</p></pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sysadmin-gunu/" class="u-url">Sysadmin Gününüz Kutlu Olsun</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/sysadmin-gunu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-07-29T14:34:19+03:00" title="2011-07-29 14:34">2011-07-29 14:34</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/sysadmin-gunu/#disqus_thread" data-disqus-identifier="cache/posts/sysadmin-gunu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignnone" title="SysAdmin Day" src="http://rlv.zcache.com/system_admin_appreciation_day_card-p137198989321779173tdtq_400.jpg" alt="" width="400" height="400"><p>SysAdmin gününüz kutlu olsun :)</p>
+<p><a title="SysAdmin" href="http://www.sysadminday.com/">http://www.sysadminday.com/</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/linux-sistem-yonetimi-kampi-2011/" class="u-url">Linux Sistem Yönetimi Kampı 2011</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/linux-sistem-yonetimi-kampi-2011/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-07-16T10:48:30+03:00" title="2011-07-16 10:48">2011-07-16 10:48</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/linux-sistem-yonetimi-kampi-2011/#disqus_thread" data-disqus-identifier="cache/posts/linux-sistem-yonetimi-kampi-2011.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Düzce'de düzenlecek Linux Sistemi Yönetimi Kampı bugün başlıyor.Düzce Üniversitesi'nde paketlerinden,poşetlerinden yeni çıkardığımız bilgisayarlardan kurulan 2 yeni laboratuarda eğitimler verilecek.</p>
+<p>Laboratuar'da Debian ve Scientific Linux kurulu katılımcılar ,hem Debian tarafına hem de RedHat tarafına aşina olacaklar.Eğitim içerisinde de katılımcılar 2 gruba ayrılmış: 1.Seviye ve 2.Seviye .1.Seviye yeni kullanıcıları, 2.Seviye deneyimli kullanıcıları kapsıyor.</p>
+<p>Daha detaylı bilgi için : <a href="http://kamp.linux.org.tr" target="_blank">http://kamp.linux.org.tr</a></p>
+<p>Görüşmek üzere :)</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/troy-dawson-ile-roportaj/" class="u-url">Troy Dawson ile röportaj</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/troy-dawson-ile-roportaj/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-06-14T00:05:30+03:00" title="2011-06-14 00:05">2011-06-14 00:05</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/troy-dawson-ile-roportaj/#disqus_thread" data-disqus-identifier="cache/posts/troy-dawson-ile-roportaj.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignnone" title="Scientific Linux" src="http://www.scientificlinux.org/documentation/graphics/logo/sl-logo-96.png" alt="" width="96" height="96"><a href="http://www.montanalinux.org" target="_blank"></a>
+<p><a href="http://www.montanalinux.org" target="_blank">Montonalinux.org</a> tarafından Scientific Linux geliştiricilerinden Troy Dawson ile yapılan <a href="http://www.montanalinux.org/interview-troy-dawson-scientific-linux-june2011.html" target="_blank">röportaj</a>.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/1070/" class="u-url">RHEL 6 Sun Java</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/1070/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-06-05T13:54:57+03:00" title="2011-06-05 13:54">2011-06-05 13:54</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/1070/#disqus_thread" data-disqus-identifier="cache/posts/1070.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>RHEL 6 ve tabanlı Linux dağıtımları için öntanımlı OpenJDK yerine SUN Java JDK-JRE yüklemek için aşağıdaki kısa adımları tamamlayın.</p>
+<p>1-  Bu adresten Sun Java JDK ve JRE'yi indirin.(Şu anki versiyonu JDK 6 Update 25 )</p>
+<ul>
+<li><strong>jdk-6u25-linux-x64-rpm.bin</strong></li>
+</ul>
+<p><strong>* </strong><strong>jre-6u25-linux-x64-rpm.bin</strong></p>
+<p><strong>( 32 </strong>bit için <strong> jdk-6u25-linux-i586-rpm.bin, jre-6u25-linux-i586-rpm.bin </strong>paketlerini indirin.)</p>
+<p>2 -</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/scientific-linux-yansi/" class="u-url">Scientific Linux Yansı</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/scientific-linux-yansi/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-05-30T14:11:03+03:00" title="2011-05-30 14:11">2011-05-30 14:11</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/scientific-linux-yansi/#disqus_thread" data-disqus-identifier="cache/posts/scientific-linux-yansi.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignnone" title="scientific Linux" src="http://www.scientificlinux.org/documentation/graphics/logo/sl-logo-96-white.png" alt="" width="96" height="96"><p>RHEL 6 duyurulmasından kısa bir süre sonra 6.0 sürümünü duyuran Scientific Linux artık  <a href="http://ftp.linux.org.tr/scientific/" target="_blank">LKD FTP sunucularında</a> yerini aldı.</p>
+<p></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/excelden-mysqle/" class="u-url">Excel'den Mysql'e</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/excelden-mysqle/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-04-26T00:06:01+03:00" title="2011-04-26 00:06">2011-04-26 00:06</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/excelden-mysqle/#disqus_thread" data-disqus-identifier="cache/posts/excelden-mysqle.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Elime içimde bayağı bir uzun satır ve sütun olan bir excel dosyası geçti ve bunu hemen mysql'e aktarmam gerekti.Bunun için kendim için kısa bir çözüm oluşturdum.</p>
+<p>Bu esnada yaptığım işlemleri adım adım kısa özet bir şekilde geçeyim :</p>
+<p><strong>1.</strong> İlk olarak elimizdeki excel dosyasını dışarıya "<em>csv</em>" şeklinde export edelim.</p>
+<p><strong>2.</strong> Bu siteden( <a href="http://csv2sql.com/" target="_blank">http://csv2sql.com/</a> ) "<strong>csv</strong>"yi <strong>sql</strong>'e çevirelim.</p>
+<p><strong>3.</strong> Site üretilen sql satırlarını bir dosyaya kaydedelim.Örnek: <em>data.sql</em></p>
+<p><strong>4.</strong>Bu dataları atacağımız bir veritabanı oluşturalım.
+</p>
+<pre>$ mysql -u root -p</pre>
+mysql&gt; create database perso ;
+<p><strong>5.</strong> Dataları import edeceğimiz tabloyu oluşturalım.</p>
+<p>mysql&gt; CREATE TABLE aka ( id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), unvan VARCHAR(255), adi VARCHAR(255), soyadi VARCHAR(255), sicil VARCHAR(255), birim VARCHAR(255) );</p>
+<p><strong>6.</strong> Son olarak oluşturduğumuz "<strong>data.sql</strong>" dosyasını veritabanına import edelim.
+</p>
+<pre>$ mysql -u root -p perso &lt; data.sql</pre>
+</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index-19.html" rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-17.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

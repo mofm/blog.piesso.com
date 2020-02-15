@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Ansible Gentoo-Portage Update | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/ansible-gentoo-portage-update/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../ansible-ssh-keys-deployment/" title="Ansible SSH Keys Deployment" type="text/html">
+<link rel="next" href="../libvirt-ve-openvswitch/" title="Libvirt ve OpenvSwitch" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Ansible Gentoo-Portage Update">
+<meta property="og:url" content="https://blog.piesso.com/posts/ansible-gentoo-portage-update/">
+<meta property="og:description" content="Ansible Portage module 1 ile Gentoo Linux sisteminizi guncelleyebilir ve upgrade edebilirsiniz. Asagidaki ornekte
+Ilk once buildfarm adini verdigimiz sunucu uzerinde compile edilip diger gentoo sunucu">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-01-14T02:13:06+03:00">
+<meta property="article:tag" content="ansible">
+<meta property="article:tag" content="gentoo">
+<meta property="article:tag" content="portage">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Ansible Gentoo-Portage Update</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2018-01-14T02:13:06+03:00" itemprop="datePublished" title="2018-01-14 02:13">2018-01-14 02:13</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/ansible-gentoo-portage-update.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.rst" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/ansible/" rel="tag">ansible</a></li>
+            <li><a class="tag p-category" href="../../categories/gentoo/" rel="tag">gentoo</a></li>
+            <li><a class="tag p-category" href="../../categories/portage/" rel="tag">portage</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Ansible Portage module <a class="footnote-reference brackets" href="#id2" id="id1">1</a> ile Gentoo Linux sisteminizi guncelleyebilir ve upgrade edebilirsiniz. Asagidaki ornekte
+Ilk once buildfarm adini verdigimiz sunucu uzerinde compile edilip diger gentoo sunucularimiza binary paketleri
+elde edip guncellemelerini yapmaktadir.</p>
+<p>Yukarda bahsettigim sekilde bir buildfarm sunucusu yani paketlerin compile edilecegi sunucuda binary paketleri uretip
+diger sunuculara bu binary paketleri sunmak icin portage uzerinde "buildpkg" ozelligini aktif etmek gerekmektedir.</p>
+<p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
+<pre class="code bash"><a name="rest_code_795c8f8f26f34f34aa7f0f7da2102a0f-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"buildpkg"</span>
+</pre>
+<p>Diger Gentoo sunucularin buildfarm uzerindeki paketleri alabilmesi icin yayinlamasi gerekli. Bunun birden fazla sekilde
+kendinize cozum saglayabilirsiniz. FTP, FTPS, NFS, SSH, HTTP, HTTPS gibi. Biz kucuk bir web sunucusu kurup paketleri bu sekilde yayinlayalim.</p>
+<pre class="code bash"><a name="rest_code_4b872ded7c1c4053b3081e2910b18181-1"></a><span class="c1"># emerge -av www-servers/lighttpd</span>
+</pre>
+<p>lighttpd web sunucusunu kurduktan sonra olusturulan paketlerin buradan yayinlanmasini konfigure edelim."/etc/lighttpd/lighttpd.conf"
+dosyasinin sonuna asagidaki iki satiri ekleyin.</p>
+<p><code class="docutils literal">/etc/lighttpd/lighttpd.conf</code>:</p>
+<pre class="code bash"><a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-1"></a>server.modules +<span class="o">=</span> <span class="o">(</span> <span class="s2">"mod_alias"</span> <span class="o">)</span>
+<a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-2"></a>alias.url <span class="o">=</span> <span class="o">(</span> <span class="s2">"/packages"</span> <span class="o">=</span>&gt; <span class="s2">"/usr/portage/packages/"</span> <span class="o">)</span>
+</pre>
+<p>Artik web sunucumuzu baslatabiliriz.</p>
+<pre class="code bash"><a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-1"></a><span class="c1"># rc-update add lighttpd default</span>
+<a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-2"></a><span class="c1"># /etc/init.d/lighttpd start</span>
+</pre>
+<p>Buildfarm sunucumuz ile ayarlarimiz bu kadar. Artik diger sunucularimizi buildfarm sunucusu uzerinden binary paketleri
+almasi icin konfigure edebiliriz.</p>
+<p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
+<pre class="code bash"><a name="rest_code_52529292262144eb9bd51ca3df8aef1f-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"getbinpkg"</span>
+<a name="rest_code_52529292262144eb9bd51ca3df8aef1f-2"></a><span class="nv">PORTAGE_BINHOST</span><span class="o">=</span><span class="s2">"http://buildfarm.hostname/packages"</span>
+</pre>
+<p>Artik ansible ile sistemizi ilk once buildfarm ile derlenip binary paketler ile diger sunucularinizi guncelleyebilirsiniz.</p>
+<script src="https://gist.github.com/843654e91765dee16e64814bd3ba76af.js"></script><noscript>
+<pre class="literal-block">---
+- hosts: buildfarm
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '@world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes
+
+- hosts: webservers
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '@world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes</pre>
+</noscript>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd>
+<p><a class="reference external" href="http://docs.ansible.com/ansible/latest/portage_module.html">http://docs.ansible.com/ansible/latest/portage_module.html</a></p>
+</dd>
+</dl>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../ansible-ssh-keys-deployment/" rel="prev" title="Ansible SSH Keys Deployment">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../libvirt-ve-openvswitch/" rel="next" title="Libvirt ve OpenvSwitch">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/ansible-gentoo-portage-update/",
+        disqus_title="Ansible Gentoo-Portage Update",
+        disqus_identifier="cache/posts/ansible-gentoo-portage-update.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>IPA Client Kurulumu | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/ipa-client-kurulumu/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../centos-7-uzerine-freeipa-kurulumu/" title="Centos 7 uzerine FreeIPA Kurulumu" type="text/html">
+<link rel="next" href="../freeipa-ve-active-directory-entegrasyonu/" title="FreeIPA ve Active Directory Entegrasyonu" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="IPA Client Kurulumu">
+<meta property="og:url" content="https://blog.piesso.com/posts/ipa-client-kurulumu/">
+<meta property="og:description" content="Kullanilan yazilimlar:
+
+Centos Linux 7.2
+
+
+ipa-client
+ipa-admin-tools
+
+
+
+
+
+
+Kurulum Oncesi Hazirlik:
+FQDN = ipaclient.piesso.local
+IP = 172.16.183.135/24
+IPA Server = ipa.piesso.local
+IPA DOMAIN = pie">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-01-22T16:24:47+03:00">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="ipa">
+<meta property="article:tag" content="ipa-client">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">IPA Client Kurulumu</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-22T16:24:47+03:00" itemprop="datePublished" title="2017-01-22 16:24">2017-01-22 16:24</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/ipa-client-kurulumu.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.rst" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/centos/" rel="tag">centos</a></li>
+            <li><a class="tag p-category" href="../../categories/ipa/" rel="tag">ipa</a></li>
+            <li><a class="tag p-category" href="../../categories/ipa-client/" rel="tag">ipa-client</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<dl>
+<dt><strong>Kullanilan yazilimlar:</strong></dt>
+<dd><ul>
+<li>
+<p>Centos Linux 7.2</p>
+<blockquote>
+<ul class="simple">
+<li><p>ipa-client</p></li>
+<li><p>ipa-admin-tools</p></li>
+</ul>
+</blockquote>
+</li>
+</ul></dd>
+</dl>
+<p><strong>Kurulum Oncesi Hazirlik:</strong></p>
+<pre class="code bash"><a name="rest_code_be49731c5bf145c9a256781147932cb9-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
+</pre>
+<p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
+<blockquote>
+<ol class="arabic simple">
+<li><p>Hostname</p></li>
+<li><p>/etc/hosts</p></li>
+<li><p>Sistem update</p></li>
+</ol>
+</blockquote>
+<p><em>Hostname:</em></p>
+<pre class="code bash"><a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
+</pre>
+<p><em>/etc/hosts:</em></p>
+<pre class="code bash"><a name="rest_code_15c38659790447f8a288f092a83e8996-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
+<a name="rest_code_15c38659790447f8a288f092a83e8996-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
+</pre>
+<p><em>Sistem update:</em></p>
+<pre class="code bash"><a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"></a><span class="c1"># yum update -y</span>
+</pre>
+<p><strong>Kurulum:</strong></p>
+<ul class="simple">
+<li><p>ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
+</pre>
+<ul class="simple">
+<li><p>ipa-client kurulumu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_1910355d47d14b69883d616125586182-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
+</pre>
+<p><strong>IPA Client ve Kerberos Ticket Testi:</strong></p>
+<ul class="simple">
+<li><p>FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_1389b757d7f3440295bd446966ad571c-1"></a><span class="c1"># getent passwd admin</span>
+<a name="rest_code_1389b757d7f3440295bd446966ad571c-2"></a><span class="c1"># getent group admins</span>
+</pre>
+<ul class="simple">
+<li><p>Kerberos'tan ticket alimi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"></a><span class="c1"># kinit admin</span>
+</pre>
+<ul class="simple">
+<li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"></a><span class="c1"># klist</span>
+</pre>
+<ul class="simple">
+<li><p>Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;</p></li>
+</ul>
+<p><em>/etc/resolv.conf:</em></p>
+<pre class="code bash"><a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"></a>search piesso.local
+<a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"></a>nameserver <span class="m">172</span>.16.183.128
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../centos-7-uzerine-freeipa-kurulumu/" rel="prev" title="Centos 7 uzerine FreeIPA Kurulumu">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../freeipa-ve-active-directory-entegrasyonu/" rel="next" title="FreeIPA ve Active Directory Entegrasyonu">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/ipa-client-kurulumu/",
+        disqus_title="IPA Client Kurulumu",
+        disqus_identifier="cache/posts/ipa-client-kurulumu.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

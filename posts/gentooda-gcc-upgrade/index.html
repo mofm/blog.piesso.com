@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Gentoo'da "gcc" Upgrade | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/gentooda-gcc-upgrade/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../arch-linux-sane-kurulumu/" title="Arch Linux Sane Kurulumu" type="text/html">
+<link rel="next" href="../pc-magazine-linux-solutions-ekitap/" title="PC Magazine Linux Solutions-Ekitap(e-book)" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Gentoo'da &quot;gcc&quot; Upgrade">
+<meta property="og:url" content="https://blog.piesso.com/posts/gentooda-gcc-upgrade/">
+<meta property="og:description" content="Gentoo'da &quot;GCC&quot; upgrade işlemi dikkatli yapılması ve aynı zamanda kolay yapılabilen bir işlemdir.Aşağıdaki adımları izleyerek sisteminizde &quot;GCC&quot; sürümünü başarıyla yükseltebilirsiniz.
+1.İlk olarak yen">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2010-05-28T23:49:57+03:00">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Gentoo'da "gcc" Upgrade</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-05-28T23:49:57+03:00" itemprop="datePublished" title="2010-05-28 23:49">2010-05-28 23:49</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/gentooda-gcc-upgrade.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>Gentoo'da "GCC" upgrade işlemi dikkatli yapılması ve aynı zamanda kolay yapılabilen bir işlemdir.Aşağıdaki adımları izleyerek sisteminizde "GCC" sürümünü başarıyla yükseltebilirsiniz.</p>
+<p><strong>1.</strong>İlk olarak yeni "GCC" sürümünü sistemimize yüklüyoruz;</p>
+<p>$# <em>emerge -uav gcc</em></p>
+<p><strong>2.</strong>Yeni "GCC" sürümü sisteme yüklendikten sonra önceki sürümü veya sürümleri ile beraber birden çok "gcc" olduğuna göre yeni sürümü aktif derleyici olarak seçmemiz lazım;</p>
+<p>$# <em>gcc-config -l </em> (Sisteminizde bulunan GCC sürümlerinin listesini verir.)
+$# <em>gcc-config i686-pc-linux-gnu-4.4.3</em> (Yeni GCC sürümü 4.4.3 ise ,CHOST ayarının sonuna GCC sürüm numarasını ekleyip seçiyoruz.)
+$# <em>env-update &amp;&amp; source /etc/profile</em></p>
+<p><strong>3.</strong>{Şartlı Madde} Eğer GCC sürümünü 3.<em> bir versiyondan 4.</em> bir versiyona yükseltecekseniz aşağıdaki yapmalısınız;</p>
+<p>$# <em>/usr/share/gcc-data/$CHOST//fix_libtool_files.sh 3.4.6</em> (Eski sürümünüz 3.4.6 ise,varsayılan 3.4.6 alınmıştır. )</p>
+<p><strong>4.</strong>"libtool"u yeniden kuruyoruz;</p>
+<p>$# <em>emerge --oneshot -av libtool</em></p>
+<p><strong>5.</strong>Son olarak ise sistemimizin güvenle ve sorunsuz çalışması için yeni yüklenen derleyici ile tüm sistemi yeniden derliyoruz.Bu sisteminize göre uzun zaman alabilir;</p>
+<p>$# <em>emerge -eav system</em>
+$# <em>emerge -eav world</em></p>
+<p><strong>NOT:</strong> Eğer sisteminizin yeniden derlenme sürecinde bir hata ile karşılaşırsanız,</p>
+<p>$# <em>emerge --resume</em></p>
+<p>komutuyla derlenmeye kaldığı yerden başlatabilirsiniz.Fakat hala aynı paket aynı hatayı veriyor ve derlenmeye devam etmiyorsa, aşağıdaki komutla o paketi atlayıp derlemeye devam ettirebilirsiniz.</p>
+<p>$# <em>emerge --resume --skipfirst</em></p>
+<p>Tüm adımlar sorunsuz tamamlanıp,eski "GCC" sürümünü güvenle kaldırmak istiyorsanız;</p>
+<p>$# <em>emerge -aC =sys-devel/gcc-3.4*</em> (kaldıracağınız eski sürüm 3.4 ile başlıyorsa,varsayılan olarak bu sürüm alınmıştır.
+bu komutla kaldırabilirsiniz.</p>
+<p>Ayrıntılı bilgi için <a href="http://www.gentoo.org/doc/en/gcc-upgrading.xml">Gentoo GCC Upgrade Guide</a></p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../arch-linux-sane-kurulumu/" rel="prev" title="Arch Linux Sane Kurulumu">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../pc-magazine-linux-solutions-ekitap/" rel="next" title="PC Magazine Linux Solutions-Ekitap(e-book)">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/gentooda-gcc-upgrade/",
+        disqus_title="Gentoo'da \"gcc\" Upgrade",
+        disqus_identifier="cache/posts/gentooda-gcc-upgrade.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

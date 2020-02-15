@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about ansible)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/ansible.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ansible Gentoo-Portage Update</title><link>https://blog.piesso.com/posts/ansible-gentoo-portage-update/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ansible Portage module &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/ansible-gentoo-portage-update/#id2" id="id1"&gt;1&lt;/a&gt; ile Gentoo Linux sisteminizi guncelleyebilir ve upgrade edebilirsiniz. Asagidaki ornekte
+Ilk once buildfarm adini verdigimiz sunucu uzerinde compile edilip diger gentoo sunucularimiza binary paketleri
+elde edip guncellemelerini yapmaktadir.&lt;/p&gt;
+&lt;p&gt;Yukarda bahsettigim sekilde bir buildfarm sunucusu yani paketlerin compile edilecegi sunucuda binary paketleri uretip
+diger sunuculara bu binary paketleri sunmak icin portage uzerinde "buildpkg" ozelligini aktif etmek gerekmektedir.&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal"&gt;/etc/portage/make.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_795c8f8f26f34f34aa7f0f7da2102a0f-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FEATURES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"buildpkg"&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Diger Gentoo sunucularin buildfarm uzerindeki paketleri alabilmesi icin yayinlamasi gerekli. Bunun birden fazla sekilde
+kendinize cozum saglayabilirsiniz. FTP, FTPS, NFS, SSH, HTTP, HTTPS gibi. Biz kucuk bir web sunucusu kurup paketleri bu sekilde yayinlayalim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4b872ded7c1c4053b3081e2910b18181-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# emerge -av www-servers/lighttpd&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;lighttpd web sunucusunu kurduktan sonra olusturulan paketlerin buradan yayinlanmasini konfigure edelim."/etc/lighttpd/lighttpd.conf"
+dosyasinin sonuna asagidaki iki satiri ekleyin.&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal"&gt;/etc/lighttpd/lighttpd.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-1"&gt;&lt;/a&gt;server.modules +&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"mod_alias"&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-2"&gt;&lt;/a&gt;alias.url &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"/packages"&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; &lt;span class="s2"&gt;"/usr/portage/packages/"&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Artik web sunucumuzu baslatabiliriz.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add lighttpd default&lt;/span&gt;
+&lt;a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/lighttpd start&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Buildfarm sunucumuz ile ayarlarimiz bu kadar. Artik diger sunucularimizi buildfarm sunucusu uzerinden binary paketleri
+almasi icin konfigure edebiliriz.&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal"&gt;/etc/portage/make.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_52529292262144eb9bd51ca3df8aef1f-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FEATURES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"getbinpkg"&lt;/span&gt;
+&lt;a name="rest_code_52529292262144eb9bd51ca3df8aef1f-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PORTAGE_BINHOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"http://buildfarm.hostname/packages"&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Artik ansible ile sistemizi ilk once buildfarm ile derlenip binary paketler ile diger sunucularinizi guncelleyebilirsiniz.&lt;/p&gt;
+&lt;script src="https://gist.github.com/843654e91765dee16e64814bd3ba76af.js"&gt;&lt;/script&gt;&lt;noscript&gt;&lt;pre class="literal-block"&gt;---
+- hosts: buildfarm
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '@world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes
+
+- hosts: webservers
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '@world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes&lt;/pre&gt;
+&lt;/noscript&gt;&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id2"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://blog.piesso.com/posts/ansible-gentoo-portage-update/#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="http://docs.ansible.com/ansible/latest/portage_module.html"&gt;http://docs.ansible.com/ansible/latest/portage_module.html&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;</description><category>ansible</category><category>gentoo</category><category>portage</category><guid>https://blog.piesso.com/posts/ansible-gentoo-portage-update/</guid><pubDate>Sat, 13 Jan 2018 23:13:06 GMT</pubDate></item><item><title>Ansible SSH Keys Deployment</title><link>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ansible &lt;strong&gt;authorized_key&lt;/strong&gt; modulu &lt;em&gt;'delegate_to'&lt;/em&gt; ile sunuculara sshkey'leri deploy ederken bazi sshkey'lerin eklenmedigini gorebilirsiniz. Boyle bir sorun ile karsilasmamak icin asagidaki gibi bu module ihtiyac olmadan sshkey'leri ekleyebilirsiniz.&lt;/p&gt;
+&lt;script src="https://gist.github.com/9882c618cb85a2cdd158bb1fc7babb29.js"&gt;&lt;/script&gt;&lt;noscript&gt;&lt;pre class="literal-block"&gt;- hosts: webservers
+  remote_user: jack
+
+  tasks:
+    - name: fetch all public keys 
+      shell: cat ~/.ssh/id_rsa.pub
+      register: ssh_keys
+      tags:
+        - ssh
+
+    - name: check ssh public keys
+      debug: msg="{{ ssh_keys.stdout }}"
+      tags:
+        - ssh
+
+    - name: deploy ssh keys
+      shell: echo {{ ssh_keys.stdout }} &amp;gt;&amp;gt; ~/.ssh/authorized_keys
+      delegate_to: "{{ item }}"
+      with_items:
+        - "{{groups['webservers']}}"
+      tags:
+        - ssh&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/div&gt;</description><category>ansible</category><category>ssh</category><guid>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</guid><pubDate>Sun, 10 Dec 2017 18:25:32 GMT</pubDate></item></channel></rss>

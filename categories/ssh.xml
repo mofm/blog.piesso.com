@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about ssh)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/ssh.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ansible SSH Keys Deployment</title><link>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ansible &lt;strong&gt;authorized_key&lt;/strong&gt; modulu &lt;em&gt;'delegate_to'&lt;/em&gt; ile sunuculara sshkey'leri deploy ederken bazi sshkey'lerin eklenmedigini gorebilirsiniz. Boyle bir sorun ile karsilasmamak icin asagidaki gibi bu module ihtiyac olmadan sshkey'leri ekleyebilirsiniz.&lt;/p&gt;
+&lt;script src="https://gist.github.com/9882c618cb85a2cdd158bb1fc7babb29.js"&gt;&lt;/script&gt;&lt;noscript&gt;&lt;pre class="literal-block"&gt;- hosts: webservers
+  remote_user: jack
+
+  tasks:
+    - name: fetch all public keys 
+      shell: cat ~/.ssh/id_rsa.pub
+      register: ssh_keys
+      tags:
+        - ssh
+
+    - name: check ssh public keys
+      debug: msg="{{ ssh_keys.stdout }}"
+      tags:
+        - ssh
+
+    - name: deploy ssh keys
+      shell: echo {{ ssh_keys.stdout }} &amp;gt;&amp;gt; ~/.ssh/authorized_keys
+      delegate_to: "{{ item }}"
+      with_items:
+        - "{{groups['webservers']}}"
+      tags:
+        - ssh&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/div&gt;</description><category>ansible</category><category>ssh</category><guid>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</guid><pubDate>Sun, 10 Dec 2017 18:25:32 GMT</pubDate></item></channel></rss>

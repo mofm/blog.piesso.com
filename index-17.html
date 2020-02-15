@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Ignotum Per Ignotius">
+<meta name="viewport" content="width=device-width">
+<title>hardened .*(nt|log)s? (old posts, page 17) | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/index-17.html">
+<link rel="prev" href="index-18.html" type="text/html">
+<link rel="next" href="index-16.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/debian-squeeze-nagios-monitoring/" class="u-url">Debian Squeeze Nagios Monitoring</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/debian-squeeze-nagios-monitoring/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-03-27T21:13:08+02:00" title="2011-03-27 21:13">2011-03-27 21:13</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/debian-squeeze-nagios-monitoring/#disqus_thread" data-disqus-identifier="cache/posts/debian-squeeze-nagios-monitoring.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<strong><img class="alignright" title="nagios" src="http://blog.netways.de/wp-content/uploads/2008/03/nagios_logo.png" alt="" width="230" height="62">Nagios Nedir?</strong> NAGIOS sistem ve ağ denetleme uygulamasıdır.Belirtilen makine üzerinde çalışan servislerin durumunu kontrol eder ve uygulamalarda bir problem olduğunda belirtilen yöntemle kullanıcıya bildirir.Aynı segmentte ya da değil Nagios ile belirtilen makina,servisler kontrol edilebilir.
+<p>Nagios ile ne yapılabilir:
+</p>
+<ul>
+<li><em>Network servisleri denetleneme (SMTP, POP3, HTTP, NNTP, PING, vs)</em></li>
+    <li><em>Makine kaynakları denetleneme (disk kullanımı vs )</em></li>
+    <li><em>Otomatik log döndürme (log rotation)</em></li>
+    <li>
+<em>Belirtilen servisler yada makineler üzerinde belirtilen durumlarda kullanıcıya çeşitli</em>
+<em> yöntemlerle uyarı verme</em>
+</li>
+    <li><em>Mail , SMS , Telefon , ICQ vb yöntemlerle uyarı verebilme</em></li>
+    <li><em>Web arayüzünden makinelerin , servislerin ,logların ayrıntılı takibi</em></li>
+</ul>
+olarak sıralanabilir. [<a href="http://www.google.com.tr/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CCIQFjAA&amp;url=http%3A%2F%2Fwww.enderunix.org%2Fdocs%2Fnagios.pdf&amp;ei=EIqPTZT4Oo3V4gbB-ZCrCw&amp;usg=AFQjCNF6ZpEBGDdzpDLEhy70b2qE0gET9w" target="_blank">1</a>]
+<p>Nagios hakkında kısa bir bilgi verdikten sonra,Debian Squeeze üzerine Nagios kurulumunu ve diğer Debian Squeeze sunucuların nasıl monitor edileceği hakkında kısaca değineceğim.</p>
+<p>İlk olarak Nagios'u monitoring yapacağımız makinaya kurulumunu yapalım ve daha sonra nagios client ile  izleyeceğimiz diğer sunuculara geçelim.Kısaca bir makinamız Nagios Server ve diğer izleyeceğimiz sunucu ise Nagios Client olarak anabiliriz.
+</p>
+<h5>Nagios Server Kurulumu :</h5>
+Debian Squeeze depolarında nagios paketlerini bulunduğu için ,direk depodan kurulum yapacağım.Kaynak koddan kurulum yapmayacağım.Kaynak kodlardan kurulum için bu <a href="http://www.google.com.tr/url?sa=t&amp;source=web&amp;cd=3&amp;ved=0CCsQFjAC&amp;url=http%3A%2F%2Fwww.syslogs.org%2Fnagios-kurulumu-ve-yapilandirmasi%2F&amp;ei=24uPTaWoNYfM4gbs5pntCw&amp;usg=AFQjCNHAdCSZhOCGXCtsxfrLhCVXqdpn5A" target="_blank">adrese</a> bakabilirsiniz.
+<p>Depodan gerekli paketleri kuralım:</p>
+<p><em>Nagios Server</em>
+</p>
+<pre><strong># apt-get install nagios3 nagios-plugins nagios-nrpe-plugin</strong></pre>
+Bu kurulum aşamasında SAMBA sizden workgroup adı isteyecektir.Öntanımlı ayarları onaylayarak geçebilirsiniz.Ayrıca Nagiosadmin için sizden parola belirlemenizi isteyecektir.İsteğinize göre parola belirleyip devam edin.
+<p>Şimdi Nagios Client olan sunucumuza gerekli kurulumları yapabiliriz.</p>
+<p><em>Nagios Client</em></p>
+<p><strong># apt-get install nagios-nrpe-server nagios-plugins</strong></p>
+<p>Nagios Client sunucumuzda gerekli paketleri kurduktan sonra yapılandırmalara geçelim.Nagios Client sunucumuzda Nagios Server'ımızın ip adresini verelim.Bunun " <em>/etc/nagios/nrpe.cfg</em> " dosyasında gerekli değişiklikleri yapalım:
+</p>
+<pre><strong># vi /etc/nagios/nrpe.cfg</strong></pre>
+Dosyamızı açtıktan "<em>allowed_hosts= </em>" ile başlayan satırı bulun ve ;
+<p><strong>allowed_hosts=127.0.0.1</strong></p>
+<p>yerine Nagios Server'ımızın ip'sini girelim.( Örnek olarak <strong>192.168.1.45</strong> Nagios Server'ımın ip'si)</p>
+<p><strong>allowed_hosts=192.168.1.45</strong></p>
+<p>Şeklinde değiştirin.Yapacağımız diğer bir ayar ise eğer disk kullanımını izlemek istiyorsak gerekli değişikliği yapmalıyız.</p>
+<p>Bunun içinde Nagios Client makinamızdaki izleyeceğimiz disk ve partition'ı belirleyip,nagios'a bunu bildirmek.</p>
+<p>İzleyeceğiniz disk ve partition'ı yine "<em>/etc/nagios/nrpe.cfg</em>" dosyasında belirtelim.
+(disklerimizi ve partitionlarınızı '<strong>df -h</strong>' komutuyla görebilirsiniz.)
+Örnek olarak '<strong>sda5</strong>' partition'ı izlemek için gerekli ayarlar:</p>
+<p><strong># vi /etc/nagios/nrpe.cfg</strong></p>
+<p>Dosyamızı açtıktan sonra aşağıdaki satırı bulup gerekli değişiklikleri yapalım.
+</p>
+<pre>command[check_hda1]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/hda1</pre>
+yerine
+<p>command[check_sda5]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/sda5</p>
+<p>şeklinde değiştirin.</p>
+<p>Nagios Client tarafında gerekli ayarlamaları yaptıktan sonra 'nagios-nrpe' servisini yeniden başlatın.</p>
+<p><strong># /etc/init.d/nagios-nrpe-server restart</strong></p>
+<p>Şimdilik Nagios Client tarafındaki işlemlerimiz bitti.Artık Nagios Server tarafındaki ayarlamalara geçelim.
+İlk olarak Nagios Server'a izleyeceğimiz client'ı ve bu client üzerinde izleyeceğimiz servislerin ayarlarını yapalım.
+Biraz önce Client ayarlarını yaparken Nagios Server'ımızın ip adresini(<em>192.168.1.45</em>) vermiştik,şimdi de Nagios Server'a
+Client'ın ip'sini ve izleyeceğimiz servisleri verelim.(Client makinamın ip'si <strong>192.168.1.91</strong> ve izleyeceğim servisler
+<em>HTTP servisi,disk durumu,load avarage,prossesler</em> )</p>
+<p>Nagios Server'a bunları belirtmek için her ayrı client'a özel "<em>/etc/nagios3/conf.d/</em> " dizini altında bir konfigurasyon
+dosyası oluşturalım.</p>
+<p><strong># touch /etc/nagios3/conf.d/client1_nagios.cfg</strong></p>
+<p>dosyamızı oluşturduktan sonra aşağıdaki ayarları dosyaya yazıp,kaydedelim.
+</p>
+<pre>define host{
+        use             generic-host
+        host_name       client1
+        alias           client1
+        address         192.168.1.91
+}
+define service{
+        use                     generic-service
+        host_name               client1
+        service_description     HTTP-Server
+        check_command           check_http
+}
+</pre>
+<pre>define service{
+        use                     generic-service
+        host_name               client1
+        service_description     Current Load
+        check_command           check_nrpe_1arg!check_load
+}
+define service{
+        use                     generic-service
+        host_name               client1
+        service_description     Current Users
+        check_command           check_nrpe_1arg!check_users
+}
+define service{
+        use                     generic-service
+        host_name               client1
+        service_description     Disk Space
+        check_command           check_nrpe_1arg!check_sda5
+}
+define service{
+        use                     generic-service
+        host_name               client1
+        service_description     Total Processes
+        check_command           check_nrpe_1arg!check_total_procs
+}
+</pre>
+Yukardaki gibi girildikten sonra Nagios servisini yeniden başlatalım.
+<p><strong># /etc/init.d/nagios3 restart</strong></p>
+<p>Artık bir client için gerekli ayarları yaptık.Şimdi ayarlarımızı ve çalışıp,çalışmadığını test edelim:</p>
+<p><strong># cd /usr/lib/nagios/plugins/</strong>
+<strong># ./check_nrpe -H 192.168.1.91 -c check_users</strong></p>
+<p>Eğer düzgün çalışıyorsa aşağıdaki gibi bir sonuç alacaksınız :</p>
+<p><em>USERS OK - 2 users currently logged in |users=2;5;10;0</em></p>
+<p>Nagios kurulumunu burada tamamladık.
+Buarada anlatılanlardan daha fazla servis ve client ekleyebilirsiniz,hepsi size kalmış :)</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/centos-5-5-mongodb/" class="u-url">Centos 5.5 MongoDB</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/centos-5-5-mongodb/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-03-26T17:12:46+02:00" title="2011-03-26 17:12">2011-03-26 17:12</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/centos-5-5-mongodb/#disqus_thread" data-disqus-identifier="cache/posts/centos-5-5-mongodb.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<strong><img class="alignright" title="Mongodb" src="http://www.gonosql.com/wp-content/uploads/2010/03/mongodb-logo.png" alt="" width="210" height="70">Centos</strong> ve diğer <strong>RedHat</strong> tabanlı dağıtımlar üstünde <a href="http://www.mongodb.org/" target="_blank">MongoDB</a> ihtiyacı duyuyorsanız, resmi depolarda olmadığı için güvenilir ve sürekli güncellenen bir depoya ihtiyacınız olabilir.MongoDB geliştiricileri bu noktada ihtiyacınız olan depoyu oluşturmuşlar.Depoyu ekleyip,sisteme hemen kurulum yapabilirsiniz.
+<p>MongoDB geliştiricilerinin oluşturduğu depoda <strong>2</strong> farklı platform(<em>x86</em> , <em>x86_64</em>)  için <strong>3</strong> sürümü(<em> stable , unstable, snapshot</em>) bulunuyor.İstediğiniz sürümü depodan yükleyebilirsiniz.</p>
+<p>İlk olarak depomuzu ekleyelim:
+</p>
+<pre>#  touch /etc/yum.repos.d/10gen-mongodb.repo</pre>
+Oluşturduğumuz "<em>10gen-mongodb.repo</em>" dosyasına depo bilgilerini aşağıdaki gibi platformunuza göre ekleyin.
+<h2>vi /etc/yum.repos.d/10gen-mongodb.repo</h2>
+<p><strong>X86_64 için :</strong>
+</p>
+<div>[10gen]
+name=10gen Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64
+gpgcheck=0 
+<p><strong>X86 için :</strong>
+</p>
+<div>
+<div>
+<p>[10gen]
+name=10gen Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/i686
+gpgcheck=0</p>
+<p>Depomuzu ekledikten sonra MongoDB Server ve Client paketlerini yükleyebiliriz:</p>
+<p><em><strong>MongoDB Server ve Client Stable Sürüm :</strong></em></p>
+<h2>yum install mongo-10gen mongo-10gen-server</h2>
+<p></p>
+</div>
+<div><em><strong>MongoDB Server ve Client Unstable Sürüm :</strong></em></div>
+<div><em><strong>
+</strong></em></div>
+</div>
+<div># yum install mongo-10gen-unstable mongo-10gen-unstable-server</div>
+</div>
+<div>MongoDB için ayar yapmak için konfigurasyon dosyasından gerekli değişiklikleri yapabiliriz."<em>/etc/mongodb.conf</em> " dosyasında istediğiniz değişiklikleri yapabilirsiniz.</div>
+<div>"<em> /etc/mongodb.conf</em> " için :</div>
+<div>
+<strong>logpath =</strong> ' Bu kısıma mongodb için log tutulacak dosyanın yolunu yazın.'</div>
+<div>
+<strong>port =</strong> ' Burada mongodb 'nin kullanacağı portu belirtin.'</div>
+<div>
+<strong>dbpath = </strong>' mongodb için kullanacağı dizin yolunu belirtin.'</div>
+<div>Bu dosyada gerekli değişiklikleri yaparken dikkat etmeniz gereken öntanımlı ayarların en uygun ayarlar olduğunu göz önünde bulundurun.</div>
+<div>Yukarda mongodb için "<em>dbpath</em>" belirtiyseniz herhangi bir sorun yaşanmaması için izinlerini vermeyi unutmayın.Bunun içinde :</div>
+<pre># chown -R mongod.mongod 'dbpath_icin_yazdiginiz_yol'</pre>
+<div>Dikkat edilmesi diğer bir nokta ise yine "<em> mongodb.conf</em> " dosyasında belirtmiş olduğunuz portun firewall tarafından izin verilip,verilmediğini kontrol edin.</div>
+<div>Artık MongoDB'yi başlatalım ve açılışa ekleyelim :</div>
+<pre># /etc/init.d/mongod start
+</pre>
+<pre># chkconfig --levels 235 mongod on
+</pre>
+<div>Ve son olarak Mongo'nun çalışıp çalışmadığını test edin :</div>
+<pre># mongo 
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sunfire-t2000/" class="u-url">SunFire T2000 </a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/sunfire-t2000/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-03-10T01:19:21+02:00" title="2011-03-10 01:19">2011-03-10 01:19</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/sunfire-t2000/#disqus_thread" data-disqus-identifier="cache/posts/sunfire-t2000.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Kıyıda köşede uzun süredir yatan sparc işlemcili <strong>SunFire T2000</strong> makinayı canlandırmaya karar verdim.Sparc portu olan tüm linux dağıtımlarını denememe rağmen "<em>kernel'</em>ini aşağıdaki gibi <em>panic</em>'liyordu".</p>
+<p><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;">[    0.000000] I7: &lt;paging_init+0xa4c/0xe18&gt;
+[    0.000000] Disabling lock debugging due to kernel taint
+[    0.000000] Caller[00000000008ab1cc]: paging_init+0xa4c/0xe18
+[    0.000000] Caller[00000000008a6db4]: setup_arch+0x394/0x3a4
+[    0.000000] Caller[00000000008a4554]: start_kernel+0x74/0x36c
+[    0.000000] Caller[0000000000723224]: tlb_fixup_done+0x80/0x88
+[    0.000000] Caller[0000000000000000]: (null)
+[    0.000000] Instruction DUMP: 92100010  7fee366e  90100011 &lt;d25a0000&gt; 11001ee
+f  7ffa2a19  90122270  15001eef  90100011
+[    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+[    0.000000] Call Trace:
+[    0.000000]  [000000000045f360] do_exit+0x64/0x6ac
+[    0.000000]  [0000000000427c08] die_if_kernel+0x264/0x290
+[    0.000000]  [0000000000736f10] unhandled_fault+0x90/0x9c
+[    0.000000]  [000000000073748c] do_sparc64_fault+0x570/0x650
+[    0.000000]  [0000000000407900] sparc64_realfault_common+0x10/0x20
+[    0.000000]  [00000000008a9714] sun4v_mdesc_init+0x1cc/0x2ac
+[    0.000000]  [00000000008ab1cc] paging_init+0xa4c/0xe18
+[    0.000000]  [00000000008a6db4] setup_arch+0x394/0x3a4
+[    0.000000]  [00000000008a4554] start_kernel+0x74/0x36c
+[    0.000000]  [0000000000723224] tlb_fixup_done+0x80/0x88
+[    0.000000]  [0000000000000000] (null)
+[    0.000000] Press Stop-A (L1-A) to return to the boot prom</span></span></span></span></span></p>
+<p><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;">Uzun bir uğraştan sonra sadece <strong>2.6.20-r4</strong> kernelli <strong>Gentoo 2007 Universal Live Cd </strong>açıp,sapasağlam bir Gentoo kurulumu yaptım.Fakat bu haliyle makinayı hiçbir güncelleme yapılamayacaktı.Çünkü güncel bir kernelde panik yapıyordu.</span></span></span></span></span></p>
+<p><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;">Mail listelerinde bir araştırmadan sonra aynı hata ile karşılaşan bir kişinin firmware güncelleyerek linux kurulumunu başarıyla yaptığını okudum.Hemen firmware güncellemeye geçtik.Tabi sorun burada da bitmiyor ,bir de "sc" ye giriş yapmak için parolayı bilmiyorduk ve birde parola sıfırlamaya giriştik.</span></span></span></span></span>
+</p>
+<h6><strong><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;">Parolayı sıfırlamak için;</span></span></span></strong></h6>
+<h6><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>1.</strong> İlk olarak güç bağlantısını çıkarın ve 5 sn bekleyin.Daha sonra tekrar bağlayın.
+</span></span></span></span></span></h6>
+<span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>2</strong>.Alom boot etmeye başlayacaktır ve </span></span></span></span></span><em>"Return to Boot Monitor for Handshake ESC keypress detected."</em> yazısını gördüğünüz anda <em>"ESC"</em> tuşuna basın.
+<p><strong>3.</strong> <em>"ESC" </em>tuşuna bastıktan sonra<em> "ALOM boot escape menu"</em> karşınıza gelecektir.
+</p>
+<pre>ALOM  Menu
+<p>e - Erase ALOM NVRAM.
+ m - Run POST Menu.
+ R - Reset ALOM.
+ r - Return to bootmon.
+ Your selection:</p></pre>
+<strong>4. </strong>Yukardaki gibi menu karşımıza çıktıktan sonra ilk <em>NVRAM</em>'i silip,daha sonra <em>ALOM</em>'u boot etmesine devam edelim.Bunun için ilk önce <strong>"e" </strong>ve daha sonra<strong> "r"</strong> yi tuşlayalım.
+<p><strong>5.</strong>Bu adımlardan sonra "<strong>sc</strong>" ye doğrudan admin olarak giriş yapabileceksiniz.</p>
+<p><strong>Firmware Güncelleme :</strong></p>
+<p>SunFire T2000'in üstündeki firmware 6.1.10 ve bu firmware ile herhangi port edilmiş bir linux dağıtımını rahatlıkla kuramıyorsunuz.Bunun için firmware güncellemesi gerekli.Fakat dikkat edilecek nokta eğer  Oracle "CIS" numaranızı bilmiyorsanız "OpenSourceLab" ftp'sindeki 6.3.0 sürümünü indirip yükleyin.Aynı depoda 6.7.6 sürümü de mevcut fakat bu firmware geçersiz uyarısı alabilirsiniz."CIS" numaranız varsa zaten böyle bir sıkıntınız da olmayacaktır.</p>
+<p>SunFire T2000 'de ya da herhangi Sun Sparc makina da "<strong>sc</strong>" ye düştükten sonra;</p>
+<h2>showhost</h2>
+<p>komutuyla firmware versiyonunuzu öğrenebilirsiniz.Güncellemek için ben ilk olarak firmware'i indirip local'deki bir ftp sunucuya koydum ve flashupdate komutuyla güncelledim.Tabi ftp'ye bağlanmak için "NET MGT" portuna bağlantıyı takmanız lazım.Eğer ağınız otomatik ip almıyorsa;
+</p>
+<pre># setupsc</pre>
+komutunu vererek ip atayabilirsiniz.
+<p>Firmware'i <a href="http://ftp.osuosl.org/pub/osl/tmp/124750-01/" target="_blank">buradan</a> indirip,bir public ftp'ye attıktan sonra aşağıdaki gibi güncelleyebilirsiniz:
+</p>
+<pre># flashupdate -s [ftp_ip_adresi] -f /pub/Sun_System_Firmware-6_3_0-Sun_Fire_T2000.bin
+</pre>
+Artık firmware'miz güncelledi."<strong>resetsc" </strong>komutunu verip yeniden başlatın ve <strong>"showhost"</strong> komutuyla güncellenip güncellenmediğini kontrol edin.
+<p></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/debian-lenny-den-squeeze-yukseltme/" class="u-url">Debian Lenny'den Squeeze'e yükseltme</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/debian-lenny-den-squeeze-yukseltme/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-02-10T02:29:55+02:00" title="2011-02-10 02:29">2011-02-10 02:29</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/debian-lenny-den-squeeze-yukseltme/#disqus_thread" data-disqus-identifier="cache/posts/debian-lenny-den-squeeze-yukseltme.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Debian'nın son kararlı sürümü 6.0 Squeeze çıkmasına üzerine birçok kişi de yükseltme hevesinde.Tabi önemli olanda yükseltme işini güvenli ve kayıpsız olarak sapasağlam yapabilmek.</p>
+<p>Sürümümüzü yükseltmeye geçmeden önce olabilecek herhangi bir arızaya karşın önemli olan tüm dosya ve dizinleri yedekleyin.Bu yedeklerin içine önemli kofigurasyon dosyalarınıza da eklemeyi unutmayın.</p>
+<p>İlk olarak mevcut olan Lenny'i güncelleyelim ve daha sonra Squeeze sürümüne yükseltelim.</p>
+<h2>vi /etc/apt/sources.list</h2>
+<p>Debian depo kaynak adreslerinin olduğunu "sources.list" dosyasını kontrol edelim ve içindeki depo adreslerinin aşağıdaki gibi olup olmadığını gözden geçirin:
+</p>
+<pre>deb http://ftp.tr.debian.org/debian/ lenny main contrib non-free
+deb-src http://ftp.tr.debian.org/debian/ lenny main contrib non-free
+deb http://security.debian.org/ lenny/updates main
+deb-src http://security.debian.org/ lenny/updates main
+deb http://volatile.debian.org/debian-volatile lenny/volatile main
+deb-src http://volatile.debian.org/debian-volatile lenny/volatile main 
+<p>Kaynak adreslerini kontroldan sonra Lenny'i güncelleyelim.</p>
+<h2>apt-get update</h2>
+<h2>apt-get upgrade</h2>
+<h2>apt-get dist-upgrade</h2>
+<p>Lenny'i güncelleme adımları tamamlandıktan sonra herhangi bir soruna karşın yükseltilmeyecek ya da
+tam yüklenmemiş paketlerin olup olmadığını kontrol edelim.</p>
+<h2>dpkg --audit</h2>
+<h2>dpkg --get-selections | grep hold</h2>
+<p></p></pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/debian-6-0-squeeze-yayinlandi/" class="u-url">Debian 6.0 Squeeze yayınlandı</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/debian-6-0-squeeze-yayinlandi/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-02-06T15:44:27+02:00" title="2011-02-06 15:44">2011-02-06 15:44</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/debian-6-0-squeeze-yayinlandi/#disqus_thread" data-disqus-identifier="cache/posts/debian-6-0-squeeze-yayinlandi.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Uzun bir test sürecinin ardından <a href="http://www.debian.org" target="_blank">Debian</a>'ın kararlı sürümü "<strong>Debian 6.0 Squeeze</strong>" yayınlandı.Yine dopdolu paket deposu (<em>29000'den fazla paket ile</em>) ,desteklediği multi platformları ve en önemlisi çekirdeğinde hiçbir non-free firmware bulunmayarak tamamen özgür bir Debian sürümü karşımızda.</p>
+<p>Basın duyurusuna ulaşmak için <a href="http://www.debian.org/News/2011/20110205a" target="_blank">buradan</a> .</p>
+<p>Hemen Debian edinmek için<a href="http://www.debian.org/CD/http-ftp/#stable" target="_blank"> buradan</a> .</p>
+<p><strong>Örnek Ekran Görüntüleri:</strong></p>
+<p><img class="alignnone" title="Debian Squeeze" src="http://i671.photobucket.com/albums/vv77/ZINOVSKY/Debian6/debian-squeez-2011-01-14-22-50-10.png" alt="" width="461" height="259"></p>
+<p><img class="alignnone" title="Debian Squeeze" src="http://i671.photobucket.com/albums/vv77/ZINOVSKY/Debian6/debian-squeez-2011-01-14-22-49-25.png" alt="" width="461" height="259"></p>
+<p><img class="alignnone" title="Debian Squeeze II" src="http://i671.photobucket.com/albums/vv77/ZINOVSKY/Debian6/debian-squeez-2011-01-14-22-56-37.png" alt="" width="461" height="259"></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ozgur-yazilim-lisanslari/" class="u-url">Özgür Yazılım Lisansları</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/ozgur-yazilim-lisanslari/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-02-01T21:25:31+02:00" title="2011-02-01 21:25">2011-02-01 21:25</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/ozgur-yazilim-lisanslari/#disqus_thread" data-disqus-identifier="cache/posts/ozgur-yazilim-lisanslari.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Özgür Yazılım Derneği ( <a href="http://fsf.org/" target="_blank">FSF </a>) en son güncellenmesi 24 Ocak tarihinde yapılan <strong>GNU GPL</strong> ile uyumlu ,yazılımları "Özgür Yazılım" olarak niteleyebilecek lisansların listesini hazırlamış.Bu listede olan lisanslarla dağıtılan yazılımlar tamamen GNU GPL lisansı ile uyumlu ve özgür yazılımlardır.Hazırlanan liste içinde aynı zamanda "özgür yazılım" olan fakat GNU GPL lisansı ile uyumlu olmayan lisansların listesine ve ayrıca yazılımları kesinlikle  "özgür yazılım" yapamayacak lisanslara da yer verilmiş.Şu listeye bir göz atalım:
+</p>
+<h4>GNU GPL ile uyumlu ÖZGÜR YAZILIM LİSANSLARI</h4>
+<ul>
+<li><a id="GNUGPL" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL) version 3</a></li>
+    <li><a id="GPLv2" href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU General Public License (GPL) version 2</a></li>
+    <li><a id="LGPL" href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL) version 3</a></li>
+    <li><a id="LGPLv2.1" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License (LGPL) version 2.1</a></li>
+    <li><a id="AGPLv3.0" href="http://www.gnu.org/licenses/agpl.html">GNU Affero General Public License (AGPL) version 3</a></li>
+    <li><a id="GNUAllPermissive" href="http://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html">GNU All-Permissive License</a></li>
+    <li><a id="apache2" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></li>
+    <li><a id="ArtisticLicense2" href="http://www.perlfoundation.org/artistic_license_2_0">Artistic License 2.0</a></li>
+    <li><a id="BerkleyDB" href="http://www.oracle.com/technology/software/products/berkeley-db/htdocs/oslicense.html">Berkeley Database License</a></li>
+    <li><a id="boost" href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License</a></li>
+    <li><a id="ModifiedBSD" href="http://www.xfree86.org/3.3.6/COPYRIGHT2.html#5">Modified BSD license</a></li>
+    <li><a id="CeCILL" href="http://www.cecill.info/licences.en.html">CeCILL version 2</a></li>
+    <li><a id="clearbsd" href="http://labs.metacarta.com/license-explanation.html#license">The        Clear BSD License</a></li>
+    <li><a id="CryptixGeneralLicense" href="http://www.cryptix.org/LICENSE.TXT">Cryptix General License</a></li>
+    <li><a id="eCos20" href="http://www.gnu.org/licenses/ecos-license.html">eCos license version 2.0</a></li>
+    <li><a id="ECL2.0" href="http://www.osedu.org/licenses/ECL-2.0/">Educational Community License 2.0</a></li>
+    <li><a id="Eiffel" href="http://www.gnu.org/licenses/eiffel-forum-license-2.html">Eiffel Forum License, version 2</a></li>
+    <li><a id="EUDataGrid" href="http://www.opensource.org/licenses/eudatagrid.php">EU DataGrid Software License</a></li>
+    <li><a id="Expat" href="http://www.jclark.com/xml/copying.txt">Expat License</a></li>
+    <li><a id="FreeBSD" href="http://www.freebsd.org/copyright/freebsd-license.html">FreeBSD license</a></li>
+    <li><a id="freetype" href="http://freetype.fis.uniroma2.it/FTL.TXT">Freetype Project License</a></li>
+    <li><a id="iMatix" href="http://legacy.imatix.com/html/sfl/sfl4.htm#license">License of the iMatix Standard Function Library</a></li>
+    <li><a id="ijg" href="http://dev.w3.org/cvsweb/Amaya/libjpeg/Attic/README?rev=1.2">Independent JPEG Group License</a></li>
+    <li><a id="imlib" href="http://trac.enlightenment.org/e/browser/trunk/imlib2/COPYING">License of imlib2</a></li>
+    <li><a id="intel" href="http://www.opensource.org/licenses/intel-open-source-license.html">Intel Open Source License</a></li>
+    <li><a id="ISC" href="http://www.isc.org/software/license">ISC License</a></li>
+    <li><a id="NCSA" href="http://www.otm.uiuc.edu/faculty/forms/opensource.asp">NCSA/University of Illinois Open Source License</a></li>
+    <li>License of Netscape Javascript</li>
+    <li><a id="newOpenLDAP" href="http://www.openldap.org/software/release/license.html">OpenLDAP License, Version 2.7</a></li>
+    <li><a id="PerlLicense">License of Perl 5 and below</a></li>
+    <li><a id="PublicDomain">Public Domain</a></li>
+    <li><a id="Python" href="http://www.python.org/2.0.1/license.html">License of Python 2.0.1, 2.1.1, and newer versions</a></li>
+    <li>License of Python 1.6a2 and earlier versions</li>
+    <li><a id="Ruby" href="http://www.ruby-lang.org/en/LICENSE.txt">License of Ruby</a></li>
+    <li><a id="SGIFreeB" href="http://oss.sgi.com/projects/FreeB/">SGI Free Software License B, version 2.0</a></li>
+    <li><a id="StandardMLofNJ" href="http://cm.bell-labs.com/cm/cs/what/smlnj/license.html">Standard     ML of New Jersey Copyright License</a></li>
+    <li><a id="Unicode" href="http://www.unicode.org/copyright.html#Exhibit1">Unicode,        Inc. License Agreement for Data Files and Software</a></li>
+    <li><a id="Vim" href="http://www.gnu.org/licenses/vim-license.txt">License of Vim, Version 6.1 or later</a></li>
+    <li><a id="W3C" href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231">W3C Software Notice and License</a></li>
+    <li><a id="WebM" href="http://www.webmproject.org/license/">License of     WebM</a></li>
+    <li><a id="WTFPL" href="http://sam.zoy.org/wtfpl/COPYING">WTFPL, Version 2</a></li>
+    <li><a id="X11License" href="http://www.xfree86.org/3.3.6/COPYRIGHT2.html#3">X11 License</a></li>
+    <li><a id="XFree861.1License" href="http://www.xfree86.org/current/LICENSE4.html">XFree86 1.1 License</a></li>
+    <li><a id="ZLib" href="http://www.gzip.org/zlib/zlib_license.html">License of ZLib</a></li>
+    <li><a id="Zope20" href="http://www.zope.org/Resources/ZPL">Zope Public License, versions 2.0 and 2.1</a></li>
+</ul>
+Aşağıdaki listede "Özgür Yazılım" lisansı olan fakat GNU GPL uyumlu olmayan lisanslar listelenmiştir:
+<h4>GNU GPL ile uyumlu olmayan ÖZGÜR YAZILIM LİSANSLARI :</h4>
+<ul>
+<li><a id="AGPLv1.0" href="http://www.affero.org/oagpl.html">Affero General Public License version 1</a></li>
+    <li><a id="AcademicFreeLicense" href="http://opensource.org/licenses/academic.php">Academic Free License, all versions through 3.0</a></li>
+    <li><a id="apache1.1" href="http://www.apache.org/licenses/LICENSE-1.1">Apache License, Version 1.1</a></li>
+    <li><a id="apache1" href="http://www.apache.org/licenses/LICENSE-1.0">Apache License, Version 1.0</a></li>
+    <li><a id="apsl2" href="http://www.opensource.apple.com/apsl/2.0.txt">Apple Public Source License (APSL), version 2</a></li>
+    <li><a id="bittorrent" href="http://www.bittorrent.com/bittorrent-open-source-license">BitTorrent Open Source License</a></li>
+    <li><a id="OriginalBSD" href="http://www.xfree86.org/3.3.6/COPYRIGHT2.html#6">Original BSD license</a></li>
+    <li><a id="CDDL" href="http://www.opensolaris.org/os/licensing/cddllicense.txt">Common Development and Distribution License (CDDL), version 1.0</a></li>
+    <li><a id="CPAL" href="http://opensource.org/licenses/cpal_1.0">Common     Public Attribution License 1.0 (CPAL)</a></li>
+    <li><a id="CommonPublicLicense10" href="http://www.eclipse.org/legal/cpl-v10.html">Common Public License Version 1.0</a></li>
+    <li><a id="Condor" href="http://www.cs.wisc.edu/condor/condor-public-license.html#condor">Condor Public License</a></li>
+    <li><a id="EPL" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License Version 1.0</a></li>
+    <li><a id="EUPL" href="http://ec.europa.eu/idabc/eupl">European Union Public License (EUPL) version 1.1</a></li>
+    <li><a id="IBMPL" href="http://www.opensource.org/licenses/ibmpl.php">IBM Public License, Version 1.0</a></li>
+    <li><a id="IPL" href="http://www.borland.com/devsupport/interbase/opensource/IPL.html">Interbase Public License, Version 1.0</a></li>
+    <li><a id="josl" href="http://code.google.com/p/jabber-net/source/browse/branches/RELEASE_1_0/LICENSE.txt">Jabber Open Source License, Version 1.0</a></li>
+    <li><a id="LPPL-1.3a" href="http://www.latex-project.org/lppl/lppl-1-3a.txt">LaTeX Project Public License 1.3a</a></li>
+    <li><a id="LPPL-1.2" href="http://www.latex-project.org/lppl/lppl-1-2.txt">LaTeX Project Public License 1.2</a></li>
+    <li><a id="lucent102" href="http://plan9.bell-labs.com/plan9dist/license.html">Lucent Public License Version 1.02 (Plan 9 license)</a></li>
+    <li><a id="ms-pl" href="http://www.microsoft.com/opensource/licenses.mspx#Ms-PL">Microsoft Public License (Ms-PL)</a></li>
+    <li><a id="ms-rl" href="http://www.microsoft.com/opensource/licenses.mspx#Ms-RL">Microsoft Reciprocal License (Ms-RL)</a></li>
+    <li><a id="MPL" href="http://www.mozilla.org/MPL/MPL-1.1.html">Mozilla Public License (MPL)</a></li>
+    <li><a id="NOSL" href="http://bits.netizen.com.au/licenses/NOSL/nosl.txt">Netizen Open Source License (NOSL), Version 1.0</a></li>
+    <li>
+<a id="NPL" href="http://www.mozilla.org/NPL/NPL-1.1.html">Netscape Public License (NPL)</a>, versions 1.0 and 1.1</li>
+    <li><a id="Nokia" href="http://opensource.org/licenses/nokia.html">Nokia Open Source License</a></li>
+    <li><a id="OSL" href="http://www.opensource.org/licenses/osl-3.0.php">Open Software License, all versions through 3.0</a></li>
+    <li><a id="OpenSSL" href="http://www.sdisw.com/openssl.htm">OpenSSL license</a></li>
+    <li><a id="Phorum" href="http://phorum.org/license.txt">Phorum License, Version 2.0</a></li>
+    <li><a id="PHP-3.01" href="http://www.php.net/license/3_01.txt">PHP License, Version 3.01</a></li>
+    <li><a id="PythonOld" href="http://www.handle.net/python_licenses/python1.6_9-5-00.html">License of Python 1.6b1 through 2.0 and 2.1</a></li>
+    <li><a id="QPL" href="http://doc.trolltech.com/3.0/license.html">Q Public License (QPL), Version 1.0</a></li>
+    <li><a id="RPSL" href="http://www.opensource.org/licenses/real.php">RealNetworks Public Source License (RPSL), Version 1.0</a></li>
+    <li><a id="SISSL" href="http://www.openoffice.org/licenses/sissl_license.html">Sun Industry Standards Source License 1.0</a></li>
+    <li><a id="SPL" href="http://java.sun.com/spl.html">Sun Public License</a></li>
+    <li><a id="xinetd" href="http://fedoraproject.org/wiki/Licensing/Xinetd_License">License of xinetd</a></li>
+    <li><a id="Yahoo" href="http://info.yahoo.com/legal/us/yahoo/publiclicense/publiclicense-1813.html">Yahoo! Public License 1.0</a></li>
+    <li><a id="Zend" href="http://www.zend.com/license/2_00.txt">Zend License, Version 2.0</a></li>
+    <li><a id="Zope" href="http://www.zope.org/Resources/ZPL">Zope Public License version 1</a></li>
+</ul>
+Aşağıdaki listede de "özgür olmayan" yazılım lisansları sıralandı.Tabi bunlar doğal olarak da GNU GPL ile de uyumlu değil.Önerim bu lisanslarla gelen yazılımlardan uzak durun!
+<h4>ÖZGÜR  OLMAYAN YAZILIM LİSANSLARI</h4>
+<ul>
+<li>Aladdin Free Public License</li>
+    <li><a id="apsl1" href="http://www.opensource.apple.com/apsl/1.2.txt">Apple Public Source License (APSL), version 1.x</a></li>
+    <li><a id="ArtisticLicense">Artistic License 1.0</a></li>
+    <li>AT&amp;T Public License</li>
+    <li>eCos Public License, version 1.1</li>
+    <li><a id="GPL-PA" href="http://www.celepar.pr.gov.br/modules/conteudo/conteudo.php?conteudo=69">GPL for Computer Programs of the Public Administration</a></li>
+    <li>
+<a id="HESSLA" href="http://www.hacktivismo.com/about/hessla.php">Hacktivismo Enhanced-Source Software License Agreement</a> (HESSLA)</li>
+    <li><a id="Jahia" href="http://www.jahia.org/jahia/Jahia/pid/145">Jahia Community Source License</a></li>
+    <li><a id="JSON" href="http://www.json.org/license.html">The JSON     License</a></li>
+    <li>Old license of ksh93</li>
+    <li><a href="http://packages.debian.org/changelogs/pool/non-free/l/lha/current/copyright">License of Lha</a></li>
+    <li><a id="Ms-LPL" href="http://www.microsoft.com/resources/sharedsource/licensingbasics/limitedpubliclicense.mspx">Microsoft Limited Public License (Ms-LPL)</a></li>
+    <li><a id="Ms-LRL" href="http://www.microsoft.com/resources/sharedsource/licensingbasics/limitedreciprocallicense.mspx">Microsoft Limited Reciprocal License (Ms-LRL)</a></li>
+    <li><a id="Ms-RL" href="http://www.microsoft.com/resources/sharedsource/licensingbasics/referencelicense.mspx">Microsoft Reference License</a></li>
+    <li><a id="Ms-SS" href="http://fedoraproject.org/wiki/Licensing/Microsoft_Shared_Source_License">Microsoft's Shared Source CLI, C#, and Jscript License</a></li>
+    <li><a id="MsWECE-6.0" href="http://msdn2.microsoft.com/en-us/embedded/bb190212.aspx">Microsoft     Windows Embedded CE 6.0 Shared Source License</a></li>
+    <li><a id="NASA" href="http://opensource.arc.nasa.gov/static/opensource/site/docs/NASA_Open_Source_Agreement_1.3.txt">NASA Open Source Agreement</a></li>
+    <li><a id="OPL" title="Open Public License at Fedora Project wiki" href="https://fedoraproject.org/wiki/Licensing/Open_Public_License">Open Public License</a></li>
+    <li>License of PINE</li>
+    <li>Old Plan 9 license</li>
+    <li><a id="RPL" href="http://www.opensource.org/licenses/rpl.php">Reciprocal Public License</a></li>
+    <li>Scilab license</li>
+    <li><a id="SML" href="http://www.simplemachines.org/about/license.php">Simple Machines License</a></li>
+    <li><a id="Squeak" href="http://squeak.org/SqueakLicense/">Squeak license</a></li>
+    <li><a id="SunCommunitySourceLicense">Sun Community Source License</a></li>
+    <li><a id="SystemC-3.0" href="http://www.systemc.org/about/org_docs/license/">SystemC "Open Source" License, Version 3.0</a></li>
+    <li><a id="UtahPublicLicense" href="http://www.cs.utah.edu/%7Egk/teem/txt/LICENSE.txt">University of Utah Public License</a></li>
+    <li>YaST License</li>
+</ul>
+Listedeki lisansların daha detaylı açıklamasına ve neden bu kategorilerde listelendikleri hakkında daha detaylı bilgi almak için <a href="http://www.gnu.org/licenses/license-list.html#SoftwareLicenses" target="_blank">burayı</a> ziyaret edin.</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/tivibu-ttnet-ve-rekabet-kurulu/" class="u-url">Tivibu,TTNET ve Rekabet Kurulu</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/tivibu-ttnet-ve-rekabet-kurulu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-01-30T05:44:58+02:00" title="2011-01-30 05:44">2011-01-30 05:44</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/tivibu-ttnet-ve-rekabet-kurulu/#disqus_thread" data-disqus-identifier="cache/posts/tivibu-ttnet-ve-rekabet-kurulu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Geçtiğimiz yıl birkaç Linux kullanıcısının Rekabet Kurulu'na Tivibu'nun Linux üzerinde çalışmadığı hakkında şikayette bulunmuştu(<em>Şikayet sonunda çıkan kararın pdf hali için <a href="http://www.rekabet.gov.tr/dosyalar/kararlar/karar3503.pdf" target="_blank">buradan</a></em>). Bu şikayeti ve çıkan kararı google'da tesadüfen gezinirken keşfetmiştim.Kısaca Rekabet Kurulu verdiği kararda TTNet'in uygulaması olan Tivibu'nun Moonlight ile Linux üzerinde çalışabildiğine ve Linux platformunda bir sorun olmadığına karar vermiş.Fakat deneyen Linux kullanıcıları biliyor ki bu bahsi geçen uygulama Moonlight ile çalışmamakta.Tivibu'nun Linux için client'ı yok ve Linux üzerinde Tivibu çalıştırmak (birkaç kişi bunu başarmış ) deveye hendek atlatmak gibi.</p>
+<p>Özet olarak bu şikayeti gördükten sonra birde ben şikayette bulundum.Moonlight ile bu uygulamanın çalışmadığı hakkında ve yine google'da tesadüfen çıkan kararı gördüm.Kararı paylaşıyorum,karar biraz manidar.İlk şikayetin ardında çalışan uygulama şimdi çalışmaz  olmuş ve bu da Microsoft'un diğer rakipleri ile rekabet ihlaline  yol açmıyormuş.Pek anlamadım  ama anlayan anlatır umarım.Pdf hali için <a href="http://www.rekabet.gov.tr/dosyalar/kararlar/karar3809.pdf" target="_blank">buradan</a> .
+</p>
+<div id="dynamic_box_center">
+<div id="box_center_holder">
+<div id="article_holder">
+<div id="article_body">
+<h3>Rekabet Kurumu Başkanlığından</h3>
+<h3>REKABET KURULU KARARI</h3>
+<strong>Dosya Sayısı</strong>: 2010-2-272                          (İlk İnceleme)
+<strong>Karar Sayısı</strong> : 10-78/1619-621
+<strong>Karar Tarihi</strong> : 16.12.2010
+<p>A. TOPLANTIYA KATILAN ÜYELER</p>
+<p>Başkan               : Prof. Dr. Nurettin KALDIRIMCI
+Üyeler               : Doç. Dr. Mustafa ATEŞ, Mehmet Akif ERSİN, İsmail Hakkı
+KARAKELLE, Doç. Dr. Cevdet İlhan GÜNAY, Murat
+ÇETİNKAYA, Reşit GÜRPINAR</p>
+<p>B. RAPORTÖR          : Özgür Can ÖZBEK</p>
+<p>C. BAŞVURUDA       : - Emre ERYILMAZ
+BULUNAN            Adresi tespit edilememiştir.</p>
+<p>D. HAKKINDA İNCELEME YAPILAN:
+-Türk Telekomünikasyon A.Ş.
+Turgut Özal Bulvarı 06103 Aydınlıkevler- Ankara</p>
+<p>E. DOSYA KONUSU: Rekabet Kurulu’nun, 5.8.2010 tarih ve 10-52/982-349 sayılı
+kararının yeniden değerlendirilmesi talebi.
+F. İDDİALARIN ÖZETİ: Başvuruda, 5.8.2010 tarih ve 10-52/982-349 sayılı Rekabet
+Kurulu kararında bahsedilen Microsoft Silver Light adlı yazılımın Linux platformu
+üzerinde kısıtlı özellikleri barındırdığı ve bu yazılım ile Tivibu hizmetinin
+çalıştırılamadığı dolayısıyla söz konusu hizmeti kullanmak isteyen Linux
+kullanıcılarının bu imkâna sahip olmadıkları ifade edilerek, Tivibu hizmetini sunan
+TTNET tarafından, diğer işletim sistemleri için çıkarıldığı gibi, Linux için
+uyumlaştırılmış sürümün yayınlanması talep edilmektedir.
+G. DOSYA EVRELERİ: Kurum kayıtlarına 27.10.2010 tarihinde, 8206 sayı ile intikal
+eden başvuru üzerine yapılan inceleme neticesinde hazırlanan 29.11.2010 tarih ve
+2010-2-272/İİ-10-392.ÖCÖ sayılı İlk İnceleme Raporu, 6.12.2010 tarih ve
+REK.0.06.00.00-110/601 sayılı Başkanlık önergesi ile birlikte 16.12.2010 tarih ve 10-
+78 sayılı Kurul toplantısında görüşülerek karara bağlanmıştır.</p>
+<p>H. RAPORTÖRÜN GÖRÜŞÜ: İlgili raporda; Türk Telekom hakkında 4054 sayılı
+Kanun kapsamında işlem tesis edilmesine gerek olmadığı ifade edilmiştir.</p>
+<p>I. DEĞERLENDİRME
+Başvurunun değerlendirilmesi bakımından ilgili kararın değerlendirme kısmının göz
+önüne alınması gerekmektedir. İlgili kararda,
+“Yukarıda yer verilen bilgiler ışığında TTNET tarafından Tivibu hizmeti için tercih
+edilen MS Silverlight teknolojisinin teşebbüsün hizmeti için aradığı nitelikleri
+sağladığı, mümkün olduğunca geniş bir kullanıcı tabanına hitap etmek suretiyle
+10-78/1619-621</p>
+<p>makul bir ticari tercihi yansıttığı görülmektedir. Bahse konu teknoloji hâlihazırda
+Macintosh gibi başka bir işletim sistemiyle uyumlu çalışabilmekte, Linux ile uyumlu
+çalışabilmesi yönünde de çalışmalar devam etmektedir. Bu kapsamda Türk
+Telekom’un iştiraki TTNET ile Microsoft arasındaki anlaşmanın salt bir hizmet alım
+anlaşması niteliğinde olduğu ve herhangi bir münhasırlık içermediği de göz önüne
+alındığında, şikâyet konusu durumun Microsoft işletim sisteminin rakiplerini dışlayıcı,
+dolayısıyla rekabet ihlaline yol açan bir sonuç doğurmadığı”
+değerlendirmesi yapılmıştır. Dolayısıyla bahse konu kararda soruşturma
+açılmamasının sebebi, başvuru sahibi tarafından yanlış olduğu iddia edilen “Tivibu
+hizmetinin Linux işletim sistemi üzerinde çalışabilmesi” şeklinde bir izlenim değildir.
+TTNET tarafından kullanıcılarına sunulacak bir hizmet için teşebbüs tarafından talep
+edilen özellikleri sağlayacak bir başka teşebbüsle (Microsoft) bir hizmet alımı
+sözleşmesinden ibaret bir ilişkiye ilişkin rekabet hukuku kapsamında bir işlem
+yapılmasına gerek olmadığı gerekçesiyle soruşturma açılmamıştır. Bu sebeple
+mevcut başvurunun da rekabet hukuku çerçevesinde herhangi bir işlem yapılmasını
+gerektirmediği sonucuna ulaşılmıştır.
+J. SONUÇ
+Düzenlenen rapora ve incelenen dosya kapsamına göre; 27.10.2010 tarihinde 8206
+sayı ile yapılan başvuruya ilişkin olarak herhangi bir işlem yapılmasına gerek
+olmadığına, talebin reddine OYBİRLİĞİ ile karar verilmiştir.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sunucudan-google-apps-email-ile-mail-gondermek/" class="u-url">Sunucudan Google Apps Email ile mail göndermek</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/sunucudan-google-apps-email-ile-mail-gondermek/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-01-30T02:53:23+02:00" title="2011-01-30 02:53">2011-01-30 02:53</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/sunucudan-google-apps-email-ile-mail-gondermek/#disqus_thread" data-disqus-identifier="cache/posts/sunucudan-google-apps-email-ile-mail-gondermek.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Sunucu kaynaklarınız az ve mail sunucunuz mevcut değilse,herhangi bir external mail sunucusunu kullanmak zorunda kalabilirsiniz.Birçok küçük ve orta ölçekli kurumların ya da sitelerin <a href="http://www.google.com/a/?hl=tr" target="_blank">Google Apps</a> hizmetlerinden faydalandığını düşünürsek ,sunucunuzdan sadece mail göndermek için Google'ın ücretsiz sunduğu mail hizmetinden faydalanabiliriz.</p>
+<p>Sunucunuz ya da bilgisayarınız üzerinden mailleri dışardaki mail sunucusuna yönlendirmek için "ssmtp"i kullanabiliriz.CentOS üzerine "ssmtp" i kurmak için olmazsa olmaz ek depolardan "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>"in eklenmiş olması lazım."EPEL"i eklemek için <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">bu yazıyı</a> takip edebilirsiniz.</p>
+<p>İlk olarak "<em>ssmtp</em>"i kuralım :
+</p>
+<pre><strong># yum install ssmtp </strong></pre>
+"ssmtp" i kurduktan sonra "<em>ssmtp.conf</em>" dosyasına <strong>Google Apps Email</strong> hesap bilgilerimizi ve <strong>smtp</strong> ayarlarımızı ekleyelim :
+<pre><strong># vi /etc/ssmtp/ssmtp.conf</strong>
+</pre>
+<pre>root=kullanici_adi@domain_adi.com</pre>
+<pre>mailhub=smtp.gmail.com:587</pre>
+<pre>AuthUser=kullanici_adi@domain_adi.com
+AuthPass=parola
+UseSTARTTLS=YES
+</pre>
+Bilgileri ekledikten sonra test maili gönderelim.
+<pre><strong>$ echo test | mail -s "test" kullanici_adi@domain_adi.com</strong></pre>
+<strong>Diğer Başka Kaynaklar :</strong>
+<p><a href="https://wiki.archlinux.org/index.php/SSMTP" target="_blank">Arch Linux için Ssmtp</a></p>
+<p><a href="http://wiki.debian.org/sSMTP" target="_blank">Debian için Ssmtp</a></p>
+<p><a href="http://www.freebsd.org/doc/handbook/outgoing-only.html" target="_blank">FreeBSD için Ssmtp</a></p>
+<p><a href="http://forums.gentoo.org/viewtopic-t-420358-start-0.html" target="_blank">Gentoo için Ssmtp</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/whatweb-ve-wordpress-surumu-saklama/" class="u-url">WhatWeb ve Wordpress sürümü saklama</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/whatweb-ve-wordpress-surumu-saklama/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-01-29T03:36:38+02:00" title="2011-01-29 03:36">2011-01-29 03:36</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/whatweb-ve-wordpress-surumu-saklama/#disqus_thread" data-disqus-identifier="cache/posts/whatweb-ve-wordpress-surumu-saklama.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<a href="http://www.morningstarsecurity.com/research/whatweb" target="_blank">WhatWeb</a> yazılımı internet sitelerini üzerinde CMS,blog,stats,analiz,javascript vs. gibi yazılımların kimliklerini ve sürümlerini tespit etmeye yarayan bir araç.WhatWeb yazılımı herhangi bir web sitesinin üzerindeki özellikle popüler kullanılmakta olan CMS ve blog yazılımlarının kimliklerini,sürümlerini ve sunucu bilgilerini toplayabiliyor.İnternet üzerinde yayın yapmak için kullandığımız herhangi bir yazılımın özellikle sürüm bilgisini vermek zararlı olabilir.Hele bir de güncellemekte gecikiyor ya da üşeniyorsanız!
+<p>İlk olarak WhatWeb yazılımını kuralım.Arch Linux,FreeBSD,Mandriva Linux ve Gentoo Linux için hazır paketleri mevcut.Ben Gentoo Linux ve Ubuntu Linux üzerine kurmaya değineceğim.</p>
+<p>Gentoo Linux için "WhatWeb" "pentoo" overlay'inde mevcut.<a href="http://gentoo-overlays.zugaina.org/pentoo/" target="_blank">Pentoo Overlay</a>'ini portage'a ekleyelim.Eğer "layman" kurulu değil ise ilk olarak kurun.Layman hakkında yardım almak için <a href="http://www.gentoo.org/proj/en/overlays/userguide.xml" target="_blank">buradan</a> buyrun.
+</p>
+<pre><strong># layman -a pentoo</strong></pre>
+<pre><strong># emerge -av whatweb </strong></pre>
+Ubuntu 'ya "<em>WhatWeb</em>" yüklemek için ilk olarak <strong>Ruby</strong> kurmamız gerekiyor.Daha sonra "<em>WhatWeb</em>"i indirip çalıştırabiliriz.
+<pre><strong># apt-get install ruby ruby-dev libopenssl-ruby</strong></pre>
+<pre><strong>$ wget http://www.morningstarsecurity.com/downloads/whatweb-0.4.5.tar.gz</strong></pre>
+<pre><strong>$ tar zxvf whatweb-0.4.5.tar.gz</strong></pre>
+<pre><strong>$ cd whatweb-0.4.5</strong></pre>
+Artık "<em>WhatWeb</em>" ile testler yapmaya hazırız.Şimdi herhangi bir "<strong>Wordpress</strong>" sitesini test edip sürüm bilgilerini alalım.Daha sonra da sürüm bilgilerini Wordpress üstünden kaldırıp tekrar deneyelim.Yukarda da bahsetmem üzere sürüm güncellemekte gecikiyorsanız ya da güncelleme aralığınız uzuyorsa dışarıya sürümünüz hakkında bilgi vermemek en iyisidir.Belirsizlik karşıdakine daha çok zaman ve emek harcatır :)
+<p>İlk test yapalım :
+</p>
+<pre><strong>$ ./whatweb linux.piesso.com</strong></pre>
+<address>http://linux.piesso.com [200] <strong>WordPress[3.0.4],</strong> HTTPServer[LWS], UncommonHeaders[x-pingback], JQuery[1.4.2], Title[| Linux ve Özgürlük], RSSFeed[http://linux.piesso.com/wp-content/themes/openark-blog/style.css], MetaGenerator[WordPress 3.0.4], Tag-Hash[304a800265809c99e32ff96b774225fe], MD5[d1f3d9cdb0766514a3d290cceb2eccc3], Header-Hash[a82619f7784e56b660f31017e1d0174f], Footer-Hash[b7509d9fc94073b62bfe3d809e9ad5a9]</address>Yukarda görüldüğü gibi "WhatWeb" sitenin "Wordpress" ile oluşturulduğunu ve sürümünün "3.0.4" olduğunun çıktısını verdi."WhatWeb" sadece "Wordpress" değil bir çok yazılımının kimliğini tespit edebiliyor.Bunları görmek için de "-l" parametresini kullanabiliriz;
+<pre><strong>$ ./whatweb -l</strong></pre>
+<pre>Plugins Loaded
+<hr><p>360-Web-Manager,0.1
+ANECMS,0.1
+ASP-Nuke,0.2
+AVTech-Video-Web-Server,0.1
+AWStats,0.1
+Aardvark-Topsites-PHP,0.1
+Acclipse,0.2
+AdobeFlash,0.1
+Advanced-Guestbook,0.2
+Alcatel-Lucent-Omniswitch,0.1
+Allinta-CMS,0.1
+Antiboard,0.1
+Apache-Default,0.3
+ArGoSoft-Mail-Server,0.1
+Arab-Portal,0.1
+AtomFeed,0.1
+Axis-Network-Camera,0.1
+BM-Classifieds,0.1
+BXR,0.1
+Barracuda-Spam-Firewall,0.1
+Basilic,0.1
+BeEF,0.1
+Belkin-Modem,0.2
+Bing-SearchEngine,0.1
+Biromsoft-WebCam,0.1
+BlogSmithMedia,0.2
+Blogger,0.1
+BlognPlus,0.1
+BlueNet-Video-Server,0.1
+Brother-Printer,0.1
+Burning-Board-Lite,0.1
+BusinessSpace,0.1
+CGI Backdoor,0.1
+CGIProxy,0.1
+CMSQLite,0.1
+CMScontrol,0.1
+CMSimple,0.1
+CPanel,0.2
+Campsite,0.1
+Canon-Network-Camera,0.1
+Cisco-VPN-3000-Concentrator,0.1
+Citrix-Metaframe,0.2
+CodeIgniterProfiler,0.1
+ColdFusion,0.1
+Comersus,0.2
+CommonSpot,0.1
+Concrete5,0.2
+Confluence,0.1
+Cookies,0.1
+Coppermine,0.2
+CruxCMS,0.1
+CruxPA,0.1
+CushyCMS,0.2
+D-Link-Network-Camera,0.1
+DMXReady,0.1
+DT-Centrepiece,0.1
+DUclassified,0.1
+DUforum,0.1
+DUgallery,0.1
+Dell-Printer,0.1
+DiBos,0.2
+DotCMS,0.2
+DotNetNuke,0.3
+Drupal,0.2
+DublinCore,0.1
+EMO-Realty-Manager,0.1
+EarlyImpact-ProductCart,0.2
+EazyCMS,0.1
+Echo,0.2
+Empire-CMS,0.1
+Evo-Cam,0.1
+ExpressionEngine,0.2
+F3Site,0.1
+FestOS,0.1
+File-Upload-Manager,0.1
+Flax-Article-Manager,0.1
+FluentNET,0.1
+FluxBB,0.3
+Footer-Hash,0.2
+Forest-Blog,0.1
+FormMail,0.2
+FrogCMS,0.3
+GoAhead-Webs,0.2
+Google-API,0.1
+Google-Analytics,0.2
+Google-Hack-Honeypot,0.1
+GuppY,0.1
+HP-LaserJet-Printer,0.1
+HTML5,0.2
+HTTPServer,0.2
+Header-Hash,0.1
+IIS-SiteNotFound,0.2
+IIS-UnderConstruction,0.2
+IMGallery,0.1
+IPCop-Firewall,0.1
+IQeye-Netcam,0.1
+ISPConfig,0.2
+Index-Of,0.2
+Intellinet-IP-Camera,0.1
+Interspire-Shopping-Cart,0.1
+InvisionPowerBoard,0.2
+JAMM-CMS,0.1
+JGS-Portal,0.1
+JQuery,0.2
+Jamroom,0.1
+Jboss,0.1
+Joomla,0.4
+Kloxo Single Server,0.1
+Liferay,0.1
+Lightbox,0.2
+Lime-Survey,0.1
+Linksys-NAS,0.1
+Linksys-Network-Camera,0.1
+Linksys-USB-HDD,0.1
+Linksys-Wireless-G-Camera,0.1
+LocazoList-Classifieds,0.1
+Loggix,0.1
+Lucky-Tech-iGuard,0.1
+MD5,0.2
+MailSiteExpress,0.2
+Mailman,0.1
+Mailto,0.2
+Mambo,0.2
+MediaWiki,0.1
+MetaGenerator,0.2
+MetaPoweredBy,0.2
+Microsoft-Sharepoint,0.1
+MicrosoftODBCError,0.1
+MikroTik,0.2
+Minify,0.1
+MnoGoSearch,0.2
+Mobotix-Network-Camera,0.1
+ModxCMS,0.2
+Moodle,0.2
+MovableType,0.2
+My-PHP-Indexer,0.1
+My-WebCamXP-Server,0.1
+MyioSoft-Ajax-Portal,0.1
+MysqlSyntaxError,0.1
+NetBotz-Network-Monitoring-Device,0.1
+Netious-CMS,0.1
+Netsnap-Web-Camera,0.1
+NovellGroupwise,0.2
+Nukedit,0.1
+ORCA-Platform,0.1
+ORITE-301-Camera,0.1
+OSCommerce,0.3
+Oce,0.2
+OkiPBX,0.2
+Open-Blog,0.1
+Open-Freeway,0.1
+Open-Source-Ticket-Request-System,0.1
+OpenCms,0.1
+OpenGraphProtocol,0.1
+OpenID,0.1
+OpenSearch,0.1
+PG-Roomate-Finder-Solution,0.1
+PHP-Fusion,0.1
+PHP-Layers,0.1
+PHP-Link-Directory,0.1
+PHP-Shell,0.1
+PHPCake,0.2
+PHPDirector,0.1
+PHPEasyData,0.1
+PHPError,0.2
+PHPFM,0.1
+PHPNuke,0.2
+PHPraid,0.1
+PageUp-People,0.1
+Panasonic-Network-Camera,0.1
+Parked-Domain,0.1
+PasswordField,0.1
+PhilBoard,0.1
+Piwik,0.1
+Pixel-Ads-Script,0.1
+Pixie,0.1
+Plesk,0.2
+Pligg-CMS,0.1
+Plone,0.2
+PortalApp,0.1
+PoweredBy,0.2
+Pressflow,0.1
+Prototype,0.2
+QNAP-NAS,0.1
+Quantcast,0.1
+RSSFeed,0.1
+RedirectLocation,0.2
+RoundCube,0.2
+RunCMS,0.1
+SHOUTcast-Administrator,0.1
+SMF,0.2
+Saurus-CMS,0.1
+Scriptaculous,0.2
+SearchFitShoppingCart,0.2
+SiemensSpeedStreamRouter,0.2
+SilverStripe,0.2
+SimpNews,0.1
+Site-Sift,0.1
+SkaLinks,0.1
+SmodCMS,0.1
+Snap-Appliance-Server,0.1
+SnomPhone,0.2
+Softbiz-Freelancers-Script,0.1
+Softbiz-Online-Auctions-Script,0.1
+Softbiz-Online-Classifieds,0.1
+Sony-Network-Camera,0.1
+Sony-Video-Network-Station,0.1
+SquirrelMail,0.2
+Star-Network,0.1
+StarDot-NetCam,0.1
+Stardot-Express,0.1
+Subdreamer-CMS,0.1
+Subrion-CMS,0.1
+SyndeoCMS,0.1
+TWiki,0.1
+Tag-Hash,0.2
+TaskFreak,0.1
+Team-Board,0.1
+Textpattern,0.1
+The-PHP-Real-Estate-Script,0.1
+Title,0.2
+TomatoCMS,0.1
+Tomcat,0.2
+Toshiba-Network-Camera,0.1
+ToshibaPrinter,0.2
+Trac,0.1
+Turbo-Seek,0.1
+TypePad,0.2
+TypoLight,0.2
+Umbraco,0.1
+UncommonHeaders,0.2
+VBulletin,0.2
+VP-ASP,0.2
+VSNSLemon,0.2
+Veo-Observer,0.1
+VideoShareEnterprise,0.1
+Virtualmin,0.1
+VisionGS-Webcam,0.1
+Vulnerable-To-XSS,0.1
+WWWBoard,0.1
+Web-Calendar-System,0.1
+Web-Data-Administrator,0.1
+WebDVR,0.1
+WebEye-Network-Camera,0.1
+WebGuard,0.2
+WebPress,0.1
+WhiteBoard,0.1
+Winamp-Web-Interface,0.1
+Windows-Internet-Printing,0.1
+WindowsSBS,0.2
+WoW-Raid-Manager,0.1
+WordPress,0.2
+WordPressSpamFree,0.2
+WordpressSuperCache,0.3
+X-ASPNetVersion,0.2
+X-Powered-By,0.2
+X7-Chat,0.1
+XHP-CMS,0.1
+Xerox-Printers,0.1
+XtraBusinessHosting,0.2
+Zen-Cart,0.1
+Zeus-Cart,0.1
+Zikula,0.1
+Zoph,0.1
+Zyxel-Vantage-Service-Gateway,0.1
+anyInventory,0.1
+boastMachine,0.1
+coWiki,0.1
+cpCommerce,0.1
+eLitius,0.1
+eSyndiCat,0.1
+envezion~media,0.1
+ezBOO-WebStats,0.1
+i-Catcher-Console,0.1
+iDVR,0.1
+iRealty,0.1
+iScripts-CyberMatch,0.1
+iScripts-EasySnaps,0.1
+iScripts-MultiCart,0.1
+iScripts-ReserveLogic,0.1
+iScripts-SocialWare,0.1
+ispCP-Omega,0.2
+jobberBase,0.1
+mojoPortal,0.1
+phPhotoAlbum,0.1
+php-ping,0.1
+phpBB,0.2
+phpFreeChat,0.1
+phpMyAdmin,0.1
+phpPgAdmin,0.1
+phpSysInfo,0.1
+phpinfo,0.1
+sabros.us,0.1
+samPHPweb,0.1
+syntaxCMS,0.1
+uPortal,0.1
+xGB,0.1
+</p></pre>
+WhatWeb'ten Wordpress sürümü gizlemek için ise temanızın "<strong><em>function.php</em></strong>" adlı dosyası içine aşağıdaki satırını yapıştırarak kaldıralım .
+<pre><strong><code>remove_action(</code><code>'wp_head'</code><code>, </code><code>'wp_generator'</code><code>);</code></strong></pre>
+Wordpress'ten sürüm bilgilerini kaldırdığımıza göre "<em>WhatWeb</em>" ile tekrar test edelim.
+<pre><strong>$ ./whatweb linux.piesso.com</strong></pre>
+<address>http://linux.piesso.com [200] <strong>probably</strong> WordPress, HTTPServer[LWS], UncommonHeaders[x-pingback], JQuery[1.4.2], Title[| Linux ve Özgürlük], RSSFeed[http://linux.piesso.com/wp-content/themes/openark-blog/style.css], Tag-Hash[1875deb75c633e2ea1bbe2e6b8c856e3], MD5[29c17973306dcde19d75e8c9b3f72861], Header-Hash[a82619f7784e56b660f31017e1d0174f], Footer-Hash[b7509d9fc94073b62bfe3d809e9ad5a9]</address>
+<p>Görüldüğü gibi artık <strong>Wordpress</strong> sürüm bilgisi vermiyor.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/uptime-suresini-ogrenme-ve-engelleme/" class="u-url">Uptime süresini öğrenme ve engelleme</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/uptime-suresini-ogrenme-ve-engelleme/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-01-28T04:00:38+02:00" title="2011-01-28 04:00">2011-01-28 04:00</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/uptime-suresini-ogrenme-ve-engelleme/#disqus_thread" data-disqus-identifier="cache/posts/uptime-suresini-ogrenme-ve-engelleme.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Eğer engellemediyseniz uzaktaki kişiler sunucunuzun uptime süresini öğrenebilirler.Uptime sürenizi öğrenmek isteyen kişi ,sisteme herhangi bir TCP paketi yollayarak sizin sisteminizden cevap bekler.Sistemimizde "timestamps" engellenmemişse bizim cevap göndereceğimiz TCP paketlerinin başlıklarında "<strong>timestamps</strong>"ler ( zaman imzamız ) bulunmakta.Buradaki "timestamps"leri okuyarak   sistemimizin uptime süresini öğrenebilirler.</p>
+<p>Uptime süresini öğrenmek için bir çok uygulama mevcut : nmap,hping  gibi.<a href="http://www.hping.org/" target="_blank">Hping</a> ile hedef sistem üzerinde  istediğimiz porta istediğimiz paketi gönderebildiğimiz için onu kullanarak test yapacağım.Bilgisayarınızda "<strong>hping</strong>" yazılımı yüklü değilse ,ilk olarak kuralım.
+</p>
+<pre># emerge -av hping ( Gentoo )</pre>
+<pre># apt-get install hping3 (Ubuntu )</pre>
+Centos'a yüklemek için "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>" deposunu eklemiş olmanız lazım.Eğer bu depoyu eklemediysen <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">buradan</a> yardım alabilirsiniz.
+<pre># yum install hping3</pre>
+Hping yazılımını yükledikten sonra herhangi bir sunucunun uptime süresini öğrenmek bize cevap verecek herhangi bir <strong>TCP</strong> portuna bir istek gönderip,cevap alalım.Şimdi herhangi bir sunucunun uptime süresini öğrenelim:
+<pre><strong># hping --tcp-timestamp www.examples.com -p 80 -c 2 -S</strong></pre>
+<pre>HPING www.examples.com (eth0 00.00.00.00): S set, 40 headers + 0 data bytes
+len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=0 win=5792 rtt=20.0 ms
+ TCP timestamp: tcpts=966942747
+<p>len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=1 win=5792 rtt=19.8 ms
+ TCP timestamp: tcpts=966942997
+ HZ seems hz=100
+ System uptime seems: 111 days, 21 hours, 57 minutes, 9 seconds</p>
+<p>--- www.examples.com hping statistic ---
+2 packets tramitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 19.8/19.9/20.0 ms</p></pre>
+Yukardaki örnekte de görüldüğü gibi "<em>www.examples.com</em>" sunucusunun 111 gündür vs vs detaylı uptime süresini öğrenebiliyoruz.Uzaktaki sistemin "<strong>uptime</strong>" süresini öğrenmeye değindik,şimdi  "<em>kendi sunucumuzun uptime süresini vermesini istemiyorsak ne yapmalıyız</em>?" ona biraz değinelim.
+<p>Eğer sunucumuzun "<strong>timestamps</strong>" gönderip göndermediğini bilmiyorsak ona bakalım:
+</p>
+<pre><strong># /sbin/sysctl -a |grep tcp_timestamps </strong></pre>
+<pre>net.ipv4.tcp_timestamps = 1</pre>
+Yukardaki komutun çıktısına "<strong>net.ipv4.tcp_timestamps = 1</strong>" değeri alıyorsanız , uptime süre bilginiz öğrenebilinir demektir.Bu bilgiyi dışarıya vermemek için "<strong>1</strong>" değerini "<strong>0</strong>" yapalım.
+<p><strong>I .Yöntem :</strong>
+</p>
+<pre>#  echo 0 &gt; /proc/sys/net/ipv4/tcp_timestamps</pre>
+<strong>II.Yöntem :</strong>
+<p>Bu yöntemde ise "<em>sysctl.conf</em>" dosyasına "<em>net.ipv4.tcp_timestamps = 0</em>" satırını ekleyelerek yapabiliriz.
+</p>
+<pre><strong># vi /etc/sysctl.conf</strong></pre>
+Aşağıdaki satırı ekleyin:
+<pre><strong>net.ipv4.tcp_timestamps = 0</strong></pre>
+Satırı ekledikten sonra dosyayı kaydedip,kapatın.Ayarların aktif olabilmesi için bilgisayarı <strong>yeniden başlatın</strong> ya da aşağıdaki komutu verin .
+<pre><strong># sysctl -p</strong></pre>
+Yeni ayarlarımız aktif olduktan sonra uptime bilgimizin gönderilip,gönderilmediğini test edelim.
+<pre><strong># hping --tcp-timestamp www.examples.com -p 80 -c 2 -S</strong></pre>
+<pre>HPING www.examples.com (eth0 00.00.00.00): S set, 40 headers + 0 data bytes
+len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=0 win=32792 rtt=0.1 ms
+ TCP timestamp: tcpts=0
+<p>len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=1 win=32792 rtt=0.1 ms
+ TCP timestamp: tcpts=0
+</p></pre>
+<pre>--- www.examples.com hping statistic ---</pre>
+<pre>2 packets tramitted, 2 packets received, 0% packet loss</pre>
+<pre>round-trip min/avg/max = 0.1/0.1/0.1 ms</pre>
+Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiyorum.Eğer "<strong>icmp</strong>" isteklerini engellememişseniz bu yolla da "<strong>timestamp</strong>s" bilginiz öğrenilebilinir."icmp" ile dışarıya "timestamps" göndermek istemiyorsanız özetle <strong>iptables</strong> ile bunu engelleyebilirsiniz.Örnek olarak :
+<pre>   ipchains -A input -p icmp --icmp-type timestamp-request -j DROP</pre>
+<pre>   ipchains -A output -p icmp --icmp-type timestamp-reply -j DROP</pre>
+</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index-18.html" rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-16.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about centos)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/centos.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>IPA Client Kurulumu</title><link>https://blog.piesso.com/posts/ipa-client-kurulumu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;dl&gt;
+&lt;dt&gt;&lt;strong&gt;Kullanilan yazilimlar:&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Centos Linux 7.2&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-client&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipa-admin-tools&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;strong&gt;Kurulum Oncesi Hazirlik:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FQDN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ipaclient.piesso.local
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;IP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.135/24
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-3"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ipa.piesso.local
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-4"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;DOMAIN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; piesso.local
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-5"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;NETBIOS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; PIESSO
+&lt;/pre&gt;&lt;p&gt;Kuruluma  baslamadan once kontrol edilmesi gerekenler;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Hostname&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;/etc/hosts&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sistem update&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Hostname:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# hostnamectl set-hostname ipaclient.piesso.local&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;/etc/hosts:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_15c38659790447f8a288f092a83e8996-1"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.135 ipaclient.piesso.local ipaclient
+&lt;a name="rest_code_15c38659790447f8a288f092a83e8996-2"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.128 ipa.piesso.local
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;Sistem update:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum update -y&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Kurulum:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-client ipa-admintools&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-client kurulumu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1910355d47d14b69883d616125586182-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;IPA Client ve Kerberos Ticket Testi:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1389b757d7f3440295bd446966ad571c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# getent passwd admin&lt;/span&gt;
+&lt;a name="rest_code_1389b757d7f3440295bd446966ad571c-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# getent group admins&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Kerberos'tan ticket alimi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# kinit admin&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Ticketin basarili alinip alinmadigi kontrolu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# klist&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"&gt;&lt;/a&gt;search piesso.local
+&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
+&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>ipa</category><category>ipa-client</category><guid>https://blog.piesso.com/posts/ipa-client-kurulumu/</guid><pubDate>Sun, 22 Jan 2017 13:24:47 GMT</pubDate></item><item><title>Centos 7 uzerine FreeIPA Kurulumu</title><link>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Kullanilan yazilimlar:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Centos Linux 7.2&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipa-server 4.2.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipa-server-dns 4.2.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;bind-dyndb-ldap 8.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;bind 9.9.4&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Kurulum Oncesi Hazirlik:&lt;/strong&gt;&lt;/p&gt;
+&lt;dl class="field-list simple"&gt;
+&lt;dt&gt;FQDN&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;ipa.piesso.local&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;IP&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;172.16.183.128/24&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;IPA DOMAIN&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;piesso.local&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;IPA NETBIOS&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;PIESSO&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Kuruluma  baslamadan once kontrol edilmesi gerekenler;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Hostname&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;/etc/hosts&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Statik IP&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sistem update&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;1. Hostname:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c280c76801af449b98216dae0f3cc856-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# hostnamectl set-hostname ipa.piesso.local&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;2. /etc/hosts:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_097fa7cee6354da48e05b0f2e9d8e336-1"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.128 ipa.piesso.local ipa
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;3. Statik IP:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ornek statik ip konfigurasyonu "/etc/sysconfig/network-scripts/ifcfg-xxxx"&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;ONBOOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; yes
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;BOOTPROTO&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; none
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-3"&gt;&lt;/a&gt;&lt;span class="nv"&gt;IPADDR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-4"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;24&lt;/span&gt;
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-5"&gt;&lt;/a&gt;&lt;span class="nv"&gt;GATEWAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.2
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-6"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DNS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;.8.8.8
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-7"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DNS2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;.8.4.4
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-8"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DEFROUTE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; yes
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;4. Sistem update:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_dd216db3cc7d455098e4e12302bef04c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum update -y&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Kurulum:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server, integrated dns, ad trust  ve ldap back-end plugin yazilimlarinin repodan kurulmasi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4c65531edd234dd88bc4df1814cae498-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server kurulumu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_005378183dc742d2aa460184a8d503cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server kurulumu asagidaki sekilde basari ile biterse firewalld daemonuna gerekli port izinlerinin verilmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;Restarting the web server&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;==============================================================================&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-3"&gt;&lt;/a&gt;&lt;span class="go"&gt;Setup complete&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-5"&gt;&lt;/a&gt;&lt;span class="go"&gt;Next steps:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-6"&gt;&lt;/a&gt;&lt;span class="go"&gt;      1. You must make sure these network ports are open:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-7"&gt;&lt;/a&gt;&lt;span class="go"&gt;                 TCP Ports:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-8"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 80, 443: HTTP/HTTPS&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-9"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 389, 636: LDAP/LDAPS&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-10"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 88, 464: kerberos&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-11"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 53: bind&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-12"&gt;&lt;/a&gt;&lt;span class="go"&gt;                 UDP Ports:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-13"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 88, 464: kerberos&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-14"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 53: bind&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-15"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 123: ntp&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-16"&gt;&lt;/a&gt;&lt;span class="go"&gt;      2. You can now obtain a kerberos ticket using the command: 'kinit admin'&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-17"&gt;&lt;/a&gt;&lt;span class="go"&gt;         This ticket will allow you to use the IPA tools (e.g., ipa user-add)&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-18"&gt;&lt;/a&gt;&lt;span class="go"&gt;         and the web user interface.&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-19"&gt;&lt;/a&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-20"&gt;&lt;/a&gt;&lt;span class="go"&gt;Be sure to back up the CA certificate stored in /root/cacert.p12&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-21"&gt;&lt;/a&gt;&lt;span class="go"&gt;This file is required to create replicas. The password for this&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-22"&gt;&lt;/a&gt;&lt;span class="go"&gt;file is the Directory Manager password&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}&lt;/span&gt;
+&lt;a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --reload&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Firewall kurallarinin kontrol edilmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_feedd46ab0af4afb8898195609614b2a-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --list-services&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;IPA Server ve Kerberos Ticket Testi:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Kerberos'tan ticket alimi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_0c830162a8ca42c4b085adb69b2d0abf-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# kinit admin&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Ticketin basarili alinip alinmadigi kontrolu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f576a1e33d1744a1b9f509d106306588-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# klist&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server servislerinin kontrolu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_63ab957fe0464612a44b348f16c25e8c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipactl status&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Hersey saglam gorunuyorsa sunucu dnslerini local adrese donusturulmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-1"&gt;&lt;/a&gt;search piesso.local
+&lt;a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1
+&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>freeipa</category><guid>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</guid><pubDate>Sat, 21 Jan 2017 19:15:13 GMT</pubDate></item></channel></rss>

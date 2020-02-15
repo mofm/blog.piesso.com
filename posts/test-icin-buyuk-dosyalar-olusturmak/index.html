@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Test için büyük dosyalar oluşturmak | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/test-icin-buyuk-dosyalar-olusturmak/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../gentoo-wiki/" title="Gentoo Wiki" type="text/html">
+<link rel="next" href="../yeni-kamusal-malozgur-ve-akk-yazilim/" title="Yeni Kamusal Mal:Özgür ve AKK Yazılım" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Test için büyük dosyalar oluşturmak">
+<meta property="og:url" content="https://blog.piesso.com/posts/test-icin-buyuk-dosyalar-olusturmak/">
+<meta property="og:description" content='Sisteminiz üzerinde ya da networkte test yapmak için büyük dosyalar oluşturmak isteyebilirsiniz.İhtiyacımız olan bu dosyaları yeterli disk alanımız olup olmadığını kontrol ettikten sonra "dd" komutu i'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-11-17T10:56:07+02:00">
+<meta property="article:tag" content="Genel">
+<meta property="article:tag" content="gezegen">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Test için büyük dosyalar oluşturmak</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-11-17T10:56:07+02:00" itemprop="datePublished" title="2011-11-17 10:56">2011-11-17 10:56</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/test-icin-buyuk-dosyalar-olusturmak.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
+            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>Sisteminiz üzerinde ya da networkte test yapmak için büyük dosyalar oluşturmak isteyebilirsiniz.İhtiyacımız olan bu dosyaları yeterli disk alanımız olup olmadığını kontrol ettikten sonra "dd" komutu ile oluşturabiliriz.Dosyaları oluşturmaya geçmeden önce "<em>dd</em>" komutunun man sayfasına ya da <a href="http://linux.die.net/man/1/dd" target="_blank">online man sayfalarına</a> göz atabilirsiniz.</p>
+<p>Küçükten büyüğe doğru dosyalar oluşturmaya başlayabiliriz:</p>
+<p><strong>1 MB ' lık test dosyası :</strong>
+</p>
+<pre>$ <code>dd if=/dev/zero of=1MB.img bs=1024 count=0 seek=1024</code></pre>
+ 
+<p><strong>10 MB'lık test dosyası :</strong>
+</p>
+<pre>$ <code>dd if=/dev/zero of=10MB.img bs=1024 count=0 seek=$[1024*10]</code></pre>
+ 
+<p><strong>100 MB'lık test dosyası :</strong>
+</p>
+<pre>$ <code>dd if=/dev/zero of=100MB.img bs=1024 count=0 seek=$[1024*100]</code></pre>
+ 
+<p><strong>1 GB'lık test dosyası :</strong></p>
+<p><strong>
+</strong>
+</p>
+<pre>$ <code>dd if=/dev/zero of=1GB.img bs=1024 count=0 seek=$[1024<em>100</em>10]</code></pre>
+Şimdi oluşturduğumuz dosyaları ve boyutlarını kontrol edelim:
+<p></p>
+<pre>$ ls -lh</pre>
+<pre>-rw-r--r--  1 piesso   piesso    100M Kas 17 10:18 100MB.img
+-rw-r--r--  1 piesso   piesso     10M Kas 17 10:17 10MB.img
+-rw-r--r--  1 piesso   piesso   1000M Kas 17 10:19 1GB.img
+-rw-r--r--  1 piesso   piesso    1,0M Kas 17 10:17 1MB.img</pre>
+ 
+<p><strong>10 GB'lık test dosyası :</strong>
+</p>
+<pre>$ <code>dd if=/dev/zero of=10GB.img bs=1024 count=0 seek=$[1024<em>1000</em>10]</code></pre>
+ 
+<p>Son olarak 10 GB boyutunda test dosyası da oluşturduktan sonra bir noktaya değinelim.Aşağıdaki iki komutun çıktısını dikkatlice inceleyelim.</p>
+<p>Örnek olarak en son oluşturduğumuz 10GB'lık "<em>10GB.img</em>" dosyasının büyüklüğüne "<em>ls -lh</em>" komutu ile bakalım.</p>
+<p></p>
+<pre>$ ls -lh</pre>
+<pre>-rw-r--r--  1 piesso   piesso    9,8G Kas 17 10:28 10GB.img</pre>
+ 
+<p>Yukarıda görüldüğü gibi "<em>10GB.img</em>" adlı dosyasının boyutu <em>9.8 GB</em> büyüklüğünde.Bu dosyanın büyüklüğüne birde "<em>du -h</em>" komutu ile bakalım:</p>
+<p></p>
+<pre>$ du -h 10GB.img</pre>
+<pre>0    10GB.img</pre>
+ 
+<p>Yukardaki çıktıda bu dosyayının hiçbir büyüklüğünün olmadığını görüyorsunuz.Buradaki ince nokta "<em>ls -lh</em>" komutu dosyanın boyutunu ekrana yazdırırken , "du -h" komutu bu dosyanın diskimizde ne kadar yer kapladığını göstermektedir.Oluşturduğumuz "<em>image dosyaları</em>"na hiçbir data yazmadığımız için diskimizde yer kaplamaktadır.Bunu daha iyi anlamak için aşağıdaki komutla diskimizde ne kadar block kapladığına bakalım.
+</p>
+<pre>$ stat 10GB.img</pre>
+<pre>
+</pre>
+<pre>File: `10GB.img'
+ Size: 10485760000    Blocks: 0          IO Block: 4096   normal dosya
+Device: 801h/2049d    Inode: 9281712     Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/piesso)   Gid: ( 1000/piesso)
+Access: 2011-11-17 10:28:09.000000000 +0200
+Modify: 2011-11-17 10:28:09.000000000 +0200
+Change: 2011-11-17 10:28:09.000000000 +0200</pre>
+ 
+<p>Yukardaki çıktıdan da anlaşılacağı gibi bu dosya diskimizde "0" bloğa sahip.Birde diskimiz yer kaplayan test dosyası oluşturalım ve bunu daha iyi anlayalım.</p>
+<p><strong>500 MB'lık test dosyası :</strong>
+</p>
+<pre>$ dd if=/dev/zero of=test.img bs=1MB count=500</pre>
+<pre>500+0 records in
+500+0 records out
+500000000 bytes (500 MB) copied, 2,20355 s, 227 MB/s</pre>
+Şimdi oluşturduğumuz "test.img" adlı dosyanın boyutunu ve diskte kapladığı yeri inceleyelim.
+<p></p>
+<pre>$ ls -lh</pre>
+<pre>-rw-r--r--  1 piesso   piesso    477M Kas 17 10:40 test.img</pre>
+<pre>
+</pre>
+<pre>$ du -h test.img</pre>
+<pre>478M    test.img</pre>
+<pre>
+</pre>
+Yukardaki çıktıdan anlaşılacağı gibi bu dosya diskimizde "478 MB" lık yer kaplamaktadır.Daha detaylı bir çıktı alalım.
+<p></p>
+<pre>$ stat test.img</pre>
+<pre>File: `test.img'
+ Size: 500000000     Blocks: 977536     IO Block: 4096   normal dosya
+Device: 801h/2049d    Inode: 9281713     Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/piesso)   Gid: ( 1000/piesso)
+Access: 2011-11-17 10:40:17.000000000 +0200
+Modify: 2011-11-17 10:40:19.000000000 +0200
+Change: 2011-11-17 10:40:19.000000000 +0200</pre>
+Oluşturduğumuz bu dosya diskte "977536" block kaplıyor.Bu şekilde aradaki farkı görebiliriz.</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../gentoo-wiki/" rel="prev" title="Gentoo Wiki">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../yeni-kamusal-malozgur-ve-akk-yazilim/" rel="next" title="Yeni Kamusal Mal:Özgür ve AKK Yazılım">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/test-icin-buyuk-dosyalar-olusturmak/",
+        disqus_title="Test i\u00e7in b\u00fcy\u00fck dosyalar olu\u015fturmak",
+        disqus_identifier="cache/posts/test-icin-buyuk-dosyalar-olusturmak.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

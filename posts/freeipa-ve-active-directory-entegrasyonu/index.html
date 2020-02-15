@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>FreeIPA ve Active Directory Entegrasyonu | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../ipa-client-kurulumu/" title="IPA Client Kurulumu" type="text/html">
+<link rel="next" href="../locust-load-testing-tool/" title="Locust: Load Testing Tool" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="FreeIPA ve Active Directory Entegrasyonu">
+<meta property="og:url" content="https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/">
+<meta property="og:description" content="Kurulum oncesi hazirlik:
+
+
+FreeIPA Server 4.4.0-14 ( CentOS 7 )
+
+IPA Server IP Adresi: 172.16.183.128
+IPA Server Hostname: ipaserver.piesso.local
+IPA Domain: piesso.local
+IPA Netbios: PIESSO
+IPA Kerbe">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-01-22T17:20:37+03:00">
+<meta property="article:tag" content="active directory">
+<meta property="article:tag" content="freeipa">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">FreeIPA ve Active Directory Entegrasyonu</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-22T17:20:37+03:00" itemprop="datePublished" title="2017-01-22 17:20">2017-01-22 17:20</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/freeipa-ve-active-directory-entegrasyonu.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.rst" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/active-directory/" rel="tag">active directory</a></li>
+            <li><a class="tag p-category" href="../../categories/freeipa/" rel="tag">freeipa</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<dl class="simple">
+<dt><strong>Kurulum oncesi hazirlik:</strong></dt>
+<dd><ol class="arabic simple">
+<li><dl class="simple">
+<dt>FreeIPA Server 4.4.0-14 ( CentOS 7 )</dt>
+<dd><ul class="simple">
+<li><p>IPA Server IP Adresi: 172.16.183.128</p></li>
+<li><p>IPA Server Hostname: ipaserver.piesso.local</p></li>
+<li><p>IPA Domain: piesso.local</p></li>
+<li><p>IPA Netbios: PIESSO</p></li>
+<li><p>IPA Kerberos realm: PIESSO.LOCAL</p></li>
+</ul></dd>
+</dl></li>
+<li><dl class="simple">
+<dt>Windows Server 2012 R2</dt>
+<dd><ul class="simple">
+<li><p>Active Directory IP Adresi: 172.16.183.132</p></li>
+<li><p>Active Directory Hostname: ad.pencere.local</p></li>
+<li><p>Active Directory Domain: pencere.local</p></li>
+<li><p>Active Directory Netbios: PENCERE</p></li>
+</ul></dd>
+</dl></li>
+</ol></dd>
+</dl>
+<p>Windows Server 2012 R2 ve FreeIPA icin kerberos ticket vs gibi sorunlar yasanmamasi icin ntp ile zaman esitlemesi mutlaka baslatilmalidir. FreeIPA kurulumunda ontanimli olarak ntp client "time sync" islemini ntp pool'larindan alarak esitlemektedir. Fakat Windows Server 2012 R2 uzerinde de bunu yapmak icin manuel ntp pool sunucularini girip zaman servisini yeniden baslatilmasi gerekmektedir.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin "+3" oldugunu kontrol edin.</p>
+</div>
+<p><em>(Powershell uzerinde)</em></p>
+<pre class="code powershell"><a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
+<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="err">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="err">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
+<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="err">:</span><span class="n">yes</span>
+<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
+</pre>
+<p><strong>FreeIPA ve Active Directory Cross-Realm Trust:</strong></p>
+<ul class="simple">
+<li><p>Ilk olarak "ipa-adtrust-install" paketini repodan kuralim:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_cd50fe50a08e409f9b681be3c944cfb7-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
+</pre>
+<ul class="simple">
+<li><p>IPA Server uzerinde cross-realm islemi icin:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_84c304852399415fb7a7605880e45db7-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
+</pre>
+<p><strong>Firewall Konfigurasyonu:</strong></p>
+<p>Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.</p>
+<pre class="code console"><a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
+<a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
+</pre>
+<p>Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:</p>
+<pre class="code bash"><a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-1"></a><span class="c1"># systemctl disable firewalld</span>
+<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-2"></a><span class="c1"># systemctl stop firewalld</span>
+<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-3"></a><span class="c1"># yum install -y iptables-services</span>
+<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-4"></a><span class="c1"># systemctl enable iptables</span>
+</pre>
+<p>"/etc/sysconfig/iptables" dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:</p>
+<pre class="code console"><a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-1"></a><span class="go">\*filter</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-15"></a><span class="go">COMMIT</span>
+</pre>
+<p>Iptables servisini baslatabiliriz:</p>
+<pre class="code bash"><a name="rest_code_fb6326f0f2eb449697d4407f8cdf258b-1"></a><span class="c1"># systemctl start iptables</span>
+</pre>
+<p><strong>DNS Forward Zone:</strong></p>
+<p>Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.</p>
+<ul class="simple">
+<li><p>Windows Server 2012 R2 uzerinde:</p></li>
+</ul>
+<pre class="code powershell"><a name="rest_code_0bc6fb2df2394b21916b604a64f2aeee-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
+</pre>
+<ul class="simple">
+<li><p>FreeIPA Server uzerinde:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_8e8c2f18f4c24eb7a9e5071049c3f6ff-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
+</pre>
+<ul class="simple">
+<li><p>Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:</p></li>
+</ul>
+<p><em>Windows Server 2012 R2 (PowerShell):</em></p>
+<pre class="code powershell"><a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
+</pre>
+<ul class="simple">
+<li><p>FreeIPA Server uzerinde:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
+<a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
+</pre>
+<p><strong>Cross-Realm Trust:</strong></p>
+<p>Freeipa ile Active Directory arasinda "Two-way trust" konfigurasyonu:</p>
+<pre class="code bash"><a name="rest_code_fb0605c4ecac40a5867a7a7712d84b87-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
+</pre>
+<p>"Two-way trust" baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:</p>
+<pre class="code bash"><a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-1"></a><span class="c1"># ipa trust-fetch-domains "pencere.local"</span>
+<a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-2"></a><span class="c1"># ipa trustdomain-find "pencere.local"</span>
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../ipa-client-kurulumu/" rel="prev" title="IPA Client Kurulumu">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../locust-load-testing-tool/" rel="next" title="Locust: Load Testing Tool">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/",
+        disqus_title="FreeIPA ve Active Directory Entegrasyonu",
+        disqus_identifier="cache/posts/freeipa-ve-active-directory-entegrasyonu.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

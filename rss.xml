@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s?</title><link>https://blog.piesso.com/</link><description>Ignotum Per Ignotius</description><atom:link href="https://blog.piesso.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I writed a schema.&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;postfix-new.schema:&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;4 Attributes ( mailacceptinggeneralid, maildrop, mailEnabled, mailQuota )&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 ObjectClass ( postfixUser )&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;script src="https://gist.github.com/4eff37b5c0275416393344b687171848.js"&gt;&lt;/script&gt;&lt;noscript&gt;&lt;pre class="literal-block"&gt;olcattributetypes: {0}(1.3.6.1.4.1.4203.666.1.200 NAME 'mailacceptinggeneralid' 
+    DESC 'Postfix mail local address alias attribute' 
+    EQUALITY caseIgnoreMatch 
+    SUBSTR caseIgnoreSubstringsMatch 
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024})
+    
+olcattributetypes: {1}(1.3.6.1.4.1.4203.666.1.201 NAME 'maildrop' 
+    DESC 'Postfix mail final destination attribute' 
+    EQUALITY caseIgnoreMatch 
+    SUBSTR caseIgnoreSubstringsMatch 
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024})
+    
+olcattributetypes: {2}(1.3.6.1.4.1.4203.666.1.202 NAME 'mailEnabled' 
+    DESC 'TRUE to enable, FALSE to disable account' 
+    EQUALITY booleanMatch 
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE)
+    
+olcattributetypes: {3}(1.3.6.1.4.1.4203.666.1.203 NAME 'mailQuota' 
+    DESC 'Mail quota limit in kilobytes' 
+    EQUALITY caseExactIA5Match 
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.26)
+    
+olcobjectclasses: {0}(1.3.6.1.4.1.4203.666.1.100 NAME 'postfixUser' 
+    DESC 'Postfix mail user class' 
+    SUP top AUXILIARY
+    MUST (maildrop)
+    MAY(mailacceptinggeneralid $ mailEnabled $ mailQuota))
+&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/div&gt;</description><guid>https://blog.piesso.com/posts/openldap-schema-for-postfix/</guid><pubDate>Sat, 31 Mar 2018 17:43:33 GMT</pubDate></item><item><title>Libvirt ve OpenvSwitch</title><link>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
+once bu iki yazilim nedir, ne degildir onlari taniyalim.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Libvirt&lt;/strong&gt; &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id3" id="id1"&gt;1&lt;/a&gt; , Redhat tarafindan 2005'ten bu yana gelistirilmeye devam eden sanallastirma ortamlari icin daemon, API ve
+yonetim aracidir.&lt;/p&gt;
+&lt;img alt="/images/libvirt_hypervisors.png" src="https://blog.piesso.com/images/libvirt_hypervisors.png"&gt;
+&lt;p&gt;Libvirt bilinen bir cok hypervisor'u desteklemektedir. Iste bunlardan bazilari:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;KVM&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LXC&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;OpenVZ&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xen&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;User-mode Linux (UML)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Virtualbox&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;VMware ESX&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;VMware Workstation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hyper-V&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PowerVM&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Parallels Workstation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Bhyve&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;OpenvSwitch&lt;/strong&gt; &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id4" id="id2"&gt;2&lt;/a&gt; , kisaca sanal multilayer network switchtir. OpenvSwitch, bir SDN switch olarak hypervisor uzerindeki sanal makineleri
+fiziksel olarak ayri bulunan network switchler ile entegre calisarak yonetebilir.&lt;/p&gt;
+&lt;img alt="/images/Distributed_Open_vSwitch_instance.png" src="https://blog.piesso.com/images/Distributed_Open_vSwitch_instance.png"&gt;
+&lt;p&gt;Birden fazla protokolu desteklemektedir:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;NetFlow&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;sFlow&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SPAN&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RSPAN&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CLI&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LACP&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;802.1ag&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="kurulum"&gt;
+&lt;h2&gt;Kurulum:&lt;/h2&gt;
+&lt;p&gt;Paket yoneticiniz ile libvirt ve openvswitch kurulumunu yapalim. Siz kendi dagitiminiza ve paket yoneticinize gore kurulumu yapabilirsiniz.
+Gentoo uzerinde, libvirt icin gerekli "USE FLAG"lari aktif edip kurulumunu yapalim.Binary dagitimlar icin buna gerek yoktur. Siz direk paket yoneticiniz ile kurulumu yapin.&lt;/p&gt;
+&lt;p&gt;/etc/portage/package.use/libvirt:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;app-emulation/libvirt macvtap vepa qemu virt-network&lt;/pre&gt;
+&lt;p&gt;Simdi kurulumu yapabiliriz.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_233e814fd59049d6bc8709f91c52d60e-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# emerge -av libvirt&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;OpenvSwitch kurulumunu yapalim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_280c897323ec40489e2938c04a8e15e7-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# emerge -av openvswitch&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Sistem baslangici icin bu servisleri enable edelim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add ovsdb-server default&lt;/span&gt;
+&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add ovs-vswitchd default&lt;/span&gt;
+&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add libvirtd default&lt;/span&gt;
+&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add libvirt-guests default&lt;/span&gt;
+&lt;/pre&gt;&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;openvswitch ve kvm kernel modullerinin yuklendiginden emin olunuz. Kernel uzerinde aktif etmek icin &lt;a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU_with_Open_vSwitch_network"&gt;openvswitch&lt;/a&gt; , &lt;a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU"&gt;qemu&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Sistem acilisinda bu modullerin yuklenmesi icin&lt;/p&gt;
+&lt;p&gt;/etc/conf.d/modules:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;modules_4="openvswitch kvm kvm_intel tun"&lt;/pre&gt;
+&lt;p&gt;Servisleri baslatalim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/ovsdb-server start&lt;/span&gt;
+&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/ovs-vswitchd start&lt;/span&gt;
+&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/libvirtd start&lt;/span&gt;
+&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/libvirt-guests start&lt;/span&gt;
+&lt;/pre&gt;&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id3"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://libvirt.org/"&gt;https://libvirt.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id4"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id2"&gt;2&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="http://openvswitch.org"&gt;http://openvswitch.org&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>kvm</category><category>libvirt</category><category>openvswitch</category><category>qemu</category><guid>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</guid><pubDate>Sun, 14 Jan 2018 21:13:52 GMT</pubDate></item><item><title>Ansible Gentoo-Portage Update</title><link>https://blog.piesso.com/posts/ansible-gentoo-portage-update/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ansible Portage module &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/ansible-gentoo-portage-update/#id2" id="id1"&gt;1&lt;/a&gt; ile Gentoo Linux sisteminizi guncelleyebilir ve upgrade edebilirsiniz. Asagidaki ornekte
+Ilk once buildfarm adini verdigimiz sunucu uzerinde compile edilip diger gentoo sunucularimiza binary paketleri
+elde edip guncellemelerini yapmaktadir.&lt;/p&gt;
+&lt;p&gt;Yukarda bahsettigim sekilde bir buildfarm sunucusu yani paketlerin compile edilecegi sunucuda binary paketleri uretip
+diger sunuculara bu binary paketleri sunmak icin portage uzerinde "buildpkg" ozelligini aktif etmek gerekmektedir.&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal"&gt;/etc/portage/make.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_795c8f8f26f34f34aa7f0f7da2102a0f-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FEATURES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"buildpkg"&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Diger Gentoo sunucularin buildfarm uzerindeki paketleri alabilmesi icin yayinlamasi gerekli. Bunun birden fazla sekilde
+kendinize cozum saglayabilirsiniz. FTP, FTPS, NFS, SSH, HTTP, HTTPS gibi. Biz kucuk bir web sunucusu kurup paketleri bu sekilde yayinlayalim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4b872ded7c1c4053b3081e2910b18181-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# emerge -av www-servers/lighttpd&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;lighttpd web sunucusunu kurduktan sonra olusturulan paketlerin buradan yayinlanmasini konfigure edelim."/etc/lighttpd/lighttpd.conf"
+dosyasinin sonuna asagidaki iki satiri ekleyin.&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal"&gt;/etc/lighttpd/lighttpd.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-1"&gt;&lt;/a&gt;server.modules +&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"mod_alias"&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-2"&gt;&lt;/a&gt;alias.url &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"/packages"&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&amp;gt; &lt;span class="s2"&gt;"/usr/portage/packages/"&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Artik web sunucumuzu baslatabiliriz.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add lighttpd default&lt;/span&gt;
+&lt;a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/lighttpd start&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Buildfarm sunucumuz ile ayarlarimiz bu kadar. Artik diger sunucularimizi buildfarm sunucusu uzerinden binary paketleri
+almasi icin konfigure edebiliriz.&lt;/p&gt;
+&lt;p&gt;&lt;code class="docutils literal"&gt;/etc/portage/make.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_52529292262144eb9bd51ca3df8aef1f-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FEATURES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"getbinpkg"&lt;/span&gt;
+&lt;a name="rest_code_52529292262144eb9bd51ca3df8aef1f-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PORTAGE_BINHOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"http://buildfarm.hostname/packages"&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Artik ansible ile sistemizi ilk once buildfarm ile derlenip binary paketler ile diger sunucularinizi guncelleyebilirsiniz.&lt;/p&gt;
+&lt;script src="https://gist.github.com/843654e91765dee16e64814bd3ba76af.js"&gt;&lt;/script&gt;&lt;noscript&gt;&lt;pre class="literal-block"&gt;---
+- hosts: buildfarm
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '@world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes
+
+- hosts: webservers
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '@world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes&lt;/pre&gt;
+&lt;/noscript&gt;&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id2"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://blog.piesso.com/posts/ansible-gentoo-portage-update/#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="http://docs.ansible.com/ansible/latest/portage_module.html"&gt;http://docs.ansible.com/ansible/latest/portage_module.html&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;</description><category>ansible</category><category>gentoo</category><category>portage</category><guid>https://blog.piesso.com/posts/ansible-gentoo-portage-update/</guid><pubDate>Sat, 13 Jan 2018 23:13:06 GMT</pubDate></item><item><title>Ansible SSH Keys Deployment</title><link>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ansible &lt;strong&gt;authorized_key&lt;/strong&gt; modulu &lt;em&gt;'delegate_to'&lt;/em&gt; ile sunuculara sshkey'leri deploy ederken bazi sshkey'lerin eklenmedigini gorebilirsiniz. Boyle bir sorun ile karsilasmamak icin asagidaki gibi bu module ihtiyac olmadan sshkey'leri ekleyebilirsiniz.&lt;/p&gt;
+&lt;script src="https://gist.github.com/9882c618cb85a2cdd158bb1fc7babb29.js"&gt;&lt;/script&gt;&lt;noscript&gt;&lt;pre class="literal-block"&gt;- hosts: webservers
+  remote_user: jack
+
+  tasks:
+    - name: fetch all public keys 
+      shell: cat ~/.ssh/id_rsa.pub
+      register: ssh_keys
+      tags:
+        - ssh
+
+    - name: check ssh public keys
+      debug: msg="{{ ssh_keys.stdout }}"
+      tags:
+        - ssh
+
+    - name: deploy ssh keys
+      shell: echo {{ ssh_keys.stdout }} &amp;gt;&amp;gt; ~/.ssh/authorized_keys
+      delegate_to: "{{ item }}"
+      with_items:
+        - "{{groups['webservers']}}"
+      tags:
+        - ssh&lt;/pre&gt;
+&lt;/noscript&gt;&lt;/div&gt;</description><category>ansible</category><category>ssh</category><guid>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</guid><pubDate>Sun, 10 Dec 2017 18:25:32 GMT</pubDate></item><item><title>Nginx Reverse Proxy Cache</title><link>https://blog.piesso.com/posts/nginx-reverse-proxy-cache/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;img alt="/images/nginx_logo.png" src="https://blog.piesso.com/images/nginx_logo.png"&gt;
+&lt;p&gt;Bir websitesinin olmazsa olmaz unsurlardan biri performansli sekilde calismasidir. Performans ise birden fazla etkene bagli olabilir. Bu etkenler yazilan kodun kalitesinden tutun da websitenin yayinlandigi altyapiya kadar bagli olabilir. Fakat son kullanici sizin mukemmel kod kalitenize ya da sarsilmaz altyapiniza bakmaksizin kendine onune gelen performansdan memnun kalacaktir. Ayni zamanda dunyanin en iyi kodlarina yazarak cok iyi bir altyapi ile websitenizi yayina surseniz dahi kullaniciya giden iletisim surecleri belirlidir.&lt;/p&gt;
+&lt;p&gt;Bu yazida daha iyi bir performans ve hizli bir websitesi icin nginx uzerinde &lt;em&gt;"content cache"&lt;/em&gt; hakkinda biraz bilgi vermeye calisacam. &lt;em&gt;"Content Cache"&lt;/em&gt; kullanici ile proxy cache sunucusu arasinda saglanir. Asagidaki topolojiden  inceleyebiliriz:&lt;/p&gt;
+&lt;img alt="/images/nginx_reverse_proxy.jpg" src="https://blog.piesso.com/images/nginx_reverse_proxy.jpg"&gt;
+&lt;p&gt;Yukarda topolojide goruldugu gibi 'Client I' kullanicisi, reverse proxy sunucusu arkasindaki origin sunuculara ulasmaksizin website uzerindeki iceriklere reverse proxy uzerinden ulasir. Origin sunuculardan hic bir icerik istenmez.&lt;/p&gt;
+&lt;div class="section" id="konfigurasyon"&gt;
+&lt;h2&gt;Konfigurasyon:&lt;/h2&gt;
+&lt;p&gt;Content cache islemi nginx uzerinde basit olarak &lt;em&gt;"proxy_cache_path"&lt;/em&gt; ve &lt;em&gt;"proxy_cache"&lt;/em&gt; konfigurasyonlari ile ayarlanabilir. Ilk olarak "/etc/nginx/nginx.conf" dosyasi icinde "http{}" arasina "proxy_cache_path" konfigurasyonunu girelim.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a13e168b12494d3cbb32b5b00beb9101-1"&gt;&lt;/a&gt;proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
+&lt;/pre&gt;&lt;p&gt;Yazdigimiz konfigurasyonu inceleyelim:&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;/var/cache/nginx&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;cache icin kullanilacak dizin. Eger bu dizin olusturulmamissa olusturun ve nginx kullanicisina yazma hakkini  verdiginize emin olun.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ef04abf403e04057b8c456825da2216a-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# mkdir -p /var/cache/nginx&lt;/span&gt;
+&lt;a name="rest_code_ef04abf403e04057b8c456825da2216a-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# chown nginx:nginx /var/cache/nginx&lt;/span&gt;
+&lt;/pre&gt;&lt;dl class="simple"&gt;
+&lt;dt&gt;levels=1:2&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Nginx yukarda olusturdugumuz dizin altinda two-level directory ile cachelenen tum icerikleri tek bir dizin altinda degilde two-level dizin altinda tutmasini istiyoruz. Eger levels konfigurasyonunu yapmazsaniz nginx tum icerikleri tek bir dizin altinda toplayacak ve buyuk boyutlu cachelenen iceriklerde dosyaya erisim hizlari azalacaktir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;keys_zone=cache:10m&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Burada nginx cache key'ler icin shared memory zone olusturuyor. Cachelenen icerigi diske erisimi saglamadan direk olusturulan bu zone uzerinde okumasini sagliyor. "10m" ise cachelenecek olan keys buyuklugunu ayarliyoruz. 1 MB zone 8000 keys, 10MB zone 80000 keys icerebilir. Kendi cachelenecek sisteminize gore bu buyuklugu ayarlayabilirsiniz.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;max_size=1g&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Cachelenecek maksimum buyuklugu ifade eder.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;inactive=60m&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Cachelenmis bir icerige herhangi bir erisim olmuyorsa ne kadar sure sonra inactive olmasini ayarlar.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;use_temp_path=off&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Nginx yukarda bahsettigimiz '/var/cache/nginx' dizinine yazmadan once gecici olarak bir dizine yazmasini ya da ikinci bir dizine yazmayi kapatmayi ayarlar. Onerilen ikinci bir yazma olmamasi icin bu ayari her zaman "off" olarak ayarlamaniz.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;"proxy_cache_path" ile ilgili kismimiz bu kadar. Artik herhangi bir upstream sitemiz ile ilgili ayarlamalarimizi yapalim.
+Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" dosyasi icinde, ayrisik konfigurasyon kullaniyorsaniz ornek olarak "/etc/nginx/conf.d/upstream01.conf" icinde "location / {}" arasinda ayarlamaniz gerekmektedir.&lt;/p&gt;
+&lt;p&gt;Ornek olarak:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-1"&gt;&lt;/a&gt;location / {
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-2"&gt;&lt;/a&gt;     proxy_cache cache;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-3"&gt;&lt;/a&gt;     proxy_cache_valid  200 302  60m;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-4"&gt;&lt;/a&gt;     proxy_cache_valid  404      1m;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-5"&gt;&lt;/a&gt;     proxy_cache_revalidate on;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-6"&gt;&lt;/a&gt;     proxy_cache_min_uses 3;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-7"&gt;&lt;/a&gt;     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-8"&gt;&lt;/a&gt;     proxy_cache_background_update on;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-9"&gt;&lt;/a&gt;     proxy_cache_lock on;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-10"&gt;&lt;/a&gt;     add_header X-Proxy-Cache $upstream_cache_status;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-11"&gt;&lt;/a&gt;     proxy_ignore_headers Set-Cookie;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-12"&gt;&lt;/a&gt;     proxy_pass http://upstream01;
+&lt;a name="rest_code_d9a6707894114c948a4b3aea8597e40a-13"&gt;&lt;/a&gt;}
+&lt;/pre&gt;&lt;p&gt;Yukarda yazdigimiz konfigurasyona kisaca goz atalim.&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;proxy_cache cache;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;proxy_cache_path konfigurasyonunda olusturdugumuz shared memory zone adini belirttik.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_valid 200 302 60m;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;HTTP cevap kodu 200 ile 302 donen sayfalarin cache suresi 60 dakika olmasini belirttik.Kendi sisteminize gore konfigure edebilirsiniz.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_valid 404 1m;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;404 cevabi donen sayfalarin cache surelerini 1 dakika olarak ayarladik. Kendi sisteminize gore konfigure edebilirsiniz.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_revalidate on;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Nginx, origin sunuculardan GET istegi gondererek icerekleri yeniler. Nginx 'If-Modified-Since' ve 'Last-Modified' cache control headerlari ekleyerek, cache kontrolunu yapar.Bir kullanici guncellenmis bir icerige istek yaparsa nginx sadece guncellenen icerigin cacheni yenileyerek performans ve band genisligininden tasarruf saglar.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_min_uses 3;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Nginx, bir icerigin cachelenmesi icin minimum istek sayisini belirtemeniz halinde icerigi cacheleyecektir. Default olarak 1 olan istegi ben 3 yaptim. Kendi isteginize ve sisteminize gore konfigure edebilirsiniz.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Eger origin sunuculari down olursa ya da hata verirse cachelenmis icerigi kullanicilari sunar.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_background_update on;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Yukardaki 'stale' konfigurayonunda belirttigimiz hata aninda cachelenmis icerigi yayinlamasi icin iceriklerin backgrounddan guncellenmesi direktifini verir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_cache_lock on;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Eger birden fazla kullanici ayni anda cachelenmemis bir icerige istek yollarsa sadece bir tanesinin istegi origin servera gonderilerek cachelenmesi saglanir.Diger istek ya da istekler icerik cachelenme islemi bitine kadar bekletilir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;add_header X-Proxy-Cache $upstream_cache_status;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;HTTP header'i icine 'X-Proxy-Cache' headerini ekler. Bu basligi eklemek daha sonra proxy cache isleminin calisip calismadigini kontrol etmek icin kullanabilirsiniz.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;proxy_ignore_headers Set-Cookie;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;'Set-Cookie' headerinin cachelenmemesini belirttik.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test"&gt;
+&lt;h2&gt;Test:&lt;/h2&gt;
+&lt;p&gt;Yukardaki gibi konfigurasyonlari girip nginx web sunucunuzu reload/restart ettikten sonra Proxy Cache'in calisip calismadigini test edelim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-1"&gt;&lt;/a&gt;$ curl -I http://www.example.com
+&lt;a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-2"&gt;&lt;/a&gt;  HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+&lt;a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-3"&gt;&lt;/a&gt;  Server: nginx
+&lt;a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-4"&gt;&lt;/a&gt;  ...
+&lt;a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-5"&gt;&lt;/a&gt;  X-Proxy-Cache: HIT
+&lt;/pre&gt;&lt;p&gt;'X-Proxy-Cache' headeri, gonderilen istedigin gecerli oldugunu ve cevabin cache'den gonderildigi gosteriyor.&lt;/p&gt;
+&lt;p&gt;Diger Cache status cevaplari:&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;MISS:&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Gonderilen istedigin gecersiz oldugunu ve cache icinde istek gonderilen sayfanin olmadigini belirtir. Cevap origin sunucudan kullaniciya gonderilmistir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;BYPASS:&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Gonderilen icerik direk olarak origin sunuculardan kullaniciya gonderilmistir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;EXPIRED:&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Icerik cache uzerinde suresi dolmus ve origin sunucu uzerinden gonderilmis.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;STALE:&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Origin sunucular cevap vermedigini ve icerigin cache uzerinden verildigini belirtir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;UPDATING:&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Icerigin stale durumda oldugunu ve bir onceki istek ile guncellemede oldugunu belirtir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;REVALIDATED:&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Daha once yukarida(proxy_cache konfigurasyonu kisminda) acikladigim gibi revalidated isleminde oldugunu belirtir.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Sizde yapmis oldugunuz konfigurasyonu test ederek cache durumunuzu kontrol edebilirsiniz. Kolay gelsin :)&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>caching</category><category>nginx</category><category>reverse proxy</category><guid>https://blog.piesso.com/posts/nginx-reverse-proxy-cache/</guid><pubDate>Sat, 09 Dec 2017 12:13:35 GMT</pubDate></item><item><title>Locust: Load Testing Tool</title><link>https://blog.piesso.com/posts/locust-load-testing-tool/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;em&gt;Locust&lt;/em&gt;, kullanimi diger uygulamalara gore kolay distributed load testing aracidir. Websitenizi ya da diger sistemlerinizi kullanici sayilarini simule ederek yazdiginiz kodlari ya da sistemlerinizi load testing yaparak kontrol etmenize olanak saglar.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Locust'un ozellikleri:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Kolay test senaryosu yazma. Diger araclara gore daha sade ve kolay syntax ile yazabilme. Python'a asina olanlar icin yabancilik cekmeyecekleri sekilde python kod.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Distributed load testing. Tekil ya da coklu makinelerle load testing yapabilme. Ister kullandiginiz bir bilgisayarla isterse 20 makine ile test yapabilme imkani.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Webarayuzu. Locust HTML+JS ile size realtime test sonuclarini webarayuzunden izleyebilme imkani sagliyor.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Her turlu sistemi test edebilirsiniz. Sadece websitelerini degil ldap,smtp gibi servis verdiginiz her turlu sistemleri biraz python biliyorsaniz client kod vs yazayarak test edebilirsiniz.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Apache JMeter gibi java bagimliliginiz kalmadan bu testlerinizi yapabilirsiniz.( JMeter uzerinde SSL sertifikaniz 4096 bit gibi yuksek sifrelenmis ise javanin en yuksek 2048 bit desteklemesi yuzunden basarili olamayabilirsiniz. )&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Kurulumu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Locust, Python 2.7, 3.3, 3.4, 3.5,3.6. versiyonlarini desteklemektedir. Sistemizdeki 'pip' kurulu oldugundan emin olun. Bir cok modern sistemlerde halihazirda kurulu olarak zaten geliyor.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ac9f8eb68bb942b58cbcf73f0e130aca-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pip install locustio&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Eger sadece kendi kullaniciniz icin kuracaksaniz;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c2f26513e85a45338e282e21eda7d3bc-1"&gt;&lt;/a&gt;$ pip install --user locustio
+&lt;/pre&gt;&lt;p&gt;Ardindan '~/.local/bin/' dizinini "PATH'inize ekleyin. GNU/Linux dagitiminiza ya da sisteminize gore '.bashrc' ya da 'bash_profile' dosyaniza eklemeniz gerekir.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9ae1cec3776846188b18a247948b4ea8-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:~/.local/bin
+&lt;/pre&gt;&lt;p&gt;Kurulum adimlari bu kadar.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;Son olarak not dusmek gerekir. Eger load testing yaparken yuksek sayida kullanici ile senaryo gerceklestirecekseniz sistemiz ve load-testing yapan kullaniciniz icin file-limit degerlerini yukseltmeniz gerekebilir.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ilk olarak sistemiz uzerinden file-limit degerini ogrenip yukseltmek icin;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e1228d893e464035934603071241c433-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# cat /proc/sys/fs/file-max&lt;/span&gt;
+&lt;a name="rest_code_e1228d893e464035934603071241c433-2"&gt;&lt;/a&gt;&lt;span class="m"&gt;75000&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Yukarda goruldugu gibi sistem uzerinde file-limit degeri '75000'. Bu degeri ornek olarak '750000' yukseltmek icin;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_29429d4bbe9841c9ac4518f2b880bbad-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sysctl -w fs.file-max=750000&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Sistem uzerinde kalici olarak degistirmek icin, "/etc/sysctl.conf" dosyasina asagidaki satiri ekleyin.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4ed49813ab024aa09872fd8d151e33dc-1"&gt;&lt;/a&gt;fs.file-max &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;750000&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Aktif etmek icin;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_aa1e20cd0d8e4483b8e9cd8da391b8c2-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sysctl -p&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Bu limit degerlerini sisteme giris yaptiginiz ya da test yapacaginiz kullanici icin yukseltmek icin '/etc/security/limits.conf' dosyaniza asagidaki gibi degerleri ekleyin;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;## hard limit&lt;/span&gt;
+&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-2"&gt;&lt;/a&gt;kullanici1        hard nofile &lt;span class="m"&gt;10000&lt;/span&gt;
+&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;## soft limit&lt;/span&gt;
+&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-4"&gt;&lt;/a&gt;kullanici1        soft nofile &lt;span class="m"&gt;5000&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Yaptiginiz degisikligin aktif olmasi icin cikis yapip tekrar giris yapmaniz gereklidir.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Senaryo olusturma&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Locust icin cesitli senaryolar yazabilirsiniz. Iki basit ornek verelim.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Ornek 1:&lt;/em&gt; Websitenizin anasayfasini ve hakkimda sayfalarini test etmek icin load-testing senaryosu yazalim.&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;locust&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TaskSet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;task&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyTaskSet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TaskSet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-4"&gt;&lt;/a&gt;     &lt;span class="nd"&gt;@task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-5"&gt;&lt;/a&gt;     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-6"&gt;&lt;/a&gt;             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-7"&gt;&lt;/a&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-8"&gt;&lt;/a&gt;     &lt;span class="nd"&gt;@task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-9"&gt;&lt;/a&gt;     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;about&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-10"&gt;&lt;/a&gt;             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/hakkinda/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-11"&gt;&lt;/a&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-12"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyLocust&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-13"&gt;&lt;/a&gt;     &lt;span class="n"&gt;task_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MyTaskSet&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-14"&gt;&lt;/a&gt;     &lt;span class="n"&gt;min_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;
+&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-15"&gt;&lt;/a&gt;     &lt;span class="n"&gt;max_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;15000&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;'min_wait' ve 'max_wait' degerleri simule eden kullanicilarin bu sureler arasinda istek yapmasini gosterir.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Ornek 2:&lt;/em&gt; Websitenizin login sayfasina kullanici ile giris yapip, anasayfasini ve profile sayfasini test senaryosu yazalim.&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;locust&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TaskSet&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;login&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-4"&gt;&lt;/a&gt;     &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/login"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"username"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;"ellen_key"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"password"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;"education"&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-6"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-7"&gt;&lt;/a&gt;     &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-8"&gt;&lt;/a&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-9"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;profile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-10"&gt;&lt;/a&gt;     &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/profile"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-11"&gt;&lt;/a&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-12"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UserBehavior&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TaskSet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-13"&gt;&lt;/a&gt;     &lt;span class="n"&gt;tasks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;profile&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-14"&gt;&lt;/a&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-15"&gt;&lt;/a&gt;     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-16"&gt;&lt;/a&gt;             &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-17"&gt;&lt;/a&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-18"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;WebsiteUser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-19"&gt;&lt;/a&gt;     &lt;span class="n"&gt;task_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;UserBehavior&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-20"&gt;&lt;/a&gt;     &lt;span class="n"&gt;min_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;
+&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-21"&gt;&lt;/a&gt;     &lt;span class="n"&gt;max_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;9000&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Load-Testing Yapmak&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Locust ile yazdigimiz senaryolar ile load-testing yapmak icin;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_a7f48c8f465b47068ac4260819ca996d-1"&gt;&lt;/a&gt;$ locust --host&lt;span class="o"&gt;=&lt;/span&gt;http://example.com
+&lt;/pre&gt;&lt;p&gt;ya da yazdigimiz senaryo dosyasinin yolunu belirterek;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_21bf7dbb80914d3ab7d9ff5987e1b1e8-1"&gt;&lt;/a&gt;$ locust -f locust_files/my_locust_file.py --host&lt;span class="o"&gt;=&lt;/span&gt;http://example.com
+&lt;/pre&gt;&lt;p&gt;Test basladiktan sonra tarayiciniza 'localhost:8089' yazarak kullanicilari simule edip testinizi izleyebilirsiniz.&lt;/p&gt;&lt;/div&gt;</description><category>loadtesting</category><category>locust</category><category>tools</category><guid>https://blog.piesso.com/posts/locust-load-testing-tool/</guid><pubDate>Sun, 03 Dec 2017 21:37:28 GMT</pubDate></item><item><title>FreeIPA ve Active Directory Entegrasyonu</title><link>https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;dl class="simple"&gt;
+&lt;dt&gt;&lt;strong&gt;Kurulum oncesi hazirlik:&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;dl class="simple"&gt;
+&lt;dt&gt;FreeIPA Server 4.4.0-14 ( CentOS 7 )&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;IPA Server IP Adresi: 172.16.183.128&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IPA Server Hostname: ipaserver.piesso.local&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IPA Domain: piesso.local&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IPA Netbios: PIESSO&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IPA Kerberos realm: PIESSO.LOCAL&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="simple"&gt;
+&lt;dt&gt;Windows Server 2012 R2&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Active Directory IP Adresi: 172.16.183.132&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Active Directory Hostname: ad.pencere.local&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Active Directory Domain: pencere.local&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Active Directory Netbios: PENCERE&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Windows Server 2012 R2 ve FreeIPA icin kerberos ticket vs gibi sorunlar yasanmamasi icin ntp ile zaman esitlemesi mutlaka baslatilmalidir. FreeIPA kurulumunda ontanimli olarak ntp client "time sync" islemini ntp pool'larindan alarak esitlemektedir. Fakat Windows Server 2012 R2 uzerinde de bunu yapmak icin manuel ntp pool sunucularini girip zaman servisini yeniden baslatilmasi gerekmektedir.&lt;/p&gt;
+&lt;div class="admonition warning"&gt;
+&lt;p class="admonition-title"&gt;Warning&lt;/p&gt;
+&lt;p&gt;2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin "+3" oldugunu kontrol edin.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;(Powershell uzerinde)&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code powershell"&gt;&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="n"&gt;stop&lt;/span&gt; &lt;span class="n"&gt;w32time&lt;/span&gt;
+&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-2"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w32tm&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;syncfromflags&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;manual&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;manualpeerlist&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;centos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ntp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;centos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ntp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;centos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ntp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
+&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-3"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w32tm&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;reliable&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-4"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="nb"&gt;start &lt;/span&gt;&lt;span class="n"&gt;w32time&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;FreeIPA ve Active Directory Cross-Realm Trust:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Ilk olarak "ipa-adtrust-install" paketini repodan kuralim:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_cd50fe50a08e409f9b681be3c944cfb7-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-adtrust-install&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;IPA Server uzerinde cross-realm islemi icin:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_84c304852399415fb7a7605880e45db7-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-adtrust-install --netbios-name=PIESSO -a password&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Firewall Konfigurasyonu:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300&lt;/span&gt;
+&lt;a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;UDP ports: 88, 464, 53, 123, 138, 139, 389, 445&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl disable firewalld&lt;/span&gt;
+&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl stop firewalld&lt;/span&gt;
+&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install -y iptables-services&lt;/span&gt;
+&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl enable iptables&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;"/etc/sysconfig/iptables" dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;\*filter&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;:INPUT ACCEPT [0:0]&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-3"&gt;&lt;/a&gt;&lt;span class="go"&gt;:FORWARD ACCEPT [0:0]&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-4"&gt;&lt;/a&gt;&lt;span class="go"&gt;:OUTPUT ACCEPT [0:0]&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-5"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-6"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p icmp -j ACCEPT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-7"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -i lo -j ACCEPT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-8"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-9"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-10"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-11"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-12"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p udp -j REJECT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-13"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p tcp -j REJECT&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-14"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A FORWARD -j REJECT --reject-with icmp-host-prohibited&lt;/span&gt;
+&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-15"&gt;&lt;/a&gt;&lt;span class="go"&gt;COMMIT&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Iptables servisini baslatabiliriz:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_fb6326f0f2eb449697d4407f8cdf258b-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl start iptables&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;DNS Forward Zone:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Windows Server 2012 R2 uzerinde:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code powershell"&gt;&lt;a name="rest_code_0bc6fb2df2394b21916b604a64f2aeee-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dnscmd&lt;/span&gt; &lt;span class="n"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ZoneAdd&lt;/span&gt; &lt;span class="n"&gt;piesso&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Forwarder&lt;/span&gt; &lt;span class="n"&gt;172&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;16&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;183&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;128&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;FreeIPA Server uzerinde:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_8e8c2f18f4c24eb7a9e5071049c3f6ff-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Windows Server 2012 R2 (PowerShell):&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code powershell"&gt;&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;nslookup&lt;/span&gt;
+&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-2"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;srv&lt;/span&gt;
+&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-3"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;_ldap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ad_domain&lt;/span&gt;
+&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-4"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;_ldap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipa_domain&lt;/span&gt;
+&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-5"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;quit&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;FreeIPA Server uzerinde:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# dig SRV _ldap._tcp.ipa_domain&lt;/span&gt;
+&lt;a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# dig SRV _ldap._tcp.ad_domain&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Cross-Realm Trust:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Freeipa ile Active Directory arasinda "Two-way trust" konfigurasyonu:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_fb0605c4ecac40a5867a7a7712d84b87-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;"Two-way trust" baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa trust-fetch-domains "pencere.local"&lt;/span&gt;
+&lt;a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa trustdomain-find "pencere.local"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><category>active directory</category><category>freeipa</category><guid>https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/</guid><pubDate>Sun, 22 Jan 2017 14:20:37 GMT</pubDate></item><item><title>IPA Client Kurulumu</title><link>https://blog.piesso.com/posts/ipa-client-kurulumu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;dl&gt;
+&lt;dt&gt;&lt;strong&gt;Kullanilan yazilimlar:&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Centos Linux 7.2&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-client&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipa-admin-tools&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;strong&gt;Kurulum Oncesi Hazirlik:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FQDN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ipaclient.piesso.local
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;IP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.135/24
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-3"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ipa.piesso.local
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-4"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;DOMAIN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; piesso.local
+&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-5"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;NETBIOS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; PIESSO
+&lt;/pre&gt;&lt;p&gt;Kuruluma  baslamadan once kontrol edilmesi gerekenler;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Hostname&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;/etc/hosts&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sistem update&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Hostname:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# hostnamectl set-hostname ipaclient.piesso.local&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;/etc/hosts:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_15c38659790447f8a288f092a83e8996-1"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.135 ipaclient.piesso.local ipaclient
+&lt;a name="rest_code_15c38659790447f8a288f092a83e8996-2"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.128 ipa.piesso.local
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;Sistem update:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum update -y&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Kurulum:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-client ipa-admintools&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-client kurulumu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1910355d47d14b69883d616125586182-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;IPA Client ve Kerberos Ticket Testi:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1389b757d7f3440295bd446966ad571c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# getent passwd admin&lt;/span&gt;
+&lt;a name="rest_code_1389b757d7f3440295bd446966ad571c-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# getent group admins&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Kerberos'tan ticket alimi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# kinit admin&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Ticketin basarili alinip alinmadigi kontrolu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# klist&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"&gt;&lt;/a&gt;search piesso.local
+&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
+&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>ipa</category><category>ipa-client</category><guid>https://blog.piesso.com/posts/ipa-client-kurulumu/</guid><pubDate>Sun, 22 Jan 2017 13:24:47 GMT</pubDate></item><item><title>Centos 7 uzerine FreeIPA Kurulumu</title><link>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Kullanilan yazilimlar:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Centos Linux 7.2&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipa-server 4.2.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipa-server-dns 4.2.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;bind-dyndb-ldap 8.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;bind 9.9.4&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Kurulum Oncesi Hazirlik:&lt;/strong&gt;&lt;/p&gt;
+&lt;dl class="field-list simple"&gt;
+&lt;dt&gt;FQDN&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;ipa.piesso.local&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;IP&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;172.16.183.128/24&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;IPA DOMAIN&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;piesso.local&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;IPA NETBIOS&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;PIESSO&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Kuruluma  baslamadan once kontrol edilmesi gerekenler;&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Hostname&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;/etc/hosts&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Statik IP&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sistem update&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;1. Hostname:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c280c76801af449b98216dae0f3cc856-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# hostnamectl set-hostname ipa.piesso.local&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;2. /etc/hosts:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_097fa7cee6354da48e05b0f2e9d8e336-1"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.128 ipa.piesso.local ipa
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;3. Statik IP:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ornek statik ip konfigurasyonu "/etc/sysconfig/network-scripts/ifcfg-xxxx"&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;ONBOOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; yes
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;BOOTPROTO&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; none
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-3"&gt;&lt;/a&gt;&lt;span class="nv"&gt;IPADDR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-4"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;24&lt;/span&gt;
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-5"&gt;&lt;/a&gt;&lt;span class="nv"&gt;GATEWAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.2
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-6"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DNS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;.8.8.8
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-7"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DNS2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;.8.4.4
+&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-8"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DEFROUTE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; yes
+&lt;/pre&gt;&lt;p&gt;&lt;em&gt;4. Sistem update:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_dd216db3cc7d455098e4e12302bef04c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum update -y&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Kurulum:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server, integrated dns, ad trust  ve ldap back-end plugin yazilimlarinin repodan kurulmasi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4c65531edd234dd88bc4df1814cae498-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server kurulumu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_005378183dc742d2aa460184a8d503cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server kurulumu asagidaki sekilde basari ile biterse firewalld daemonuna gerekli port izinlerinin verilmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;Restarting the web server&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;==============================================================================&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-3"&gt;&lt;/a&gt;&lt;span class="go"&gt;Setup complete&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-5"&gt;&lt;/a&gt;&lt;span class="go"&gt;Next steps:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-6"&gt;&lt;/a&gt;&lt;span class="go"&gt;      1. You must make sure these network ports are open:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-7"&gt;&lt;/a&gt;&lt;span class="go"&gt;                 TCP Ports:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-8"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 80, 443: HTTP/HTTPS&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-9"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 389, 636: LDAP/LDAPS&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-10"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 88, 464: kerberos&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-11"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 53: bind&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-12"&gt;&lt;/a&gt;&lt;span class="go"&gt;                 UDP Ports:&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-13"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 88, 464: kerberos&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-14"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 53: bind&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-15"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 123: ntp&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-16"&gt;&lt;/a&gt;&lt;span class="go"&gt;      2. You can now obtain a kerberos ticket using the command: 'kinit admin'&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-17"&gt;&lt;/a&gt;&lt;span class="go"&gt;         This ticket will allow you to use the IPA tools (e.g., ipa user-add)&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-18"&gt;&lt;/a&gt;&lt;span class="go"&gt;         and the web user interface.&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-19"&gt;&lt;/a&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-20"&gt;&lt;/a&gt;&lt;span class="go"&gt;Be sure to back up the CA certificate stored in /root/cacert.p12&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-21"&gt;&lt;/a&gt;&lt;span class="go"&gt;This file is required to create replicas. The password for this&lt;/span&gt;
+&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-22"&gt;&lt;/a&gt;&lt;span class="go"&gt;file is the Directory Manager password&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}&lt;/span&gt;
+&lt;a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --reload&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Firewall kurallarinin kontrol edilmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_feedd46ab0af4afb8898195609614b2a-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --list-services&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;IPA Server ve Kerberos Ticket Testi:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Kerberos'tan ticket alimi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_0c830162a8ca42c4b085adb69b2d0abf-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# kinit admin&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Ticketin basarili alinip alinmadigi kontrolu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f576a1e33d1744a1b9f509d106306588-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# klist&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ipa-server servislerinin kontrolu;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_63ab957fe0464612a44b348f16c25e8c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipactl status&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Hersey saglam gorunuyorsa sunucu dnslerini local adrese donusturulmesi;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-1"&gt;&lt;/a&gt;search piesso.local
+&lt;a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1
+&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>freeipa</category><guid>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</guid><pubDate>Sat, 21 Jan 2017 19:15:13 GMT</pubDate></item><item><title>Linux Yaz Kampi 2014</title><link>https://blog.piesso.com/posts/linux-yaz-kampi-2014/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Ilki 2010 yilinda Isik Universitesi'nde baslayan Linux Yaz Kampi, bu yil 3.defa Bolu Abant Izzet Baysal Universitesi ev sahipliginde 11-23 Agustos tarihleri arasinda yapilacak.
+&lt;/p&gt;&lt;ol&gt;
+    &lt;li&gt;Linux Yaz Kampi ( 2010 - Isik Universitesi )&lt;/li&gt;
+    &lt;li&gt;Linux Yaz Kampi ( 2011 - Duzce Universitesi )&lt;/li&gt;
+    &lt;li&gt;Linux Yaz Kampi ( 2012 - Bolu Abant Izzet Baysal Universitesi )&lt;/li&gt;
+    &lt;li&gt;Linux Yaz Kampi ( 2013 - Bolu Abant Izzet Baysal Universitesi )&lt;/li&gt;
+    &lt;li&gt;Linux Yaz Kampi ( 2014 - Bolu Abant Izzet Baysal Universitesi )&lt;/li&gt;
+&lt;/ol&gt;
+Sadece bir sinif ve 20-30 kisi ile baslayan Linux Yaz Kampi, artik 10'u askin siniflarda 2 seviyede Linux Sistem Yonetimi, php-ruby-java egitimleri ve yuzlerce kisinin katilimiyla buyumeye devam ediyor. Bu yilki basvurularin kapanmasina az sure kalmis iken 1000'i askin basvuru yapildi. Ayrica bu yil ki yaz kampina uc farkli egitim eklendi:
+&lt;ul&gt;
+    &lt;li&gt;Python/Django ile Web Programlama&lt;/li&gt;
+    &lt;li&gt;Web Uygulama Guvenligi ve Guvenli Kod Gelistirme&lt;/li&gt;
+    &lt;li&gt;Tersine Muhendislik&lt;/li&gt;
+&lt;/ul&gt;
+Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, eglenceli ve verimli yaz kampi olmasi dilegiyle.
+&lt;p&gt;Linux Yaz Kampi icin detayli bilgi icin &lt;a href="http://kamp.linux.org.tr/2014/" target="_blank"&gt;tiklayin&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</description><category>Genel</category><category>gezegen</category><guid>https://blog.piesso.com/posts/linux-yaz-kampi-2014/</guid><pubDate>Sat, 26 Jul 2014 15:31:57 GMT</pubDate></item></channel></rss>
