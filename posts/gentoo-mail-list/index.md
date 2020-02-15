@@ -1,4 +1,0 @@
-<html><body><img class="alignright" title="Gentoo" src="http://www.uz-freiburg.com/gentoo-logo.png" alt="" width="106" height="108">
-
-Nisan ayında Gentoo'dan Türkiye'deki kullanıcılar için bir mail listesi açmalarını istemiştik.Açılan bug'a <a href="http://bugs.gentoo.org/show_bug.cgi?id=316285" target="_blank">buradan</a> bakabilirsiniz.Aradan geçen uzun zaman sonra Gentoo ekibi Türkiye'deki Linux kullanıcıları için <a href="http://www.gentoo.org/main/en/lists.xml" target="_blank">mail listesi</a>ni açtı.Listeye kayıt olmak için " <a href="mailto:gentoo-user-tr+subscribe@lists.gentoo.org">gentoo-user-tr+subscribe@lists.gentoo.org</a>" adresine boş bir mail atın ve gelen onay mesajını direk cevaplayın.
-Bu listenin tüm Gentoo kullanıcılarına hayırlı olması dileğiyle.</body></html>

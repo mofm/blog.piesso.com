@@ -1,3 +1,0 @@
-<html><body><p>Bir süredir göç çalışması devam eden ve Özgür yazılım,Linux'a göçü tamamlanan Mustafa Kemal Üniversitesi özgür haberleşme protokolü jabber hizmetini de başlattı.Bu hizmet ile kendi kurumsal eposta kullanıcıları XMPP(jabber) protokolü ile güvenli bir şekilde haberleşebilecekler.
-
-Ayrıntılı bilgi için <a href="http://baum.mku.edu.tr/jabber-servisi" target="_blank">burası</a> .</p></body></html>

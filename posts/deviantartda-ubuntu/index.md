@@ -1,3 +1,0 @@
-<html><body><a href="http://img683.imageshack.us/img683/2933/dawnofubuntubyfkehar.jpg"><img title="DeviantART Ubuntu" src="http://img683.imageshack.us/img683/2933/dawnofubuntubyfkehar.jpg" alt="" width="474" height="401"></a>
-
-DeviantArt'ta bulunan Ubuntu Linux ile ilgili çeşitli grafik çalışmaları.Ubuntu kullanıcıları için masaüstü,açılış ekranı,tema için çok güzel görünümlü çalışmalar.Göz atmak isterseniz <a href="http://www.deviantart.com/#order=9&amp;q=ubuntu">buradan</a> .</body></html>

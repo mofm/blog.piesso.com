@@ -1,1 +1,0 @@
-<html><body><p>Mustafa Kemal Üniversitesi öncellikle üniversitedeki  Özgür Yazılım ve Linux kullanıcıları için bir eposta listesi açtı.Ayrıntı için <a href="http://www.mku.edu.tr/anasayfa/mkuden_haberler_icerik.php?sayfa=461" target="_blank">buradan</a> .</p></body></html>
