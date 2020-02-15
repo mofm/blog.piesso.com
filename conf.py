@@ -139,10 +139,10 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ('/index.html', 'Home', 'fa fa-home'),
-	('/archive.html', 'Archives', 'fa fa-folder-open'),
-	('/categories/index.html', 'Tags', 'fa fa-tags'),
-	('/rss.xml', 'RSS', 'fa fa-rss'),
+        ('/index.html', 'Home', 'fas fa-home'),
+	('/archive.html', 'Archives', 'fas fa-archive'),
+	('/categories/index.html', 'Tags', 'fas fa-tags'),
+	('/rss.xml', 'RSS', 'fas fa-rss'),
 #	('https://getnikola.com', 'About me', 'fa fa-user'),
 	('https://github.com/mofm', 'My Github', 'fab fa-github'),
     ),
@@ -277,12 +277,14 @@ DATE_FANCINESS = 2
 # Default is:
 # FILES_FOLDERS = {'files': ''}
 # Which means copy 'files' into 'output'
+FILES_FOLDERS = {'files': ''}
 
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
 # Default is:
 # LISTINGS_FOLDERS = {'listings': 'listings'}
 # Which means process listings from 'listings' into 'output/listings'
+LISTINGS_FOLDERS = {'listings': 'listings'}
 
 # A mapping of languages to file-extensions that represent that language.
 # Feel free to add or delete extensions to any list, but don't add any new
@@ -373,6 +375,7 @@ COMPILERS = {
 # If TAG_PAGES_ARE_INDEXES is set to True, each tag's page will contain
 # the posts themselves. If set to False, it will be just a list of links.
 # TAG_PAGES_ARE_INDEXES = False
+TAG_PAGES_ARE_INDEXES = False
 
 # Set descriptions for tag pages to make them more interesting. The
 # default is no description. The value is used in the meta description
@@ -446,6 +449,7 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 # If CATEGORY_PAGES_ARE_INDEXES is set to True, each category's page will contain
 # the posts themselves. If set to False, it will be just a list of links.
 # CATEGORY_PAGES_ARE_INDEXES = False
+CATEGORY_PAGES_ARE_INDEXES = False
 
 # Set descriptions for category pages to make them more interesting. The
 # default is no description. The value is used in the meta description
@@ -525,6 +529,7 @@ HIDDEN_CATEGORIES = []
 # If AUTHOR_PAGES_ARE_INDEXES is set to True, each author's page will contain
 # the posts themselves. If set to False, it will be just a list of links.
 # AUTHOR_PAGES_ARE_INDEXES = False
+AUTHOR_PAGES_ARE_INDEXES = False
 
 # Set descriptions for author pages to make them more interesting. The
 # default is no description. The value is used in the meta description
@@ -555,15 +560,20 @@ FRONT_INDEX_HEADER = {
 
 # Create per-month archives instead of per-year
 # CREATE_MONTHLY_ARCHIVE = False
+CREATE_MONTHLY_ARCHIVE = False
 # Create one large archive instead of per-year
 # CREATE_SINGLE_ARCHIVE = False
+CREATE_SINGLE_ARCHIVE = False
 # Create year, month, and day archives each with a (long) list of posts
 # (overrides both CREATE_MONTHLY_ARCHIVE and CREATE_SINGLE_ARCHIVE)
 # CREATE_FULL_ARCHIVES = False
+CREATE_FULL_ARCHIVES = False
 # If monthly archives or full archives are created, adds also one archive per day
 # CREATE_DAILY_ARCHIVE = False
+CREATE_DAILY_ARCHIVE = False
 # Create previous, up, next navigation links for archives
 # CREATE_ARCHIVE_NAVIGATION = False
+CREATE_ARCHIVE_NAVIGATION = False
 # Final locations for the archives are:
 # output / TRANSLATION[lang] / ARCHIVE_PATH / ARCHIVE_FILENAME
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / index.html
@@ -577,6 +587,7 @@ FRONT_INDEX_HEADER = {
 # of posts will contain the posts themselves. If set to False, it will be just a
 # list of links.
 # ARCHIVES_ARE_INDEXES = False
+ARCHIVES_ARE_INDEXES = False
 
 # URLs to other posts/pages can take 3 forms:
 # rel_path: a relative URL to the current page/post (default)
@@ -815,8 +826,8 @@ GITHUB_COMMIT_SOURCE = True
 # but a different naming template can be configured with IMAGE_THUMBNAIL_FORMAT).
 
 IMAGE_FOLDERS = {'images': 'images'}
-# IMAGE_THUMBNAIL_SIZE = 400
-# IMAGE_THUMBNAIL_FORMAT = '{name}.thumbnail{ext}'
+IMAGE_THUMBNAIL_SIZE = 400
+IMAGE_THUMBNAIL_FORMAT = '{name}.thumbnail{ext}'
 
 # #############################################################################
 # HTML fragments and diverse things that are used by the templates
@@ -885,6 +896,7 @@ IMAGE_FOLDERS = {'images': 'images'}
 # Check with list(pygments.styles.get_all_styles()) in an interpreter.
 #
 # CODE_COLOR_SCHEME = 'default'
+CODE_COLOR_SCHEME = 'monokai'
 
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
@@ -1117,9 +1129,11 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 
 # Show link to source for the posts?
 # SHOW_SOURCELINK = True
+SHOW_SOURCELINK = False
 # Copy the source files for your pages?
 # Setting it to False implies SHOW_SOURCELINK = False
 # COPY_SOURCES = True
+COPY_SOURCES = False
 
 # Modify the number of Post per Index Page
 # Defaults to 10
@@ -1163,20 +1177,20 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # This search form works for any site and looks good in the "site" theme where
 # it appears on the navigation bar:
 #
-# SEARCH_FORM = """
-# <!-- DuckDuckGo custom search -->
-# <form method="get" id="search" action="https://duckduckgo.com/"
-#  class="navbar-form pull-left">
-# <input type="hidden" name="sites" value="%s">
-# <input type="hidden" name="k8" value="#444444">
-# <input type="hidden" name="k9" value="#D51920">
-# <input type="hidden" name="kt" value="h">
-# <input type="text" name="q" maxlength="255"
-#  placeholder="Search&hellip;" class="span2" style="margin-top: 4px;">
-# <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
-# </form>
+#SEARCH_FORM = """
+#<!-- DuckDuckGo custom search -->
+#<form method="get" id="search" action="https://duckduckgo.com/"
+# class="navbar-form pull-left">
+#<input type="hidden" name="sites" value="%s">
+#<input type="hidden" name="k8" value="#444444">
+#<input type="hidden" name="k9" value="#D51920">
+#<input type="hidden" name="kt" value="h">
+#<input type="text" name="q" maxlength="255"
+# placeholder="Search&hellip;" class="span2" style="margin-top: 2px;">
+#<input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+#</form>
 # <!-- End of custom search -->
-# """ % SITE_URL
+#""" % SITE_URL
 #
 # If you prefer a Google search form, here's an example that should just work:
 # SEARCH_FORM = """

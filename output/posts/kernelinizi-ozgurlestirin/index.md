@@ -1,5 +1,0 @@
-<html><body><p>Birçok Linux dağıtımı kernelinde  özgür olmayan firmware (nonfree firmware) ile beraber geliyor.Kerneldeki bu kodlar özgür olmayan (nonfree) lisanslar kullanmakta ve bunlara özgür yazılım camiası<em> “blobs.”</em> demektedir.Özgürlüğüne düşkün kullanıcılar kernellerini bunlardan temizlemek istiyorsa<a href="http://www.fsf.org" target="_blank"> Free Software Foundation(FSF)</a> tarafından kernel sürümlerine göre yayınlanan scriptleri kullanabilirler.
-
-Bu linkte ( <a href="http://www.fsfla.org/svn/fsfla/software/linux-libre/scripts/" target="_blank">http://www.fsfla.org/svn/fsfla/software/linux-libre/scripts/</a> ) kernel sürümünüze uygun olan scriptleri kullanarak kernelinizi bunlardan temizleyebilirsiniz.
-
-Özgür günlerde , özgür kerneller kullanmanız dileğiyle :)</p></body></html>
