@@ -1,0 +1,3 @@
+<html><body><p>Sitemizde internette uzun süredir devam eden "<strong>Best Viewed With Any Browser</strong>" kampanyasına katıldı.Bu kampanya internetteki sitelerin tarayıcılara özel yapılan tasarımlarına karşı oluşturulmuş kampanya.İnternetteki şu vey bu tarayıcıda en iyi şekilde görüntülenir ibarelerine karşı interneti halkın ortak malı ve bundan herkes aynı şekilde faydalanmalı fikrini savunuyor.
+
+Kampanya hakkında detaylı bilgiye <a href="http://www.anybrowser.org/campaign/anybrowser_tr.html" target="_blank">buradan</a> ulaşabilirsiniz.</p></body></html>

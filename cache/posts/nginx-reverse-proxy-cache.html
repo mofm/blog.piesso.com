@@ -1,0 +1,116 @@
+<img alt="/images/nginx_logo.png" src="/images/nginx_logo.png" />
+<p>Bir websitesinin olmazsa olmaz unsurlardan biri performansli sekilde calismasidir. Performans ise birden fazla etkene bagli olabilir. Bu etkenler yazilan kodun kalitesinden tutun da websitenin yayinlandigi altyapiya kadar bagli olabilir. Fakat son kullanici sizin mukemmel kod kalitenize ya da sarsilmaz altyapiniza bakmaksizin kendine onune gelen performansdan memnun kalacaktir. Ayni zamanda dunyanin en iyi kodlarina yazarak cok iyi bir altyapi ile websitenizi yayina surseniz dahi kullaniciya giden iletisim surecleri belirlidir.</p>
+<p>Bu yazida daha iyi bir performans ve hizli bir websitesi icin nginx uzerinde <em>&quot;content cache&quot;</em> hakkinda biraz bilgi vermeye calisacam. <em>&quot;Content Cache&quot;</em> kullanici ile proxy cache sunucusu arasinda saglanir. Asagidaki topolojiden  inceleyebiliriz:</p>
+<img alt="/images/nginx_reverse_proxy.jpg" src="/images/nginx_reverse_proxy.jpg" />
+<p>Yukarda topolojide goruldugu gibi 'Client I' kullanicisi, reverse proxy sunucusu arkasindaki origin sunuculara ulasmaksizin website uzerindeki iceriklere reverse proxy uzerinden ulasir. Origin sunuculardan hic bir icerik istenmez.</p>
+<div class="section" id="konfigurasyon">
+<h1>Konfigurasyon:</h1>
+<p>Content cache islemi nginx uzerinde basit olarak <em>&quot;proxy_cache_path&quot;</em> ve <em>&quot;proxy_cache&quot;</em> konfigurasyonlari ile ayarlanabilir. Ilk olarak &quot;/etc/nginx/nginx.conf&quot; dosyasi icinde &quot;http{}&quot; arasina &quot;proxy_cache_path&quot; konfigurasyonunu girelim.</p>
+<pre class="code text"><a name="rest_code_a13e168b12494d3cbb32b5b00beb9101-1"></a>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
+</pre><p>Yazdigimiz konfigurasyonu inceleyelim:</p>
+<dl class="simple">
+<dt>/var/cache/nginx</dt>
+<dd><p>cache icin kullanilacak dizin. Eger bu dizin olusturulmamissa olusturun ve nginx kullanicisina yazma hakkini  verdiginize emin olun.</p>
+</dd>
+</dl>
+<pre class="code bash"><a name="rest_code_ef04abf403e04057b8c456825da2216a-1"></a><span class="c1"># mkdir -p /var/cache/nginx</span>
+<a name="rest_code_ef04abf403e04057b8c456825da2216a-2"></a><span class="c1"># chown nginx:nginx /var/cache/nginx</span>
+</pre><dl class="simple">
+<dt>levels=1:2</dt>
+<dd><p>Nginx yukarda olusturdugumuz dizin altinda two-level directory ile cachelenen tum icerikleri tek bir dizin altinda degilde two-level dizin altinda tutmasini istiyoruz. Eger levels konfigurasyonunu yapmazsaniz nginx tum icerikleri tek bir dizin altinda toplayacak ve buyuk boyutlu cachelenen iceriklerde dosyaya erisim hizlari azalacaktir.</p>
+</dd>
+<dt>keys_zone=cache:10m</dt>
+<dd><p>Burada nginx cache key'ler icin shared memory zone olusturuyor. Cachelenen icerigi diske erisimi saglamadan direk olusturulan bu zone uzerinde okumasini sagliyor. &quot;10m&quot; ise cachelenecek olan keys buyuklugunu ayarliyoruz. 1 MB zone 8000 keys, 10MB zone 80000 keys icerebilir. Kendi cachelenecek sisteminize gore bu buyuklugu ayarlayabilirsiniz.</p>
+</dd>
+<dt>max_size=1g</dt>
+<dd><p>Cachelenecek maksimum buyuklugu ifade eder.</p>
+</dd>
+<dt>inactive=60m</dt>
+<dd><p>Cachelenmis bir icerige herhangi bir erisim olmuyorsa ne kadar sure sonra inactive olmasini ayarlar.</p>
+</dd>
+<dt>use_temp_path=off</dt>
+<dd><p>Nginx yukarda bahsettigimiz '/var/cache/nginx' dizinine yazmadan once gecici olarak bir dizine yazmasini ya da ikinci bir dizine yazmayi kapatmayi ayarlar. Onerilen ikinci bir yazma olmamasi icin bu ayari her zaman &quot;off&quot; olarak ayarlamaniz.</p>
+</dd>
+</dl>
+<p>&quot;proxy_cache_path&quot; ile ilgili kismimiz bu kadar. Artik herhangi bir upstream sitemiz ile ilgili ayarlamalarimizi yapalim.
+Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz &quot;/etc/nginx/nginx.conf&quot; dosyasi icinde, ayrisik konfigurasyon kullaniyorsaniz ornek olarak &quot;/etc/nginx/conf.d/upstream01.conf&quot; icinde &quot;location / {}&quot; arasinda ayarlamaniz gerekmektedir.</p>
+<p>Ornek olarak:</p>
+<pre class="code text"><a name="rest_code_d9a6707894114c948a4b3aea8597e40a-1"></a>location / {
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-2"></a>     proxy_cache cache;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-3"></a>     proxy_cache_valid  200 302  60m;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-4"></a>     proxy_cache_valid  404      1m;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-5"></a>     proxy_cache_revalidate on;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-6"></a>     proxy_cache_min_uses 3;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-7"></a>     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-8"></a>     proxy_cache_background_update on;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-9"></a>     proxy_cache_lock on;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-10"></a>     add_header X-Proxy-Cache $upstream_cache_status;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-11"></a>     proxy_ignore_headers Set-Cookie;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-12"></a>     proxy_pass http://upstream01;
+<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-13"></a>}
+</pre><p>Yukarda yazdigimiz konfigurasyona kisaca goz atalim.</p>
+<dl class="simple">
+<dt>proxy_cache cache;</dt>
+<dd><p>proxy_cache_path konfigurasyonunda olusturdugumuz shared memory zone adini belirttik.</p>
+</dd>
+<dt>proxy_cache_valid 200 302 60m;</dt>
+<dd><p>HTTP cevap kodu 200 ile 302 donen sayfalarin cache suresi 60 dakika olmasini belirttik.Kendi sisteminize gore konfigure edebilirsiniz.</p>
+</dd>
+<dt>proxy_cache_valid 404 1m;</dt>
+<dd><p>404 cevabi donen sayfalarin cache surelerini 1 dakika olarak ayarladik. Kendi sisteminize gore konfigure edebilirsiniz.</p>
+</dd>
+<dt>proxy_cache_revalidate on;</dt>
+<dd><p>Nginx, origin sunuculardan GET istegi gondererek icerekleri yeniler. Nginx 'If-Modified-Since' ve 'Last-Modified' cache control headerlari ekleyerek, cache kontrolunu yapar.Bir kullanici guncellenmis bir icerige istek yaparsa nginx sadece guncellenen icerigin cacheni yenileyerek performans ve band genisligininden tasarruf saglar.</p>
+</dd>
+<dt>proxy_cache_min_uses 3;</dt>
+<dd><p>Nginx, bir icerigin cachelenmesi icin minimum istek sayisini belirtemeniz halinde icerigi cacheleyecektir. Default olarak 1 olan istegi ben 3 yaptim. Kendi isteginize ve sisteminize gore konfigure edebilirsiniz.</p>
+</dd>
+<dt>proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;</dt>
+<dd><p>Eger origin sunuculari down olursa ya da hata verirse cachelenmis icerigi kullanicilari sunar.</p>
+</dd>
+<dt>proxy_cache_background_update on;</dt>
+<dd><p>Yukardaki 'stale' konfigurayonunda belirttigimiz hata aninda cachelenmis icerigi yayinlamasi icin iceriklerin backgrounddan guncellenmesi direktifini verir.</p>
+</dd>
+<dt>proxy_cache_lock on;</dt>
+<dd><p>Eger birden fazla kullanici ayni anda cachelenmemis bir icerige istek yollarsa sadece bir tanesinin istegi origin servera gonderilerek cachelenmesi saglanir.Diger istek ya da istekler icerik cachelenme islemi bitine kadar bekletilir.</p>
+</dd>
+<dt>add_header X-Proxy-Cache $upstream_cache_status;</dt>
+<dd><p>HTTP header'i icine 'X-Proxy-Cache' headerini ekler. Bu basligi eklemek daha sonra proxy cache isleminin calisip calismadigini kontrol etmek icin kullanabilirsiniz.</p>
+</dd>
+<dt>proxy_ignore_headers Set-Cookie;</dt>
+<dd><p>'Set-Cookie' headerinin cachelenmemesini belirttik.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="test">
+<h1>Test:</h1>
+<p>Yukardaki gibi konfigurasyonlari girip nginx web sunucunuzu reload/restart ettikten sonra Proxy Cache'in calisip calismadigini test edelim.</p>
+<pre class="code bash"><a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-1"></a>$ curl -I http://www.example.com
+<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-2"></a>  HTTP/1.1 <span class="m">200</span> OK
+<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-3"></a>  Server: nginx
+<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-4"></a>  ...
+<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-5"></a>  X-Proxy-Cache: HIT
+</pre><p>'X-Proxy-Cache' headeri, gonderilen istedigin gecerli oldugunu ve cevabin cache'den gonderildigi gosteriyor.</p>
+<p>Diger Cache status cevaplari:</p>
+<dl class="simple">
+<dt>MISS:</dt>
+<dd><p>Gonderilen istedigin gecersiz oldugunu ve cache icinde istek gonderilen sayfanin olmadigini belirtir. Cevap origin sunucudan kullaniciya gonderilmistir.</p>
+</dd>
+<dt>BYPASS:</dt>
+<dd><p>Gonderilen icerik direk olarak origin sunuculardan kullaniciya gonderilmistir.</p>
+</dd>
+<dt>EXPIRED:</dt>
+<dd><p>Icerik cache uzerinde suresi dolmus ve origin sunucu uzerinden gonderilmis.</p>
+</dd>
+<dt>STALE:</dt>
+<dd><p>Origin sunucular cevap vermedigini ve icerigin cache uzerinden verildigini belirtir.</p>
+</dd>
+<dt>UPDATING:</dt>
+<dd><p>Icerigin stale durumda oldugunu ve bir onceki istek ile guncellemede oldugunu belirtir.</p>
+</dd>
+<dt>REVALIDATED:</dt>
+<dd><p>Daha once yukarida(proxy_cache konfigurasyonu kisminda) acikladigim gibi revalidated isleminde oldugunu belirtir.</p>
+</dd>
+</dl>
+<p>Sizde yapmis oldugunuz konfigurasyonu test ederek cache durumunuzu kontrol edebilirsiniz. Kolay gelsin :)</p>
+</div>

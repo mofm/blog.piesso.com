@@ -1,0 +1,25 @@
+<p><html><body><p>Bu program televizyonlardaki alarm sisteminin bilgisayarda olan versiyonudur.Kaç saat ve kaç dakika sonra çalmasını ( bu programda sizi radyo uyandıracak) istiyorsanız giriyorsunuz.Sizin belirttiğiniz süre sonunda bilgisayarınızda tarayıcıda açılacak ve karşınıza AOL radyo çıkacak.Umarım uyanırsınız :)</p>
+<p>Programı indirmek için <a href="http://linux.piesso.com/programs/alarm.py">buradan
+</a></p>
+<p>$python alarm.py komutu ile programı çalıştırabilirsiniz.</p>
+<p>Programın kaynak kodları ise aşağıdaki gibi:</p>
+<hr>
+<p></p><pre lang="python">#!/usr/bin/env python</p>
+<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>"Yazan: Emre ERYILMAZ"</h1>
+<h1>"Tarih: 28 Aralık 2009"</h1>
+<h1>"İletişim: emre.eryilmaz@linux.org.tr "</h1>
+<h1>"web adresi: http://webs.homelinux.com"</h1>
+<h1>"Bu program televizyonlardaki alarm sisteminin bilgisayarda olan versiyonudur.Kaç saat ve kaç dakika</h1>
+<h1>sonra çalmasını( bu programda sizi radyo uyandıracak) istiyorsanız giriyorsunuz.Sizin belirttiğiniz</h1>
+<h1>süre sonunda bilgisayarınızda tarayıcıda açılacak ve karşınıza AOL radyo çıkacak.Umarım uyanırsınız:)"</h1>
+<p>import time,webbrowser</p>
+<p>now=time.strftime("%H:%M:%S")</p>
+<p>print "Sistem Saati",": ",now
+print "\n\n"</p>
+<p>soru=input("Lütfen alarm saatini girin: ")</p>
+<p>soru1=input("Lütfen alarm dakikasını girin: ")</p>
+<p>ara=(soru<em>3600)+(soru1</em>60)</p>
+<p>time.sleep(ara)</p>
+<p>webbrowser.open("http://player.play.it/player/aolPlayer.html")</pre>
+----------------------------------------------------------------------------------------------------------------------</body></html></p>

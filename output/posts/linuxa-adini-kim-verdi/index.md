@@ -1,0 +1,3 @@
+<html><body><p>Linux'u merak ediyorsanız adının ne anlama geldiğini,ne olduğunu,kim tarafından verildiği akla ilk gelenlerdendir.Eğer linuxu tanıyıp hala isminin Linus tarafından verildiği düşünüyorsunuz büyük yanılgıdasınız.<strong>Linus Torvalds</strong> ilk çekirdeği tamamlayıp duyurduktan sonra bunu paylaşmayı istemiş.Ama bu çekirdeğin isminin Linux değil de "<strong>freax</strong>"<em>(free ve freak sözcükleri ile Unix'in birleşimi)</em> olarak düşünmüş.<strong>Ari Lemmke</strong> ise bu ismi beğenmeyip Linus'a "Linux" adlı ftp alanını tahsis etmiş,böylece Linus'un düşündüğü "freax" bizi bildiğim "<strong>Linux</strong>" adını böylece almış oldu.
+
+Kaynak:<a href="http://tr.wikipedia.org/wiki/Ari_Lemmke">buradan</a></p></body></html>

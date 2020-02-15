@@ -1,0 +1,24 @@
+<p>Ansible <strong>authorized_key</strong> modulu <em>'delegate_to'</em> ile sunuculara sshkey'leri deploy ederken bazi sshkey'lerin eklenmedigini gorebilirsiniz. Boyle bir sorun ile karsilasmamak icin asagidaki gibi bu module ihtiyac olmadan sshkey'leri ekleyebilirsiniz.</p>
+<script src="https://gist.github.com/9882c618cb85a2cdd158bb1fc7babb29.js"></script><noscript><pre class="literal-block">- hosts: webservers
+  remote_user: jack
+
+  tasks:
+    - name: fetch all public keys 
+      shell: cat ~/.ssh/id_rsa.pub
+      register: ssh_keys
+      tags:
+        - ssh
+
+    - name: check ssh public keys
+      debug: msg=&quot;{{ ssh_keys.stdout }}&quot;
+      tags:
+        - ssh
+
+    - name: deploy ssh keys
+      shell: echo {{ ssh_keys.stdout }} &gt;&gt; ~/.ssh/authorized_keys
+      delegate_to: &quot;{{ item }}&quot;
+      with_items:
+        - &quot;{{groups['webservers']}}&quot;
+      tags:
+        - ssh</pre>
+</noscript>

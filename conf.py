@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 import time
 
 # !! This is the configuration of Nikola. !! #
@@ -18,13 +17,13 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "mofm"  # (translatable)
-BLOG_TITLE = "hardened ?log?"  # (translatable)
+BLOG_TITLE = "hardened .*(nt|log)s?"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "http://blog.piesso.com/"
+SITE_URL = "https://blog.piesso.com/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
-# BASE_URL = "http://blog.piesso.com/"
+# BASE_URL = "https://example.com/"
 BLOG_EMAIL = "emre.eryilmaz@piesso.com"
 BLOG_DESCRIPTION = "Ignotum Per Ignotius"  # (translatable)
 
@@ -33,6 +32,7 @@ BLOG_DESCRIPTION = "Ignotum Per Ignotius"  # (translatable)
 # Currently supported languages are:
 #
 # en        English
+# af        Afrikaans
 # ar        Arabic
 # az        Azerbaijani
 # bg        Bulgarian
@@ -49,15 +49,19 @@ BLOG_DESCRIPTION = "Ignotum Per Ignotius"  # (translatable)
 # fa        Persian
 # fi        Finnish
 # fr        French
+# fur       Friulian
 # gl        Galician
+# he        Hebrew
 # hi        Hindi
 # hr        Croatian
 # hu        Hungarian
+# ia        Interlingua
 # id        Indonesian
 # it        Italian
 # ja        Japanese [NOT jp]
 # ko        Korean
 # lt        Lithuanian
+# ml        Malayalam
 # nb        Norwegian (Bokmål)
 # nl        Dutch
 # pa        Punjabi
@@ -72,10 +76,13 @@ BLOG_DESCRIPTION = "Ignotum Per Ignotius"  # (translatable)
 # sr_latin  Serbian (Latin)
 # sv        Swedish
 # te        Telugu
+# th        Thai
 # tr        Turkish [NOT tr_TR]
 # uk        Ukrainian
 # ur        Urdu
+# vi        Vietnamese
 # zh_cn     Chinese (Simplified)
+# zh_tw     Chinese (Traditional)
 #
 # If you want to use Nikola with a non-supported language you have to provide
 # a module containing the necessary translations
@@ -103,7 +110,7 @@ TRANSLATIONS = {
 # this pattern is also used for metadata:
 #     something.meta -> something.pl.meta
 
-TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
+TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 # Links for the sidebar / navigation bar.  (translatable)
 # This is a dict.  The keys are languages, and values are tuples.
@@ -122,9 +129,9 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 #
 # WARNING: Support for submenus is theme-dependent.
 #          Only one level of submenus is supported.
-# WARNING: Some themes, including the default Bootstrap 3 theme,
+# WARNING: Some themes, including the default Bootstrap 4 theme,
 #          may present issues if the menu is too large.
-#          (in bootstrap3, the navbar can grow too large and cover contents.)
+#          (in Bootstrap, the navbar can grow too large and cover contents.)
 # WARNING: If you link to directories, make sure to follow
 #          ``STRIP_INDEXES``.  If it’s set to ``True``, end your links
 #          with a ``/``, otherwise end them with ``/index.html`` — or
@@ -132,23 +139,54 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ('/index.html', 'Home', 'icon-home'),
-        ('/archive.html', 'Archives', 'icon-folder-open-alt'),
-        ('/categories/index.html', 'Tags', 'icon-tags'),
-        ('/rss.xml', 'RSS', 'icon-rss'),
-        ('/stories/about-me.html', 'About me', 'icon-user'),
-        ('https://github.com/mofm', 'My Github', 'icon-github'),
+        ('/index.html', 'Home', 'fa fa-home'),
+	('/archive.html', 'Archives', 'fa fa-folder-open'),
+	('/categories/index.html', 'Tags', 'fa fa-tags'),
+	('/rss.xml', 'RSS', 'fa fa-rss'),
+#	('https://getnikola.com', 'About me', 'fa fa-user'),
+	('https://github.com/mofm', 'My Github', 'fab fa-github'),
     ),
+}
+
+# Alternative navigation links. Works the same way NAVIGATION_LINKS does,
+# although themes may not always support them. (translatable)
+# (Bootstrap 4: right-side of navbar, Bootblog 4: right side of title)
+NAVIGATION_ALT_LINKS = {
+    DEFAULT_LANG: ()
 }
 
 # Name of the theme to use.
 THEME = "zen"
 
-# Primary color of your theme. This will be used to customize your theme and
-# auto-generate related colors in POSTS_SECTION_COLORS. Must be a HEX value.
+# Primary color of your theme. This will be used to customize your theme.
+# Must be a HEX value.
 THEME_COLOR = '#5670d4'
 
+# Theme configuration. Fully theme-dependent. (translatable)
+# Examples below are for bootblog4.
+# bootblog4 supports: featured_large featured_small featured_on_mobile
+#                     featured_large_image_on_mobile featured_strip_html sidebar
+# bootstrap4 supports: navbar_light (defaults to False)
+THEME_CONFIG = {
+    DEFAULT_LANG: {
+        # Show the latest featured post in a large box, with the previewimage as its background.
+        'featured_large': False,
+        # Show the first (remaining) two featured posts in small boxes.
+        'featured_small': False,
+        # Show featured posts on mobile.
+        'featured_on_mobile': True,
+        # Show image in `featured_large` on mobile.
+        # `featured_small` displays them only on desktop.
+        'featured_large_image_on_mobile': True,
+        # Strip HTML from featured post text.
+        'featured_strip_html': False,
+        # Contents of the sidebar, If empty, the sidebar is not displayed.
+        'sidebar': ''
+    }
+}
+
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
+# (translatable)
 #
 # The wildcard is used to generate a list of source files
 # (whatever/thing.rst, for example).
@@ -174,21 +212,25 @@ THEME_COLOR = '#5670d4'
 # to feeds, indexes, tag lists and archives and are considered part
 # of a blog, while PAGES are just independent HTML pages.
 #
+# Finally, note that destination can be translated, i.e. you can
+# specify a different translation folder per language. Example:
+#     PAGES = (
+#         ("pages/*.rst", {"en": "pages", "de": "seiten"}, "page.tmpl"),
+#         ("pages/*.md", {"en": "pages", "de": "seiten"}, "page.tmpl"),
+#     )
 
 POSTS = (
     ("posts/*.rst", "posts", "post.tmpl"),
-    ("posts/*.txt", "posts", "post.tmpl"),
     ("posts/*.md", "posts", "post.tmpl"),
+    ("posts/*.txt", "posts", "post.tmpl"),
     ("posts/*.html", "posts", "post.tmpl"),
 )
-
 PAGES = (
-    ("stories/*.rst", "stories", "story.tmpl"),
-    ("stories/*.txt", "stories", "story.tmpl"),
-    ("stories/*.md", "stories", "story.tmpl"),
-    ("stories/*.html", "stories", "story.tmpl"),
+    ("pages/*.rst", "pages", "page.tmpl"),
+    ("pages/*.md", "pages", "page.tmpl"),
+    ("pages/*.txt", "pages", "page.tmpl"),
+    ("pages/*.html", "pages", "page.tmpl"),
 )
-
 
 
 # Below this point, everything is optional
@@ -208,11 +250,12 @@ TIMEZONE = "Europe/Istanbul"
 # FORCE_ISO8601 = False
 
 # Date format used to display post dates. (translatable)
-# (str used by datetime.datetime.strftime)
-# DATE_FORMAT = '%Y-%m-%d %H:%M'
+# Used by babel.dates, CLDR style: http://cldr.unicode.org/translation/date-time
+# You can also use 'full', 'long', 'medium', or 'short'
+# DATE_FORMAT = 'yyyy-MM-dd HH:mm'
 
 # Date format used to display post dates, if local dates are used. (translatable)
-# (str used by moment.js)
+# Used by moment.js: https://momentjs.com/docs/#/displaying/format/
 # JS_DATE_FORMAT = 'YYYY-MM-DD HH:mm'
 
 # Date fanciness.
@@ -221,23 +264,13 @@ TIMEZONE = "Europe/Istanbul"
 # 1 = using JS_DATE_FORMAT and local user time (via moment.js)
 # 2 = using a string like “2 days ago”
 #
-# Your theme must support it, bootstrap and bootstrap3 already do.
+# Your theme must support it, Bootstrap already does.
 # DATE_FANCINESS = 0
+DATE_FANCINESS = 2
 
-# While Nikola can select a sensible locale for each language,
-# sometimes explicit control can come handy.
-# In this file we express locales in the string form that
-# python's locales will accept in your OS, by example
-# "en_US.utf8" in Unix-like OS, "English_United States" in Windows.
-# LOCALES = dict mapping language --> explicit locale for the languages
-# in TRANSLATIONS. You can omit one or more keys.
-# LOCALE_FALLBACK = locale to use when an explicit locale is unavailable
-# LOCALE_DEFAULT = locale to use for languages not mentioned in LOCALES; if
-# not set the default Nikola mapping is used.
-
+# Customize the locale/region used for a language.
+# For example, to use British instead of US English: LOCALES = {'en': 'en_GB'}
 # LOCALES = {}
-# LOCALE_FALLBACK = None
-# LOCALE_DEFAULT = None
 
 # One or more folders containing files to be copied as-is into the output.
 # The format is a dictionary of {source: relative destination}.
@@ -255,24 +288,59 @@ TIMEZONE = "Europe/Istanbul"
 # Feel free to add or delete extensions to any list, but don't add any new
 # compilers unless you write the interface for it yourself.
 #
+# The default compiler for `new_post` is the first entry in the POSTS tuple.
+#
 # 'rest' is reStructuredText
-# 'markdown' is MarkDown
+# 'markdown' is Markdown
 # 'html' assumes the file is HTML and just copies it
 COMPILERS = {
-    "rest": ('.txt', '.rst'),
+    "rest": ('.rst', '.txt'),
     "markdown": ('.md', '.mdown', '.markdown'),
+    "textile": ('.textile',),
+    "txt2tags": ('.t2t',),
+    "bbcode": ('.bb',),
+    "wiki": ('.wiki',),
+    "ipynb": ('.ipynb',),
     "html": ('.html', '.htm'),
+    # PHP files are rendered the usual way (i.e. with the full templates).
+    # The resulting files have .php extensions, making it possible to run
+    # them without reconfiguring your server to recognize them.
+    "php": ('.php',),
+    # Pandoc detects the input from the source filename
+    # but is disabled by default as it would conflict
+    # with many of the others.
+    # "pandoc": ('.rst', '.md', '.txt'),
 }
+
+# Enable reST directives that insert the contents of external files such
+# as "include" and "raw." This maps directly to the docutils file_insertion_enabled
+# config. See: http://docutils.sourceforge.net/docs/user/config.html#file-insertion-enabled
+# REST_FILE_INSERTION_ENABLED = True
 
 # Create by default posts in one file format?
 # Set to False for two-file posts, with separate metadata.
 # ONE_FILE_POSTS = True
 
+# Preferred metadata format for new posts
+# "Nikola": reST comments, wrapped in a HTML comment if needed (default)
+# "YAML": YAML wrapped in "---"
+# "TOML": TOML wrapped in "+++"
+# "Pelican": Native markdown metadata or reST docinfo fields. Nikola style for other formats.
+# METADATA_FORMAT = "Nikola"
+
+# Use date-based path when creating posts?
+# Can be enabled on a per-post basis with `nikola new_post -d`.
+# The setting is ignored when creating pages.
+# NEW_POST_DATE_PATH = False
+
+# What format to use when creating posts with date paths?
+# Default is '%Y/%m/%d', other possibilities include '%Y' or '%Y/%m'.
+# NEW_POST_DATE_PATH_FORMAT = '%Y/%m/%d'
+
 # If this is set to True, the DEFAULT_LANG version will be displayed for
 # untranslated posts.
 # If this is set to False, then posts that are not translated to a language
 # LANG will not be visible at all in the pages in that language.
-# Formerly known as HIDE_UNTRANSLATED_POSTS (inverse)
 # SHOW_UNTRANSLATED_POSTS = True
 
 # Nikola supports logo display.  If you have one, you can put the URL here.
@@ -284,73 +352,21 @@ COMPILERS = {
 # already contains the text), set this to False.
 # SHOW_BLOG_TITLE = True
 
-# Writes tag cloud data in form of tag_cloud_data.json.
-# Warning: this option will change its default value to False in v8!
-WRITE_TAG_CLOUD = True
-
-# Generate pages for each section. The site must have at least two sections
-# for this option to take effect. It wouldn't build for just one section.
-POSTS_SECTIONS = True
-
-# Setting this to False generates a list page instead of an index. Indexes
-# are the default and will apply GENERATE_ATOM if set.
-# POSTS_SECTIONS_ARE_INDEXES = True
-
-# Each post and section page will have an associated color that can be used
-# to style them with a recognizable color detail across your site. A color
-# is assigned to  each section based on shifting the hue of your THEME_COLOR
-# at least 7.5 % while leaving the lightness and saturation untouched in the
-# HUSL colorspace. You can overwrite colors by assigning them colors in HEX.
-# POSTS_SECTION_COLORS = {
-#     DEFAULT_LANG: {
-#         'posts':  '#49b11bf',
-#         'reviews':   '#ffe200',
-#     },
-# }
-
-# Associate a description with a section. For use in meta description on
-# section index pages or elsewhere in themes.
-# POSTS_SECTION_DESCRIPTIONS = {
-#     DEFAULT_LANG: {
-#         'how-to': 'Learn how-to things properly with these amazing tutorials.',
-#     },
-# }
-
-# Sections are determined by their output directory as set in POSTS by default,
-# but can alternatively be determined from file metadata instead.
-# POSTS_SECTION_FROM_META = False
-
-# Names are determined from the output directory name automatically or the
-# metadata label. Unless overwritten below, names will use title cased and
-# hyphens replaced by spaces.
-# POSTS_SECTION_NAME = {
-#    DEFAULT_LANG: {
-#        'posts': 'Blog Posts',
-#        'uncategorized': 'Odds and Ends',
-#    },
-# }
-
-# Titles for per-section index pages. Can be either one string where "{name}"
-# is substituted or the POSTS_SECTION_NAME, or a dict of sections. Note
-# that the INDEX_PAGES option is also applied to section page titles.
-# POSTS_SECTION_TITLE = {
-#     DEFAULT_LANG: {
-#         'how-to': 'How-to and Tutorials',
-#     },
-# }
-
 # Paths for different autogenerated bits. These are combined with the
 # translation paths.
 
 # Final locations are:
 # output / TRANSLATION[lang] / TAG_PATH / index.html (list of tags)
 # output / TRANSLATION[lang] / TAG_PATH / tag.html (list of posts for a tag)
-# output / TRANSLATION[lang] / TAG_PATH / tag.xml (RSS feed for a tag)
+# output / TRANSLATION[lang] / TAG_PATH / tag RSS_EXTENSION (RSS feed for a tag)
 # (translatable)
 # TAG_PATH = "categories"
 
-# See TAG_PATH's "list of tags" for the default setting value. Can be overwritten
-# here any path relative to the output directory.
+# By default, the list of tags is stored in
+#     output / TRANSLATION[lang] / TAG_PATH / index.html
+# (see explanation for TAG_PATH). This location can be changed to
+#     output / TRANSLATION[lang] / TAGS_INDEX_PATH
+# with an arbitrary relative path TAGS_INDEX_PATH.
 # (translatable)
 # TAGS_INDEX_PATH = "tags.html"
 
@@ -361,15 +377,15 @@ POSTS_SECTIONS = True
 # Set descriptions for tag pages to make them more interesting. The
 # default is no description. The value is used in the meta description
 # and displayed underneath the tag list or index page’s title.
-# TAG_PAGES_DESCRIPTIONS = {
+# TAG_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
-#        "blogging": "Meta-blog posts about blogging about blogging.",
+#        "blogging": "Meta-blog posts about blogging.",
 #        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
 #    },
 # }
 
 # Set special titles for tag pages. The default is "Posts about TAG".
-# TAG_PAGES_TITLES = {
+# TAG_TITLES = {
 #    DEFAULT_LANG: {
 #        "blogging": "Meta-posts about blogging",
 #        "open source": "Posts about open source software"
@@ -377,7 +393,7 @@ POSTS_SECTIONS = True
 # }
 
 # If you do not want to display a tag publicly, you can mark it as hidden.
-# The tag will not be displayed on the tag list page, the tag cloud and posts.
+# The tag will not be displayed on the tag list page and posts.
 # Tag pages will still be generated.
 HIDDEN_TAGS = ['mathjax']
 
@@ -387,13 +403,35 @@ HIDDEN_TAGS = ['mathjax']
 # However, more obscure tags can be hidden from the tag index page.
 # TAGLIST_MINIMUM_POSTS = 1
 
+# A list of dictionaries specifying tags which translate to each other.
+# Format: a list of dicts {language: translation, language2: translation2, …}
+# For example:
+#   [
+#     {'en': 'private', 'de': 'Privat'},
+#     {'en': 'work', 'fr': 'travail', 'de': 'Arbeit'},
+#   ]
+# TAG_TRANSLATIONS = []
+
+# If set to True, a tag in a language will be treated as a translation
+# of the literally same tag in all other languages. Enable this if you
+# do not translate tags, for example.
+# TAG_TRANSLATIONS_ADD_DEFAULTS = True
+
 # Final locations are:
 # output / TRANSLATION[lang] / CATEGORY_PATH / index.html (list of categories)
 # output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category.html (list of posts for a category)
-# output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category.xml (RSS feed for a category)
+# output / TRANSLATION[lang] / CATEGORY_PATH / CATEGORY_PREFIX category RSS_EXTENSION (RSS feed for a category)
 # (translatable)
 # CATEGORY_PATH = "categories"
 # CATEGORY_PREFIX = "cat_"
+
+# By default, the list of categories is stored in
+#     output / TRANSLATION[lang] / CATEGORY_PATH / index.html
+# (see explanation for CATEGORY_PATH). This location can be changed to
+#     output / TRANSLATION[lang] / CATEGORIES_INDEX_PATH
+# with an arbitrary relative path CATEGORIES_INDEX_PATH.
+# (translatable)
+# CATEGORIES_INDEX_PATH = "categories.html"
 
 # If CATEGORY_ALLOW_HIERARCHIES is set to True, categories can be organized in
 # hierarchies. For a post, the whole path in the hierarchy must be specified,
@@ -412,15 +450,15 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 # Set descriptions for category pages to make them more interesting. The
 # default is no description. The value is used in the meta description
 # and displayed underneath the category list or index page’s title.
-# CATEGORY_PAGES_DESCRIPTIONS = {
+# CATEGORY_DESCRIPTIONS = {
 #    DEFAULT_LANG: {
-#        "blogging": "Meta-blog posts about blogging about blogging.",
+#        "blogging": "Meta-blog posts about blogging.",
 #        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
 #    },
 # }
 
 # Set special titles for category pages. The default is "Posts about CATEGORY".
-# CATEGORY_PAGES_TITLES = {
+# CATEGORY_TITLES = {
 #    DEFAULT_LANG: {
 #        "blogging": "Meta-posts about blogging",
 #        "open source": "Posts about open source software"
@@ -432,14 +470,56 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 # Category pages will still be generated.
 HIDDEN_CATEGORIES = []
 
+# A list of dictionaries specifying categories which translate to each other.
+# Format: a list of dicts {language: translation, language2: translation2, …}
+# See TAG_TRANSLATIONS example above.
+# CATEGORY_TRANSLATIONS = []
+
+# If set to True, a category in a language will be treated as a translation
+# of the literally same category in all other languages. Enable this if you
+# do not translate categories, for example.
+# CATEGORY_TRANSLATIONS_ADD_DEFAULTS = True
+
+# If no category is specified in a post, the destination path of the post
+# can be used in its place. This replaces the sections feature. Using
+# category hierarchies is recommended.
+# CATEGORY_DESTPATH_AS_DEFAULT = False
+
+# If True, the prefix will be trimmed from the category name, eg. if the
+# POSTS destination is "foo/bar", and the path is "foo/bar/baz/quux",
+# the category will be "baz/quux" (or "baz" if only the first directory is considered).
+# Note that prefixes coming from translations are always ignored.
+# CATEGORY_DESTPATH_TRIM_PREFIX = False
+
+# If True, only the first directory of a path will be used.
+# CATEGORY_DESTPATH_FIRST_DIRECTORY_ONLY = True
+
+# Map paths to prettier category names. (translatable)
+# CATEGORY_DESTPATH_NAMES = {
+#    DEFAULT_LANG: {
+#        'webdev': 'Web Development',
+#        'webdev/django': 'Web Development/Django',
+#        'random': 'Odds and Ends',
+#    },
+# }
+
+# By default, category indexes will appear in CATEGORY_PATH and use
+# CATEGORY_PREFIX. If this is enabled, those settings will be ignored (except
+# for the index) and instead, they will follow destination paths (eg. category
+# 'foo' might appear in 'posts/foo'). If the category does not come from a
+# destpath, first entry in POSTS followed by the category name will be used.
+# For this setting, category hierarchies are required and cannot be flattened.
+# CATEGORY_PAGES_FOLLOW_DESTPATH = False
+
 # If ENABLE_AUTHOR_PAGES is set to True and there is more than one
 # author, author pages are generated.
 # ENABLE_AUTHOR_PAGES = True
 
-# Final locations are:
-# output / TRANSLATION[lang] / AUTHOR_PATH / index.html (list of tags)
-# output / TRANSLATION[lang] / AUTHOR_PATH / author.html (list of posts for a tag)
-# output / TRANSLATION[lang] / AUTHOR_PATH / author.xml (RSS feed for a tag)
+# Path to author pages. Final locations are:
+# output / TRANSLATION[lang] / AUTHOR_PATH / index.html (list of authors)
+# output / TRANSLATION[lang] / AUTHOR_PATH / author.html (list of posts by an author)
+# output / TRANSLATION[lang] / AUTHOR_PATH / author RSS_EXTENSION (RSS feed for an author)
+# (translatable)
 # AUTHOR_PATH = "authors"
 
 # If AUTHOR_PAGES_ARE_INDEXES is set to True, each author's page will contain
@@ -464,6 +544,7 @@ HIDDEN_AUTHORS = ['Guest']
 
 # Final location for the main blog page and sibling paginated pages is
 # output / TRANSLATION[lang] / INDEX_PATH / index-*.html
+# (translatable)
 # INDEX_PATH = ""
 
 # Optional HTML that displayed on “main” blog index.html files.
@@ -481,11 +562,14 @@ FRONT_INDEX_HEADER = {
 # CREATE_FULL_ARCHIVES = False
 # If monthly archives or full archives are created, adds also one archive per day
 # CREATE_DAILY_ARCHIVE = False
+# Create previous, up, next navigation links for archives
+# CREATE_ARCHIVE_NAVIGATION = False
 # Final locations for the archives are:
 # output / TRANSLATION[lang] / ARCHIVE_PATH / ARCHIVE_FILENAME
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / index.html
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / MONTH / index.html
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / MONTH / DAY / index.html
+# (translatable)
 # ARCHIVE_PATH = ""
 # ARCHIVE_FILENAME = "archive.html"
 
@@ -500,19 +584,29 @@ FRONT_INDEX_HEADER = {
 # absolute: a complete URL (that includes the SITE_URL)
 # URL_TYPE = 'rel_path'
 
-# If USE_BASE_TAG is True, then all HTML files will include
-# something like <base href=http://foo.var.com/baz/bat> to help
-# the browser resolve relative links.
-# Most people don’t need this tag; major websites don’t use it. Use
-# only if you know what you’re doing. If this is True, your website
-# will not be fully usable by manually opening .html files in your web
-# browser (`nikola serve` or `nikola auto` is mandatory). Also, if you
-# have mirrors of your site, they will point to SITE_URL everywhere.
-USE_BASE_TAG = False
+# Extension for RSS feed files
+# RSS_EXTENSION = ".xml"
+
+# RSS filename base (without extension); used for indexes and galleries.
+# (translatable)
+# RSS_FILENAME_BASE = "rss"
 
 # Final location for the blog main RSS feed is:
-# output / TRANSLATION[lang] / RSS_PATH / rss.xml
+# output / TRANSLATION[lang] / RSS_PATH / RSS_FILENAME_BASE RSS_EXTENSION
+# (translatable)
 # RSS_PATH = ""
+
+# Final location for the blog main Atom feed is:
+# output / TRANSLATION[lang] / ATOM_PATH / ATOM_FILENAME_BASE ATOM_EXTENSION
+# (translatable)
+# ATOM_PATH = ""
+
+# Atom filename base (without extension); used for indexes.
+# (translatable)
+ATOM_FILENAME_BASE = "feed"
+
+# Extension for Atom feed files
+# ATOM_EXTENSION = ".atom"
 
 # Slug the Tag URL. Easier for users to type, special characters are
 # often removed or replaced as well.
@@ -529,7 +623,7 @@ USE_BASE_TAG = False
 # relative URL.
 #
 # If you don't need any of these, just set to []
-REDIRECTIONS = [["get-cwd/index.html", "/posts/get-cwd.html"], ["pspye-ubuntu-kurulumu/index.html", "/posts/pspye-ubuntu-kurulumu.html"], ["lintube/index.html", "/posts/lintube.html"], ["en-hizli-penguen-gentoo-linux/index.html", "/posts/en-hizli-penguen-gentoo-linux.html"], ["debian-squeeze-uzerine-virtualbox-kurulumu/index.html", "/posts/debian-squeeze-uzerine-virtualbox-kurulumu.html"], ["loto-cekilis-programi/index.html", "/posts/loto-cekilis-programi.html"], ["parola-korumali-grub/index.html", "/posts/parola-korumali-grub.html"], ["os-list-modulu/index.html", "/posts/os-list-modulu.html"], ["windowsun-7-gunahi/index.html", "/posts/windowsun-7-gunahi.html"], ["debian-6-0-squeeze-yayinlandi/index.html", "/posts/debian-6-0-squeeze-yayinlandi.html"], ["kirikhan-myo-linux-sinavi/index.html", "/posts/kirikhan-myo-linux-sinavi.html"], ["gnu-linux-eskisi-gibi-degil/index.html", "/posts/gnu-linux-eskisi-gibi-degil.html"], ["crossover-linuxlinuxteki-windows/index.html", "/posts/crossover-linuxlinuxteki-windows.html"], ["kampin-ardindan/index.html", "/posts/kampin-ardindan.html"], ["turkiye%e2%80%99deki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet/index.html", "/posts/turkiyedeki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet.html"], ["qmail-toaster-kaldirmak-icin-script/index.html", "/posts/qmail-toaster-kaldirmak-icin-script.html"], ["basit-hesap-makinesi/index.html", "/posts/basit-hesap-makinesi.html"], ["wolfenstein-enemy-territory-kurmak/index.html", "/posts/wolfenstein-enemy-territory-kurmak.html"], ["dongu/index.html", "/posts/dongu.html"], ["postfixe-zirh-giydirin/index.html", "/posts/postfixe-zirh-giydirin.html"], ["nexenta-os/index.html", "/posts/nexenta-os.html"], ["failed-to-load-module/index.html", "/posts/failed-to-load-module.html"], ["sysadmin-gunu/index.html", "/posts/sysadmin-gunu.html"], ["internet-haftasi-aktif-katilim-cagrisi/index.html", "/posts/internet-haftasi-aktif-katilim-cagrisi.html"], ["linux-uzerine-americas-army-kurulumu/index.html", "/posts/linux-uzerine-americas-army-kurulumu.html"], ["coyote-linux/index.html", "/posts/coyote-linux.html"], ["internetten-debian-kurulumu/index.html", "/posts/internetten-debian-kurulumu.html"], ["nagios-png-to-gd2/index.html", "/posts/nagios-png-to-gd2.html"], ["python-ile-googleda-arama/index.html", "/posts/python-ile-googleda-arama.html"], ["gnu-projesi-nasil-basladi-i/index.html", "/posts/gnu-projesi-nasil-basladi-i.html"], ["linux-aile-agaci/index.html", "/posts/linux-aile-agaci.html"], ["dns-sunucunuzda-recursive-query-leri-durdurun/index.html", "/posts/dns-sunucunuzda-recursive-query-leri-durdurun.html"], ["android-ile-usb-baglanti/index.html", "/posts/android-ile-usb-baglanti.html"], ["sunucu-kimligi-maskeleme/index.html", "/posts/sunucu-kimligi-maskeleme.html"], ["google-servislerine-konsoldan-ulasin/index.html", "/posts/google-servislerine-konsoldan-ulasin.html"], ["debian-squeeze-nagios-monitoring/index.html", "/posts/debian-squeeze-nagios-monitoring.html"], ["linux-ve-ozgurluk-twitterda/index.html", "/posts/linux-ve-ozgurluk-twitterda.html"], ["enterasys-admin-password-reset-i/index.html", "/posts/enterasys-admin-password-reset-i.html"], ["squid-uzerinde-ident-tanimlama/index.html", "/posts/squid-uzerinde-ident-tanimlama.html"], ["cekilis/index.html", "/posts/cekilis.html"], ["ubuntu-satanic-edition/index.html", "/posts/ubuntu-satanic-edition.html"], ["tam-ozgur-linux-dagitimlari/index.html", "/posts/tam-ozgur-linux-dagitimlari.html"], ["yazicinizi-agdaki-bilgisayarlara-acin/index.html", "/posts/yazicinizi-agdaki-bilgisayarlara-acin.html"], ["arch-linux-sane-kurulumu/index.html", "/posts/arch-linux-sane-kurulumu.html"], ["mku-ozgur-yazilim-ve-linux-eposta-listesi/index.html", "/posts/mku-ozgur-yazilim-ve-linux-eposta-listesi.html"], ["pythonda-turkce-karakter-cozumu/index.html", "/posts/pythonda-turkce-karakter-cozumu.html"], ["hatay-kirikhan-linux-egitimi/index.html", "/posts/hatay-kirikhan-linux-egitimi.html"], ["freetalk-konsol-tabanli-jabber-client/index.html", "/posts/freetalk-konsol-tabanli-jabber-client.html"], ["richard-stallmandan-ozgur-bir-kitap/index.html", "/posts/richard-stallmandan-ozgur-bir-kitap.html"], ["gentoo-linux-livedvd-12-0/index.html", "/posts/gentoo-linux-livedvd-12-0.html"], ["yeni-yil-2012/index.html", "/posts/yeni-yil-2012.html"], ["inatla-paranizi-isteyin/index.html", "/posts/inatla-paranizi-isteyin.html"], ["internet-karariyor/index.html", "/posts/internet-karariyor.html"], ["linux-yaz-kampi-2014/index.html", "/posts/linux-yaz-kampi-2014.html"], ["sources-list-generator/index.html", "/posts/sources-list-generator.html"], ["gnu-chess/index.html", "/posts/gnu-chess.html"], ["ucretsiz-ve-yasal-muzik-jamendo/index.html", "/posts/ucretsiz-ve-yasal-muzik-jamendo.html"], ["alcatel-lucent-switch-konsol-pin-siralamas/index.html", "/posts/alcatel-lucent-switch-konsol-pin-siralamas.html"], ["python-ile-alarm-programi/index.html", "/posts/python-ile-alarm-programi.html"], ["brute-force-saldirilarini-iptables-ile-engelleyin/index.html", "/posts/brute-force-saldirilarini-iptables-ile-engelleyin.html"], ["yeni-yil-2011/index.html", "/posts/yeni-yil-2011.html"], ["range/index.html", "/posts/range.html"], ["dns-sunucunuzun-versiyonunu-gizleyin/index.html", "/posts/dns-sunucunuzun-versiyonunu-gizleyin.html"], ["pardus-2011-cok-yakinda/index.html", "/posts/pardus-2011-cok-yakinda.html"], ["openofficeden-libreofficee-ozgurluge-ucus/index.html", "/posts/openofficeden-libreofficee-ozgurluge-ucus.html"], ["opendns-dinamik-ip-updater/index.html", "/posts/opendns-dinamik-ip-updater.html"], ["unix-hakkinda-daha-detali-bilgi-icin/index.html", "/posts/unix-hakkinda-daha-detali-bilgi-icin.html"], ["tribal-trouble/index.html", "/posts/tribal-trouble.html"], ["google-feedfetcher/index.html", "/posts/google-feedfetcher.html"], ["unix-nedir/index.html", "/posts/unix-nedir.html"], ["for-dongusu-ii/index.html", "/posts/for-dongusu-ii.html"], ["pardus-kurumsal-2/index.html", "/posts/pardus-kurumsal-2.html"], ["gnu-projeleri-listesi/index.html", "/posts/gnu-projeleri-listesi.html"], ["linux-server-hacks-ebook/index.html", "/posts/linux-server-hacks-ebook.html"], ["gentoo-ve-systemd/index.html", "/posts/gentoo-ve-systemd.html"], ["opensolaris-nvidia-driver/index.html", "/posts/opensolaris-nvidia-driver.html"], ["linux-icin-sid-meiers-alpha-centauri/index.html", "/posts/linux-icin-sid-meiers-alpha-centauri.html"], ["sunfire-t2000/index.html", "/posts/sunfire-t2000.html"], ["pardus-2009-1/index.html", "/posts/pardus-2009-1.html"], ["label-generator/index.html", "/posts/label-generator.html"], ["toata-dragostea-mea-pentru-diavola/index.html", "/posts/toata-dragostea-mea-pentru-diavola.html"], ["gentoo-hardened-selinux/index.html", "/posts/gentoo-hardened-selinux.html"], ["x-authentication-warning/index.html", "/posts/x-authentication-warning.html"], ["ozgur-yazilim-gunu-2011/index.html", "/posts/ozgur-yazilim-gunu-2011.html"], ["enterasys-n-ve-x-serisi-konsol-baglantisi/index.html", "/posts/enterasys-n-ve-x-serisi-konsol-baglantisi.html"], ["devil-linux/index.html", "/posts/devil-linux.html"], ["ttnet/index.html", "/posts/ttnet.html"], ["linux-icin-heroes-of-might-and-magic-3/index.html", "/posts/linux-icin-heroes-of-might-and-magic-3.html"], ["etkinliklerden-haberdar-olun/index.html", "/posts/etkinliklerden-haberdar-olun.html"], ["zar-istatistik-programi/index.html", "/posts/zar-istatistik-programi.html"], ["dhcp-snooping-enterasys/index.html", "/posts/dhcp-snooping-enterasys.html"], ["troy-dawson-ile-roportaj/index.html", "/posts/troy-dawson-ile-roportaj.html"], ["pardus-2009-1-beta/index.html", "/posts/pardus-2009-1-beta.html"], ["konsolda-birim-cevirme/index.html", "/posts/konsolda-birim-cevirme.html"], ["yasam-saniyesi-hesaplama-programi/index.html", "/posts/yasam-saniyesi-hesaplama-programi.html"], ["excelden-mysqle/index.html", "/posts/excelden-mysqle.html"], ["kernelinizi-ozgurlestirin/index.html", "/posts/kernelinizi-ozgurlestirin.html"], ["zar-istatistik-programi-ii/index.html", "/posts/zar-istatistik-programi-ii.html"], ["elite-proxy/index.html", "/posts/elite-proxy.html"], ["crunchbang-linuxlite-ubuntu/index.html", "/posts/crunchbang-linuxlite-ubuntu.html"], ["pardus-2009-1-rc-cikti/index.html", "/posts/pardus-2009-1-rc-cikti.html"], ["wordpresste-yazilardaki-tarihi-kaldirma/index.html", "/posts/wordpresste-yazilardaki-tarihi-kaldirma.html"], ["opensolariste-ext2ext3-bolumlerini-baglama/index.html", "/posts/opensolariste-ext2ext3-bolumlerini-baglama.html"], ["yasam-saniyesi-hesaplama-programinin-kodlari/index.html", "/posts/yasam-saniyesi-hesaplama-programinin-kodlari.html"], ["enterasys-yedek-almak/index.html", "/posts/enterasys-yedek-almak.html"], ["usb-flash-diskten-linux-kurulumu/index.html", "/posts/usb-flash-diskten-linux-kurulumu.html"], ["python-password-generator/index.html", "/posts/python-password-generator.html"], ["cevirici-ii/index.html", "/posts/cevirici-ii.html"], ["ucretsiz-linux-e-kitap/index.html", "/posts/ucretsiz-linux-e-kitap.html"], ["yeni-kamusal-malozgur-ve-akk-yazilim/index.html", "/posts/yeni-kamusal-malozgur-ve-akk-yazilim.html"], ["adsl-modeminizdeki-linuxu-kesfedin/index.html", "/posts/adsl-modeminizdeki-linuxu-kesfedin.html"], ["sonyden-uzak-durun-ii/index.html", "/posts/sonyden-uzak-durun-ii.html"], ["ozgur-yazilim-ve-linux-gunleri-2010/index.html", "/posts/ozgur-yazilim-ve-linux-gunleri-2010.html"], ["civilization-of-ottoman/index.html", "/posts/civilization-of-ottoman.html"], ["linux-icin-soldier-of-fortune/index.html", "/posts/linux-icin-soldier-of-fortune.html"], ["gnu-nedirlinux-ile-gnu-arasindaki-iliski/index.html", "/posts/gnu-nedirlinux-ile-gnu-arasindaki-iliski.html"], ["linuxa-adini-kim-verdi/index.html", "/posts/linuxa-adini-kim-verdi.html"], ["ubuntu-icin-manga-ubunchu/index.html", "/posts/ubuntu-icin-manga-ubunchu.html"], ["slax-kendi-linuxunuzu-yaratin/index.html", "/posts/slax-kendi-linuxunuzu-yaratin.html"], ["cevirici-i/index.html", "/posts/cevirici-i.html"], ["ozgurlesen-universite/index.html", "/posts/ozgurlesen-universite.html"], ["kullanicilari-ve-surecleri-kontrol-etme/index.html", "/posts/kullanicilari-ve-surecleri-kontrol-etme.html"], ["gentoo-wiki/index.html", "/posts/gentoo-wiki.html"], ["cekilis-ii/index.html", "/posts/cekilis-ii.html"], ["yoper-linux/index.html", "/posts/yoper-linux.html"], ["loto-programi-i/index.html", "/posts/loto-programi-i.html"], ["google-reader-ozgur-alternatif-newsblur/index.html", "/posts/google-reader-ozgur-alternatif-newsblur.html"], ["linux-sistem-yonetimi-kampi-2011/index.html", "/posts/linux-sistem-yonetimi-kampi-2011.html"], ["linux-kullanici-yonetimi-denetimi/index.html", "/posts/linux-kullanici-yonetimi-denetimi.html"], ["bir-websitenin-hostunda-bulunan-diger-siteleri-bulma/index.html", "/posts/bir-websitenin-hostunda-bulunan-diger-siteleri-bulma.html"], ["test-icin-buyuk-dosyalar-olusturmak/index.html", "/posts/test-icin-buyuk-dosyalar-olusturmak.html"], ["tinycore-linux/index.html", "/posts/tinycore-linux.html"], ["gnu-gpl-versiyon-3-turkce/index.html", "/posts/gnu-gpl-versiyon-3-turkce.html"], ["python-ogrenmek-isteyenler-icin/index.html", "/posts/python-ogrenmek-isteyenler-icin.html"], ["python-logolu-duvar-kagiti/index.html", "/posts/python-logolu-duvar-kagiti.html"], ["linux-ip-komutlari/index.html", "/posts/linux-ip-komutlari.html"], ["herhangi-bir-tarayici-ile-en-iyi-sekilde-goruntulenir/index.html", "/posts/herhangi-bir-tarayici-ile-en-iyi-sekilde-goruntulenir.html"], ["php-ile-server-durum-gostergesi/index.html", "/posts/php-ile-server-durum-gostergesi.html"], ["sozluk-ile-hava-durumu-programi/index.html", "/posts/sozluk-ile-hava-durumu-programi.html"], ["gnu-grafik-calismalari/index.html", "/posts/gnu-grafik-calismalari.html"], ["bilgisayarda-windows-vergisine-mahkeme-dur-dedi/index.html", "/posts/bilgisayarda-windows-vergisine-mahkeme-dur-dedi.html"], ["pspye-uclinux-kurulumu/index.html", "/posts/pspye-uclinux-kurulumu.html"], ["linux-ders-notu/index.html", "/posts/linux-ders-notu.html"], ["bir-komutla-modeminizi-yeniden-baslatin/index.html", "/posts/bir-komutla-modeminizi-yeniden-baslatin.html"], ["ozgur-olmayan-paketler/index.html", "/posts/ozgur-olmayan-paketler.html"], ["enterasys-firmware-yukseltme/index.html", "/posts/enterasys-firmware-yukseltme.html"], ["len-fonksiyonu/index.html", "/posts/len-fonksiyonu.html"], ["sony-den-uzak-durun/index.html", "/posts/sony-den-uzak-durun.html"], ["dns-bilgilerini-kopyalamak/index.html", "/posts/dns-bilgilerini-kopyalamak.html"], ["whatweb-ve-wordpress-surumu-saklama/index.html", "/posts/whatweb-ve-wordpress-surumu-saklama.html"], ["break-i/index.html", "/posts/break-i.html"], ["opensolaris-ucretsiz-cd/index.html", "/posts/opensolaris-ucretsiz-cd.html"], ["ip-numarasi-ve-rdns-look-up/index.html", "/posts/ip-numarasi-ve-rdns-look-up.html"], ["avatar/index.html", "/posts/avatar.html"], ["deviantartda-ubuntu/index.html", "/posts/deviantartda-ubuntu.html"], ["sunucu-guvenligi-dizin-izinlerini-tarayin/index.html", "/posts/sunucu-guvenligi-dizin-izinlerini-tarayin.html"], ["windows-8-bu-aldatmacayi-satin-almayin/index.html", "/posts/windows-8-bu-aldatmacayi-satin-almayin.html"], ["gentoo-ipv6-tunelleme/index.html", "/posts/gentoo-ipv6-tunelleme.html"], ["ders-notu-ii/index.html", "/posts/ders-notu-ii.html"], ["donanim-bilgisi-toplamak/index.html", "/posts/donanim-bilgisi-toplamak.html"], ["for-dongusu/index.html", "/posts/for-dongusu.html"], ["google-serverlari/index.html", "/posts/google-serverlari.html"], ["python-ile-mysql-uygulamasi/index.html", "/posts/python-ile-mysql-uygulamasi.html"], ["virtualhostlar-icin-webalizer/index.html", "/posts/virtualhostlar-icin-webalizer.html"], ["scientific-linux-yansi/index.html", "/posts/scientific-linux-yansi.html"], ["apache-webserverda-mod_rewrite-modulunu-aktif-etmekdebian-ve-turevleri-icin/index.html", "/posts/apache-webserverda-mod_rewrite-modulunu-aktif-etmekdebian-ve-turevleri-icin.html"], ["iletisim/index.html", "/stories/iletisim.html"], ["opensolaris-emu10k1x-driver/index.html", "/posts/opensolaris-emu10k1x-driver.html"], ["site-durum-programi/index.html", "/posts/site-durum-programi.html"], ["embdemid-gnulinux/index.html", "/posts/embdemid-gnulinux.html"], ["wordpressde-kalici-baglanti-permalink/index.html", "/posts/wordpressde-kalici-baglanti-permalink.html"], ["test-icin-bash-ortami/index.html", "/posts/test-icin-bash-ortami.html"], ["dunyanin-enleri-testi-kodlari/index.html", "/posts/dunyanin-enleri-testi-kodlari.html"], ["ilk-program/index.html", "/posts/ilk-program.html"], ["pazarlikmuzayede-programi-kodlari/index.html", "/posts/pazarlikmuzayede-programi-kodlari.html"], ["yumurta-zamanlayici/index.html", "/posts/yumurta-zamanlayici.html"], ["gentoo-ipv4-ve-native-ipv6/index.html", "/posts/gentoo-ipv4-ve-native-ipv6.html"], ["statik-ipyi-degistirmek/index.html", "/posts/statik-ipyi-degistirmek.html"], ["logo-arama-motorlari/index.html", "/posts/logo-arama-motorlari.html"], ["sunucu-guvenligissh-ile-root-girisini-kapatin/index.html", "/posts/sunucu-guvenligissh-ile-root-girisini-kapatin.html"], ["uptime-suresini-ogrenme-ve-engelleme/index.html", "/posts/uptime-suresini-ogrenme-ve-engelleme.html"], ["debian-openvz-web-panel/index.html", "/posts/debian-openvz-web-panel.html"], ["gentoo-mail-list/index.html", "/posts/gentoo-mail-list.html"], ["linux-complete-command-reference-ekitap/index.html", "/posts/linux-complete-command-reference-ekitap.html"], ["gnu-projesi-nasil-basladi-ii/index.html", "/posts/gnu-projesi-nasil-basladi-ii.html"], ["kagittan-htmle-donusturun/index.html", "/posts/kagittan-htmle-donusturun.html"], ["linux-ile-aginizda-dosyalarinizi-paylasin/index.html", "/posts/linux-ile-aginizda-dosyalarinizi-paylasin.html"], ["pc-magazine-linux-solutions-ekitap/index.html", "/posts/pc-magazine-linux-solutions-ekitap.html"], ["firefox-ipv6/index.html", "/posts/firefox-ipv6.html"], ["gnu-gpl-version-3-ingilizce/index.html", "/posts/gnu-gpl-version-3-ingilizce.html"], ["raw_input/index.html", "/posts/raw_input.html"], ["konsolda-hesap-yapmak/index.html", "/posts/konsolda-hesap-yapmak.html"], ["os-name-modulu/index.html", "/posts/os-name-modulu.html"], ["icon-arama-motoru/index.html", "/posts/icon-arama-motoru.html"], ["gentoo-l2tp-ipsec-psk-vpn-client/index.html", "/posts/gentoo-l2tp-ipsec-psk-vpn-client.html"], ["15-turkiye%e2%80%99de-internet-konferansi%e2%80%99nda-linux-seminerleri/index.html", "/posts/15-turkiyede-internet-konferansinda-linux-seminerleri.html"], ["yeni-yil-2010/index.html", "/posts/yeni-yil-2010.html"], ["why-linux-is-better/index.html", "/posts/why-linux-is-better.html"], ["selinux-a-giris/index.html", "/posts/selinux-a-giris.html"], ["ozgur-yazilim-lisanslari/index.html", "/posts/ozgur-yazilim-lisanslari.html"], ["epel-ve-rpmforge-depolarini-ekleyin/index.html", "/posts/epel-ve-rpmforge-depolarini-ekleyin.html"], ["yeni-kamusal-mal-ozgur-ve-akk-yazilim-e-kitap/index.html", "/posts/yeni-kamusal-mal-ozgur-ve-akk-yazilim-e-kitap.html"], ["embdemid-linux-english/index.html", "/posts/embdemid-linux-english.html"], ["gentooda-gcc-upgrade/index.html", "/posts/gentooda-gcc-upgrade.html"], ["tivibu-ttnet-ve-rekabet-kurulu/index.html", "/posts/tivibu-ttnet-ve-rekabet-kurulu.html"], ["centos-5-5-mongodb/index.html", "/posts/centos-5-5-mongodb.html"], ["ozgur-yazilim-dizini/index.html", "/posts/ozgur-yazilim-dizini.html"], ["dinamik-ipmizi-statik-ipye-cevirmedyndns-debian-updater/index.html", "/posts/dinamik-ipmizi-statik-ipye-cevirmedyndns-debian-updater.html"], ["enterasys-dhcp-relay-agent/index.html", "/posts/enterasys-dhcp-relay-agent.html"], ["universitelerde-ozgur-yazilim-kullanim-rehberi/index.html", "/posts/universitelerde-ozgur-yazilim-kullanim-rehberi.html"], ["qmail-toaster-dkim-kurulumu/index.html", "/posts/qmail-toaster-dkim-kurulumu.html"], ["iptables-generator/index.html", "/posts/iptables-generator.html"], ["gnuart/index.html", "/posts/gnuart.html"], ["sunucudan-google-apps-email-ile-mail-gondermek/index.html", "/posts/sunucudan-google-apps-email-ile-mail-gondermek.html"], ["internette-sansu%cc%88re-karsi-ortak-platform-toplantisi/index.html", "/posts/internette-sansure-karsi-ortak-platform-toplantisi.html"], ["acta-tehdidi/index.html", "/posts/acta-tehdidi.html"]]
+REDIRECTIONS = []
 
 # Presets of commands to execute to deploy. Can be anything, for
 # example, you may use rsync:
@@ -546,11 +640,6 @@ REDIRECTIONS = [["get-cwd/index.html", "/posts/get-cwd.html"], ["pspye-ubuntu-ku
 #         "rsync -rav --delete output/ joe@my.site:/srv/www/site",
 #     ]
 # }
-#DEPLOY_COMMANDS = {
-#    'default': [
-#        "rsync -rav --delete output/ mars@piesso.com:/home/mars/www/blog_piesso_com/htdocs",
-#    ]
-#}
 
 # github_deploy configuration
 # For more details, read the manual:
@@ -605,6 +694,35 @@ GITHUB_COMMIT_SOURCE = True
 #    ".jpg": ["jpegoptim --strip-all -m75 -v %s"],
 # }
 
+# Executable for the "yui_compressor" filter (defaults to 'yui-compressor').
+# YUI_COMPRESSOR_EXECUTABLE = 'yui-compressor'
+
+# Executable for the "closure_compiler" filter (defaults to 'closure-compiler').
+# CLOSURE_COMPILER_EXECUTABLE = 'closure-compiler'
+
+# Executable for the "optipng" filter (defaults to 'optipng').
+# OPTIPNG_EXECUTABLE = 'optipng'
+
+# Executable for the "jpegoptim" filter (defaults to 'jpegoptim').
+# JPEGOPTIM_EXECUTABLE = 'jpegoptim'
+
+# Executable for the "html_tidy_withconfig", "html_tidy_nowrap",
+# "html_tidy_wrap", "html_tidy_wrap_attr" and "html_tidy_mini" filters
+# (defaults to 'tidy5').
+# HTML_TIDY_EXECUTABLE = 'tidy5'
+
+# List of XPath expressions which should be used for finding headers
+# ({hx} is replaced by headers h1 through h6).
+# You must change this if you use a custom theme that does not use
+# "e-content entry-content" as a class for post and page contents.
+# HEADER_PERMALINKS_XPATH_LIST = ['*//div[@class="e-content entry-content"]//{hx}']
+# Include *every* header (not recommended):
+# HEADER_PERMALINKS_XPATH_LIST = ['*//{hx}']
+
+# File blacklist for header permalinks. Contains output path
+# (eg. 'output/index.html')
+# HEADER_PERMALINKS_FILE_BLACKLIST = []
+
 # Expert setting! Create a gzipped copy of each generated file. Cheap server-
 # side optimization for very high traffic sites or low memory servers.
 # GZIP_FILES = False
@@ -617,20 +735,6 @@ GITHUB_COMMIT_SOURCE = True
 # files compressed by this option! OR make sure that a ranged request does not
 # return partial content of another representation for these resources. Do not
 # use this feature if you do not understand what this means.
-
-# Compiler to process LESS files.
-# LESS_COMPILER = 'lessc'
-
-# A list of options to pass to the LESS compiler.
-# Final command is: LESS_COMPILER LESS_OPTIONS file.less
-# LESS_OPTIONS = []
-
-# Compiler to process Sass files.
-# SASS_COMPILER = 'sass'
-
-# A list of options to pass to the Sass compiler.
-# Final command is: SASS_COMPILER SASS_OPTIONS file.s(a|c)ss
-# SASS_OPTIONS = []
 
 # #############################################################################
 # Image Gallery Options
@@ -687,14 +791,32 @@ GITHUB_COMMIT_SOURCE = True
 # Embedded thumbnail information:
 # EXIF_WHITELIST['1st'] = ["*"]
 
-# Folders containing images to be used in normal posts or pages. Images will be
-# scaled down according to IMAGE_THUMBNAIL_SIZE and MAX_IMAGE_SIZE options, but
-# will have to be referenced manually to be visible on the site
-# (the thumbnail has ``.thumbnail`` added before the file extension).
-# The format is a dictionary of {source: relative destination}.
+# If set to True, any ICC profile will be copied when an image is thumbnailed or
+# resized.
+# PRESERVE_ICC_PROFILES = False
+
+# Folders containing images to be used in normal posts or pages.
+# IMAGE_FOLDERS is a dictionary of the form {"source": "destination"},
+# where "source" is the folder containing the images to be published, and
+# "destination" is the folder under OUTPUT_PATH containing the images copied
+# to the site. Thumbnail images will be created there as well.
+
+# To reference the images in your posts, include a leading slash in the path.
+# For example, if IMAGE_FOLDERS = {'images': 'images'}, write
+#
+#   .. image:: /images/tesla.jpg
+#
+# See the Nikola Handbook for details (in the “Embedding Images” and
+# “Thumbnails” sections)
+
+# Images will be scaled down according to IMAGE_THUMBNAIL_SIZE and MAX_IMAGE_SIZE
+# options, but will have to be referenced manually to be visible on the site
+# (the thumbnail has ``.thumbnail`` added before the file extension by default,
+# but a different naming template can be configured with IMAGE_THUMBNAIL_FORMAT).
 
 IMAGE_FOLDERS = {'images': 'images'}
 # IMAGE_THUMBNAIL_SIZE = 400
+# IMAGE_THUMBNAIL_FORMAT = '{name}.thumbnail{ext}'
 
 # #############################################################################
 # HTML fragments and diverse things that are used by the templates
@@ -742,48 +864,27 @@ IMAGE_FOLDERS = {'images': 'images'}
 # for the full URL with the page number of the main page to the normal (shorter) main
 # page URL.
 # INDEXES_PRETTY_PAGE_URL = False
+#
+# If the following is true, a page range navigation will be inserted to indices.
+# Please note that this will undo the effect of INDEXES_STATIC, as all index pages
+# must be recreated whenever the number of pages changes.
+# SHOW_INDEX_PAGE_NAVIGATION = False
+
+# If the following is True, a meta name="generator" tag is added to pages. The
+# generator tag is used to specify the software used to generate the page
+# (it promotes Nikola).
+# META_GENERATOR_TAG = True
 
 # Color scheme to be used for code blocks. If your theme provides
-# "assets/css/code.css" this is ignored.
+# "assets/css/code.css" this is ignored. Set to None to disable.
 # Can be any of:
-# algol
-# algol_nu
-# arduino
-# autumn
-# borland
-# bw
-# colorful
-# default
-# emacs
-# friendly
-# fruity
-# igor
-# lovelace
-# manni
-# monokai
-# murphy
-# native
-# paraiso_dark
-# paraiso_light
-# pastie
-# perldoc
-# rrt
-# tango
-# trac
-# vim
-# vs
-# xcode
+# algol, algol_nu, autumn, borland, bw, colorful, default, emacs, friendly,
+# fruity, igor, lovelace, manni, monokai, murphy, native, paraiso-dark,
+# paraiso-light, pastie, perldoc, rrt, tango, trac, vim, vs, xcode
 # This list MAY be incomplete since pygments adds styles every now and then.
+# Check with list(pygments.styles.get_all_styles()) in an interpreter.
+#
 # CODE_COLOR_SCHEME = 'default'
-
-# If you use 'site-reveal' theme you can select several subthemes
-# THEME_REVEAL_CONFIG_SUBTHEME = 'sky'
-# You can also use: beige/serif/simple/night/default
-
-# Again, if you use 'site-reveal' theme you can select several transitions
-# between the slides
-# THEME_REVEAL_CONFIG_TRANSITION = 'cube'
-# You can also use: page/concave/linear/none/default
 
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
@@ -805,6 +906,7 @@ IMAGE_FOLDERS = {'images': 'images'}
 # {min_remaining_read}          The string “{remaining_reading_time} min remaining to read” in the current language.
 # {paragraph_count}             The amount of paragraphs in the post.
 # {remaining_paragraph_count}   The amount of paragraphs in the post, sans the teaser.
+# {post_title}                  The title of the post.
 # {{                            A literal { (U+007B LEFT CURLY BRACKET)
 # }}                            A literal } (U+007D RIGHT CURLY BRACKET)
 
@@ -825,15 +927,14 @@ FEED_LINKS_APPEND_QUERY = False
 
 # A HTML fragment describing the license, for the sidebar.
 # (translatable)
-LICENSE = """
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lisansı" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>"""
+#LICENSE = ""
 # I recommend using the Creative Commons' wizard:
 # https://creativecommons.org/choose/
-# LICENSE = """
-# <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-# <img alt="Creative Commons License BY-NC-SA"
-# style="border-width:0; margin-bottom:12px;"
-# src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>"""
+LICENSE = """
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>"""
 
 # A small copyright notice for the page footer (in HTML).
 # (translatable)
@@ -846,6 +947,8 @@ CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{autho
 # tuples of tuples of positional arguments and dicts of keyword arguments
 # to format().  For example, {'en': (('Hello'), {'target': 'World'})}
 # results in CONTENT_FOOTER['en'].format('Hello', target='World').
+# If you need to use the literal braces '{' and '}' in your footer text, use
+# '{{' and '}}' to escape them (str.format is used)
 # WARNING: If you do not use multiple languages with CONTENT_FOOTER, this
 #          still needs to be a dict of this format.  (it can be empty if you
 #          do not need formatting)
@@ -862,9 +965,15 @@ CONTENT_FOOTER_FORMATS = {
     )
 }
 
+# A simple copyright tag for inclusion in RSS feeds that works just
+# like CONTENT_FOOTER and CONTENT_FOOTER_FORMATS
+RSS_COPYRIGHT = 'Contents © {date} <a href="mailto:{email}">{author}</a> {license}'
+RSS_COPYRIGHT_PLAIN = 'Contents © {date} {author} {license}'
+RSS_COPYRIGHT_FORMATS = CONTENT_FOOTER_FORMATS
+
 # To use comments, you can choose between different third party comment
 # systems.  The following comment systems are supported by Nikola:
-#   disqus, facebook, googleplus, intensedebate, isso, livefyre, muut
+#   disqus, facebook, intensedebate, isso, muut, commento
 # You can leave this option blank to disable comments.
 COMMENT_SYSTEM = "disqus"
 # And you also need to add your COMMENT_SYSTEM_ID which
@@ -873,20 +982,13 @@ COMMENT_SYSTEM = "disqus"
 # is in the manual.
 COMMENT_SYSTEM_ID = "blog-piesso-com"
 
-# Enable annotations using annotateit.org?
-# If set to False, you can still enable them for individual posts and pages
-# setting the "annotations" metadata.
-# If set to True, you can disable them for individual posts and pages using
-# the "noannotations" metadata.
-# ANNOTATIONS = False
-
-# Create index.html for page (story) folders?
+# Create index.html for page folders?
 # WARNING: if a page would conflict with the index file (usually
-#          caused by setting slug to `index`), the STORY_INDEX
+#          caused by setting slug to `index`), the PAGE_INDEX
 #          will not be generated for that directory.
-# STORY_INDEX = False
-# Enable comments on story pages?
-# COMMENTS_IN_STORIES = False
+# PAGE_INDEX = False
+# Enable comments on pages (i.e. not posts)?
+# COMMENTS_IN_PAGES = False
 # Enable comments on picture gallery pages?
 # COMMENTS_IN_GALLERIES = False
 
@@ -899,16 +1001,7 @@ COMMENT_SYSTEM_ID = "blog-piesso-com"
 # http://mysite/foo/bar/index.html => http://mysite/foo/bar/
 # (Uses the INDEX_FILE setting, so if that is, say, default.html,
 # it will instead /foo/default.html => /foo)
-# (Note: This was briefly STRIP_INDEX_HTML in v 5.4.3 and 5.4.4)
-STRIP_INDEXES = False
-
-# Should the sitemap list directories which only include other directories
-# and no files.
-# Default to True
-# If this is False
-# e.g. /2012 includes only /01, /02, /03, /04, ...: don't add it to the sitemap
-# if /2012 includes any files (including index.html)... add it to the sitemap
-# SITEMAP_INCLUDE_FILELESS_DIRS = True
+STRIP_INDEXES = True
 
 # List of files relative to the server root (!) that will be asked to be excluded
 # from indexing and other robotic spidering. * is supported. Will only be effective
@@ -921,7 +1014,7 @@ STRIP_INDEXES = False
 # This can be disabled on a per-page/post basis by adding
 #    .. pretty_url: False
 # to the metadata.
-PRETTY_URLS = False
+PRETTY_URLS = True
 
 # If True, publish future dated posts right away instead of scheduling them.
 # Defaults to False.
@@ -937,13 +1030,14 @@ PRETTY_URLS = False
 # Allows scheduling of posts using the rule specified here (new_post -s)
 # Specify an iCal Recurrence Rule: http://www.kanzaki.com/docs/ical/rrule.html
 # SCHEDULE_RULE = ''
-# If True, use the scheduling rule to all posts by default
+# If True, use the scheduling rule to all posts (not pages!) by default
 # SCHEDULE_ALL = False
 
 # Do you want a add a Mathjax config file?
 # MATHJAX_CONFIG = ""
 
-# If you are using the compile-ipynb plugin, just add this one:
+# If you want support for the $.$ syntax (which may conflict with running
+# text!), just use this config:
 # MATHJAX_CONFIG = """
 # <script type="text/x-mathjax-config">
 # MathJax.Hub.Config({
@@ -952,7 +1046,7 @@ PRETTY_URLS = False
 #         displayMath: [ ['$$','$$'], ["\\\[","\\\]"] ],
 #         processEscapes: true
 #     },
-#     displayAlign: 'left', // Change this to 'center' to center equations.
+#     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
 #     "HTML-CSS": {
 #         styles: {'.MathJax_Display': {"margin": 0}}
 #     }
@@ -960,28 +1054,43 @@ PRETTY_URLS = False
 # </script>
 # """
 
-# Want to use KaTeX instead of MathJax? While KaTeX is less featureful,
-# it's faster and the output looks better.
-# If you set USE_KATEX to True, you also need to add an extra CSS file
-# like this:
-# EXTRA_HEAD_DATA = """<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">"""
+# Want to use KaTeX instead of MathJax? While KaTeX may not support every
+# feature yet, it's faster and the output looks better.
 # USE_KATEX = False
+
+# KaTeX auto-render settings. If you want support for the $.$ syntax (which may
+# conflict with running text!), just use this config:
+# KATEX_AUTO_RENDER = """
+# delimiters: [
+#     {left: "$$", right: "$$", display: true},
+#     {left: "\\\\[", right: "\\\\]", display: true},
+#     {left: "\\\\begin{equation*}", right: "\\\\end{equation*}", display: true},
+#     {left: "$", right: "$", display: false},
+#     {left: "\\\\(", right: "\\\\)", display: false}
+# ]
+# """
 
 # Do you want to customize the nbconversion of your IPython notebook?
 # IPYNB_CONFIG = {}
 # With the following example configuration you can use a custom jinja template
 # called `toggle.tpl` which has to be located in your site/blog main folder:
-# IPYNB_CONFIG = {'Exporter':{'template_file': 'toggle'}}
+# IPYNB_CONFIG = {'Exporter': {'template_file': 'toggle'}}
 
 # What Markdown extensions to enable?
 # You will also get gist, nikola and podcast because those are
 # done in the code, hope you don't mind ;-)
 # Note: most Nikola-specific extensions are done via the Nikola plugin system,
 #       with the MarkdownExtension class and should not be added here.
-# The default is ['fenced_code', 'codehilite']
-MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite', 'extra']
+# Defaults are markdown.extensions.(fenced_code|codehilite|extra)
+# markdown.extensions.meta is required for Markdown metadata.
+MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.codehilite', 'markdown.extensions.extra']
 
-# Extra options to pass to the pandoc comand.
+# Options to be passed to markdown extensions (See https://python-markdown.github.io/reference/)
+# Default is {} (no config at all)
+# MARKDOWN_EXTENSION_CONFIGS = {}
+
+
+# Extra options to pass to the pandoc command.
 # by default, it's empty, is a list of strings, for example
 # ['-F', 'pandoc-citeproc', '--bibliography=/Users/foo/references.bib']
 # Pandoc does not demote headers by default.  To enable this, you can use, for example
@@ -1007,7 +1116,6 @@ MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite', 'extra']
 # """
 
 # Show link to source for the posts?
-# Formerly known as HIDE_SOURCELINK (inverse)
 # SHOW_SOURCELINK = True
 # Copy the source files for your pages?
 # Setting it to False implies SHOW_SOURCELINK = False
@@ -1030,21 +1138,15 @@ MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite', 'extra']
 # between each other. Old Atom feeds with no changes are marked as archived.
 # GENERATE_ATOM = False
 
-# Only inlclude teasers in Atom and RSS feeds. Disabling include the full
+# Only include teasers in Atom and RSS feeds. Disabling include the full
 # content. Defaults to True.
 # FEED_TEASERS = True
 
-# Strip HTML from Atom annd RSS feed summaries and content. Defaults to False.
+# Strip HTML from Atom and RSS feed summaries and content. Defaults to False.
 # FEED_PLAIN = False
 
 # Number of posts in Atom and RSS feeds.
 # FEED_LENGTH = 10
-
-# Include preview image as a <figure><img></figure> at the top of the entry.
-# Requires FEED_PLAIN = False. If the preview image is found in the content,
-# it will not be included again. Image will be included as-is, aim to optmize
-# the image source for Feedly, Apple News, Flipboard, and other popular clients.
-# FEED_PREVIEWIMAGE = True
 
 # RSS_LINK is a HTML fragment to link the RSS or Atom feeds. If set to None,
 # the base.tmpl will use the feed Nikola generates. However, you may want to
@@ -1130,25 +1232,47 @@ MARKDOWN_EXTENSIONS = ['fenced_code', 'codehilite', 'extra']
 # (Note the '.*\/' in the beginning -- matches source paths relative to conf.py)
 # FILE_METADATA_REGEXP = None
 
-# If you hate "Filenames with Capital Letters and Spaces.md", you should
-# set this to true.
-UNSLUGIFY_TITLES = True
+# Should titles fetched from file metadata be unslugified (made prettier?)
+# FILE_METADATA_UNSLUGIFY_TITLES = True
+
+# If enabled, extract metadata from docinfo fields in reST documents.
+# If your text files start with a level 1 heading, it will be treated as the
+# document title and will be removed from the text.
+# USE_REST_DOCINFO_METADATA = False
+
+# If enabled, hide docinfo fields in reST document output
+# HIDE_REST_DOCINFO = False
+
+# Map metadata from other formats to Nikola names.
+# Supported formats: yaml, toml, rest_docinfo, markdown_metadata
+# METADATA_MAPPING = {}
+#
+# Example for Pelican compatibility:
+# METADATA_MAPPING = {
+#     "rest_docinfo": {"summary": "description", "modified": "updated"},
+#     "markdown_metadata": {"summary": "description", "modified": "updated"}
+# }
+# Other examples: https://getnikola.com/handbook.html#mapping-metadata-from-other-formats
+
+# Map metadata between types/values. (Runs after METADATA_MAPPING.)
+# Supported formats: nikola, yaml, toml, rest_docinfo, markdown_metadata
+# The value on the right should be a dict of callables.
+# METADATA_VALUE_MAPPING = {}
+# Examples:
+# METADATA_VALUE_MAPPING = {
+#     "yaml": {"keywords": lambda value: ', '.join(value)},  # yaml: 'keywords' list -> str
+#     "nikola": {
+#         "widgets": lambda value: value.split(', '),  # nikola: 'widgets' comma-separated string -> list
+#         "tags": str.lower  # nikola: force lowercase 'tags' (input would be string)
+#      }
+# }
 
 # Additional metadata that is added to a post when creating a new_post
 # ADDITIONAL_METADATA = {}
 
-# Nikola supports Open Graph Protocol data for enhancing link sharing and
-# discoverability of your site on Facebook, Google+, and other services.
-# Open Graph is enabled by default.
-# USE_OPEN_GRAPH = True
-
 # Nikola supports Twitter Card summaries, but they are disabled by default.
 # They make it possible for you to attach media to Tweets that link
 # to your content.
-#
-# IMPORTANT:
-# Please note, that you need to opt-in for using Twitter Cards!
-# To do this please visit https://cards-dev.twitter.com/validator
 #
 # Uncomment and modify to following lines to match your accounts.
 # Images displayed come from the `previewimage` meta tag.
@@ -1161,13 +1285,19 @@ UNSLUGIFY_TITLES = True
 #     # 'creator': '@username',     # Username for the content creator / author.
 # }
 
-# If webassets is installed, bundle JS and CSS into single files to make
-# site loading faster in a HTTP/1.1 environment but is not recommended for
-# HTTP/2.0 when caching is used. Defaults to True.
+# Bundle JS and CSS into single files to make site loading faster in a HTTP/1.1
+# environment but is not recommended for HTTP/2.0 when caching is used.
+# Defaults to True.
 # USE_BUNDLES = True
 
 # Plugins you don't want to use. Be careful :-)
 # DISABLED_PLUGINS = ["render_galleries"]
+
+# Special settings to disable only parts of the indexes plugin.
+# Use with care.
+# DISABLE_INDEXES = False
+# DISABLE_MAIN_ATOM_FEED = False
+# DISABLE_MAIN_RSS_FEED = False
 
 # Add the absolute paths to directories containing plugins to use them.
 # For example, the `plugins` directory of your clone of the Nikola plugins
@@ -1196,17 +1326,20 @@ UNSLUGIFY_TITLES = True
 # (defaults to 1.)
 # DEMOTE_HEADERS = 1
 
-# Docutils, by default, will perform a transform in your documents
-# extracting unique titles at the top of your document and turning
-# them into metadata. This surprises a lot of people, and setting
-# this option to True will prevent it.
-# NO_DOCUTILS_TITLE_TRANSFORM = False
-
 # If you don’t like slugified file names ([a-z0-9] and a literal dash),
 # and would prefer to use all the characters your file system allows.
 # USE WITH CARE!  This is also not guaranteed to be perfect, and may
 # sometimes crash Nikola, your web server, or eat your cat.
 # USE_SLUGIFY = True
+
+# If set to True, the tags 'draft', 'mathjax' and 'private' have special
+# meaning. If set to False, these tags are handled like regular tags.
+USE_TAG_METADATA = False
+
+# If set to True, a warning is issued if one of the 'draft', 'mathjax'
+# and 'private' tags are found in a post. Useful for checking that
+# migration was successful.
+WARN_ABOUT_TAG_METADATA = False
 
 # Templates will use those filters, along with the defaults.
 # Consult your engine's documentation on filters if you need help defining

@@ -1,0 +1,3 @@
+<html><body><p>"<strong>SELinux'a Giriş:</strong> Kullanıcı uygulamalarına ve sistem kaynaklarına zorunlu giriş kontrolleri sunarak, yapmaları gerekli olan işlemleri mümkün olan en az yetki ile gerçekleştirmeleri için sınırlandırma imkanı sağlayan SELinux'un çalışma mantığı ve çeşitli uygulamalar için ayarlanması anlatılacaktır."
+
+Akademik Bilişim(AB) 2012 'deki  "SELinux'a Giriş" seminerinin sunum notları :   <a href="http://linux.piesso.com/programs/Selinux-a_giris.pdf" target="_blank">pdf </a> <a href="http://linux.piesso.com/programs/Selinux-a_giris.odp" target="_blank">odp</a></p></body></html>

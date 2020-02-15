@@ -1,0 +1,55 @@
+<p>Ansible Portage module <a class="footnote-reference brackets" href="#id2" id="id1">1</a> ile Gentoo Linux sisteminizi guncelleyebilir ve upgrade edebilirsiniz. Asagidaki ornekte
+Ilk once buildfarm adini verdigimiz sunucu uzerinde compile edilip diger gentoo sunucularimiza binary paketleri
+elde edip guncellemelerini yapmaktadir.</p>
+<p>Yukarda bahsettigim sekilde bir buildfarm sunucusu yani paketlerin compile edilecegi sunucuda binary paketleri uretip
+diger sunuculara bu binary paketleri sunmak icin portage uzerinde &quot;buildpkg&quot; ozelligini aktif etmek gerekmektedir.</p>
+<p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
+<pre class="code bash"><a name="rest_code_795c8f8f26f34f34aa7f0f7da2102a0f-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">&quot;buildpkg&quot;</span>
+</pre><p>Diger Gentoo sunucularin buildfarm uzerindeki paketleri alabilmesi icin yayinlamasi gerekli. Bunun birden fazla sekilde
+kendinize cozum saglayabilirsiniz. FTP, FTPS, NFS, SSH, HTTP, HTTPS gibi. Biz kucuk bir web sunucusu kurup paketleri bu sekilde yayinlayalim.</p>
+<pre class="code bash"><a name="rest_code_4b872ded7c1c4053b3081e2910b18181-1"></a><span class="c1"># emerge -av www-servers/lighttpd</span>
+</pre><p>lighttpd web sunucusunu kurduktan sonra olusturulan paketlerin buradan yayinlanmasini konfigure edelim.&quot;/etc/lighttpd/lighttpd.conf&quot;
+dosyasinin sonuna asagidaki iki satiri ekleyin.</p>
+<p><code class="docutils literal">/etc/lighttpd/lighttpd.conf</code>:</p>
+<pre class="code bash"><a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-1"></a>server.modules +<span class="o">=</span> <span class="o">(</span> <span class="s2">&quot;mod_alias&quot;</span> <span class="o">)</span>
+<a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-2"></a>alias.url <span class="o">=</span> <span class="o">(</span> <span class="s2">&quot;/packages&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;/usr/portage/packages/&quot;</span> <span class="o">)</span>
+</pre><p>Artik web sunucumuzu baslatabiliriz.</p>
+<pre class="code bash"><a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-1"></a><span class="c1"># rc-update add lighttpd default</span>
+<a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-2"></a><span class="c1"># /etc/init.d/lighttpd start</span>
+</pre><p>Buildfarm sunucumuz ile ayarlarimiz bu kadar. Artik diger sunucularimizi buildfarm sunucusu uzerinden binary paketleri
+almasi icin konfigure edebiliriz.</p>
+<p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
+<pre class="code bash"><a name="rest_code_52529292262144eb9bd51ca3df8aef1f-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">&quot;getbinpkg&quot;</span>
+<a name="rest_code_52529292262144eb9bd51ca3df8aef1f-2"></a><span class="nv">PORTAGE_BINHOST</span><span class="o">=</span><span class="s2">&quot;http://buildfarm.hostname/packages&quot;</span>
+</pre><p>Artik ansible ile sistemizi ilk once buildfarm ile derlenip binary paketler ile diger sunucularinizi guncelleyebilirsiniz.</p>
+<script src="https://gist.github.com/843654e91765dee16e64814bd3ba76af.js"></script><noscript><pre class="literal-block">---
+- hosts: buildfarm
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '&#64;world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes
+
+- hosts: webservers
+  become: true
+  remote_user: jack
+  become_method: sudo
+
+  tasks:
+    - portage:
+         package: '&#64;world'
+         newuse: yes
+         update: yes
+         deep: yes
+         sync: yes</pre>
+</noscript><dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="http://docs.ansible.com/ansible/latest/portage_module.html">http://docs.ansible.com/ansible/latest/portage_module.html</a></p>
+</dd>
+</dl>

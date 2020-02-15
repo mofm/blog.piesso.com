@@ -1,0 +1,8 @@
+<html><body><p>Türkiye'nin en büyük servis sağlayıcısı ve internet servisinden,müşteri hizmetlerine dünyadaki en kötü servis sağlayıcı şirket.Bu şirketin en çok çalışan birimi sanırımı "Çağrı Merkezi" ,başka bir birimi bu kadar çalışmıyordur.Çağrı Merkezinde çalışan insanlara kolay gelsin. 
+Dört gün boyunca üst üste telefon ile 3 tane arıza kaydı ve internet üzerinden de 3 kez destek maili atarak internetimi vermelerini istedim.Fakat nafile!En sonunda bugün birisi aradı.Arayan Teknik ekibten birisi ama bilgisayar başına hiç oturmamış olduğu belli.Sorununuz nedir? diye soruyor,anlatıyorum adsl sinyali ritmik olarak gidiyor geliyor ve internet geldiğinde de işe yaramayacak seviyede.Öyle ki Google ana sayfası 4 sn de açılıyor ve normalde 106 kb ile indirdiğim yerden 5-6 kb ile indiriyorum(Özellikle işin komik tarafı adama 5 kb ile indiriyorum deyine adam sizin zaten 1 mbit'miş normal demesi!).Görevlinin cevabı bilgisayarınıza virus girmiştir.Linux kullanıyorum beyefendi diyorum adam halen bilgisayarınızı antivirüs ile tararıp temizleyin diyor.Ne desem boş,bu adam teknik ekipte ve adsl sinyalinin gittiğini söylüyorum halen virüsten bahsediyor.Ya sabır!!!
+Görevli şimdi "internetiniz nasıl,bakın" dedi baktım internet normale dönmüş.Ne yaptınız dedim bilgileri tazeledik filan falan dedi.Hızı ölçtük güzel normal.Ama telefonu kapattıktan sonra 15 dakika içinde yine gitti internet....
+1.TTNET ne dolandırıcılık yapıyorsun,halka açıkla.İnternetim görevli aradığında güzel de sonra niye gidiyor?
+2.TTNET'te çalışan bu insanlar nasıl orada işe girmişler?
+3.Bu görevliler ve bu anlayış ile size en fazla 15 yıl ömür biçiyorum.
+4.İnternetimi vermiyorsan paramı ver lütfen.!
+5.Her reklamınızda içimden küfretmek geçiyor.</p></body></html>

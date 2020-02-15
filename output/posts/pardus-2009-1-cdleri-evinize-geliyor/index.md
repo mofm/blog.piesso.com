@@ -1,0 +1,2 @@
+<html><body><p>Özgürlük için'de bugün yayınlanan habere göre "CD Gönder Projesi" tekrar başlıyor.Sadece kargo ücretini ödeyerek "Pardus 2009.1" Cd'sine sahip olabilirsiniz.Fakat önceki kampanyada yaşanan bazı aksaklıklar olmasından kaynaklı şu an sadece ön talep alınmakta ve en kısa sürede Cd gönderimi başlıyacak.Sizde formu doldurup en kısa sürede başlıyacak kampanyada Pardus CD'nize sahip olmak için <a href="http://www.ozgurlukicin.com/cdgonder/">buradan</a> .</p>
+</body></html>

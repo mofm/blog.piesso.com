@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Konsolda hesap yapmak | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/konsolda-hesap-yapmak/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../ozgur-olmayan-paketler/" title="Özgür olmayan paketler" type="text/html">
+<link rel="next" href="../konsolda-birim-cevirme/" title="Konsolda birim çevirme" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Konsolda hesap yapmak">
+<meta property="og:url" content="https://blog.piesso.com/posts/konsolda-hesap-yapmak/">
+<meta property="og:description" content="Linux'de uçbirim basit hesap makinesi gibi kullanabilir.Toplama,çarpma,çıkarma,bölme işlemlerini basit bir komutla sonuçlandırabiliriz.İşmelerimizi &quot;echo &quot;$((__)) &quot; ('_':yapacağımız matematiksel işlem">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2010-01-27T20:56:59+02:00">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Konsolda hesap yapmak</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-27T20:56:59+02:00" itemprop="datePublished" title="2010-01-27 20:56">2010-01-27 20:56</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/konsolda-hesap-yapmak.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>Linux'de uçbirim basit hesap makinesi gibi kullanabilir.Toplama,çarpma,çıkarma,bölme işlemlerini basit bir komutla sonuçlandırabiliriz.İşmelerimizi "<strong>echo "$((__))</strong> " (<strong>'_'</strong>:yapacağımız matematiksel işlem) şeklinde yapıyoruz.Aşağıdaki örneklere bakalım.</p>
+<p><strong>TOPLAMA</strong>
+</p>
+<pre>$ echo $((50+30))</pre>
+<pre>80</pre>
+<strong>ÇIKARMA</strong>
+<pre>$ echo $((50-30))</pre>
+<pre>20</pre>
+<strong>ÇARPMA</strong>
+<pre>$ echo $((50*30))</pre>
+<pre>1500</pre>
+<strong>BÖLME</strong>
+<pre>$ echo $((60/30))</pre>
+<pre>2</pre>
+Böyle yaptığımız yaptığımız  tam bölünmeyen,sonucu ondalık olan sayıları size yine tam olarak gösterecektir.Mesela ;
+<pre>$ echo $((70/30))</pre>
+<pre>2</pre>
+Gördüğünüz gibi 70'in 30'a bölümü ondalık bir sayı olduğu için bize tam ifadesini yuvarlayarak verdi.Eğer tam bölünmeyenlerde yada karışık matematik işlemlerinde tam sonucu almak istiyorsak <strong>"bc" </strong>komutunu kullanmalıyız.Aşağıda basit örneklere bakınız.
+<pre>$ echo "scale=5; 5/2"|bc</pre>
+<pre>2,50000</pre>
+<pre>$ echo "scale=70; 70/30"|bc</pre>
+<pre>2.33333333333333333333333333333333333333333333333333333...</pre>
+Gördüğünüz gibi sonucu tam olmayan ve karışık matematiksel işlemlerde yukardaki gibi <strong>"bc"</strong> komutunu kullanıyoruz.
+<p><strong>ÜS ALMA</strong>
+</p>
+<pre>$ echo $((2**3))</pre>
+<pre>8</pre>
+Üs alma işlemi de yukarda görüldüğü gibi .
+<p>Kolay gelsin.</p>
+<p>Örnek ekran Görüntüsü:</p>
+<p><a href="http://img641.imageshack.us/img641/8773/ekrangoruntusu.png"><img title="Konsolda hesap yapmak" src="http://img641.imageshack.us/img641/8773/ekrangoruntusu.png" alt="" width="490" height="323"></a></p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../ozgur-olmayan-paketler/" rel="prev" title="Özgür olmayan paketler">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../konsolda-birim-cevirme/" rel="next" title="Konsolda birim çevirme">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/konsolda-hesap-yapmak/",
+        disqus_title="Konsolda hesap yapmak",
+        disqus_identifier="cache/posts/konsolda-hesap-yapmak.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

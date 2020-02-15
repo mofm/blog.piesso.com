@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Ignotum Per Ignotius">
+<meta name="viewport" content="width=device-width">
+<title>hardened .*(nt|log)s? (old posts, page 14) | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/index-14.html">
+<link rel="prev" href="index-15.html" type="text/html">
+<link rel="next" href="index-13.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/x-authentication-warning/" class="u-url">X-Authentication-Warning</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/x-authentication-warning/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-11-27T14:12:27+02:00" title="2010-11-27 14:12">2010-11-27 14:12</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/x-authentication-warning/#disqus_thread" data-disqus-identifier="cache/posts/x-authentication-warning.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>SquirrelMail webmail ya da diğer mail client programlarından mail gönderdiğiniz zaman mail header'ınızda aşağıdaki gibi uyarı alıyorsanız;</p>
+<p></p>
+<blockquote>" X-Authentication-Warning: host.example.com: apache set sender to admin@example.com using -f "</blockquote>
+<p>yapmanız gereken "/etc/mail/trusted-users" dosyasına " apache " yi eklemek.</p>
+<p>Örnek "trusted-users" dosyası:</p>
+<blockquote># trusted-users - users that can send mail as others without a warning
+# apache, mailman, majordomo, uucp, are good candidates
+apache</blockquote>
+
+<p></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/bir-komutla-modeminizi-yeniden-baslatin/" class="u-url">Bir komutla modeminizi yeniden başlatın</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/bir-komutla-modeminizi-yeniden-baslatin/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-25T04:00:59+03:00" title="2010-10-25 04:00">2010-10-25 04:00</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/bir-komutla-modeminizi-yeniden-baslatin/#disqus_thread" data-disqus-identifier="cache/posts/bir-komutla-modeminizi-yeniden-baslatin.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Tek komutla ADSL Modeminizi resetlemek için küçük bir script.İlk önce bir metin editörü açın :</p>
+<p></p>
+<blockquote><tt>
+$ nano modem-restart
+</tt></blockquote>
+<p>ve aşağıdaki scripti yapıştırın,kullanıcı adı ve parola alanı ve ip adresi yerine kendi modem adresinizi,kullanıcı adı ve parolanızı girin.Daha sonra "modem-restart" adlı dosyayı kaydedin.Kaydettiğimiz dosyayı "/usr/bin/ " dizini altına kopyalın ve çalıştırma izni verin.</p>
+<blockquote><tt>
+
+$ sudo cp modem-restart /usr/bin/
+$ sudo chmod +x /usr/bin/modem-restart
+
+</tt></blockquote>
+
+<p>Artık uçbirimden tek komutla modeminizi yeniden başlatabilirsiniz :)</p>
+<p>SCRIPT:::::::::::</p>
+<blockquote><tt>
+#!/bin/bash
+host=192.168.1.1 (kendi ip adresiniz)
+port=23
+login=kullanici_adiniz
+passwd=parolaniz
+cmd=reboot
+
+(echo open ${host} ${port}
+sleep 3
+echo ${login}
+sleep 3
+echo ${passwd}
+sleep 3
+echo ${cmd}
+sleep 10
+echo exit) | telnet
+
+  </tt></blockquote>
+
+<p></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/adsl-modeminizdeki-linuxu-kesfedin/" class="u-url">ADSL Modeminizdeki linuxu keşfedin!</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/adsl-modeminizdeki-linuxu-kesfedin/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-25T03:01:39+03:00" title="2010-10-25 03:01">2010-10-25 03:01</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/adsl-modeminizdeki-linuxu-kesfedin/#disqus_thread" data-disqus-identifier="cache/posts/adsl-modeminizdeki-linuxu-kesfedin.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>TTNet tarafından dağıtılan "Pikatel Combomax" marka ADSL modemini evdeki bağlantım için kullanıyorum ve bu gece biraz kurcalamaya karar verdim.Bu adsl modem Broadcom "BCM6338" chipseti kullanıyor.Daha fazla uzatmadan modemi kurcalayalım :)</p>
+<p>İlk olarak modeme "telnet" ile bağlanalım.Öntanımlı "192.168.1.1" modem adresini değiştirmedim.Sizde aynı ya da daha farklı da olabilir.</p>
+<p></p>
+<blockquote><tt> 
+$ <strong>telnet 192.168.1.1</strong>
+Trying 192.168.1.1...
+Connected to 192.168.1.1.
+Escape character is '^]'.
+BCM96338 ADSL Router
+Login: linuxman
+Password: <strong><em>*</em></strong>
+&gt; 
+</tt></blockquote>
+Şu an modeme bağlandık ve birkaç komut denemesi yapalım.
+<blockquote><tt>
+&gt; ls
+ls: not found
+&gt; cd
+cd: not found
+&gt; mkdir
+mkdir: not found
+&gt; dir
+dir: not found
+</tt></blockquote>
+
+<p>Gördüğünüz gibi bu komutlar bulunamıyor ve şimdilik birşey göremiyoruz.Şimdi şu komutu deneyelim :</p>
+<blockquote><tt>
+&gt; <strong>echo *</strong>
+bin dev etc lib linuxrc mnt proc sbin usr var webs
+</tt></blockquote>
+
+<p>Artık dizini listeleyebiliyoruz :)Modemimizi biraz daha karıştıralım ve modemin "CPU" hakkında bilgi edinelim.
+</p>
+<blockquote>
+<tt>
+&gt; <strong>cat proc/cpuinfo</strong>
+</tt><p>system type             : 96338L-2M-8M
+processor               : 0
+cpu model               : BCM6338 V1.0
+BogoMIPS                : 239.20
+wait instruction        : no
+microsecond timers      : yes
+tlb_entries             : 32
+extra interrupt vector  : yes
+hardware watchpoint     : no
+VCED exceptions         : not available
+VCEI exceptions         : not available
+</p>
+</blockquote>
+<p>Şimdi "RAM"i hakkında bilgi edinelim.
+</p>
+<blockquote>
+<tt>
+&gt; <strong>cat proc/meminfo</strong>
+</tt><p>MemTotal:         6100 kB
+MemFree:           432 kB
+Buffers:           132 kB
+Cached:            960 kB
+SwapCached:          0 kB
+Active:           1684 kB
+Inactive:          328 kB
+HighTotal:           0 kB
+HighFree:            0 kB
+LowTotal:         6100 kB
+LowFree:           432 kB
+SwapTotal:           0 kB
+SwapFree:            0 kB
+Dirty:               0 kB
+Writeback:           0 kB
+Mapped:           1424 kB
+Slab:             2220 kB
+Committed_AS:     3572 kB
+PageTables:        244 kB
+VmallocTotal:  1048560 kB
+VmallocUsed:      1092 kB
+VmallocChunk:  1047428 kB
+</p>
+</blockquote>
+<p>Linux kernel versiyonunu öğrenelim.</p>
+<blockquote><tt>
+&gt; <strong>cat proc/version</strong>
+
+Linux version 2.6.8.1 (root@localhost.localdomain) (gcc version 3.4.2) #1 Mon Apr 2 17:30:21 CST 2007
+</tt></blockquote>
+
+<p>Modullerini listeleyelim.</p>
+<blockquote><tt>
+&gt; <strong>cat proc/modules</strong>
+
+ip_nat_pt 103680 0 - Live 0xc0100000
+ip_conntrack_pt 110816 1 ip_nat_pt, Live 0xc00e3000
+ipt_state 544 2 - Live 0xc00de000
+ipt_mark 416 0 - Live 0xc00dc000
+ipt_limit 896 2 - Live 0xc00da000
+ipt_connlimit 1696 0 - Live 0xc00d8000
+ipt_TCPMSS 2304 2 - Live 0xc00d1000
+ipt_REDIRECT 768 0 - Live 0xc00d3000
+ipt_MASQUERADE 1536 1 - Live 0xc00cd000
+ipt_MARK 704 5 - Live 0xc00cf000
+ipt_LOG 4064 2 - Live 0xc00b3000
+ipt_FTOS 992 0 - Live 0xc00b5000
+ip_nat_tftp 1888 0 - Live 0xc00cb000
+ip_nat_rtsp 4816 0 - Live 0xc00c8000
+ip_nat_ftp 2976 0 - Live 0xc00c0000
+ip_conntrack_tftp 1824 0 - Live 0xc00be000
+ip_conntrack_rtsp 15680 1 ip_nat_rtsp, Live 0xc00c3000
+ip_conntrack_ftp 20608 1 ip_nat_ftp, Live 0xc00b7000
+nat_cache 7856 0 - Live 0xc0059000
+ip_nat_ipsec 46720 0 - Live 0xc00a6000
+ip_conntrack_ipsec 30640 0 - Live 0xc009d000
+ip_nat_h323 2208 0 - Live 0xc009b000
+ip_conntrack_h323 10768 1 ip_nat_h323, Live 0xc0097000
+ip_nat_pptp 2048 0 - Live 0xc0095000
+ip_conntrack_pptp 3312 0 - Live 0xc0093000
+ip_nat_gre 1280 0 - Live 0xc0063000
+ip_conntrack_gre 2064 2 ip_nat_pptp,ip_conntrack_pptp, Live 0xc0061000
+iptable_mangle 960 1 - Live 0xc0020000
+iptable_nat 15312 11 ip_nat_pt,ipt_REDIRECT,ipt_MASQUERADE,ip_nat_tftp,ip_nat_rtsp,ip_nat_ftp,ip_nat_ipsec,ip_nat_h323,ip_nat_pptp,ip_nat_gre, Live 0xc005c000
+ip_conntrack 28720 21 ip_nat_pt,ip_conntrack_pt,ipt_state,ipt_connlimit,ipt_REDIRECT,ipt_MASQUERADE,ip_nat_tftp,ip_nat_rtsp,ip_nat_ftp,ip_conntrack_tftp,ip_conntrack_rtsp,ip_conntrack_ftp,nat_cache,ip_nat_ipsec,ip_conntrack_ipsec,ip_nat_h323,ip_conntrack_h323,ip_nat_pptp,ip_conntrack_pptp,ip_conntrack_gre,iptable_nat, Live 0xc008a000
+iptable_filter 928 1 - Live 0xc001e000
+ip_tables 14144 13 ipt_state,ipt_mark,ipt_limit,ipt_connlimit,ipt_TCPMSS,ipt_REDIRECT,ipt_MASQUERADE,ipt_MARK,ipt_LOG,ipt_FTOS,iptable_mangle,iptable_nat,iptable_filter, Live 0xc004e000
+bcm_usb 15952 0 - Live 0xc0008000
+bcm_enet 23824 0 - Live 0xc0047000
+bcmprocfs 13440 0 - Live 0xc0010000
+br2684 62272 0 - Live 0xc0036000
+blaa_dd 6880 0 - Live 0xc000d000
+adsldd 140320 0 - Live 0xc0066000
+atmapi 64640 3 br2684,blaa_dd,adsldd, Live 0xc0025000
+</tt></blockquote>
+
+<p>Modemde çalışan "prosesleri" görelim.</p>
+<blockquote><tt>
+&gt; <strong>ps</strong>
+
+ 1 admin        64 S   init                
+    2 admin           SWN [ksoftirqd/0]
+    3 admin           SW&lt; [events/0]
+    4 admin           SW&lt; [khelper]
+    5 admin           SW&lt; [kblockd/0]
+    6 admin           SW  [pdflush]
+    7 admin           SW  [pdflush]
+    8 admin           SW  [kswapd0]
+    9 admin           SW&lt; [aio/0]
+   10 admin           SW  [mtdblockd]
+   17 admin        96 S   -sh 
+   47 admin       232 S   cfm 
+  139 admin        52 S   pvc2684d 
+  230 admin       128 S   dhcpd 
+  237 admin       148 S   snmpd
+  250 admin       280 S   httpd
+  254 admin       172 S   pppd -c 8.35.1 -i nas_8_35 -u linuxman@ttnet -p *****
+  482 admin       184 S   upnp -L br0 -W ppp_8_35_1 -D 
+  796 admin       180 S   dproxy -D Home 
+ 1371 admin       304 S   telnetd
+ 1372 admin       336 S   telnetd
+ 1383 admin       272 S   sh -c ps 
+ 1384 admin       264 R   ps 
+</tt></blockquote>
+
+<p>Network ayarları hakkında detaylı bilgi alalım.
+</p>
+<blockquote>
+<tt>
+&gt; <strong>ifconfig</strong>
+</tt><p>br0             Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC<br>
+                inet addr:192.168.1.1  Bcast:192.168.1.255  Mask:255.255.255.0
+                UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+                RX packets:5061439 errors:0 dropped:0 overruns:0 frame:0
+                TX packets:5372416 errors:0 dropped:0 overruns:0 carrier:0
+                collisions:0 txqueuelen:0 
+                RX bytes:420761271 (401.2 MiB)  TX bytes:2239306342 (2.0 GiB)</p>
+<p>eth0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC<br>
+                UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+                RX packets:4793160 errors:329 dropped:0 overruns:0 frame:0
+                TX packets:5023907 errors:0 dropped:0 overruns:0 carrier:0
+                collisions:0 txqueuelen:1000 
+                RX bytes:547037243 (521.6 MiB)  TX bytes:1825231120 (1.6 GiB)
+                Interrupt:23 Base address:0x2800 </p>
+<p>lo              Link encap:Local Loopback<br>
+                inet addr:127.0.0.1  Mask:255.0.0.0
+                UP LOOPBACK RUNNING  MTU:16436  Metric:1
+                RX packets:4 errors:0 dropped:0 overruns:0 frame:0
+                TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
+                collisions:0 txqueuelen:0 
+                RX bytes:365 (365.0 B)  TX bytes:365 (365.0 B)</p>
+<p>nas_8_35        Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DF<br>
+                UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+                RX packets:5458874 errors:0 dropped:0 overruns:0 frame:0
+                TX packets:5051758 errors:0 dropped:19208 overruns:0 carrier:0
+                collisions:0 txqueuelen:1000 
+                RX bytes:2212357361 (2.0 GiB)  TX bytes:577014523 (550.2 MiB)</p>
+<p>ppp_8_35_1      Link encap:Point-Point Protocol<br>
+                inet addr:8<em>.</em>.<em>.</em>  P-t-P:8<em>.</em><em>.</em>.*  Mask:255.255.255.255
+                UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1492  Metric:1
+                RX packets:4068092 errors:0 dropped:0 overruns:0 frame:0
+                TX packets:3791577 errors:0 dropped:0 overruns:0 carrier:0
+                collisions:0 txqueuelen:3 
+                RX bytes:488070832 (465.4 MiB)  TX bytes:314043576 (299.4 MiB)</p>
+<p>usb0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DD<br>
+                UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+                RX packets:350896 errors:0 dropped:0 overruns:0 frame:0
+                TX packets:432777 errors:0 dropped:0 overruns:0 carrier:0
+                collisions:0 txqueuelen:1000 
+                RX bytes:43181752 (41.1 MiB)  TX bytes:514828098 (490.9 MiB)
+</p>
+</blockquote>
+IP Routing table için :
+<blockquote><tt>
+&gt; <strong>route show</strong>
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+8*.**.*.*      *               255.255.255.255 UH    0      0        0 ppp_8_35_1
+192.168.1.0     *               255.255.255.0   U     0      0        0 br0
+default         8*.**.*.*      0.0.0.0         UG    0      0        0 ppp_8_35_1
+
+</tt></blockquote>
+
+<p>IPTable için :</p>
+<blockquote><tt>
+&gt; <strong>iptables -L -n</strong>
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0           udp dpt:161 
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED 
+LOG        tcp  --  0.0.0.0/0            0.0.0.0/0           tcp flags:0x16/0x02 limit: avg 6/hour burst 5 LOG flags 0 level 1 prefix `Intrusion -&gt; ' 
+DROP       all  --  0.0.0.0/0            0.0.0.0/0           
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     tcp  --  0.0.0.0/0            192.168.1.2         tcp dpt:5647 
+TCPMSS     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp flags:0x06/0x02 TCPMSS clamp to PMTU 
+TCPMSS     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp flags:0x06/0x02 TCPMSS clamp to PMTU 
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED 
+LOG        tcp  --  0.0.0.0/0            0.0.0.0/0           tcp flags:0x16/0x02 limit: avg 6/hour burst 5 LOG flags 0 level 1 prefix `Intrusion -&gt; ' 
+DROP       all  --  0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+
+</tt></blockquote>
+
+<p>Modemi yeniden başlatmak için :</p>
+<blockquote><tt>
+&gt; <strong>reboot</strong>
+
+</tt></blockquote>
+
+<p>Modemin web arayüzündeki web sayfaları anadizindeki "webs" dizini içindedir.Onlara da göz atmak isterseniz örnek olarak:</p>
+<blockquote><tt>
+&gt; <strong>cat webs/main.html</strong>
+
+</tt></blockquote>
+
+<p></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/donanim-bilgisi-toplamak/" class="u-url">Donanım bilgisi toplamak</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/donanim-bilgisi-toplamak/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-23T16:07:54+03:00" title="2010-10-23 16:07">2010-10-23 16:07</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/donanim-bilgisi-toplamak/#disqus_thread" data-disqus-identifier="cache/posts/donanim-bilgisi-toplamak.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Bilgisayarınızın donanımı hakkında daha fazla bilgi sahibi olmak için birkaç yararlı komut :</p>
+<p></p>
+<blockquote><tt># lspci  <em>(PCI aygıtlarını listeler)</em></tt></blockquote>
+<blockquote><tt># lsusb <em>(USB aygıtlarını listeler)</em></tt></blockquote>
+<blockquote><tt># lsscsi <em>(SCSI aygıtlarını listeler)</em> </tt></blockquote>
+<blockquote><tt># systool </tt></blockquote>
+<blockquote><tt># fdisk -l <em>(Harddisk ve bölümlerini listeler) </em></tt></blockquote>
+<blockquote><tt># dmidecode <em>(Donanım hakkında çok daha detaylı bilgi verir,seri numaraları gibi) </em></tt></blockquote>
+<blockquote><tt>$ cat /proc/cpuinfo <em>(CPU Bilgileri)</em> </tt></blockquote>
+<blockquote><tt>$ cat /proc/meminfo<em> (Memory bilgileri)</em> </tt></blockquote>
+<blockquote><tt># lshw <em>(Centos ya da bazı linux dağıtımlarda donanımı listeler)</em> </tt></blockquote>
+<p>Farklı olarak dmesg ve grep komutlarını da kullanarak donanım hakkında daha fazla bilgi sahibi olabilirsiniz.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/886/" class="u-url">Yazıcınızı ağdaki bilgisayarlara açın</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/886/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-21T14:33:08+03:00" title="2010-10-21 14:33">2010-10-21 14:33</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/886/#disqus_thread" data-disqus-identifier="cache/posts/886.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Yazıcınız "SAMBA" ile değilde,"CUPS" ile ağınızda paylaşmak istiyorsanız adımları takip edin:</p>
+<p>1- "/etc/cups/cups.conf" dosyasını metin düzenleyici ile açın yada diğer bir yol ise ; tarayıcınıza " http://localhost:631 " yazın ve CUPS web arayüzüne ulaşın.CUPS web arayüzünden "Administrator" sekmesini tıklayın ve oradan "Edit Configuration File" butonuna tıklayıp düzenleme yapacağımız sayfayı açın.</p>
+<p>2-"Location" bölümünden ağımdaki "192.168.1.(3)+(4)+(5)+(6)"
+</p>
+<blockquote><tt><location></location>
+  Order allow,deny
+  Allow localhost
+  Allow from 192.168.1.*
+</tt></blockquote>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/yazicinizi-agdaki-bilgisayarlara-acin/" class="u-url">Yazıcınızı ağdaki bilgisayarlara açın</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/yazicinizi-agdaki-bilgisayarlara-acin/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-21T14:20:58+03:00" title="2010-10-21 14:20">2010-10-21 14:20</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/yazicinizi-agdaki-bilgisayarlara-acin/#disqus_thread" data-disqus-identifier="cache/posts/yazicinizi-agdaki-bilgisayarlara-acin.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="CUPS" src="http://www.cups.org/doc-1.1/images/cups-large.gif" alt="" width="179" height="212">Yazıcınız "SAMBA" ile değilde,"CUPS" ile ağınızda paylaşmak istiyorsanız adımları takip edin:
+<p><strong>1-</strong> "<em>/etc/cups/cups.conf</em>" dosyasını metin düzenleyici ile açın yada diğer bir yol ise ; tarayıcınıza " <em>http://localhost:631</em> " yazın ve CUPS web arayüzüne ulaşın.CUPS web arayüzünden "<em>Administrator</em>" sekmesini tıklayın ve oradan "<em>Edit Configuration File</em>" butonuna tıklayıp düzenleme yapacağımız sayfayı açın.</p>
+<p><strong>2-</strong>Ağınızdaki ip grublarına izin verin.
+</p>
+<blockquote>
+<tt>
+<h2>Restrict access to the server...</h2></tt>
+<p><tt>Order allow,deny
+<strong> Allow localhost
+Allow from 192.168.1.*</strong>
+</tt></p>
+</blockquote>
+<strong>3-</strong> Tarayıcı ile ulaşmalarına izin verin.
+<blockquote>
+<tt>
+<h2>Show shared printers on the local network.</h2>
+</tt><p>Browsing On
+BrowseOrder allow,deny
+BrowseAllow all
+<strong>BrowseAddress 192.168.1.*:631</strong></p>
+</blockquote>
+<strong>4- </strong>Eğer uzaktaki bir bilgisayarın yazıcıyı yönetilmesine izin vermek istiyorsanız.(Örnek olarak "192.168.1.3" ip'li bilgisayara izin verdik):
+<blockquote>
+<tt>
+<h2>Restrict access to the admin pages...</h2></tt>
+<p><tt>Encryption Required
+Order allow,deny
+<strong>Allow localhost
+Allow 192.168.1.3</strong></tt></p>
+<p><tt></tt></p>
+</blockquote>
+<strong>5- </strong>Bu ayarları yaptıktan sonra "CUPS"u yeniden başlatalım.
+<blockquote><tt># /etc/init.d/cupsd restart</tt></blockquote>
+<strong>6-</strong>Uzaktaki bilgisayara yazıcıyı ayarlamak için "<em>/etc/cups/client.conf</em>" dosyasına "<em>Servername</em>" ile printer server adını yazın ya da Gnome masaüstü kullanıyorsanız ""<strong>Sistem&gt;&gt;Yönetim&gt;&gt;Yazdırma&gt;&gt;Ekle&gt;&gt;Ağ yazıcısı bul</strong>"" yolunu izleyerek çıkan ekranda printer server ip adresini yazarak ağdaki printerı otomatik olarak makinenize tanımlayabilirsiniz.</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/linux-ile-aginizda-dosyalarinizi-paylasin/" class="u-url">Linux ile ağınızda dosyalarınızı paylaşın</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/linux-ile-aginizda-dosyalarinizi-paylasin/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-19T15:07:37+03:00" title="2010-10-19 15:07">2010-10-19 15:07</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/linux-ile-aginizda-dosyalarinizi-paylasin/#disqus_thread" data-disqus-identifier="cache/posts/linux-ile-aginizda-dosyalarinizi-paylasin.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="Gentoo" src="http://www.uz-freiburg.com/gentoo-logo.png" alt="" width="89" height="91">Birden fazla bilgisayarınızın olduğu evinizde,küçük işletmenizde dosyalarınızı,dizinlerinizi ya da disklerinizi paylaşmak isteyebilirsiniz.Herhangi bir linux dağıtımı ile bunu birkaç adımda ve  kısa sürede gerçekleştirebilirsiniz.Bu yazıda NFS server olarak Gentoo Linux dağıtımını,NFS Client olarak Ubuntu Linux dağıtımı olarak anlatacağım.
+<p>1- İlk olarak "NFS Server"ı Gentoo kurulu sistemimize kuralım.
+</p>
+<blockquote><tt># emerge -av nfs-utils</tt></blockquote>
+2- "NFS Server" kuruldu.Şimdi paylaşacağımız dizinleri <em>/etc/exports</em> dosyasına yazalım.Siz kendiniz farklı dizinleri paylaşabilirsiniz.
+<blockquote><tt>/home/kullanici/paylasilan_dizin 192.168.1.3(async,rw,no_subtree_check)</tt></blockquote>
+Yukardaki örnekte "/home/kullanici/paylasilan_dizin" yolundaki "paylasilan_dizin" adlı klasörü "192.168.1.3" ip adresindeki bilgisayar ile paylaşıma açtık.Sizin paylaşacağınız dizin farklı yolda ve bu klasörü paylaşacağınız adres farklı olabilir.Mesela paylaşacağınız dizini ağdaki tüm bilgisayarlara açabilirsiniz.Bunun içinse örnek olarak "192.168.<em>.</em>" şeklinde ya da ip adresi yerine " * " kullanabilirsiniz.
+Dikkat edilecek bir nokta ise yukardaki paylaştığımız dizine ağdaki diğer bilgisayar için yazma ve okuma yetkisi verdik.Eğer sadece okuma yetkisi vermek isterseniz aşağıdaki gibi yapabilirsiniz.
+<blockquote><tt>/home/kullanici/paylasilan_dizin 192.168.1.3(ro,async)</tt></blockquote>
+<em>/etc/exports</em> dosyasına yukardaki istediğiniz ayarlardan birini yazarak,kaydedip çıkabilirsiniz.
+<p>3- NFS Serverı başlatın ve sistem başlangıçına ekleyin.Aşağıdaki adımlarda dağıtıma göre değişebilir.
+</p>
+<blockquote><tt># /etc/init.d/nfs start </tt></blockquote>
+<blockquote><tt>#rc-update add nfs default </tt></blockquote>
+4- Şimdi Ubuntu sistemimize NFS Client kuralım ve paylaşılan dizini sistemimize ekleyelim.
+<blockquote><tt># apt-get install portmap nfs-common</tt></blockquote>
+NFS Client kurulumu bittikten sonra <em>/etc/fstab</em> dosyasına ağdaki paylaşılan dizini ekleyelim.Aşağıdaki örnek sizin paylaşacağınız dizine ve NFS Server'ın ip adresine göre değişiklik gösterebilir.
+<blockquote><tt>192.168.1.2:/home/kullanici/paylasilan_dizin      /home/ubuntu_kullanicisi/paylasilan_dizin       nfs     defaults 0 0</tt></blockquote>
+Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/paylasilan_dizin" yolundaki dizini 192.168.1.3 adresinde bulunan NFS Client istemcisi tarafından "/home/ubuntu_kullanici/paylasilan_dizin" yoluna her açılışta otomatik bağlayacaktır.</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/google-servislerine-konsoldan-ulasin/" class="u-url">Google Servislerine Konsoldan Ulaşın</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/google-servislerine-konsoldan-ulasin/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-19T13:42:56+03:00" title="2010-10-19 13:42">2010-10-19 13:42</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/google-servislerine-konsoldan-ulasin/#disqus_thread" data-disqus-identifier="cache/posts/google-servislerine-konsoldan-ulasin.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="Google" src="http://www.google.com.tr/intl/en_com/images/srpr/logo1w.png" alt="" width="218" height="75"><p>Google servislerinden bir yada birkaçını kullanıyorsanız ,tarayıcı yerine birde bu servislere konsoldan ulaşmayı deneyin.GoogleCL adlı python ile script ile Google API'leri ile google servislerini konsoldan ulaşabilirsiniz.GoogleCL ile ulaşabileceğiniz "google" servisleri:</p>
+<p><strong>* Google Docs</strong></p>
+<p><strong>* Picasa</strong></p>
+<p><strong>* Youtube</strong></p>
+<p><strong>* Blogger</strong></p>
+<p><strong>* Google Calendar</strong></p>
+<p><strong>* Google Contacts</strong></p>
+<p>"GoogleCL" hakkında daha fazla bilgi almak için sitesini <a href="http://code.google.com/p/googlecl/" target="_blank">buradan</a> ziyaret edebilirsiniz.Bilgisayarınıza "GoogleCL" bu <a href="http://code.google.com/p/googlecl/downloads/list" target="_blank">linkten</a> indirebilirsiniz.Debian ve Ubuntu tabanlı dağıtımlar için ".deb" paketi mevcut.Örnek "GoogleCL" komutları:
+</p>
+<ul>
+<li><strong>Blogger</strong></li>
+<blockquote><tt>$ google blogger post --title "foo" "command line posting"</tt></blockquote>
+</ul>
+<ul>
+<li><strong>Calendar</strong></li>
+<blockquote><tt>$ google calendar add "Lunch with Jim at noon tomorrow"</tt></blockquote>
+</ul>
+<ul>
+<li><strong>Contacts</strong></li>
+<blockquote><tt>$ google contacts list Bob name,email &gt; the_bobs.csv</tt></blockquote>
+</ul>
+<ul>
+<li><strong>Docs</strong></li>
+<blockquote><tt>$ google docs edit "Shopping list"</tt></blockquote>
+</ul>
+<ul>
+<li><strong>Picasa</strong></li>
+<blockquote><tt>$ google picasa create "Cat Photos" ~/photos/cats/*.jpg</tt></blockquote>
+</ul>
+<ul>
+<li><strong>Youtube</strong></li>
+<blockquote><tt>$ google youtube post --category Education killer_robots.avi</tt></blockquote>
+</ul>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/unix-hakkinda-daha-detali-bilgi-icin/" class="u-url">Unix hakkında </a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/unix-hakkinda-daha-detali-bilgi-icin/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-29T15:40:00+03:00" title="2010-09-29 15:40">2010-09-29 15:40</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/unix-hakkinda-daha-detali-bilgi-icin/#disqus_thread" data-disqus-identifier="cache/posts/unix-hakkinda-daha-detali-bilgi-icin.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="Unix" src="http://www.unix.org/images/unix-plate2.jpg" alt="" width="189" height="114">Unix nedir? den ziyade,unix'in şu anki sahipliği üzerinde duracağım.İnternette Unix nedir? diye aratıp karşınıza gelecek sayfaları okuduğunuzda yazıların son kısımlarında trademark'nın Novell adlı şirkette olduğunu yazmaktadır.Aradan 15 yıl geçmesi rağmen halen Trademark olarak Novell yazıldığını anlamış değilim.Burada bir düzeltme yapalım Unix'in Trademark'ı 1995'te Novell'dan "The Open Group" devredilmiştir.Yani aslında Unix'in şu an ki sahibi "The Open Group".Artık öyle bir hale gelmiş ki Open Group'takiler de bıkmış ve şöyle yazmışlar :
+<p>"<strong>Some trademark attributions still say Novell (or even AT&amp;T or Bell Labs), which is correct? </strong></p>
+<p><span style="font-size: large;">UNIX</span><span style="font-size: x-small;"><sup>®</sup></span><span style="font-size: large;"> is a registered trademark of The Open Group.</span></p>
+<p>Daha detalı bilgi için  <a href="http://www.unix.org/trademark.html" target="_blank">:http://www.unix.org/trademark.html</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/openofficeden-libreofficee-ozgurluge-ucus/" class="u-url">OpenOffice'den LibreOffice'e Özgürlüğe Uçuş</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/openofficeden-libreofficee-ozgurluge-ucus/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-09-29T09:01:17+03:00" title="2010-09-29 09:01">2010-09-29 09:01</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/openofficeden-libreofficee-ozgurluge-ucus/#disqus_thread" data-disqus-identifier="cache/posts/openofficeden-libreofficee-ozgurluge-ucus.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<img class="alignright" title="LibreOffice" src="http://tuxweet.linux.org.tr/i/attachments/1/1285717643648083_large.png" alt="" width="72" height="81">Ücretsiz ve Açık kaynak Office paketi olan "OpenOffice" artık "LibreOffice"e dönüştü.OpenOffice geliştirici ve katkıcı topluluğu olan "OpenOffice.org" topluluğu artık bir şirketin desteğini almaktan kurtulup Özgür bir Vakıf kurarak Openoffice'de özgürlüğe yelkenini açtı.Artık sadece ilk Sun ve daha sonra Oracle'ın himayesinde bir topluluk olmaktan kurtulup,daha özgür bir topluluk ve daha özgür bir office yazılımı için "The Document  Foundation" adlı bir vakıf kuruldu.Bu vakıf Openoffice'den gelen geleneği "LibreOffice" ile daha özgür,daha gelişmiş ve daha çok destekçisi(FSF,Google,RedHat,Novell,Canonical gibi) ve kullanıcısı olan Office yazılımı olarak hayatına devam edecek."The Document Foundation"ın basın açıklamasına ve bu açıklamanın Türkçe çevirisine buradan <a href="http://marenostrum.blogsome.com/2010/09/29/p40/" target="_blank">http://marenostrum.blogsome.com/2010/09/29/p40/</a> ulaşın.</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index-15.html" rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-13.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

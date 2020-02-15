@@ -1,0 +1,37 @@
+<p><html><body><p>Bilgisayarımıza kurmak istediğimiz herhangi bir dağıtımın ".iso" uzantılı cd ya da dvd kalıbı indirdiniz.Fakat bunun için cd ya da dvd harcama niyetinde değil de,"usb flash belleğim var ben bununla kurulum yapmak istiyorum" diyorsanız aşağıdaki adımları izleyin.</p>
+<p><strong>1-</strong> İlk olarak sistem üzerindeki flash diskimizi görelim.</p>
+<h1><em>fdisk -l</em></h1>
+<p>bu komutun çıktısına göre sisteminize bağlı "/dev/sdX" şeklinde bir usb flash belleğin bağlı olduğunu göreceksiniz.Ben ön tanımlı olarak "/dev/sda" olarak alacam.</p>
+<p><strong>2-</strong>Flash belleğimiz "/dev/sda" noktasına bağlı.Bu bölüm sisteme bağlı ise kaldıralım ve flash bellekte bulunan bölümleri silip,boot sektör oluşturalım.</p>
+<h1><em>umount /dev/sda1</em></h1>
+<h1><em>dd  if=/dev/zero of=/dev/sda count=1024</em></h1>
+<p><strong>3-</strong>Flash bellekte yeni bir bölüm oluşturalım.Fdisk yazılımını kullanmasını az buçuk aşina olmanız lazım.</p>
+<h1><em> fdisk /dev/sda </em>(Bu komuttan sonra sırayla aşağıdaki adımları uygulayın!)</h1>
+<p><em>&gt;p</em></p>
+<p><em>&gt;n  , p , 1 , enter enter</em></p>
+<p><em>&gt;p</em></p>
+<p><em>&gt;a ,1</em></p>
+<p><em>&gt;p</em></p>
+<p><em>&gt;w</em></p>
+<p><strong>4-</strong> Yukardaki adımdan sonra flash bellek üzerinde "/dev/sda1" bölümünü oluşturduk ve bu bölümü şimdi ext2 ile şekillendirelim.</p>
+<h1><em>mkfs.ext2 /dev/sda1</em></h1>
+<h1><em>tune2fs -i 0 /dev/sda1</em></h1>
+<p>5-Bu adımda flash belleğimize "mbr" yükleyecez fakat daha önceden sisteminizde "syslinux" adlı yazılımın bulunması lazım.Eğer yoksa paket yöneticisi yardımıyla hemen indirin.(Örnek: " apt-get install syslinux" "emerge syslinux" )</p>
+<h1><em>cat /usr/share/syslinux/mbr.bin &gt; /dev/sda</em></h1>
+<p>6-İndirdiğimiz iso kalıbını ve flash belleğimizi sisteme bağlayalım.(Not:Ben indirdiğimiz iso kalıbına örnek olarak "debian-5.0.iso" adını verdim.Siz indirdiğiniz iso kalıbının adı ve bilgisayarınızdaki yolu neyse onu yazacaksınız.</p>
+<h1><em>mkdir /mnt/flash</em></h1>
+<h1><em>mkdir /mnt/iso</em></h1>
+<h1><em>mount -t ext2 /dev/sda1 /mnt/flash</em></h1>
+<p>$<em>mount -t iso9660 -o loop,user /home/user/downloads/debian-5.0.iso /mnt/iso</em></p>
+<p><strong>7-</strong> iso kalıbının içindekileri usb flash belleğimize kopyalım.</p>
+<h1><em>cd /mnt/flash</em></h1>
+<h1><em>cp -r /mnt/iso/* /mnt/flash</em></h1>
+<p><strong>8-</strong>İso kalıbının usb flash bellekten yüklenebilmesi için birkaç düzeltme ve bootloader yükleyelim.</p>
+<h1><em>mv isolinux extlinux</em></h1>
+<h1><em>mv extlinux/isolinux.cfg extlinux/extlinux.conf</em></h1>
+<h1><em>rm extlinux/isolinux.bin</em></h1>
+<h1><em>cd ..</em></h1>
+<h1><em>extlinux -i /mnt/flash/extlinux</em></h1>
+<p><strong>9-</strong>Bu adıma kadar hata almadan gelebilmişseniz herşey doğru ve artık usb flash bellekten kuruluma hazırdır.Bunun içinde ilk önce flash belleğimizi sistemden ayırıp,daha sonra kendiniz biostan usb 'den boot seçeneğini aktif ederek kuruluma başlayabilirsiniz.</p>
+<h1><em>umount /mnt/flash</em></h1>
+<p>Kolay gelsin :)</p></body></html></p>

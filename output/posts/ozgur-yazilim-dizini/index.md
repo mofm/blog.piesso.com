@@ -1,0 +1,1 @@
+<html><body><a href="http://www.fsf.org" target="_blank">Free Software Foundation (FSF)</a> 6500 özgür yazılımın bulunduğu bir "özgür yazılım dizini" oluşturuldu.Dizine bu adresten <a href="http://directory.fsf.org" target="_blank">http://directory.fsf.org</a> ulaşabilirsiniz.Uygulamaları istediğiniz gibi indirebilir,kurabilir ve dağıtabilirsiniz.</body></html>

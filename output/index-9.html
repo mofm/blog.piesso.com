@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Ignotum Per Ignotius">
+<meta name="viewport" content="width=device-width">
+<title>hardened .*(nt|log)s? (old posts, page 9) | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/index-9.html">
+<link rel="prev" href="index-10.html" type="text/html">
+<link rel="next" href="index-8.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/debian-squeeze-uzerine-virtualbox-kurulumu/" class="u-url">Debian Squeeze üzerine VirtualBox kurulumu</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/debian-squeeze-uzerine-virtualbox-kurulumu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-30T04:37:32+02:00" title="2010-01-30 04:37">2010-01-30 04:37</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/debian-squeeze-uzerine-virtualbox-kurulumu/#disqus_thread" data-disqus-identifier="cache/posts/debian-squeeze-uzerine-virtualbox-kurulumu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<a href="http://img251.imageshack.us/img251/6217/virtualboxlogo.jpg"><img title="VirtualBox Kurulumu" src="http://img251.imageshack.us/img251/6217/virtualboxlogo.jpg" alt="" width="302" height="312"></a>
+<p><strong>Debian Lenny</strong> kullanıcıları <strong>VirtualBox</strong> kurarken normal kurulum sırasında bir hata almazlarken,Unstable(sid) ve Squeeze(testing) kullanıcıları "kernel modul" hatası almaktadır.Aşağıda basit adımlarla Debian testing ve unstable sürümleri üzerine VirtualBox kurulumunu çok basit adımlarla anlatmaktadır.</p>
+<ol>
+<li>İlk önce konsolumuzu açıp root oluyoruz ve ;
+<pre>$ aptitude install virtualbox-ose
+</pre>
+</li>
+<li>Yukardaki komutu verdikten sonra ,virtualbox modullerimizi yukleyelim;
+<pre>$ aptitude install virtualbox-ose-modules-$(uname -r)
+</pre>
+Eğer yukardaki komutta bulunamadı uyarısını alırsanız 3.adımdaki gibi yapıyoruz;</li>
+</ol>
+<p>3.Modülleri yükleme;
+</p>
+<pre>$ aptitude install module-assistant
+$ m-a a-i virtualbox-ose-source
+</pre>
+4.Son olarak;
+<pre>$modprobe vboxdrv</pre>
+Artık "VirtualBox" sistemimize kuruldu.VirtualBox'a <strong>Gnome Menu Paneli</strong>'nden <em>Uygulamalar&gt;&gt;Sistem Araçları&gt;&gt;VirtualBox OSE</em> sırasını izleyerek açabilirsiniz ya da uçbirimden
+<pre>$virtualbox</pre>
+yazarakda açabilirsiniz.Sorularınız için yorum bırakabilirsiniz.</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/linux-ip-komutlari/" class="u-url">Linux IP komutları</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/linux-ip-komutlari/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-28T22:27:04+02:00" title="2010-01-28 22:27">2010-01-28 22:27</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/linux-ip-komutlari/#disqus_thread" data-disqus-identifier="cache/posts/linux-ip-komutlari.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<a href="http://img694.imageshack.us/img694/9539/30112008network1.jpg"><img title="Linux IP komutları" src="http://img694.imageshack.us/img694/9539/30112008network1.jpg" alt="" width="336" height="239"></a>
+<p>Linux'de bazı önemli ip komutları;
+</p>
+<pre><strong>Sisteminizdeki ağ arabirimlerini ve özelliklerini göstermek :</strong> $ ifconfig</pre>
+<pre><strong>Kullandığınız ağ arabiriminin özelliklerini göstermek :</strong> $ ifconfig eth0</pre>
+<pre><strong>Ip atamak :</strong> $ ifconfig eth0 192.168.1.2</pre>
+<pre><strong>Ping :</strong> ping -c 3 192.168.1.1</pre>
+<pre><strong>Multiple Ip atamak:</strong> $ ifconfig eth0:0 192.168.1.2</pre>
+<pre><strong>İkinci bir Ip atamak:</strong> $ ifconfig eth0:1 192.168.1.3</pre>
+<pre><strong>Ağ arabirimin devredışı bırakmak:</strong> $ ifconfig eth0 down</pre>
+<pre><strong>Ağ arabirimini aktif etmek:</strong> $ ifconfig eth0 up</pre>
+<pre><strong>Routing IP tablosunu gösterme:</strong> $ route "veya" route -n</pre>
+<pre><strong>Arp cache'i gösterme:</strong> $ arp "veya" arp -n</pre>
+<pre><strong>IP/Subnet atamak:</strong> $ ifconfig eth0 192.168.1.2 netmask 255.255.255.0</pre>
+<pre><strong>Default gateway atamak:</strong> $ route add default gw 192.168.1.1</pre>
+<pre><strong>Ip yolunu gösterme(Traceroute):</strong> $ traceroute webs.homelinux.com</pre>
+<pre><strong>Tracepath:</strong> $ tracepath webs.homelinux.com</pre>
+<pre><strong>DNS test:</strong> $ host webs.homelinux.com</pre>
+<pre><strong>Gelişmiş DNS test:</strong> $ dig webs.homelinux.com</pre>
+<pre><strong>Reverse lookup:</strong> host 74.125.43.105</pre>
+<pre><strong>Gelişmeiş Reverse lookup:</strong> dig -x 74.125.43.105
+</pre>
+NOT: Bazı komutlar ve değişiklik yapmak için root yetkisi gerekmektedir.
+<p>Daha ayrıntılı bilgi için <a href="http://www.whatismyip.com/faq/linux-ip-commands.asp">buradan</a> .</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/konsolda-birim-cevirme/" class="u-url">Konsolda birim çevirme</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/konsolda-birim-cevirme/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-27T21:25:00+02:00" title="2010-01-27 21:25">2010-01-27 21:25</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/konsolda-birim-cevirme/#disqus_thread" data-disqus-identifier="cache/posts/konsolda-birim-cevirme.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Linux'de sizi hiçbiryere muhtaç bırakmayacak her türlü araç mevcuttur.Birim çevirme gibi genel geçer bir ihtiyaç olan çevirme işlemlerini konsoldan yapabilirsiniz.Çeviri işlemlerini "<strong>units</strong>" komutuyla yapıyoruz.Ama ilk önce sisteminizde "units" kurulu olması lazım.Eğer sisteminizde "<strong>units</strong>" kurulu değilse hemen bu aracı kuruyoruz.Her dağıtım kendi paketleme sistemi üzerinde bunu indirip hemen kurabilirler.Debian ve Ubuntu kullanıcıları "<strong>aptitude install units</strong>" demeleri yeterlidir.Paket kurulduktan sonra artık çeviri işlemlerine başlayabiliriz.<strong>Units</strong> komutuyla istediğiniz her birimi birbirine çevirebilir,hatta tanımını alabilirsiniz.</p>
+<p><strong>Örnekler:</strong></p>
+<p>Kilometre'den Mil'e
+</p>
+<pre>$ units -t '1km' 'mile'</pre>
+<pre>0.62137119</pre>
+Ayak'dan Kilometre'ye
+<pre>$ units -t '1foot' 'km'</pre>
+<pre>0.0003048</pre>
+İstediğiniz her birimi yukardaki gibi birbirine çevirebiliriz.Şimdi de Google'ın isim kökeni olan "<strong>googol</strong>"un ne olduğunu soralım.
+<pre>$ units -t '1 googol'</pre>
+<pre>1e+100</pre>
+Görüldüğü gibi "<strong>Googol</strong>"un  1'in yanına 100 sıfır gelmesiyle oluştuğunu söyledi.Units komutuyla ilgili ayrıntılı bilgiliyi man sayfasından ulaşabilirsiniz.Bunun içinden "<strong>$ man units</strong>" yazmanız yeterli.Kolay gelsin.
+<p>Googol hakkında ayrıntılı bilgi için <a href="http://tr.wikipedia.org/wiki/Googol">buradan</a> .</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/konsolda-hesap-yapmak/" class="u-url">Konsolda hesap yapmak</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/konsolda-hesap-yapmak/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-27T20:56:59+02:00" title="2010-01-27 20:56">2010-01-27 20:56</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/konsolda-hesap-yapmak/#disqus_thread" data-disqus-identifier="cache/posts/konsolda-hesap-yapmak.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>Linux'de uçbirim basit hesap makinesi gibi kullanabilir.Toplama,çarpma,çıkarma,bölme işlemlerini basit bir komutla sonuçlandırabiliriz.İşmelerimizi "<strong>echo "$((__))</strong> " (<strong>'_'</strong>:yapacağımız matematiksel işlem) şeklinde yapıyoruz.Aşağıdaki örneklere bakalım.</p>
+<p><strong>TOPLAMA</strong>
+</p>
+<pre>$ echo $((50+30))</pre>
+<pre>80</pre>
+<strong>ÇIKARMA</strong>
+<pre>$ echo $((50-30))</pre>
+<pre>20</pre>
+<strong>ÇARPMA</strong>
+<pre>$ echo $((50*30))</pre>
+<pre>1500</pre>
+<strong>BÖLME</strong>
+<pre>$ echo $((60/30))</pre>
+<pre>2</pre>
+Böyle yaptığımız yaptığımız  tam bölünmeyen,sonucu ondalık olan sayıları size yine tam olarak gösterecektir.Mesela ;
+<pre>$ echo $((70/30))</pre>
+<pre>2</pre>
+Gördüğünüz gibi 70'in 30'a bölümü ondalık bir sayı olduğu için bize tam ifadesini yuvarlayarak verdi.Eğer tam bölünmeyenlerde yada karışık matematik işlemlerinde tam sonucu almak istiyorsak <strong>"bc" </strong>komutunu kullanmalıyız.Aşağıda basit örneklere bakınız.
+<pre>$ echo "scale=5; 5/2"|bc</pre>
+<pre>2,50000</pre>
+<pre>$ echo "scale=70; 70/30"|bc</pre>
+<pre>2.33333333333333333333333333333333333333333333333333333...</pre>
+Gördüğünüz gibi sonucu tam olmayan ve karışık matematiksel işlemlerde yukardaki gibi <strong>"bc"</strong> komutunu kullanıyoruz.
+<p><strong>ÜS ALMA</strong>
+</p>
+<pre>$ echo $((2**3))</pre>
+<pre>8</pre>
+Üs alma işlemi de yukarda görüldüğü gibi .
+<p>Kolay gelsin.</p>
+<p>Örnek ekran Görüntüsü:</p>
+<p><a href="http://img641.imageshack.us/img641/8773/ekrangoruntusu.png"><img title="Konsolda hesap yapmak" src="http://img641.imageshack.us/img641/8773/ekrangoruntusu.png" alt="" width="490" height="323"></a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ozgur-olmayan-paketler/" class="u-url">Özgür olmayan paketler</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/ozgur-olmayan-paketler/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-26T02:40:37+02:00" title="2010-01-26 02:40">2010-01-26 02:40</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/ozgur-olmayan-paketler/#disqus_thread" data-disqus-identifier="cache/posts/ozgur-olmayan-paketler.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<strong>Debian GNU/Linux </strong>tamamen özgür ve <strong>GNU</strong> felsefesine en çok dikkat bir dağıtım.Eğer sizde Debian GNU/Linux kullanıyorsunuz VRMS ile sissteminizde özgür olmayan paketleri listeleyebilirsiniz."VRMS" <em>Bdale Garbee</em> tarafından <strong>Perl</strong> ile yazılmış Debian sisteminiz üzerinde konsol üzerinde özgür olmayan paketleri listeler.İsmi neden "VRMS" derseniz açılımı "<em>Virtual Richard M. Stallman</em>" .RMS bilgisayarda dahi özgür olmayan paketleri gözünüze sokuyor!
+<p>VRMS'i kurmak için;</p>
+<p><strong>$ sudo aptitude install vrms</strong></p>
+<p>Sistemizde çalıştırmak ve paketleri listelemek içinse konsola "vrms" yazmanız yeterli.Mesela  benim sistemimdeki özgür olmayan paket listesi:
+</p>
+<blockquote>Non-free packages installed on zenit
+<p>rar                          Archiver for .rar files
+unrar                     Unarchiver for .rar files (non-free version)</p>
+<p>Contrib packages installed on zenit</p>
+<p>flashplugin-nonfree           Adobe Flash Player - browser plugin
+msttcorefonts                     transitional dummy package
+ttf-mscorefonts-installer    Installer for Microsoft TrueType core fonts</p>
+<p>2 non-free packages,   0.1% of 1709 installed packages.
+3 contrib packages,     0.2% of 1709 installed packages.</p>
+</blockquote>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/nexenta-os/" class="u-url">Nexenta OS</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/nexenta-os/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-25T16:36:57+02:00" title="2010-01-25 16:36">2010-01-25 16:36</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/nexenta-os/#disqus_thread" data-disqus-identifier="cache/posts/nexenta-os.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p><strong>Nexenta GNU/OpenSolaris</strong> kökeni Amerika olan, ücretsiz ve açık kaynak kodlu OpenSolaris çekirdeğini kullanan işletim sistemidir.Aslında Nexenta OpenSolaris ve Ubuntu'nun melez halidir.Bu dağıtım paket yöneticisi olarak Ubuntu ve Debian GNU/Linux'da kullandığımız Advanced Packaging Tool(APT)'yi kullanmaktadır.Şuan İntel ve AMD 32/64 bit platformlarını desteklemektedir ve bir Kurulan CD ile sisteminize yükleyebilirsiniz.</p>
+<p>Nexenta OS kurulumu Ubuntu kurulumuna çok benzemekte ve oldukça kolaydır.Kurulum ile birlikte GNU programları ve araçlarıyla birlikte yüklenmektedir.Bu işletim sistemi tamamen bir Linux dağıtımı değildir.Bu yüzden Linux'den ayrı olan çekirdeksel farklılık komutlardan,işleyişe kadar bazı değişiklikler göstermektedir.Örneğin Linux'ta kullandığımız komutlar Nexenta OS'da çalışmamaktadır.</p>
+<p>En son kararlı sürümü <strong>Nexenta 2.0</strong>'nin bazı  özellikleri:</p>
+<ul>
+<li><em>OpenSolaris Çekirdek</em></li>
+<li><em>Ubuntu 8.10 kökenli ve uygulamaları</em></li>
+<li><em>13,000'den fazla hazır paket</em></li>
+<li><em>dpkg/apt, gcc, binutils, coreutils, perl, python, Ruby, Qt libs, GTK libs</em></li>
+<li><em>Server uygulamaları ve  SMF desteği</em></li>
+</ul>
+<p>gibi birçok özelliklerle birlikte geliyor.Nexenta 2.0 Kararlı Sürüm'ü indirmek için <a href="http://www.nexenta.org/releases/nexenta-core-platform_2.0-b104_x86.iso.zip">buradan</a> .</p>
+<p>Nexenta Os'un en son hazır sürümü  <strong>Nexenta 3.0 Alpha</strong>'yı indirmek içinse <a href="http://www.nexenta.org/releases/nexenta-core-platform_3.0-b131-alpha4_x86.iso.zip">buradan</a> .</p>
+<p>Daha fazla bilgi almak için resmi sitesine <a href="http://www.nexenta.org/">buradan</a> .</p>
+<p>Örnek ekran Görüntüleri:</p>
+<p><a href="http://www.david-web.co.uk/blog/wp-content/uploads/2006/07/nexenta4.png"><img title="Nexenta OS" src="http://www.david-web.co.uk/blog/wp-content/uploads/2006/07/nexenta4.png" alt="" width="384" height="288"></a></p>
+<p><a href="http://upload.wikimedia.org/wikipedia/commons/4/4f/NexentaOS_desktop.png"><img title="Nexenta OS 2" src="http://upload.wikimedia.org/wikipedia/commons/4/4f/NexentaOS_desktop.png" alt="" width="384" height="288"></a></p>
+<p><a href="http://img259.imageshack.us/img259/5007/xfce4diffbackgroundgx8.png"><img title="Nexenta OS 3" src="http://img259.imageshack.us/img259/5007/xfce4diffbackgroundgx8.png" alt="" width="384" height="288"></a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ucretsiz-ve-yasal-muzik-jamendo/" class="u-url">Ücretsiz ve Yasal Müzik "Jamendo"</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/ucretsiz-ve-yasal-muzik-jamendo/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-23T17:32:35+02:00" title="2010-01-23 17:32">2010-01-23 17:32</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/ucretsiz-ve-yasal-muzik-jamendo/#disqus_thread" data-disqus-identifier="cache/posts/ucretsiz-ve-yasal-muzik-jamendo.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p><a href="http://nicolashairon.fr/images/screenshots/jamendo/jamendo.png"><img title="Jamendo " src="http://nicolashairon.fr/images/screenshots/jamendo/jamendo.png" alt="" width="360" height="225"></a></p>
+<p>"Jamendo" ücretsiz,yasal ve limitsiz bir müzik portalı.Adını iki müzik teriminin birleşiminden(jam ve crescendo) almış.İçeriğindeki albümler ve parçalar [wiki]Creative Commons[/wiki] lisansı altında paylaşıma sunuluyor.Bu müzik portalında online olarak müzik dinleyeceğiniz gibi beğendiğiniz,istediğiniz albümü bilgisayarınıza yasal olarak indiribilirsiniz.İsterseniz albümü de paylaşabilirsiniz.</p>
+<p>2005 yılında kurulan Jamendo müzik portalı içeriğinde 13,000'den fazla artists 25,000'den fazla da albüm bulunuyor.Albüm formatları <strong>MPEG 3</strong> ve <strong>OGG</strong> olarak saklanıyor.Aradığınız her türden müziği listelere ayrılmış şekilde bulup dinleyebilirsiniz.Aynı zamanda "Top 100 track,"Top 100 Collector's item" gibi sitede en çok dinlenen ve indirilen albümlere ulaşılabilir.</p>
+<p>Tam Linux tarzında olan  bu sistem Rhythmbox müzik çalıcısında hazırda gelen jamendo eklentisi ile tarayıcıya ihtiyaç olmadan müzik çalar üzerinden albümleri dinleyebilir,arayabilir ve bilgisayarlarınıza indirebilirsiniz.Totem,Songbird ve Amarok müzik uygulamalarınında jamendo müzik eklentisi mevcuttur.</p>
+<p>Jamendo'ya ulaşmak,müziğin keyfini çıkarmak için <a href="http://www.jamendo.com">buraya</a> girebilirsiniz .</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ubuntu-satanic-edition/" class="u-url">Ubuntu Satanic Edition</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/ubuntu-satanic-edition/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-22T23:33:50+02:00" title="2010-01-22 23:33">2010-01-22 23:33</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/ubuntu-satanic-edition/#disqus_thread" data-disqus-identifier="cache/posts/ubuntu-satanic-edition.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p><img title="Ubuntu Satanic Edition" src="http://ubuntusatanic.org/wallpapers/SE-Runes.jpg" alt="" width="400" height="280"></p>
+<p>İlk gördüğümüzde biraz ilginç gelecek bir linux dağıtımı "<em>Ubuntu Satanic Edition</em>".Fakat popüler linux dağıtımı Ubuntu'nun artık <strong>Christian</strong> ve <strong>Muslim</strong> sürümlerinden sonra bunun gelmesi biraz normal gözükebilir.Bu linux dağıtımı isminden anlaşılacağı satanist bir propaganda değilde kullanıcılarına klasik temalardan daha farklı gotik ve dark temalar ,ayrıca içinde bir tane Heavy metal albümünü ücretsiz sunuyor.Zaten bir linux dağıtımının altında daha farklı şeyler aramak anlamsız.</p>
+<p>Ubuntu tabanlı bu dağıtım Heavy metal ve gotik tarzdan hoşlananlar için iyi bir tercih.Aynı zamanda artık metalcilerin Linux'a geçmeleri içinde iyi bir neden ! Bu dağıtım hali hazırda ubuntu kullananlar için doğrudan bir geçiş sunuyor.Bu geçiş için ubuntu kullanıcılarının APT kaynak listelerine " Ubuntu SE" kaynak adresini  eklemeleri ve normal sürüm yükseltmesi gibi komut vermeleri yeterli.Ubuntu'dan Ubuntu Satanic Edition'a geçiş dökümanına <a href="http://ubuntusatanic.org/quick-install.php">buradan</a> ulaşabilirsiniz.Ayrıca bu dağıtımı kurmadan da temalarını,masaüstü resimlerini ve icon setini <a href="http://ubuntusatanic.org/download.php">bu adresten</a> indiribilir kendi dağıtımınızda deneyebilirsiniz.</p>
+<p>"<strong>Ubuntu SE"</strong> Live Cd'sini indirmek için <a href="http://ubuntusatanic.org/livecd.php">buradan</a> .</p>
+<p><strong>"Ubuntu SE"</strong> hakkında daha fazla almak için <a href="http://ubuntusatanic.org">buradan</a> .</p>
+<p><strong><br></strong></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/devil-linux/" class="u-url">Devil Linux</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/devil-linux/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-21T15:05:35+02:00" title="2010-01-21 15:05">2010-01-21 15:05</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/devil-linux/#disqus_thread" data-disqus-identifier="cache/posts/devil-linux.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<a href="http://www.devil-linux.org/documentation/1.0.x/images/logo.png"><img title="Devil Linux" src="http://www.devil-linux.org/documentation/1.0.x/images/logo.png" alt="" width="230" height="252"></a>
+<p><strong>Devil Linux</strong> bootable ve Cdrom ve ya USB diskten çalışabilen bir linux dağıtımıdır.İçinde gelen yazılımlarla  <em>firewall,router,web server,ftp server,Mail server</em> kurabilirsiniz.Devil Linux bir artı özelliği konfigürasyon dosyalarını ayrı bir hardisk ve ya bir medya üzerinde saklayarak Devil Linux boot edildiğinde bu konfigürasyon dosyalarının yolu gösterilerek kendi ayarlarınızı yükleyebilirsiniz..Ya da Devil Linux'u Coyote Linux gibi <strong>firewall sunucusu</strong> olarak da kullanabilirsiniz.Fakat Devil Linux dağıtımında grafik arabirim henüz bulunmamaktadır.</p>
+<p>Devil Linux hakkında daha geniş bilgi almak için <a href="http://www.devil-linux.org/product/features.php">buradan</a> .</p>
+<p>Son sürümünü indirmek için <a href="ftp://ftp.tuwien.ac.at/platform/linux/devil-linux/releases/devil-linux-1.4RC2-i686.tar.bz2">buradan</a> .</p>
+<p><strong>Örnek Ekran görüntüleri:</strong></p>
+<p><a href="http://www.devil-linux.org/images/screenshots/boot.png"><img title="Devil Linux" src="http://www.devil-linux.org/images/screenshots/boot.png" alt="" width="384" height="288"></a></p>
+<p><a href="http://www.devil-linux.org/images/screenshots/boot_upgrade2.png"><img title="Devil Linux II" src="http://www.devil-linux.org/images/screenshots/boot_upgrade2.png" alt="" width="384" height="288"></a></p>
+<p><a href="http://www.devil-linux.org/images/screenshots/nothing_running.png"><img title="Devil Linux III" src="http://www.devil-linux.org/images/screenshots/nothing_running.png" alt="" width="384" height="288"></a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/civilization-of-ottoman/" class="u-url">Civilization Of Ottoman </a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/civilization-of-ottoman/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-01-20T18:44:04+02:00" title="2010-01-20 18:44">2010-01-20 18:44</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/civilization-of-ottoman/#disqus_thread" data-disqus-identifier="cache/posts/civilization-of-ottoman.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p></p>
+<p>"<em>Civilization Of Ottoman</em>"(Osmanlı Medeniyeti) tamamen gönüllü geliştiriciler tarafından yazılan ve açık kaynak kodlu Osmanlı Medeniyetini konu alan yerli bir oyun.Bu oyunun daha hızlı geliştirilmesi ve ilerlemesi için tamamen gönüllülük şiarlıyla geliştiriciler aramakta ve geliştirmek isteyen yetenekli öğrencilere destek sağlamak amacı ile kurulan Türkiye Oyun Geliştirici Öğrenciler Grubu adı altında geliştirilmektedir.</p>
+<p><em>Oyun hakkında detalı bilgi için <a href="http://www.civilizationofottoman.com/Page/Hakkimizda.aspx">buradan</a> .</em></p>
+<p><em>Oyuna gönüllü olarak destek vermek için <a href="http://www.civilizationofottoman.com/CareerForm.aspx">buradan</a> .</em></p>
+<p><strong><em>Örnek Ekran Görüntüleri:</em></strong></p>
+<p><a href="http://www.civilizationofottoman.com/forum/uploads/coo2menu.jpg"><img title="Civilization of Ottoman" src="http://www.civilizationofottoman.com/forum/uploads/coo2menu.jpg" alt="" width="483" height="386"></a></p>
+<p><a href="http://photos-f.ak.fbcdn.net/hphotos-ak-snc3/hs107.snc3/15457_345597990206_690005206_9786263_4410305_n.jpg"><img class=" " title="Civilization of Ottoman II" src="http://photos-f.ak.fbcdn.net/hphotos-ak-snc3/hs107.snc3/15457_345597990206_690005206_9786263_4410305_n.jpg" alt="" width="483" height="386"></a></p>
+<p><a href="http://friendfeed-media.com/e1cc0f44522c4930096b2c7d0400525b43cc4ef5"><img title="Civilization of Ottoman III" src="http://friendfeed-media.com/e1cc0f44522c4930096b2c7d0400525b43cc4ef5" alt="" width="480" height="360"></a></p>
+<p><a href="http://friendfeed-media.com/12c1a9c8a6757f0b4b7eae36b615bd649a97f236"><img title="Civilization of Ottoman IV" src="http://friendfeed-media.com/12c1a9c8a6757f0b4b7eae36b615bd649a97f236" alt="" width="483" height="386"></a></p>
+</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index-10.html" rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-8.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<p><html><body><p>“embdemid GNU/Linux” is an embedded-linux project based on emdebian for mobile internet devices like Compal JAX 10,Aigo P8860,Aigo P8888."embdemid linux" can be installed on usb flash memories.It's an embedded distro which can perfectly work wired and wireless internet on Compal and Aigo MIDs.My tryings are still continue to run bluetooth function.If you have got a MID too, i strongly recommend you to try this distro.”embdemid linux” was configured for MID but with a couple of changes you can also work it on all x86 platforms.You can download ”embdemid linux” from “<a href="http://sourceforge.net/projects/embdemid/" target="_blank">http://sourceforge.net/projects/embdemid/</a>”
+</p><h3>Installing Embdemid Linux on USB Flash Memory:</h3>
+<strong>1-</strong>Firstly download the file named "embdemid-0.0.1.tar.bz2(56 MB)" from the internet address above.Then extract it;</p>
+<p>$ <em>tar xjvf  embdemid-0.0.1.tar.bz2</em></p>
+<p><strong>2-</strong>Prepare our USB Flash memory for downloading.(it should at least 180 MB space)</p>
+<h1><em>su</em></h1>
+<h1><em> fdisk -l</em></h1>
+<h1><em>umount /dev/sda1</em> (if usb flash disc mounted the system)</h1>
+<p>I'm using the “/dev/sda” device as a sample.It can be different in your system.</p>
+<h1><em>fdisk /dev/sda</em></h1>
+<p><em>&gt; d </em>(with this command erase the previous partitions.if there is more than one partition erase them all with ” d ”)</p>
+<p><em>&gt;p</em> (with this command, be sure that all partitions in flash disc are erased)</p>
+<p><em>&gt; n ,  p  ,  1 , enter , enter</em> (make these commands step by step.don't forget we are in fdisc programme!)</p>
+<p><em>&gt; p </em>(be sure that our partition is emerged)</p>
+<p><em>&gt;w</em></p>
+<p><em>3-</em>If you applied the steps above, partition which is in your flash disc need to be ready and we can format this partition with ext2.</p>
+<h1><em>mkfs.ext2 /dev/sda1</em></h1>
+<h1><em>tune2fs -i 0 /dev/sda1</em></h1>
+<p><strong>4-</strong>Mount our USB Flash disc to the system.</p>
+<h1><em>mkdir /mnt/flash</em></h1>
+<h1><em>mount -t ext2 /dev/sda1 /mnt/flash</em></h1>
+<p><strong>5-</strong>Copy the downloaded “embdemid-0.0.1″ contents on flash disc.</p>
+<h1><em>cp -r /your-path/embdemid-0.0.1/* /mnt/flash</em></h1>
+<p><em>6-</em>Finally, we load a group on flash disc.</p>
+<h1><em>echo ‘(hd0) /dev/sda’ &gt; /mnt/flash/boot/grub/device.map</em></h1>
+<h1><em>grub-install –root-directory=/mnt/flash /dev/sda</em></h1>
+<p>Note:There are two default users:
+<strong>1-root
+password:embedded
+2-linux
+password:123456</strong></p>
+<p>All steps are done, your system is ready, mount the flash disc to MID and test it.Have fun:)</body></html></p>

@@ -1,0 +1,65 @@
+<dl>
+<dt><strong>Kullanilan yazilimlar:</strong></dt>
+<dd><ul>
+<li><p>Centos Linux 7.2</p>
+<blockquote>
+<ul class="simple">
+<li><p>ipa-client</p></li>
+<li><p>ipa-admin-tools</p></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Kurulum Oncesi Hazirlik:</strong></p>
+<pre class="code bash"><a name="rest_code_be49731c5bf145c9a256781147932cb9-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
+</pre><p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
+<blockquote>
+<ol class="arabic simple">
+<li><p>Hostname</p></li>
+<li><p>/etc/hosts</p></li>
+<li><p>Sistem update</p></li>
+</ol>
+</blockquote>
+<p><em>Hostname:</em></p>
+<pre class="code bash"><a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
+</pre><p><em>/etc/hosts:</em></p>
+<pre class="code bash"><a name="rest_code_15c38659790447f8a288f092a83e8996-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
+<a name="rest_code_15c38659790447f8a288f092a83e8996-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
+</pre><p><em>Sistem update:</em></p>
+<pre class="code bash"><a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"></a><span class="c1"># yum update -y</span>
+</pre><p><strong>Kurulum:</strong></p>
+<ul class="simple">
+<li><p>ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
+</pre><ul class="simple">
+<li><p>ipa-client kurulumu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_1910355d47d14b69883d616125586182-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
+</pre><p><strong>IPA Client ve Kerberos Ticket Testi:</strong></p>
+<ul class="simple">
+<li><p>FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_1389b757d7f3440295bd446966ad571c-1"></a><span class="c1"># getent passwd admin</span>
+<a name="rest_code_1389b757d7f3440295bd446966ad571c-2"></a><span class="c1"># getent group admins</span>
+</pre><ul class="simple">
+<li><p>Kerberos'tan ticket alimi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"></a><span class="c1"># kinit admin</span>
+</pre><ul class="simple">
+<li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"></a><span class="c1"># klist</span>
+</pre><ul class="simple">
+<li><p>Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;</p></li>
+</ul>
+<p><em>/etc/resolv.conf:</em></p>
+<pre class="code bash"><a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"></a>search piesso.local
+<a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"></a>nameserver <span class="m">172</span>.16.183.128
+</pre>

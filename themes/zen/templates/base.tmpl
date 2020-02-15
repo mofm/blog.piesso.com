@@ -1,15 +1,18 @@
 ## -*- coding: utf-8 -*-
-<%namespace name="arusahni" file="arusahni_helper.tmpl" import="*" />
+<%namespace name="base" file="base_helper.tmpl" import="*"/>
+<%namespace name="header" file="base_header.tmpl" import="*"/>
 <%namespace name="footer" file="base_footer.tmpl" import="*"/>
-<%namespace name="annotations" file="annotation_helper.tmpl"/>
 ${set_locale(lang)}
-${arusahni.html_headstart()}
+### <html> tag is included by base.html_headstart
+${base.html_headstart()}
 <%block name="extra_head">
 ### Leave this block alone.
 </%block>
 ${template_hooks['extra_head']()}
 </head>
 <body>
+    <a href="#page-content" class="sr-only sr-only-focusable">${messages("Skip to main content")}</a>
+    ${template_hooks['page_header']()}
     <section class="social">
         <ul>
         %if logo_url:
@@ -19,7 +22,12 @@ ${template_hooks['extra_head']()}
                 </a>
             </li>
         %endif
-        ${arusahni.html_navigation_links()}
+        ${base.html_navigation_links()}
+        %if search_form:
+            <div class="searchform" role="search">
+                ${search_form}
+            </div>
+        %endif
         </ul>
     </section>
     <section class="page-content">
@@ -28,15 +36,22 @@ ${template_hooks['extra_head']()}
              ${footer.html_footer()}
         </div>
     </section>
+    ${base.late_load_js()}
+    <!-- fancy dates -->
+    <script>
+    moment.locale("${momentjs_locales[lang]}");
+    fancydates(${date_fanciness}, ${js_date_format});
+    </script>
+    <!-- end fancy dates -->
+    <%block name="extra_js"></%block>
+    <script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
     ${body_end}
     ${template_hooks['body_end']()}
-    ${arusahni.late_load_js()}
-    <%block name="extra_js">
-        <script type="text/javascript">
-            $(function(){
-                $('.timeago').timeago();
-            });
-        </script>
-    </%block>
 </body>
 </html>

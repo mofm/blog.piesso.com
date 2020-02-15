@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about libvirt)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/libvirt.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Libvirt ve OpenvSwitch</title><link>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
+once bu iki yazilim nedir, ne degildir onlari taniyalim.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Libvirt&lt;/strong&gt; &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id3" id="id1"&gt;1&lt;/a&gt; , Redhat tarafindan 2005'ten bu yana gelistirilmeye devam eden sanallastirma ortamlari icin daemon, API ve
+yonetim aracidir.&lt;/p&gt;
+&lt;img alt="/images/libvirt_hypervisors.png" src="https://blog.piesso.com/images/libvirt_hypervisors.png"&gt;
+&lt;p&gt;Libvirt bilinen bir cok hypervisor'u desteklemektedir. Iste bunlardan bazilari:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;KVM&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LXC&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;OpenVZ&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xen&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;User-mode Linux (UML)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Virtualbox&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;VMware ESX&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;VMware Workstation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hyper-V&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PowerVM&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Parallels Workstation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Bhyve&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;OpenvSwitch&lt;/strong&gt; &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id4" id="id2"&gt;2&lt;/a&gt; , kisaca sanal multilayer network switchtir. OpenvSwitch, bir SDN switch olarak hypervisor uzerindeki sanal makineleri
+fiziksel olarak ayri bulunan network switchler ile entegre calisarak yonetebilir.&lt;/p&gt;
+&lt;img alt="/images/Distributed_Open_vSwitch_instance.png" src="https://blog.piesso.com/images/Distributed_Open_vSwitch_instance.png"&gt;
+&lt;p&gt;Birden fazla protokolu desteklemektedir:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;NetFlow&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;sFlow&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SPAN&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RSPAN&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CLI&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LACP&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;802.1ag&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="kurulum"&gt;
+&lt;h2&gt;Kurulum:&lt;/h2&gt;
+&lt;p&gt;Paket yoneticiniz ile libvirt ve openvswitch kurulumunu yapalim. Siz kendi dagitiminiza ve paket yoneticinize gore kurulumu yapabilirsiniz.
+Gentoo uzerinde, libvirt icin gerekli "USE FLAG"lari aktif edip kurulumunu yapalim.Binary dagitimlar icin buna gerek yoktur. Siz direk paket yoneticiniz ile kurulumu yapin.&lt;/p&gt;
+&lt;p&gt;/etc/portage/package.use/libvirt:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;app-emulation/libvirt macvtap vepa qemu virt-network&lt;/pre&gt;
+&lt;p&gt;Simdi kurulumu yapabiliriz.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_233e814fd59049d6bc8709f91c52d60e-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# emerge -av libvirt&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;OpenvSwitch kurulumunu yapalim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_280c897323ec40489e2938c04a8e15e7-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# emerge -av openvswitch&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Sistem baslangici icin bu servisleri enable edelim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add ovsdb-server default&lt;/span&gt;
+&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add ovs-vswitchd default&lt;/span&gt;
+&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add libvirtd default&lt;/span&gt;
+&lt;a name="rest_code_190780bdf81940b4aaaca45332b7af49-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# rc-update add libvirt-guests default&lt;/span&gt;
+&lt;/pre&gt;&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;openvswitch ve kvm kernel modullerinin yuklendiginden emin olunuz. Kernel uzerinde aktif etmek icin &lt;a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU_with_Open_vSwitch_network"&gt;openvswitch&lt;/a&gt; , &lt;a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU"&gt;qemu&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Sistem acilisinda bu modullerin yuklenmesi icin&lt;/p&gt;
+&lt;p&gt;/etc/conf.d/modules:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;modules_4="openvswitch kvm kvm_intel tun"&lt;/pre&gt;
+&lt;p&gt;Servisleri baslatalim.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/ovsdb-server start&lt;/span&gt;
+&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/ovs-vswitchd start&lt;/span&gt;
+&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/libvirtd start&lt;/span&gt;
+&lt;a name="rest_code_c806b4546a5149f58d217bbe04934684-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# /etc/init.d/libvirt-guests start&lt;/span&gt;
+&lt;/pre&gt;&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id3"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://libvirt.org/"&gt;https://libvirt.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id4"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id2"&gt;2&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="http://openvswitch.org"&gt;http://openvswitch.org&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>kvm</category><category>libvirt</category><category>openvswitch</category><category>qemu</category><guid>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</guid><pubDate>Sun, 14 Jan 2018 21:13:52 GMT</pubDate></item></channel></rss>

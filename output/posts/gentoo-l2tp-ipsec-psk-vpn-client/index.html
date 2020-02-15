@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Gentoo L2TP/IPSec PSK VPN Client | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/gentoo-l2tp-ipsec-psk-vpn-client/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../universitelerde-ozgur-yazilim-kullanim-rehberi/" title="Üniversitelerde Özgür Yazılım Kullanım Rehberi" type="text/html">
+<link rel="next" href="../enterasys-n-ve-x-serisi-konsol-baglantisi/" title="Enterasys N/X Serisi Konsol Bağlantısı" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Gentoo L2TP/IPSec PSK VPN Client">
+<meta property="og:url" content="https://blog.piesso.com/posts/gentoo-l2tp-ipsec-psk-vpn-client/">
+<meta property="og:description" content="VPN çözümü olarak L2TP/IPSec kullanan Gentoo Linux kullanıcıları için kısaca client yapılandırma adımları:
+
+İlk olarak 'portage' ağacımızı güncelleyelim.
+
+# emerge --sync
+veya
+# emerge-webrsync
+
+Gerek">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2012-12-30T03:19:34+02:00">
+<meta property="article:tag" content="Genel">
+<meta property="article:tag" content="gezegen">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Gentoo L2TP/IPSec PSK VPN Client</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2012-12-30T03:19:34+02:00" itemprop="datePublished" title="2012-12-30 03:19">2012-12-30 03:19</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/gentoo-l2tp-ipsec-psk-vpn-client.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
+            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>VPN çözümü olarak L2TP/IPSec kullanan Gentoo Linux kullanıcıları için kısaca client yapılandırma adımları:</p>
+<ol>
+<li>İlk olarak 'portage' ağacımızı güncelleyelim.</li>
+</ol>
+<p><code># emerge --sync</code>
+veya
+<code># emerge-webrsync</code></p>
+<ol>
+<li>Gerekli olan paketleri kuralım."<strong><em>openswan</em></strong> ve <strong><em>xl2tpd</em></strong>"</li>
+</ol>
+<p><code># emerge openswan xl2tpd</code></p>
+<p><strong>NOT:</strong> VPN bağlantısı(<em>örnek:authentication,encryption,compression gibi</em>) için kernel'de gerekli destekleri vermek gerekmektedir.Aşağıdaki seçenekleri kernel konfigürasyonunuzda aktif edip etmediğinizi kontrol edin.</p>
+<p>CONFIG_INET_AH=y
+ CONFIG_INET_ESP=y
+ CONFIG_INET_IPCOMP=y
+ CONFIG_NET_KEY=y
+ CONFIG_XFRM_IPCOMP=y
+ CONFIG_INET_XFRM_MODE_TRANSPORT=y
+ CONFIG_INET_XFRM_MODE_TUNNEL=y</p>
+<ol>
+<li>Paket kurulumları bittikten sonra VPN bilgilerimize göre konfigürasyonları yapmaya başlayalım.Aşağıda örnek VPN sunucu ve istemci bilgileri verilmiş ve bu bilgilere göre ayarlamalar yapılmıştır.Sizde kendi VPN sunucu ve istemci bilgilerinize göre o kısımları değiştiriniz.</li>
+</ol>
+<p></p>
+<blockquote>
+VPN Sunucu Public IP: 195.202.46.45
+VPN Sunucu Local IP: 10.1.40.40 ##### Firewall arkasındaki iç IP'si.Tabiki eğer NAT yapılıp,iç IP'si varsa.
+Client Local IP: 192.168.2.80<br>
+Interface: wlan0 ##### Kablosuz Arabirimi</blockquote>
+<p><strong>"/etc/ipsec.conf"</strong> dosyasını aşağıdaki gibi düzenleyin.(Kendi IP ve arayüz bilgilerinize göre değiştirmeyi unutmayın!)</p>
+<blockquote>config setup
+        virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12
+        nat_traversal=yes
+        protostack=netkey
+        oe=no
+        plutoopts="--interface=wlan0"
+
+conn L2TP-PSK
+        authby=secret
+        pfs=no
+        auto=add
+        keyingtries=3
+        dpddelay=30
+        dpdtimeout=120
+        dpdaction=clear
+        rekey=yes
+        ikelifetime=8h
+        keylife=1h
+        type=transport
+        left=192.168.2.80
+        leftnexthop=%defaultroute
+        leftprotoport=17/1701
+        right=195.202.46.45
+        rightid=10.1.40.40
+        rightprotoport=17/1701</blockquote>
+
+<p>Burada "<em>rightid=10.1.40.40</em>" şeklinde VPN sunucumuzun Firewall arkasındaki IP bilgilerini "<strong>INVALID_ID</strong>" hatası almamaniz için girmeniz gerekmektedir.Tekrar not düşeyim eğer Firewall arkasında ve NAT'lanmışsa gerek vardır."<em>/etc/ipsec.conf</em>" dosyasını düzenledikten sonra daha önce size verilen IPSEC Pre-Shared keyi "<strong>/etc/ipsec.secrets</strong>" dosyasını oluşturarak aşağıdaki gibi girelim:</p>
+<p><strong>"/etc/ipsec.secrets"</strong></p>
+<blockquote>
+192.168.2.80 10.1.40.40 : PSK "vpn_sunucunuzun_secret_keyi"</blockquote>
+
+<ol>
+<li>Bu aşamada '<em>portage</em>' ile kurulumunu yaptığımız "<strong>xl2tpd</strong>" paketinin init scripti küçük bir eksikle gelmektedir.Bu eksikliği manuel kendimiz tamamlayalım.</li>
+</ol>
+<p>"<strong>/etc/init.d/xl2tpd</strong>" dosyasini açın ve </p>
+<p><code>start() {
+        checkconfig || return 1</code></p>
+<p>satırından sonra aynı girintide aşağıdaki satırları ekleyin.</p>
+<pre class="code literal-block"><span></span><code>    <span class="nt">&lt;code&gt;</span>if !([ -f /var/run/xl2tpd/l2tp-control ]); then
+            mkdir -p /var/run/xl2tpd
+            touch /var/run/xl2tpd/l2tp-control
+    fi<span class="nt">&lt;/code&gt;</span>
+</code></pre>
+
+
+<p>Şu şekilde görünmeli;</p>
+<p><code>start() {
+        checkconfig || return 1</code></p>
+<h6>############l2tp-control dosyasi olusturmak icin eklendi.</h6>
+<pre class="code literal-block"><span></span><code><span class="err">    if !([ -f /var/run/xl2tpd/l2tp-control ]); then</span>
+<span class="err">            mkdir -p /var/run/xl2tpd</span>
+<span class="err">            touch /var/run/xl2tpd/l2tp-control</span>
+<span class="err">    fi</span>
+</code></pre>
+
+
+<h6></h6>
+<pre class="code literal-block"><span></span><code><span class="err">    ebegin "Starting xl2tpd"</span>
+<span class="err">    start-stop-daemon --start --quiet --exec /usr/sbin/xl2tpd</span>
+<span class="err">    eend $?</span>
+</code></pre>
+
+
+<p>}
+</p>
+<p>ve dosyamızı kaydedip kapatalım.</p>
+<ol>
+<li>"<strong>/etc/xl2tpd/xl2tpd.conf</strong>" dosyasını aşağıdaki gibi satırları ekleyip kaydedelim.</li>
+</ol>
+<blockquote>[lac vpn-connection]
+lns = 195.202.46.45
+ppp debug = yes
+pppoptfile = /etc/ppp/options.l2tpd.client
+length bit = yes</blockquote>
+
+<ol>
+<li>"<strong>/etc/ppp/options.l2tpd.client</strong>" dosyasını aşağıdaki gibi satırları ekleyip kaydedelim.Dosyanin son iki satırında bulunan '<em>name</em>' ve '<em>password</em>' satırlarına VPN erişimi için kullanacağınız kullanıcı adı ve parolanızı giriniz.</li>
+</ol>
+<blockquote>ipcp-accept-local
+ipcp-accept-remote
+refuse-eap
+require-mschap-v2
+noccp
+noauth
+idle 1800
+mtu 1410
+mru 1410
+defaultroute
+usepeerdns
+debug
+lock
+connect-delay 5000
+name vpnkullaniciadi
+password vpnerisimparolasi</blockquote>
+
+<ol>
+<li>Servisleri başlatalım.</li>
+</ol>
+<p><code># /etc/init.d/ipsec start</code></p>
+<h2>/etc/init.d/xl2tpd start</h2>
+<ol>
+<li>Gerekli ayarlamalar bitti.VPN bağlantısını aşağıdaki komutları vererek başlatalım;</li>
+</ol>
+<p><code># ipsec auto --up L2TP-PSK</code></p>
+<h2>echo "c vpn-connection" &gt; /var/run/xl2tpd/l2tp-control</h2>
+<ol>
+<li>
+<p><em>"ifconfig,ip link"</em> gibi komutlarla '<strong>ppp</strong>' arayüzünün aktif olup olmadığını ve IP alıp almadığını kontrol edin.</p>
+</li>
+<li>
+<p>Buraya kadar sorunsuz ise routing işlemlerine geçelim.Routing işlemlerini birkaç farklı şekilde yapabiliriz.</p>
+</li>
+</ol>
+<p>Sadece belli IP'leri ya da tek IP'yi VPN ağınıza yönlendirmek isteyebilirsiniz.Örnek olarak sadece <strong>10.1.0.0/16</strong> şeklindeki IP bloğunu VPN ağına yönlendirmek isteyebilirsiniz.Bunun için aşağıdaki gibi routing yapabiliriz.
+<code></code></p>
+<h2>route add -net 10.1.0.0/16 gw 10.1.40.40</h2>
+<p>Eğer tüm trafiği VPN üzerinden geçirmek istersek(bu aşama biraz karmaşık gelebilir ama değil!) aşağıdaki gibi routing yapabiliriz;</p>
+<p><code># route add 195.202.46.45 gw 192.168.2.1 wlan0</code></p>
+<p>Burada "195.202.46.45" VPN sunucumuzun Public IP'si."192.168.2.1" ise internete bağlı olduğumuz öntanımlı ağ geçidimiz(Kendi ağ geçidinizi öğrenmek için 
+<code># route -n |grep "^0.0.0.0" |awk '{print $2}'</code>
+komutunu kullanabilirsiniz.)"wlan0" ise internete bağlı olduğumuz arabirimimiz.Yukardaki komutu verdikten sonra mevcut öntanımlı ağ geçidimizi routing tablosundan silelim.
+<code></code></p>
+<h2>route del default gw 192.168.2.1</h2>
+<p>ve "<strong>ppp</strong>" arayüzünde gördüğümüz VPN sunucunun IP adresini öntanımlı ağ geçidi olarak ayarlayalım.
+<code></code></p>
+<h2>route add default gw 10.1.40.40</h2>
+<p>Bu adımdan sonra tüm trafiği VPN üzerinden geçirebilirsin.</p>
+<p>11.VPN bağlantısını kesmek için;</p>
+<p><code># ipsec auto --down L2TP-PSK</code></p>
+<h2>echo "d vpn-connection" &gt; /var/run/xl2tpd/l2tp-control</h2>
+<h2>/etc/init.d/ipsec stop</h2>
+<h2>/etc/init.d/xl2tpd stop</h2>
+<h2>route del 195.202.46.45 gw 192.168.2.1 wlan0</h2>
+<h2>route add default gw 192.168.2.1</h2>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../universitelerde-ozgur-yazilim-kullanim-rehberi/" rel="prev" title="Üniversitelerde Özgür Yazılım Kullanım Rehberi">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../enterasys-n-ve-x-serisi-konsol-baglantisi/" rel="next" title="Enterasys N/X Serisi Konsol Bağlantısı">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/gentoo-l2tp-ipsec-psk-vpn-client/",
+        disqus_title="Gentoo L2TP/IPSec PSK VPN Client",
+        disqus_identifier="cache/posts/gentoo-l2tp-ipsec-psk-vpn-client.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

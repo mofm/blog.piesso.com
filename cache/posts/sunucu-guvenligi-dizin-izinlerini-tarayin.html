@@ -1,0 +1,8 @@
+<p><html><body><p>Sisteminizde herkes ve grup tarafından yazılabilir dizinler güvenlik açısından büyük bir risk oluşturur.Bu riski ortadan kaldırmak için sistemimizdeki tüm dizinlerin izinlerini tarayın.</p>
+<p><strong>*</strong> Sisteminizde herkes ve grup tarafından yazılabilir dizinleri tarayın:</p>
+<p></p><blockquote>$ find / -type d ( -perm -g+w -o -perm -o+w ) -exec ls -lad {} \;
+</blockquote></p>
+<p><strong>* </strong>Sisteminizde izinleri ayarlanmamış dizinleri tarayın:</p>
+<blockquote>$ find / -type d \( -perm -g+w -o -perm -o+w \) \ -not -perm -a+t -exec ls -lad {} \;</blockquote>
+
+<p></body></html></p>

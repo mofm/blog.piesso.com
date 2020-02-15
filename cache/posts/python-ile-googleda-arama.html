@@ -1,0 +1,29 @@
+<p><html><body><p>Basit bir konsoldan çalıştırabileceğiniz "google içinde arama" programı.Programı konsoldan çalıştırdıktan sonra arayacağınız metayı girip enterladığınızda sonucu o an açık olan tarayıcıda yeni bir tabda ya da default tarayıcınızda açan basit python ile yazılmış program.</p>
+<p>Programı indirmek için <a href="http://linux.piesso.com/programs/google.py">buradan</a></p>
+<p>İndirdikten sonra çalıştırmak için,konsoldan programın bulunduğu dizine geçip,</p>
+<p>$ python google.py  komutunu vermeniz yeterli.</p>
+<p>Programın kaynak kodları ise aşağıdaki gibi:</p>
+<hr>
+<p></p><pre lang="python"></p>
+<h1>!/usr/bin/env python</h1>
+<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>"Yazan: Emre ERYILMAZ"</h1>
+<h1>"Tarih: 28 Aralık 2009"</h1>
+<h1>"İletişim: emre.eryilmaz@linux.org.tr "</h1>
+<h1>"web adresi: http://webs.homelinux.com"</h1>
+<h1>"Google'dan girdiğiniz metayı bulup tarayıcınızda açan basit bir konsol programı"</h1>
+<p>import webbrowser
+while True:
+    print "Çıkış için 'q' tuşuna basın."
+    meta = raw_input("Ara :  ")
+    if meta=="q":
+        break
+    else:
+        pass
+    google = 'http://www.google.com/search?hl=tr&amp;q='
+    adress = ''
+    meta = '+'.join((meta.split(' ')))
+    print meta
+    webbrowser.open(google+meta)
+</pre>
+--------------------------------------------------------------------</body></html></p>

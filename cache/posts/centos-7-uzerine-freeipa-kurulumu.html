@@ -1,0 +1,106 @@
+<p><strong>Kullanilan yazilimlar:</strong></p>
+<ul class="simple">
+<li><p>Centos Linux 7.2</p></li>
+<li><p>ipa-server 4.2.0</p></li>
+<li><p>ipa-server-dns 4.2.0</p></li>
+<li><p>bind-dyndb-ldap 8.0</p></li>
+<li><p>bind 9.9.4</p></li>
+</ul>
+<p><strong>Kurulum Oncesi Hazirlik:</strong></p>
+<dl class="field-list simple">
+<dt>FQDN</dt>
+<dd><p>ipa.piesso.local</p>
+</dd>
+<dt>IP</dt>
+<dd><p>172.16.183.128/24</p>
+</dd>
+<dt>IPA DOMAIN</dt>
+<dd><p>piesso.local</p>
+</dd>
+<dt>IPA NETBIOS</dt>
+<dd><p>PIESSO</p>
+</dd>
+</dl>
+<p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
+<ol class="arabic simple">
+<li><p>Hostname</p></li>
+<li><p>/etc/hosts</p></li>
+<li><p>Statik IP</p></li>
+<li><p>Sistem update</p></li>
+</ol>
+<p><em>1. Hostname:</em></p>
+<pre class="code bash"><a name="rest_code_c280c76801af449b98216dae0f3cc856-1"></a><span class="c1"># hostnamectl set-hostname ipa.piesso.local</span>
+</pre><p><em>2. /etc/hosts:</em></p>
+<pre class="code bash"><a name="rest_code_097fa7cee6354da48e05b0f2e9d8e336-1"></a><span class="m">172</span>.16.183.128 ipa.piesso.local ipa
+</pre><p><em>3. Statik IP:</em></p>
+<p>Ornek statik ip konfigurasyonu &quot;/etc/sysconfig/network-scripts/ifcfg-xxxx&quot;</p>
+<pre class="code bash"><a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-1"></a><span class="nv">ONBOOT</span><span class="o">=</span> yes
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-2"></a><span class="nv">BOOTPROTO</span><span class="o">=</span> none
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-3"></a><span class="nv">IPADDR</span><span class="o">=</span> <span class="m">172</span>.16.183.128
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-4"></a><span class="nv">PREFIX</span><span class="o">=</span> <span class="m">24</span>
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-5"></a><span class="nv">GATEWAY</span><span class="o">=</span> <span class="m">172</span>.16.183.2
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-6"></a><span class="nv">DNS1</span><span class="o">=</span> <span class="m">8</span>.8.8.8
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-7"></a><span class="nv">DNS2</span><span class="o">=</span> <span class="m">8</span>.8.4.4
+<a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-8"></a><span class="nv">DEFROUTE</span><span class="o">=</span> yes
+</pre><p><em>4. Sistem update:</em></p>
+<pre class="code bash"><a name="rest_code_dd216db3cc7d455098e4e12302bef04c-1"></a><span class="c1"># yum update -y</span>
+</pre><p><strong>Kurulum:</strong></p>
+<ul class="simple">
+<li><p>ipa-server, integrated dns, ad trust  ve ldap back-end plugin yazilimlarinin repodan kurulmasi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_4c65531edd234dd88bc4df1814cae498-1"></a><span class="c1"># yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad</span>
+</pre><ul class="simple">
+<li><p>ipa-server kurulumu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_005378183dc742d2aa460184a8d503cb-1"></a><span class="c1"># ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U</span>
+</pre><ul class="simple">
+<li><p>ipa-server kurulumu asagidaki sekilde basari ile biterse firewalld daemonuna gerekli port izinlerinin verilmesi;</p></li>
+</ul>
+<pre class="code console"><a name="rest_code_261edb97f37c4bd091479f52e00225eb-1"></a><span class="go">Restarting the web server</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-2"></a><span class="go">==============================================================================</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-3"></a><span class="go">Setup complete</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-4"></a>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-5"></a><span class="go">Next steps:</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-6"></a><span class="go">      1. You must make sure these network ports are open:</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-7"></a><span class="go">                 TCP Ports:</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-8"></a><span class="go">                   * 80, 443: HTTP/HTTPS</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-9"></a><span class="go">                   * 389, 636: LDAP/LDAPS</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-10"></a><span class="go">                   * 88, 464: kerberos</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-11"></a><span class="go">                   * 53: bind</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-12"></a><span class="go">                 UDP Ports:</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-13"></a><span class="go">                   * 88, 464: kerberos</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-14"></a><span class="go">                   * 53: bind</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-15"></a><span class="go">                   * 123: ntp</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-16"></a><span class="go">      2. You can now obtain a kerberos ticket using the command: &#39;kinit admin&#39;</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-17"></a><span class="go">         This ticket will allow you to use the IPA tools (e.g., ipa user-add)</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-18"></a><span class="go">         and the web user interface.</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-19"></a>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-20"></a><span class="go">Be sure to back up the CA certificate stored in /root/cacert.p12</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-21"></a><span class="go">This file is required to create replicas. The password for this</span>
+<a name="rest_code_261edb97f37c4bd091479f52e00225eb-22"></a><span class="go">file is the Directory Manager password</span>
+</pre><pre class="code bash"><a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-1"></a><span class="c1"># firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}</span>
+<a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-2"></a><span class="c1"># firewall-cmd --reload</span>
+</pre><ul class="simple">
+<li><p>Firewall kurallarinin kontrol edilmesi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_feedd46ab0af4afb8898195609614b2a-1"></a><span class="c1"># firewall-cmd --list-services</span>
+</pre><p><strong>IPA Server ve Kerberos Ticket Testi:</strong></p>
+<ul class="simple">
+<li><p>Kerberos'tan ticket alimi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_0c830162a8ca42c4b085adb69b2d0abf-1"></a><span class="c1"># kinit admin</span>
+</pre><ul class="simple">
+<li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_f576a1e33d1744a1b9f509d106306588-1"></a><span class="c1"># klist</span>
+</pre><ul class="simple">
+<li><p>ipa-server servislerinin kontrolu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_63ab957fe0464612a44b348f16c25e8c-1"></a><span class="c1"># ipactl status</span>
+</pre><ul class="simple">
+<li><p>Hersey saglam gorunuyorsa sunucu dnslerini local adrese donusturulmesi;</p></li>
+</ul>
+<p><em>/etc/resolv.conf:</em></p>
+<pre class="code bash"><a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-1"></a>search piesso.local
+<a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-2"></a>nameserver <span class="m">127</span>.0.0.1
+</pre>

@@ -1,0 +1,2 @@
+<html><body><a href="http://garbure.org/~mammique/distpic/linux-tux-xmas.jpg"><img title="Hoş geldin 2010" src="http://garbure.org/~mammique/distpic/linux-tux-xmas.jpg" alt="Yeni yıl pengueni" width="320" height="256">
+</a></body></html>

@@ -1,0 +1,20 @@
+<p><html><body><p>Debian'nın son kararlı sürümü 6.0 Squeeze çıkmasına üzerine birçok kişi de yükseltme hevesinde.Tabi önemli olanda yükseltme işini güvenli ve kayıpsız olarak sapasağlam yapabilmek.</p>
+<p>Sürümümüzü yükseltmeye geçmeden önce olabilecek herhangi bir arızaya karşın önemli olan tüm dosya ve dizinleri yedekleyin.Bu yedeklerin içine önemli kofigurasyon dosyalarınıza da eklemeyi unutmayın.</p>
+<p>İlk olarak mevcut olan Lenny'i güncelleyelim ve daha sonra Squeeze sürümüne yükseltelim.</p>
+<h1>vi /etc/apt/sources.list</h1>
+<p>Debian depo kaynak adreslerinin olduğunu "sources.list" dosyasını kontrol edelim ve içindeki depo adreslerinin aşağıdaki gibi olup olmadığını gözden geçirin:
+</p><pre>deb http://ftp.tr.debian.org/debian/ lenny main contrib non-free
+deb-src http://ftp.tr.debian.org/debian/ lenny main contrib non-free
+deb http://security.debian.org/ lenny/updates main
+deb-src http://security.debian.org/ lenny/updates main
+deb http://volatile.debian.org/debian-volatile lenny/volatile main
+deb-src http://volatile.debian.org/debian-volatile lenny/volatile main </p>
+<p>Kaynak adreslerini kontroldan sonra Lenny'i güncelleyelim.</p>
+<h1>apt-get update</h1>
+<h1>apt-get upgrade</h1>
+<h1>apt-get dist-upgrade</h1>
+<p>Lenny'i güncelleme adımları tamamlandıktan sonra herhangi bir soruna karşın yükseltilmeyecek ya da
+tam yüklenmemiş paketlerin olup olmadığını kontrol edelim.</p>
+<h1>dpkg --audit</h1>
+<h1>dpkg --get-selections | grep hold</h1>
+<p></pre></body></html></p>

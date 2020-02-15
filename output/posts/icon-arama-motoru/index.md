@@ -1,0 +1,3 @@
+<html><body><img src="http://img69.imageshack.us/img69/7457/headerlogo3.png" alt="FindsIcon.com Logo">
+
+<strong>"FindIcons.Com"</strong> işinize yarayabilecek binbir çeşit iconlar bu sitede.Sade ve basit site tasarımı ile aradığınız iconları kolayca bulabilirsiniz.Üstelik hepsi tamamen ücretsiz ve üye olma zorunluluğu yok.Ama  site üye olan kullanıcılarına, iconları istedikleri formata çevirme gibi ayrıcalıkları tanıyor.<strong>"FindIcons.Com"</strong> a girmek için <a href="http://findicons.com">buradan</a> .</body></html>

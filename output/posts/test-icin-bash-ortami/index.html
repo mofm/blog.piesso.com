@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Test için BASH Ortamı | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/test-icin-bash-ortami/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../yeni-kamusal-malozgur-ve-akk-yazilim/" title="Yeni Kamusal Mal:Özgür ve AKK Yazılım" type="text/html">
+<link rel="next" href="../1164/" title="IPv6 Ağına dahil olun" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Test için BASH Ortamı">
+<meta property="og:url" content="https://blog.piesso.com/posts/test-icin-bash-ortami/">
+<meta property="og:description" content="Test için kısıtlı bir BASH ortamı ihtiyacınız ve chrooting 'e kolay giriş yapmak için chroot ortamında bash kabuğu oluşturalım.Bunun için ilk olarak gerekli olan dizinleri oluşturun;
+# mkdir /chroot
+#">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-11-22T22:40:56+02:00">
+<meta property="article:tag" content="Genel">
+<meta property="article:tag" content="gezegen">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fa fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fa fa-folder-open"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fa fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fa fa-rss"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Test için BASH Ortamı</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2011-11-22T22:40:56+02:00" itemprop="datePublished" title="2011-11-22 22:40">2011-11-22 22:40</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/test-icin-bash-ortami.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink"><i class="fa fa-file-code"></i> Source</a></p>
+
+            
+
+            
+    <div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
+            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p></p>
+<p>Test için kısıtlı bir BASH ortamı ihtiyacınız ve chrooting 'e kolay giriş yapmak için chroot ortamında bash kabuğu oluşturalım.Bunun için ilk olarak gerekli olan dizinleri oluşturun;
+</p>
+<pre># mkdir /chroot</pre>
+<pre># mkdir /chroot/bash</pre>
+<pre># mkdir /chroot/bash/lib64</pre>
+<pre># mkdir /chroot/bash/bin</pre>
+Gerekli olan dizinleri oluşturduktan sonra bash kabuğunun ihtiyacı olan kütüphaneleri dizine (lib64) kopyalamamız lazım.Bash'in ihtiyacı olan kütüphaneleri bulalım.ldd(list dynamic dependencies) komutu ile bu kütüphaneleri listeleyelim:
+<pre># ldd /bin/bash</pre>
+<pre>linux-vdso.so.1 =&gt;  (0x00007fffe2511000)
+ libncurses.so.5 =&gt; /lib64/libncurses.so.5 (0x00007f137fe71000)
+ libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f137fc6d000)
+ libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f137f902000)
+ /lib64/ld-linux-x86-64.so.2 (0x00007f13800c4000)</pre>
+Yukardaki çıktıda görüldüğü gibi gerekli olan kütüphaneler:
+<ul>
+<li>
+<p>libncurses.so.5</p>
+</li>
+<li>
+<p>libdl.so.2</p>
+</li>
+<li>
+<p>libc.so.6</p>
+</li>
+<li>
+<p>ld-linux-x86-64.so.2</p>
+</li>
+</ul>
+<p>Yukardaki kütüphaneleri oluşturduğunuz dizine(lib64 - sisteminize göre bu dizin "lib" olabilir.) taşıyın:
+</p>
+<pre># cp /lib64/libncurses.so.5 /chroot/bash/lib64
+</pre>
+<pre># cp /lib64/libdl.so.2 /chroot/bash/lib64</pre>
+<pre># cp /lib64/libc.so.6 /chroot/bash/lib64</pre>
+<pre># cp /lib64/ld-linux-x86-64.so.2 /chroot/bash/lib64</pre>
+Bu işlemi yaptıktan sonra "<em>bash</em>" komutunu oluşturduğumuz "<strong>bin</strong>" dizinine kopyalayalım.
+<pre># cp /bin/bash /chroot/bash/bin</pre>
+Şimdi ihtiyacımız olan komutları chroot bash kabuğunuza kopyalayın.Mesela "<em>ls</em>" komutundan başlayalım.
+<pre># ldd /bin/ls</pre>
+<pre>linux-vdso.so.1 =&gt;  (0x00007fff161ff000)
+ librt.so.1 =&gt; /lib64/librt.so.1 (0x00007fa1effe5000)
+ libacl.so.1 =&gt; /lib64/libacl.so.1 (0x00007fa1efddc000)
+ libc.so.6 =&gt; /lib64/libc.so.6 (0x00007fa1efa71000)
+ libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007fa1ef854000)
+ /lib64/ld-linux-x86-64.so.2 (0x00007fa1f01ee000)
+ libattr.so.1 =&gt; /lib64/libattr.so.1 (0x00007fa1ef64f000)
+</pre>
+"ls" komutu için gerekli olan kütüphaneler yukardaki gibi.Hemen bunları chroot bash kabuğu ortamındaki "lib64" dizinine kopyalayın.
+<pre># cp /lib64/librt.so.1 /chroot/bash/lib64</pre>
+<pre># cp /lib64/libacl.so.1 /chroot/bash/lib64</pre>
+<pre># cp /lib64/libpthread.so.0 /chroot/bash/lib64</pre>
+<pre># cp /lib64/libattr.so.1 /chroot/bash/lib64</pre>
+<strong>libc.so.6</strong> ve <strong>ld-linux-x86-64.so.2</strong> kütüphanelerini daha önce kopyaladığımız için bunlara gerek yok.Bu kütüphaneleri kopyaladıktan sonra "<em>ls</em>" komutunu oluşturduğumuz "<strong>bin</strong>" dizinine kopyalabiliriz.
+<pre># cp /bin/ls /chroot/bash/bin
+</pre>
+Dizinimizdeki(lib64) kütüphaneler ile test edeceğimiz bash kabuğu için yeterli komutları çalıştırabiliriz.İhitiyacım olan <em> cp,cat,touch,mkdir,rm,mv</em> komutlarını kopyalayalım.
+<pre># cp /bin/cp /chroot/bash/bin</pre>
+<pre># cp /bin/mv /chroot/bash/bin</pre>
+<pre># cp /bin/cat /chroot/bash/bin</pre>
+<pre># cp /bin/rm /chroot/bash/bin</pre>
+<pre># cp /bin/mkdir /chroot/bash/bin</pre>
+<pre># cp /bin/touch /chroot/bash/bin
+</pre>
+Kabuğumuz için ihtiyacımız olan komutlarını koyduktan sonra artık kısıtlı bash kabuğumuza giriş yapabiliriz.
+<pre># chroot /chroot/bash /bin/bash</pre>
+Hiçbir hata almadıysanız kabuk ortamına girdiniz,şimdi koyduğunuz komutları test edebilirsiniz.</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../yeni-kamusal-malozgur-ve-akk-yazilim/" rel="prev" title="Yeni Kamusal Mal:Özgür ve AKK Yazılım">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../1164/" rel="next" title="IPv6 Ağına dahil olun">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/test-icin-bash-ortami/",
+        disqus_title="Test i\u00e7in BASH Ortam\u0131",
+        disqus_identifier="cache/posts/test-icin-bash-ortami.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
