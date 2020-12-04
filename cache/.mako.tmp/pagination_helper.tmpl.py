@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1581800623.1989536
+_modified_time = 1607041966.5008962
 _enable_loop = True
-_template_filename = '/home/mofm/Documents/nikola/lib/python3.6/site-packages/nikola/data/themes/base/templates/pagination_helper.tmpl'
+_template_filename = '/home/mofm/Documents/nikola/lib/python3.8/site-packages/nikola/data/themes/base/templates/pagination_helper.tmpl'
 _template_uri = 'pagination_helper.tmpl'
 _source_encoding = 'utf-8'
 _exports = ['page_navigation']
@@ -27,9 +27,9 @@ def render_body(context,**pageargs):
 def render_page_navigation(context,current_page,page_links,prevlink,nextlink,prev_next_links_reversed,surrounding=5):
     __M_caller = context.caller_stack._push_frame()
     try:
-        len = context.get('len', UNDEFINED)
         enumerate = context.get('enumerate', UNDEFINED)
         abs = context.get('abs', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<div class="page-navigation">\n')
         for i, link in enumerate(page_links):
@@ -54,6 +54,6 @@ def render_page_navigation(context,current_page,page_links,prevlink,nextlink,pre
 
 """
 __M_BEGIN_METADATA
-{"filename": "/home/mofm/Documents/nikola/lib/python3.6/site-packages/nikola/data/themes/base/templates/pagination_helper.tmpl", "uri": "pagination_helper.tmpl", "source_encoding": "utf-8", "line_map": {"16": 0, "21": 16, "27": 2, "34": 2, "35": 4, "36": 5, "37": 6, "38": 7, "39": 7, "40": 7, "41": 8, "42": 9, "43": 9, "44": 9, "45": 9, "46": 9, "47": 11, "48": 12, "49": 15, "55": 49}}
+{"filename": "/home/mofm/Documents/nikola/lib/python3.8/site-packages/nikola/data/themes/base/templates/pagination_helper.tmpl", "uri": "pagination_helper.tmpl", "source_encoding": "utf-8", "line_map": {"16": 0, "21": 16, "27": 2, "34": 2, "35": 4, "36": 5, "37": 6, "38": 7, "39": 7, "40": 7, "41": 8, "42": 9, "43": 9, "44": 9, "45": 9, "46": 9, "47": 11, "48": 12, "49": 15, "55": 49}}
 __M_END_METADATA
 """
