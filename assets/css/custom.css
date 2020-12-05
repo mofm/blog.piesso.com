@@ -1,0 +1,22 @@
+.page-content {
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+.page-content > .content h1,
+.page-content > .content h2,
+.page-content > .content h3,
+.page-content > .content h4,
+.page-content > .content h5,
+.page-content > .content h6,
+.page-content > .content .h1,
+.page-content > .content .h2,
+.page-content > .content .h3,
+.page-content > .content .h4,
+.page-content > .content .h5,
+.page-content > .content .h6 {
+  font-family: 'Roboto', serif;
+}
+
+pre {
+ font-family: 'JetBrains Mono', monospace;
+}
