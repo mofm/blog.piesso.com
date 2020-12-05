@@ -20,7 +20,7 @@ Senaryo semasinin ayrintilari asagidaki gibidir:
 .. image:: /images/k8s-web-git.png
 
 
-Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Ben bu ornek uzerinde storageClass olarak node uzerindeki *Local* diski kullandim. Production ortaminda kesinlikle local disk kullanmayin! Ben test ortami olusturmak ve iki pod'un ayni volume'u kullanabilmesi icin bunu sectim. Siz production ortamlariniz icin herhangi bir *Cluster FileSystem* kullanabilirsiniz.
+Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Ben bu ornek uzerinde storageClass olarak node uzerindeki *Local* diski kullandim. Production ortaminda kesinlikle local disk kullanmayin! Ben test ortami olusturmak ve iki container'in ayni volume'u kullanabilmesi icin bunu sectim. Siz production ortamlariniz icin herhangi bir *Cluster FileSystem* kullanabilirsiniz.
 
 PersistentVolume ve PersistentVolumeClaim Olusturulmasi:
 ********************************************************

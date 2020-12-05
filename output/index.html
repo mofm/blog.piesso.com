@@ -56,133 +56,133 @@
 <p>Gunumuzde insanlar blog yazilarini yayinlamak icin static websites generator'lardan(nikola, jekyll, hugo vb.) birini kullanmaya yoneliyor. Daha onceden siklikla Wordpress kullanilirken artik bu sekilde bir cozum kullanimin farkli sebepleri olabilir. Bunu simdilik irdelemeyecegim.
 Bu senaryomuzda yukarda bahsettigimiz sekilde olusturdugunuz static websitenizi <em>"Kubernetes uzerine git ile nasil otomatik update edebiliriz?"</em> cozumu hakkinda fikir verecegim.
 Senaryo semasinin ayrintilari asagidaki gibidir:</p>
-<img alt="/images/k8s-web-git.png" src="images/k8s-web-git.png"><p>Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Ben bu ornek uzerinde storageClass olarak node uzerindeki <em>Local</em> diski kullandim. Production ortaminda kesinlikle local disk kullanmayin! Ben test ortami olusturmak ve iki pod'un ayni volume'u kullanabilmesi icin bunu sectim. Siz production ortamlariniz icin herhangi bir <em>Cluster FileSystem</em> kullanabilirsiniz.</p>
+<img alt="/images/k8s-web-git.png" src="images/k8s-web-git.png"><p>Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Ben bu ornek uzerinde storageClass olarak node uzerindeki <em>Local</em> diski kullandim. Production ortaminda kesinlikle local disk kullanmayin! Ben test ortami olusturmak ve iki container'in ayni volume'u kullanabilmesi icin bunu sectim. Siz production ortamlariniz icin herhangi bir <em>Cluster FileSystem</em> kullanabilirsiniz.</p>
 <div class="section" id="persistentvolume-ve-persistentvolumeclaim-olusturulmasi">
 <h3>PersistentVolume ve PersistentVolumeClaim Olusturulmasi:</h3>
 <p>Burada bir noktaya deginmek gerekirse olusturacagimiz bu volume'u nginx sadece readonly mount ederken git-sync hem read hem de write edecek sekilde mount edecegiz. git-sync belirledigimiz git reposunu buraya sync edecektir. Bu yuzden hem read hem write yetkisi gerekirken, nginx sadece sayfalari yayinlayacagi icin read yetkisi yeterlidir.</p>
 <p><strong>PersistentVolume:</strong></p>
-<pre class="code yaml"><a name="rest_code_db859eb564e54765a2d1766b5633ae9c-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-pv-01</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-6"></a>  <span class="nt">capacity</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-7"></a>    <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-8"></a>  <span class="nt">accessModes</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-9"></a>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-10"></a>  <span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Delete</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-11"></a>  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-storage</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-12"></a>  <span class="nt">local</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-13"></a>    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/mnt/disk1/vol1</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-14"></a>  <span class="nt">nodeAffinity</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-15"></a>    <span class="nt">required</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-16"></a>      <span class="nt">nodeSelectorTerms</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-17"></a>      <span class="p p-Indicator">-</span> <span class="nt">matchExpressions</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-18"></a>        <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/hostname</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-19"></a>          <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">In</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-20"></a>          <span class="nt">values</span><span class="p">:</span>
-<a name="rest_code_db859eb564e54765a2d1766b5633ae9c-21"></a>          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node3</span>
+<pre class="code yaml"><a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-pv-01</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-5"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-6"></a>  <span class="nt">capacity</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-7"></a>    <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-8"></a>  <span class="nt">accessModes</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-9"></a>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-10"></a>  <span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Delete</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-11"></a>  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-storage</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-12"></a>  <span class="nt">local</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-13"></a>    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/mnt/disk1/vol1</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-14"></a>  <span class="nt">nodeAffinity</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-15"></a>    <span class="nt">required</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-16"></a>      <span class="nt">nodeSelectorTerms</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-17"></a>      <span class="p p-Indicator">-</span> <span class="nt">matchExpressions</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-18"></a>        <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/hostname</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-19"></a>          <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">In</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-20"></a>          <span class="nt">values</span><span class="p">:</span>
+<a name="rest_code_2a95f8a8e4e5445fbfa8f84febd1fc39-21"></a>          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node3</span>
 </pre>
 <p>Yukardaki sekilde sadece <em>node3</em> hostname'li node uzerindeki '/mnt/disk1/vol1/' uzerinde 1GB buyuklugunde persistentVolume olusturduk. Yukarida da belirttigim gibi kesinlikle production ortaminda local disk kullanmayin!</p>
-<pre class="code bash"><a name="rest_code_42590d77c7c044de9218c46827007458-1"></a>$ kubectl apply -f pv.yaml
+<pre class="code bash"><a name="rest_code_dcd92ca5159640c9ac76d6176cac4a8d-1"></a>$ kubectl apply -f pv.yaml
 </pre>
 <p>persistentVolume olusturtuktan sonra persistentVolumeClaim olusturalim.( "pv ve pvc nedir?" merak ediyorsaniz <a class="reference external" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">buradan</a> )</p>
 <p><strong>PersistentVolumeClaim:</strong></p>
-<pre class="code yaml"><a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-1"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-2"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-claim-01</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-6"></a>  <span class="nt">accessModes</span><span class="p">:</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-7"></a>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-8"></a>  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-storage</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-9"></a>  <span class="nt">resources</span><span class="p">:</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-10"></a>    <span class="nt">requests</span><span class="p">:</span>
-<a name="rest_code_f1ff9e85df644445b0cb792a11a6918a-11"></a>      <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<pre class="code yaml"><a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-1"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-2"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-claim-01</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-5"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-6"></a>  <span class="nt">accessModes</span><span class="p">:</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-7"></a>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-8"></a>  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-storage</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-9"></a>  <span class="nt">resources</span><span class="p">:</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-10"></a>    <span class="nt">requests</span><span class="p">:</span>
+<a name="rest_code_bf8c42c2bb4f4547b002579f7ea735c1-11"></a>      <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
 </pre>
-<pre class="code bash"><a name="rest_code_bc739499b19d4b7b8ecb520ff7f96f98-1"></a>$ kubectl apply -f pvc.yaml
+<pre class="code bash"><a name="rest_code_f1795772df9c45de92111a98fb7532ba-1"></a>$ kubectl apply -f pvc.yaml
 </pre>
 <p>Volume olusturdugumuza gore artik yayinlayacagimiz static websitesi icin deployment asamasina gecebiliriz.</p>
 </div>
 <div class="section" id="deployment">
 <h3>Deployment:</h3>
 <p>Asagidaki sekilde deployment olusturalim:</p>
-<pre class="code yaml"><a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-6"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-7"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-8"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-9"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-10"></a>  <span class="nt">template</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-11"></a>    <span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-12"></a>      <span class="nt">labels</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-13"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-14"></a>    <span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-15"></a>      <span class="nt">containers</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-16"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">git-sync</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-17"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">k8s.gcr.io/git-sync/git-sync:v3.2.0</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-18"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-19"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-20"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/git</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-21"></a>        <span class="nt">env</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-22"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_REPO</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-23"></a>          <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/user_name/blog.example.com.git</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-24"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_DEST</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-25"></a>          <span class="nt">value</span><span class="p">:</span> <span class="s">"blog"</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-26"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_WAIT</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-27"></a>          <span class="nt">value</span><span class="p">:</span> <span class="s">"10"</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-28"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-29"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-30"></a>        <span class="nt">ports</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-31"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-32"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-33"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-34"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/nginx/html</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-35"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-36"></a>      <span class="nt">volumes</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-37"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-38"></a>        <span class="nt">persistentVolumeClaim</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-39"></a>          <span class="nt">claimName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-claim-01</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-40"></a>      <span class="nt">nodeSelector</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-41"></a>        <span class="nt">kubernetes.io/hostname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">node3</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-42"></a>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-43"></a><span class="nn">---</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-44"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-45"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-46"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-47"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-svc</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-48"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-49"></a>  <span class="nt">ports</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-50"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-51"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-52"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-53"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-54"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a name="rest_code_6aeaa1e519bf4d34904f2a6f09fa604d-55"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
+<pre class="code yaml"><a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-5"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-6"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-7"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-8"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-9"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-10"></a>  <span class="nt">template</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-11"></a>    <span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-12"></a>      <span class="nt">labels</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-13"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-14"></a>    <span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-15"></a>      <span class="nt">containers</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-16"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">git-sync</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-17"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">k8s.gcr.io/git-sync/git-sync:v3.2.0</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-18"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-19"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-20"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/git</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-21"></a>        <span class="nt">env</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-22"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_REPO</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-23"></a>          <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/user_name/blog.example.com.git</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-24"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_DEST</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-25"></a>          <span class="nt">value</span><span class="p">:</span> <span class="s">"blog"</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-26"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_WAIT</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-27"></a>          <span class="nt">value</span><span class="p">:</span> <span class="s">"10"</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-28"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-29"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-30"></a>        <span class="nt">ports</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-31"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-32"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-33"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-34"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/nginx/html</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-35"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-36"></a>      <span class="nt">volumes</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-37"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-38"></a>        <span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-39"></a>          <span class="nt">claimName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-claim-01</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-40"></a>      <span class="nt">nodeSelector</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-41"></a>        <span class="nt">kubernetes.io/hostname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">node3</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-42"></a>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-43"></a><span class="nn">---</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-44"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-45"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-46"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-47"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-svc</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-48"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-49"></a>  <span class="nt">ports</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-50"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-51"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-52"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-53"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-54"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a name="rest_code_4aae52abba7e4e1d83d44400b01bfd5a-55"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
 </pre>
 <p>git-sync environment degerlerinden GIT_SYNC_REPO yerine git reponuzu ve GIT_SYNC_DEST degerini isteginize gore degistirebilirsiniz.</p>
-<pre class="code bash"><a name="rest_code_1bfd1d617b9a40efb5f4e8b23232949b-1"></a>$ kubectl apply -f deployment.yaml
+<pre class="code bash"><a name="rest_code_20a162ea5bff4fe8a7b1f8cbd4463685-1"></a>$ kubectl apply -f deployment.yaml
 </pre>
 <p>Deployment olusturulup tamamlandiktan sonra websitemizi yayinlamak icin ingress olusturabiliriz.</p>
-<pre class="code yaml"><a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1beta1</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ingress</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-ingress</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-6"></a>        <span class="c1">#  ingressClassName: nginx # use only with k8s version &gt;= 1.18.0</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-7"></a>  <span class="nt">rules</span><span class="p">:</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-8"></a>  <span class="p p-Indicator">-</span> <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog.example.com</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-9"></a>    <span class="nt">http</span><span class="p">:</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-10"></a>      <span class="nt">paths</span><span class="p">:</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-11"></a>      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/blog</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-12"></a>        <span class="nt">backend</span><span class="p">:</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-13"></a>          <span class="nt">serviceName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-svc</span>
-<a name="rest_code_b3a4e86501e4406cb5a95397ea61ff65-14"></a>          <span class="nt">servicePort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<pre class="code yaml"><a name="rest_code_06debb1920de4c9dad992d4b65ee1773-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1beta1</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ingress</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-ingress</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-5"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-6"></a>        <span class="c1">#  ingressClassName: nginx # use only with k8s version &gt;= 1.18.0</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-7"></a>  <span class="nt">rules</span><span class="p">:</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-8"></a>  <span class="p p-Indicator">-</span> <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog.example.com</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-9"></a>    <span class="nt">http</span><span class="p">:</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-10"></a>      <span class="nt">paths</span><span class="p">:</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-11"></a>      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/blog</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-12"></a>        <span class="nt">backend</span><span class="p">:</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-13"></a>          <span class="nt">serviceName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-svc</span>
+<a name="rest_code_06debb1920de4c9dad992d4b65ee1773-14"></a>          <span class="nt">servicePort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
 </pre>
-<pre class="code bash"><a name="rest_code_5e21f48f1fe24de2adb9ee1f646a0866-1"></a>$ kubectl apply -f ingress.yaml
+<pre class="code bash"><a name="rest_code_335ce20e8c2549a9a1ac8110b8448ac0-1"></a>$ kubectl apply -f ingress.yaml
 </pre>
 <p>ingress tanimlamamiz da yapildigina <em>blog.example.com/blog</em> adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.</p>
 </div>
