@@ -7,7 +7,7 @@
 .. description: 
 .. type: text
 
-Uzun bir aradan sonra Kubernetes ile ilgili bir konu ile yazilara basliyoruz. Bu yazida Kubernetes nedir?, Ne degildir? gibi Kubernetes 101'den bahsetmek yerine bir senaryo ile ilgili sizlere fikir vermek istedim. Hemen kisaca senaryodan bahsedelim:
+Uzun bir aradan sonra Kubernetes ile ilgili bir konu ile yazilara basliyoruz. Bu yazida Kubernetes nedir? Ne degildir? gibi Kubernetes 101'den bahsetmek yerine bir senaryo ile ilgili sizlere fikir vermek istedim. Hemen kisaca senaryodan bahsedelim:
 
 Senaryo:
 ########
@@ -20,12 +20,19 @@ Senaryo semasinin ayrintilari asagidaki gibidir:
 .. image:: /images/k8s-web-git.png
 
 
-Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Ben bu ornek uzerinde storageClass olarak node uzerindeki *Local* diski kullandim. Production ortaminda kesinlikle local disk kullanmayin! Ben test ortami olusturmak ve iki container'in ayni volume'u kullanabilmesi icin bunu sectim. Siz production ortamlariniz icin herhangi bir *Cluster FileSystem* kullanabilirsiniz.
+
+Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Bu senaryo icin volume olarak node uzerindeki `Local <https://kubernetes.io/docs/concepts/storage/volumes/#local>`_ diski kullandim. Bu production icin uygun olmasa da test ortamini olusturmak ve iki container'in ayni volume'u kullanabilmesi icin bunu sectim.
+
+
+.. warning::
+        Production ortaminda kesinlikle local disk kullanmayin! Siz production ortamlariniz icin herhangi bir *Clustered File System* kullanabilirsiniz.
+
+
 
 PersistentVolume ve PersistentVolumeClaim Olusturulmasi:
 ********************************************************
 
-Burada bir noktaya deginmek gerekirse olusturacagimiz bu volume'u nginx sadece readonly mount ederken git-sync hem read hem de write edecek sekilde mount edecegiz. git-sync belirledigimiz git reposunu buraya sync edecektir. Bu yuzden hem read hem write yetkisi gerekirken, nginx sadece sayfalari yayinlayacagi icin read yetkisi yeterlidir.
+Burada bir noktaya deginmek gerekirse olusturacagimiz bu volume'u nginx container'i icin sadece readonly mount ederken git-sync icin ise hem read hem de write olacak sekilde mount edecegiz. git-sync belirledigimiz git reposunu buraya sync edecektir. Bu yuzden hem read hem write yetkisi gerekirken, nginx sadece sayfalari yayinlayacagi icin read yetkisi yeterlidir.
 
 **PersistentVolume:**
 
@@ -183,4 +190,4 @@ Deployment olusturulup tamamlandiktan sonra websitemizi yayinlamak icin ingress 
 
         $ kubectl apply -f ingress.yaml
 
-ingress tanimlamamiz da yapildigina *blog.example.com/blog* adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.
+ingress tanimlamamiz da yapildigina gore *http://blog.example.com/blog* adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.

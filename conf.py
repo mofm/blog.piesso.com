@@ -1225,6 +1225,10 @@ COPY_SOURCES = False
 # before </head>
 # (translatable)
 # EXTRA_HEAD_DATA = ""
+EXTRA_HEAD_DATA = """
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Red+Hat+Display&family=Roboto:wght@700&display=swap" rel="stylesheet">
+"""
 # Google Analytics or whatever else you use. Added to the bottom of <body>
 # in the default template (base.tmpl).
 # (translatable)
