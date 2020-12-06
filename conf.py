@@ -143,7 +143,7 @@ NAVIGATION_LINKS = {
 	('/archive.html', 'Archives', 'fas fa-archive'),
 	('/categories/index.html', 'Tags', 'fas fa-tags'),
 	('/rss.xml', 'RSS', 'fas fa-rss'),
-#	('https://getnikola.com', 'About me', 'fa fa-user'),
+	('/pages/about-me', 'About me', 'fa fa-user'),
 	('https://github.com/mofm', 'My Github', 'fab fa-github'),
     ),
 }
