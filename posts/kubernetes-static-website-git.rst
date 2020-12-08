@@ -1,7 +1,7 @@
 .. title: Kubernetes, Static Website, Git
 .. slug: kubernetes-static-website-git
 .. date: 2020-12-05 18:12:03 UTC+03:00
-.. tags: 
+.. tags: kubernetes, git, static websites
 .. category: 
 .. link: 
 .. description: 

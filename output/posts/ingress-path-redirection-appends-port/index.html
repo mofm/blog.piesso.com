@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Ingress path redirection appends port | hardened .*(nt|log)s?</title>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://blog.piesso.com/posts/ingress-path-redirection-appends-port/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&amp;family=Red+Hat+Display&amp;family=Roboto:wght@700&amp;display=swap" rel="stylesheet">
+<meta name="author" content="mofm">
+<link rel="prev" href="../kubernetes-static-website-git/" title="Kubernetes, Static Website, Git" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="Ingress path redirection appends port">
+<meta property="og:url" content="https://blog.piesso.com/posts/ingress-path-redirection-appends-port/">
+<meta property="og:description" content="Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;
+$ curl -I http://cafe.example.com/coffee/
+
+HT">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-12-08T02:29:14+03:00">
+<meta property="article:tag" content="ingress">
+<meta property="article:tag" content="kubernetes">
+</head>
+<body>
+    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <section class="social"><ul>
+<li><a href="../../index.html" title="Home"><i class="fas fa-home"></i></a></li>
+            <li><a href="../../archive.html" title="Archives"><i class="fas fa-archive"></i></a></li>
+            <li><a href="../../categories/index.html" title="Tags"><i class="fas fa-tags"></i></a></li>
+            <li><a href="../../rss.xml" title="RSS"><i class="fas fa-rss"></i></a></li>
+            <li><a href="../../pages/about-me" title="About me"><i class="fa fa-user"></i></a></li>
+            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
+    
+    
+
+        </ul></section><section class="page-content"><div class="content" rel="main">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Ingress path redirection appends port</a></h1>
+
+        <div class="metadata">
+            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2020-12-08T02:29:14+03:00" itemprop="datePublished" title="2020-12-08 02:29">2020-12-08 02:29</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                    mofm
+            </span></p>
+                <p class="commentline"><i class="far fa-comment"></i>
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/ingress-path-redirection-appends-port.html">Comments</a>
+
+
+            
+
+            
+
+            
+    </p>
+<div class="tags">
+<h3 class="metadata-title">
+<i class="fa fa-tags"></i> Tags:</h3>
+        <ul itemprop="keywords" class="tags-ul">
+<li><a class="tag p-category" href="../../categories/ingress/" rel="tag">ingress</a></li>
+            <li><a class="tag p-category" href="../../categories/kubernetes/" rel="tag">kubernetes</a></li>
+        </ul>
+</div>
+
+        </div>
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;</p>
+<pre class="code bash"><a name="rest_code_1edb79fee71c4dabae9261e39936d02e-1"></a>$ curl -I http://cafe.example.com/coffee/
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-2"></a>
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-3"></a>HTTP/1.1 <span class="m">200</span> OK
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-4"></a>Date: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:47:21 GMT
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-5"></a>Content-Type: text/html
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-6"></a>Content-Length: <span class="m">87466</span>
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-7"></a>Connection: keep-alive
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-8"></a>Last-Modified: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">20</span>:48:36 GMT
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-9"></a>ETag: <span class="s2">"5fce9524-155aa"</span>
+<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-10"></a>Accept-Ranges: bytes
+</pre>
+<p>Yukarida goruldugu "<a class="reference external" href="http://cafe.example.com/coffee/">http://cafe.example.com/coffee/</a>" adresine gonderdigimiz istek saglikli sekilde "200" kodunu cevap olarak donuyor.
+Birde "<a class="reference external" href="http://cafe.example.com/coffee">http://cafe.example.com/coffee</a>" seklinde istekte bulunarak test edelim:</p>
+<pre class="code bash"><a name="rest_code_c93acb8b8de847a284876db166b32ace-1"></a>$ curl -I http://cafe.example.com/coffee
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-2"></a>
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-3"></a>HTTP/1.1 <span class="m">301</span> Moved Permanently
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-4"></a>Date: Sun, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:52:48 GMT
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-5"></a>Content-Type: text/html
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-6"></a>Content-Length: <span class="m">169</span>
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-7"></a>Connection: keep-alive
+<a name="rest_code_c93acb8b8de847a284876db166b32ace-8"></a>Location: http://cafe.example.com:8080/coffee
+</pre>
+<p>Bu ornek ise goruldugu gibi "<a class="reference external" href="http://hostname:cointainer_port/paths">http://hostname:cointainer_port/paths</a>" seklinde container portunu da ekleyerek sayfayi yanlis sekilde redirect etmeye calisiyor ve sayfa ulasilamaz oluyor.
+Buradaki <strong>'8080'</strong> portu ingress'in arka tarafindaki nginx container'in yayin yapmakta olan portu.</p>
+<p>Sorunun sebebine gelince, bu sorunun ingress ile hic bir alakasi yok. Hem <strong>kubernetes/ingress-nginx</strong> hem de <strong>nginxinc/nginx-ingress</strong> ingress controller'larinda nginx konfigurasyonu uzerindeki <a class="reference external" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect">port_in_redirect</a> degeri default olarak 'off' olarak.
+Fakat arka tarafta calisan nginx container uzerindeki bu konfigurasyonu '<em>on</em>' yapilmissa bu durumla karsilasabilirsiniz. Bunu nginx.conf uzerinde '<em>port_in_redirect off;</em>' seklinde kapatarak yasanmasini engelleyebilirsiniz.</p>
+<p>Asagidaki sekilde nginx.conf'u configmap'e ekleyerek nginx pod'un bu configmap'i kullanmasini saglayarak deployment yapabilirsiniz.</p>
+<pre class="code yaml"><a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-5"></a><span class="nt">data</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-6"></a>  <span class="nt">nginx.conf</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-7"></a>    <span class="no">worker_processes  1;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-8"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-9"></a>    <span class="no">error_log  /var/log/nginx/error.log warn;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-10"></a>    <span class="no">pid        /tmp/nginx.pid;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-11"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-12"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-13"></a>    <span class="no">events {</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-14"></a>        <span class="no">worker_connections  1024;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-15"></a>    <span class="no">}</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-16"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-17"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-18"></a>    <span class="no">http {</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-19"></a>        <span class="no">proxy_temp_path /tmp/proxy_temp;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-20"></a>        <span class="no">client_body_temp_path /tmp/client_temp;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-21"></a>        <span class="no">fastcgi_temp_path /tmp/fastcgi_temp;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-22"></a>        <span class="no">uwsgi_temp_path /tmp/uwsgi_temp;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-23"></a>        <span class="no">scgi_temp_path /tmp/scgi_temp;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-24"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-25"></a>        <span class="no">include       /etc/nginx/mime.types;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-26"></a>        <span class="no">default_type  application/octet-stream;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-27"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-28"></a>        <span class="no">log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-29"></a>                          <span class="no">'$status $body_bytes_sent "$http_referer" '</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-30"></a>                          <span class="no">'"$http_user_agent" "$http_x_forwarded_for"';</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-31"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-32"></a>        <span class="no">access_log  /var/log/nginx/access.log  main;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-33"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-34"></a>        <span class="no">sendfile        on;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-35"></a>        <span class="no">#tcp_nopush     on;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-36"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-37"></a>        <span class="no">port_in_redirect off;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-38"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-39"></a>        <span class="no">keepalive_timeout  65;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-40"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-41"></a>        <span class="no">#gzip  on;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-42"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-43"></a>        <span class="no">include /etc/nginx/conf.d/*.conf;</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-44"></a>    <span class="no">}</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-45"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-46"></a><span class="nn">---</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-47"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-48"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-49"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-50"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-51"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-52"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-53"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-54"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-55"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-56"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-57"></a>  <span class="nt">template</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-58"></a>    <span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-59"></a>      <span class="nt">labels</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-60"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-61"></a>    <span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-62"></a>      <span class="nt">containers</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-63"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-64"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-65"></a>        <span class="nt">ports</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-66"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-67"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-68"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-69"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-70"></a>          <span class="nt">subPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.conf</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-71"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-72"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-73"></a><span class="nn">---</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-74"></a>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-75"></a><span class="nn">---</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-76"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-77"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-78"></a><span class="nt">metadata</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-79"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee-svc</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-80"></a><span class="nt">spec</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-81"></a>  <span class="nt">ports</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-82"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-83"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-84"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-85"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-86"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-87"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../kubernetes-static-website-git/" rel="prev" title="Kubernetes, Static Website, Git">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/ingress-path-redirection-appends-port/",
+        disqus_title="Ingress path redirection appends port",
+        disqus_identifier="cache/posts/ingress-path-redirection-appends-port.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+            
+        </footer>
+</div>
+    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 .. title: OpenLDAP Schema for Postfix
 .. slug: openldap-schema-for-postfix
 .. date: 2018-03-31 20:43:33 UTC+03:00
-.. tags: 
+.. tags: openldap, schema, postfix
 .. category: 
 .. link: 
 .. description: 
