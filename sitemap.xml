@@ -47,11 +47,11 @@
  </url>
  <url>
   <loc>https://blog.piesso.com/archive.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/active-directory/</loc>
@@ -90,12 +90,24 @@
   <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
+  <loc>https://blog.piesso.com/categories/git/</loc>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/categories/ingress/</loc>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://blog.piesso.com/categories/ipa-client/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/ipa/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/categories/kubernetes/</loc>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/kvm/</loc>
@@ -118,12 +130,20 @@
   <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
+  <loc>https://blog.piesso.com/categories/openldap/</loc>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://blog.piesso.com/categories/openvswitch/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/portage/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/categories/postfix/</loc>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/qemu/</loc>
@@ -134,8 +154,16 @@
   <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
+  <loc>https://blog.piesso.com/categories/schema/</loc>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://blog.piesso.com/categories/ssh/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/categories/static-websites/</loc>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/tools/</loc>
@@ -203,7 +231,7 @@
  </url>
  <url>
   <loc>https://blog.piesso.com/index-23.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-3.html</loc>
@@ -612,6 +640,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/inatla-paranizi-isteyin/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</loc>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/internet-haftasi-aktif-katilim-cagrisi/</loc>

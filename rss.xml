@@ -3,7 +3,120 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 05 Dec 2020 22:53:14 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Kubernetes, Static Website, Git</title><link>https://blog.piesso.com/posts/kubernetes-static-website-git/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Uzun bir aradan sonra Kubernetes ile ilgili bir konu ile yazilara basliyoruz. Bu yazida Kubernetes nedir? Ne degildir? gibi Kubernetes 101'den bahsetmek yerine bir senaryo ile ilgili sizlere fikir vermek istedim. Hemen kisaca senaryodan bahsedelim:&lt;/p&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 08 Dec 2020 00:31:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ingress path redirection appends port</title><link>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-1"&gt;&lt;/a&gt;$ curl -I http://cafe.example.com/coffee/
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-3"&gt;&lt;/a&gt;HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-4"&gt;&lt;/a&gt;Date: Mon, &lt;span class="m"&gt;07&lt;/span&gt; Dec &lt;span class="m"&gt;2020&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:47:21 GMT
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-5"&gt;&lt;/a&gt;Content-Type: text/html
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-6"&gt;&lt;/a&gt;Content-Length: &lt;span class="m"&gt;87466&lt;/span&gt;
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-7"&gt;&lt;/a&gt;Connection: keep-alive
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-8"&gt;&lt;/a&gt;Last-Modified: Mon, &lt;span class="m"&gt;07&lt;/span&gt; Dec &lt;span class="m"&gt;2020&lt;/span&gt; &lt;span class="m"&gt;20&lt;/span&gt;:48:36 GMT
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-9"&gt;&lt;/a&gt;ETag: &lt;span class="s2"&gt;"5fce9524-155aa"&lt;/span&gt;
+&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-10"&gt;&lt;/a&gt;Accept-Ranges: bytes
+&lt;/pre&gt;&lt;p&gt;Yukarida goruldugu "&lt;a class="reference external" href="http://cafe.example.com/coffee/"&gt;http://cafe.example.com/coffee/&lt;/a&gt;" adresine gonderdigimiz istek saglikli sekilde "200" kodunu cevap olarak donuyor.
+Birde "&lt;a class="reference external" href="http://cafe.example.com/coffee"&gt;http://cafe.example.com/coffee&lt;/a&gt;" seklinde istekte bulunarak test edelim:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-1"&gt;&lt;/a&gt;$ curl -I http://cafe.example.com/coffee
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-3"&gt;&lt;/a&gt;HTTP/1.1 &lt;span class="m"&gt;301&lt;/span&gt; Moved Permanently
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-4"&gt;&lt;/a&gt;Date: Sun, &lt;span class="m"&gt;07&lt;/span&gt; Dec &lt;span class="m"&gt;2020&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:52:48 GMT
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-5"&gt;&lt;/a&gt;Content-Type: text/html
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-6"&gt;&lt;/a&gt;Content-Length: &lt;span class="m"&gt;169&lt;/span&gt;
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-7"&gt;&lt;/a&gt;Connection: keep-alive
+&lt;a name="rest_code_c93acb8b8de847a284876db166b32ace-8"&gt;&lt;/a&gt;Location: http://cafe.example.com:8080/coffee
+&lt;/pre&gt;&lt;p&gt;Bu ornek ise goruldugu gibi "&lt;a class="reference external" href="http://hostname:cointainer_port/paths"&gt;http://hostname:cointainer_port/paths&lt;/a&gt;" seklinde container portunu da ekleyerek sayfayi yanlis sekilde redirect etmeye calisiyor ve sayfa ulasilamaz oluyor.
+Buradaki &lt;strong&gt;'8080'&lt;/strong&gt; portu ingress'in arka tarafindaki nginx container'in yayin yapmakta olan portu.&lt;/p&gt;
+&lt;p&gt;Sorunun sebebine gelince, bu sorunun ingress ile hic bir alakasi yok. Hem &lt;strong&gt;kubernetes/ingress-nginx&lt;/strong&gt; hem de &lt;strong&gt;nginxinc/nginx-ingress&lt;/strong&gt; ingress controller'larinda nginx konfigurasyonu uzerindeki &lt;a class="reference external" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect"&gt;port_in_redirect&lt;/a&gt; degeri default olarak 'off' olarak.
+Fakat arka tarafta calisan nginx container uzerindeki bu konfigurasyonu '&lt;em&gt;on&lt;/em&gt;' yapilmissa bu durumla karsilasabilirsiniz. Bunu nginx.conf uzerinde '&lt;em&gt;port_in_redirect off;&lt;/em&gt;' seklinde kapatarak yasanmasini engelleyebilirsiniz.&lt;/p&gt;
+&lt;p&gt;Asagidaki sekilde nginx.conf'u configmap'e ekleyerek nginx pod'un bu configmap'i kullanmasini saglayarak deployment yapabilirsiniz.&lt;/p&gt;
+&lt;pre class="code yaml"&gt;&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ConfigMap&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-conf&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;nginx.conf&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p p-Indicator"&gt;|&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-7"&gt;&lt;/a&gt;    &lt;span class="no"&gt;worker_processes  1;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-8"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-9"&gt;&lt;/a&gt;    &lt;span class="no"&gt;error_log  /var/log/nginx/error.log warn;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-10"&gt;&lt;/a&gt;    &lt;span class="no"&gt;pid        /tmp/nginx.pid;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-11"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-12"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-13"&gt;&lt;/a&gt;    &lt;span class="no"&gt;events {&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-14"&gt;&lt;/a&gt;        &lt;span class="no"&gt;worker_connections  1024;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-15"&gt;&lt;/a&gt;    &lt;span class="no"&gt;}&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-16"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-17"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-18"&gt;&lt;/a&gt;    &lt;span class="no"&gt;http {&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-19"&gt;&lt;/a&gt;        &lt;span class="no"&gt;proxy_temp_path /tmp/proxy_temp;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-20"&gt;&lt;/a&gt;        &lt;span class="no"&gt;client_body_temp_path /tmp/client_temp;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-21"&gt;&lt;/a&gt;        &lt;span class="no"&gt;fastcgi_temp_path /tmp/fastcgi_temp;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-22"&gt;&lt;/a&gt;        &lt;span class="no"&gt;uwsgi_temp_path /tmp/uwsgi_temp;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-23"&gt;&lt;/a&gt;        &lt;span class="no"&gt;scgi_temp_path /tmp/scgi_temp;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-24"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-25"&gt;&lt;/a&gt;        &lt;span class="no"&gt;include       /etc/nginx/mime.types;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-26"&gt;&lt;/a&gt;        &lt;span class="no"&gt;default_type  application/octet-stream;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-27"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-28"&gt;&lt;/a&gt;        &lt;span class="no"&gt;log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-29"&gt;&lt;/a&gt;                          &lt;span class="no"&gt;'$status $body_bytes_sent "$http_referer" '&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-30"&gt;&lt;/a&gt;                          &lt;span class="no"&gt;'"$http_user_agent" "$http_x_forwarded_for"';&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-31"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-32"&gt;&lt;/a&gt;        &lt;span class="no"&gt;access_log  /var/log/nginx/access.log  main;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-33"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-34"&gt;&lt;/a&gt;        &lt;span class="no"&gt;sendfile        on;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-35"&gt;&lt;/a&gt;        &lt;span class="no"&gt;#tcp_nopush     on;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-36"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-37"&gt;&lt;/a&gt;        &lt;span class="no"&gt;port_in_redirect off;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-38"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-39"&gt;&lt;/a&gt;        &lt;span class="no"&gt;keepalive_timeout  65;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-40"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-41"&gt;&lt;/a&gt;        &lt;span class="no"&gt;#gzip  on;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-42"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-43"&gt;&lt;/a&gt;        &lt;span class="no"&gt;include /etc/nginx/conf.d/*.conf;&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-44"&gt;&lt;/a&gt;    &lt;span class="no"&gt;}&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-45"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-46"&gt;&lt;/a&gt;&lt;span class="nn"&gt;---&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-47"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-48"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;apps/v1&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-49"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Deployment&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-50"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-51"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;coffee&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-52"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-53"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;replicas&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;3&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-54"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-55"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;matchLabels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-56"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;coffee&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-57"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;template&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-58"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-59"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-60"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;coffee&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-61"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-62"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;containers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-63"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-64"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginxinc/nginx-unprivileged&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-65"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-66"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;containerPort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;8080&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-67"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;volumeMounts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-68"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-conf&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-69"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;mountPath&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/etc/nginx/nginx.conf&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-70"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;subPath&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx.conf&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-71"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;readOnly&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-72"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-73"&gt;&lt;/a&gt;&lt;span class="nn"&gt;---&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-74"&gt;&lt;/a&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-75"&gt;&lt;/a&gt;&lt;span class="nn"&gt;---&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-76"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-77"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Service&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-78"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-79"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;coffee-svc&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-80"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-81"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-82"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;80&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-83"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;targetPort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;8080&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-84"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;protocol&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;TCP&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-85"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;http&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-86"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-87"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;coffee&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><category>ingress</category><category>kubernetes</category><guid>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</guid><pubDate>Mon, 07 Dec 2020 23:29:14 GMT</pubDate></item><item><title>Kubernetes, Static Website, Git</title><link>https://blog.piesso.com/posts/kubernetes-static-website-git/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Uzun bir aradan sonra Kubernetes ile ilgili bir konu ile yazilara basliyoruz. Bu yazida Kubernetes nedir? Ne degildir? gibi Kubernetes 101'den bahsetmek yerine bir senaryo ile ilgili sizlere fikir vermek istedim. Hemen kisaca senaryodan bahsedelim:&lt;/p&gt;
 &lt;div class="section" id="senaryo"&gt;
 &lt;h2&gt;Senaryo:&lt;/h2&gt;
 &lt;p&gt;Gunumuzde insanlar blog yazilarini yayinlamak icin static websites generator'lardan(nikola, jekyll, hugo vb.) birini kullanmaya yoneliyor. Daha onceden siklikla Wordpress kullanilirken artik bu sekilde bir cozum kullanimin farkli sebepleri olabilir. Bunu simdilik irdelemeyecegim.
@@ -19,124 +132,124 @@ Senaryo semasinin ayrintilari asagidaki gibidir:&lt;/p&gt;
 &lt;h3&gt;PersistentVolume ve PersistentVolumeClaim Olusturulmasi:&lt;/h3&gt;
 &lt;p&gt;Burada bir noktaya deginmek gerekirse olusturacagimiz bu volume'u nginx container'i icin sadece readonly mount ederken git-sync icin ise hem read hem de write olacak sekilde mount edecegiz. git-sync belirledigimiz git reposunu buraya sync edecektir. Bu yuzden hem read hem write yetkisi gerekirken, nginx sadece sayfalari yayinlayacagi icin read yetkisi yeterlidir.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;PersistentVolume:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code yaml"&gt;&lt;a name="rest_code_3d89480135a2462396209854e341f259-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;PersistentVolume&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-local-pv-01&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;capacity&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-7"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;storage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;1Gi&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-8"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;accessModes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-9"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ReadWriteOnce&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-10"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;persistentVolumeReclaimPolicy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Delete&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-11"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;storageClassName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-local-storage&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-12"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;local&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-13"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/mnt/disk1/vol1&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-14"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;nodeAffinity&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-15"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;required&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-16"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;nodeSelectorTerms&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-17"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;matchExpressions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-18"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;kubernetes.io/hostname&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-19"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;In&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-20"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_3d89480135a2462396209854e341f259-21"&gt;&lt;/a&gt;          &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;node3&lt;/span&gt;
+&lt;pre class="code yaml"&gt;&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;PersistentVolume&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-local-pv-01&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;capacity&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-7"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;storage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;1Gi&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-8"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;accessModes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-9"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ReadWriteOnce&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-10"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;persistentVolumeReclaimPolicy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Delete&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-11"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;storageClassName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-local-storage&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-12"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;local&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-13"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/mnt/disk1/vol1&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-14"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;nodeAffinity&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-15"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;required&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-16"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;nodeSelectorTerms&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-17"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;matchExpressions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-18"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;kubernetes.io/hostname&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-19"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;In&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-20"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-21"&gt;&lt;/a&gt;          &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;node3&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Yukardaki sekilde sadece &lt;em&gt;node3&lt;/em&gt; hostname'li node uzerindeki '/mnt/disk1/vol1/' uzerinde 1GB buyuklugunde persistentVolume olusturduk. Yukarida da belirttigim gibi kesinlikle production ortaminda local disk kullanmayin!&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_7199701e8c19438190ce09531da5d9ad-1"&gt;&lt;/a&gt;$ kubectl apply -f pv.yaml
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_8010fe3d51ce40fbbfaa837bfbea50fc-1"&gt;&lt;/a&gt;$ kubectl apply -f pv.yaml
 &lt;/pre&gt;&lt;p&gt;persistentVolume olusturtuktan sonra persistentVolumeClaim olusturalim.( "pv ve pvc nedir?" merak ediyorsaniz &lt;a class="reference external" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/"&gt;buradan&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;PersistentVolumeClaim:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code yaml"&gt;&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;PersistentVolumeClaim&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-claim-01&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;accessModes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-7"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ReadWriteOnce&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-8"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;storageClassName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-local-storage&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-9"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-10"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_7bdb6ddafe7343c5a8d5b2635c192ed2-11"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;storage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;1Gi&lt;/span&gt;
-&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_236d7eb482f24799836d937b541617df-1"&gt;&lt;/a&gt;$ kubectl apply -f pvc.yaml
+&lt;pre class="code yaml"&gt;&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;PersistentVolumeClaim&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-claim-01&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;accessModes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-7"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ReadWriteOnce&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-8"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;storageClassName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-local-storage&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-9"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-10"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_0a794df069734d118aafecb65868b9b3-11"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;storage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;1Gi&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_e43ab8f65a91415188f503e032bb84fd-1"&gt;&lt;/a&gt;$ kubectl apply -f pvc.yaml
 &lt;/pre&gt;&lt;p&gt;Volume olusturdugumuza gore artik yayinlayacagimiz static websitesi icin deployment asamasina gecebiliriz.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="deployment"&gt;
 &lt;h3&gt;Deployment:&lt;/h3&gt;
 &lt;p&gt;Asagidaki sekilde deployment olusturalim:&lt;/p&gt;
-&lt;pre class="code yaml"&gt;&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;apps/v1&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Deployment&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;replicas&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;1&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-7"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-8"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;matchLabels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-9"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-10"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;template&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-11"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-12"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-13"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-14"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-15"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;containers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-16"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;git-sync&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-17"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;k8s.gcr.io/git-sync/git-sync:v3.2.0&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-18"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;volumeMounts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-19"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www-persistent-storage&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-20"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;mountPath&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/tmp/git&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-21"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;env&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-22"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;GIT_SYNC_REPO&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-23"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://github.com/user_name/blog.example.com.git&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-24"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;GIT_SYNC_DEST&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-25"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;"blog"&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-26"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;GIT_SYNC_WAIT&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-27"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;"10"&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-28"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-29"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginxinc/nginx-unprivileged&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-30"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-31"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;containerPort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;8080&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-32"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;volumeMounts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-33"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www-persistent-storage&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-34"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;mountPath&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/usr/share/nginx/html&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-35"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;readOnly&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-36"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-37"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www-persistent-storage&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-38"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;persistentVolumeClaim&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-39"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;claimName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-claim-01&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-40"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;nodeSelector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-41"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;kubernetes.io/hostname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;node3&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-42"&gt;&lt;/a&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-43"&gt;&lt;/a&gt;&lt;span class="nn"&gt;---&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-44"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-45"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Service&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-46"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-47"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog-svc&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-48"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-49"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-50"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;80&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-51"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;targetPort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;8080&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-52"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;protocol&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;TCP&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-53"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;http&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-54"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_adc62f5afbc5439f8308e1fb6695dfc0-55"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
+&lt;pre class="code yaml"&gt;&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;apps/v1&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Deployment&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-6"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;replicas&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;1&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-7"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-8"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;matchLabels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-9"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-10"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;template&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-11"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-12"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-13"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-14"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-15"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;containers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-16"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;git-sync&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-17"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;k8s.gcr.io/git-sync/git-sync:v3.2.0&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-18"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;volumeMounts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-19"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www-persistent-storage&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-20"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;mountPath&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/tmp/git&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-21"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;env&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-22"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;GIT_SYNC_REPO&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-23"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://github.com/user_name/blog.example.com.git&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-24"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;GIT_SYNC_DEST&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-25"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;"blog"&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-26"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;GIT_SYNC_WAIT&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-27"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;"10"&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-28"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-29"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginxinc/nginx-unprivileged&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-30"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-31"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;containerPort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;8080&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-32"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;volumeMounts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-33"&gt;&lt;/a&gt;        &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www-persistent-storage&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-34"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;mountPath&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/usr/share/nginx/html&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-35"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;readOnly&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-36"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-37"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;www-persistent-storage&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-38"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;persistentVolumeClaim&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-39"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;claimName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-claim-01&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-40"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;nodeSelector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-41"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;kubernetes.io/hostname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;node3&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-42"&gt;&lt;/a&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-43"&gt;&lt;/a&gt;&lt;span class="nn"&gt;---&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-44"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;v1&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-45"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Service&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-46"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-47"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog-svc&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-48"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-49"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-50"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;80&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-51"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;targetPort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;8080&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-52"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;protocol&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;TCP&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-53"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;http&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-54"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-55"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;git-sync environment degerlerinden GIT_SYNC_REPO yerine git reponuzu ve GIT_SYNC_DEST degerini isteginize gore degistirebilirsiniz.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_5da1be0606d542bda0758b0fa8eb0bb5-1"&gt;&lt;/a&gt;$ kubectl apply -f deployment.yaml
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_65bc2669cba34119bac20d02e68ddd97-1"&gt;&lt;/a&gt;$ kubectl apply -f deployment.yaml
 &lt;/pre&gt;&lt;p&gt;Deployment olusturulup tamamlandiktan sonra websitemizi yayinlamak icin ingress olusturabiliriz.&lt;/p&gt;
-&lt;pre class="code yaml"&gt;&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;networking.k8s.io/v1beta1&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Ingress&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog-ingress&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-6"&gt;&lt;/a&gt;        &lt;span class="c1"&gt;#  ingressClassName: nginx # use only with k8s version &amp;gt;= 1.18.0&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-7"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;rules&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-8"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;host&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog.example.com&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-9"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-10"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;paths&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-11"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/blog&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-12"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;backend&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-13"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;serviceName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog-svc&lt;/span&gt;
-&lt;a name="rest_code_73265392d34a42478b62c49eddce7731-14"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;servicePort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;80&lt;/span&gt;
-&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_fff56ae7962c4b08a858409aa28f3728-1"&gt;&lt;/a&gt;$ kubectl apply -f ingress.yaml
+&lt;pre class="code yaml"&gt;&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-1"&gt;&lt;/a&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;networking.k8s.io/v1beta1&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;Ingress&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-3"&gt;&lt;/a&gt;&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-4"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog-ingress&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-5"&gt;&lt;/a&gt;&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-6"&gt;&lt;/a&gt;        &lt;span class="c1"&gt;#  ingressClassName: nginx # use only with k8s version &amp;gt;= 1.18.0&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-7"&gt;&lt;/a&gt;  &lt;span class="nt"&gt;rules&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-8"&gt;&lt;/a&gt;  &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;host&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog.example.com&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-9"&gt;&lt;/a&gt;    &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-10"&gt;&lt;/a&gt;      &lt;span class="nt"&gt;paths&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-11"&gt;&lt;/a&gt;      &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;/blog&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-12"&gt;&lt;/a&gt;        &lt;span class="nt"&gt;backend&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-13"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;serviceName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;blog-svc&lt;/span&gt;
+&lt;a name="rest_code_07d25846c04645d79f44089bd76155de-14"&gt;&lt;/a&gt;          &lt;span class="nt"&gt;servicePort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;80&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_45685fe9ebce466890922eb719d16631-1"&gt;&lt;/a&gt;$ kubectl apply -f ingress.yaml
 &lt;/pre&gt;&lt;p&gt;ingress tanimlamamiz da yapildigina gore &lt;em&gt;http://blog.example.com/blog&lt;/em&gt; adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;</description><guid>https://blog.piesso.com/posts/kubernetes-static-website-git/</guid><pubDate>Sat, 05 Dec 2020 15:12:03 GMT</pubDate></item><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I writed a schema.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>kubernetes</category><category>static websites</category><guid>https://blog.piesso.com/posts/kubernetes-static-website-git/</guid><pubDate>Sat, 05 Dec 2020 15:12:03 GMT</pubDate></item><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I writed a schema.&lt;/p&gt;
 &lt;dl class="simple"&gt;
 &lt;dt&gt;postfix-new.schema:&lt;/dt&gt;
 &lt;dd&gt;&lt;ul class="simple"&gt;
@@ -173,7 +286,7 @@ olcobjectclasses: {0}(1.3.6.1.4.1.4203.666.1.100 NAME 'postfixUser'
     MUST (maildrop)
     MAY(mailacceptinggeneralid $ mailEnabled $ mailQuota))
 &lt;/pre&gt;
-&lt;/noscript&gt;&lt;/div&gt;</description><guid>https://blog.piesso.com/posts/openldap-schema-for-postfix/</guid><pubDate>Sat, 31 Mar 2018 17:43:33 GMT</pubDate></item><item><title>Libvirt ve OpenvSwitch</title><link>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
+&lt;/noscript&gt;&lt;/div&gt;</description><category>openldap</category><category>postfix</category><category>schema</category><guid>https://blog.piesso.com/posts/openldap-schema-for-postfix/</guid><pubDate>Sat, 31 Mar 2018 17:43:33 GMT</pubDate></item><item><title>Libvirt ve OpenvSwitch</title><link>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
 once bu iki yazilim nedir, ne degildir onlari taniyalim.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Libvirt&lt;/strong&gt; &lt;a class="footnote-reference brackets" href="https://blog.piesso.com/posts/libvirt-ve-openvswitch/#id3" id="id1"&gt;1&lt;/a&gt; , Redhat tarafindan 2005'ten bu yana gelistirilmeye devam eden sanallastirma ortamlari icin daemon, API ve
 yonetim aracidir.&lt;/p&gt;
@@ -684,109 +797,4 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 &lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
 &lt;pre class="code bash"&gt;&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"&gt;&lt;/a&gt;search piesso.local
 &lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
-&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>ipa</category><category>ipa-client</category><guid>https://blog.piesso.com/posts/ipa-client-kurulumu/</guid><pubDate>Sun, 22 Jan 2017 13:24:47 GMT</pubDate></item><item><title>Centos 7 uzerine FreeIPA Kurulumu</title><link>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Kullanilan yazilimlar:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Centos Linux 7.2&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ipa-server 4.2.0&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ipa-server-dns 4.2.0&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;bind-dyndb-ldap 8.0&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;bind 9.9.4&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Kurulum Oncesi Hazirlik:&lt;/strong&gt;&lt;/p&gt;
-&lt;dl class="field-list simple"&gt;
-&lt;dt&gt;FQDN&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;ipa.piesso.local&lt;/p&gt;
-&lt;/dd&gt;
-&lt;dt&gt;IP&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;172.16.183.128/24&lt;/p&gt;
-&lt;/dd&gt;
-&lt;dt&gt;IPA DOMAIN&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;piesso.local&lt;/p&gt;
-&lt;/dd&gt;
-&lt;dt&gt;IPA NETBIOS&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;PIESSO&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;Kuruluma  baslamadan once kontrol edilmesi gerekenler;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;Hostname&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;/etc/hosts&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Statik IP&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Sistem update&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;1. Hostname:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_c280c76801af449b98216dae0f3cc856-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# hostnamectl set-hostname ipa.piesso.local&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;em&gt;2. /etc/hosts:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_097fa7cee6354da48e05b0f2e9d8e336-1"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.128 ipa.piesso.local ipa
-&lt;/pre&gt;&lt;p&gt;&lt;em&gt;3. Statik IP:&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Ornek statik ip konfigurasyonu "/etc/sysconfig/network-scripts/ifcfg-xxxx"&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;ONBOOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; yes
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;BOOTPROTO&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; none
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-3"&gt;&lt;/a&gt;&lt;span class="nv"&gt;IPADDR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-4"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;24&lt;/span&gt;
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-5"&gt;&lt;/a&gt;&lt;span class="nv"&gt;GATEWAY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.2
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-6"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DNS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;.8.8.8
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-7"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DNS2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;.8.4.4
-&lt;a name="rest_code_8cdc881c18eb4f239e290847d36d3db1-8"&gt;&lt;/a&gt;&lt;span class="nv"&gt;DEFROUTE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; yes
-&lt;/pre&gt;&lt;p&gt;&lt;em&gt;4. Sistem update:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_dd216db3cc7d455098e4e12302bef04c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum update -y&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Kurulum:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-server, integrated dns, ad trust  ve ldap back-end plugin yazilimlarinin repodan kurulmasi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_4c65531edd234dd88bc4df1814cae498-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-server kurulumu;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_005378183dc742d2aa460184a8d503cb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-server kurulumu asagidaki sekilde basari ile biterse firewalld daemonuna gerekli port izinlerinin verilmesi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;Restarting the web server&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;==============================================================================&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-3"&gt;&lt;/a&gt;&lt;span class="go"&gt;Setup complete&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-5"&gt;&lt;/a&gt;&lt;span class="go"&gt;Next steps:&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-6"&gt;&lt;/a&gt;&lt;span class="go"&gt;      1. You must make sure these network ports are open:&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-7"&gt;&lt;/a&gt;&lt;span class="go"&gt;                 TCP Ports:&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-8"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 80, 443: HTTP/HTTPS&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-9"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 389, 636: LDAP/LDAPS&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-10"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 88, 464: kerberos&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-11"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 53: bind&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-12"&gt;&lt;/a&gt;&lt;span class="go"&gt;                 UDP Ports:&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-13"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 88, 464: kerberos&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-14"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 53: bind&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-15"&gt;&lt;/a&gt;&lt;span class="go"&gt;                   * 123: ntp&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-16"&gt;&lt;/a&gt;&lt;span class="go"&gt;      2. You can now obtain a kerberos ticket using the command: 'kinit admin'&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-17"&gt;&lt;/a&gt;&lt;span class="go"&gt;         This ticket will allow you to use the IPA tools (e.g., ipa user-add)&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-18"&gt;&lt;/a&gt;&lt;span class="go"&gt;         and the web user interface.&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-19"&gt;&lt;/a&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-20"&gt;&lt;/a&gt;&lt;span class="go"&gt;Be sure to back up the CA certificate stored in /root/cacert.p12&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-21"&gt;&lt;/a&gt;&lt;span class="go"&gt;This file is required to create replicas. The password for this&lt;/span&gt;
-&lt;a name="rest_code_261edb97f37c4bd091479f52e00225eb-22"&gt;&lt;/a&gt;&lt;span class="go"&gt;file is the Directory Manager password&lt;/span&gt;
-&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}&lt;/span&gt;
-&lt;a name="rest_code_03a7ad68164b4aacb10a6200374d8db9-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --reload&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Firewall kurallarinin kontrol edilmesi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_feedd46ab0af4afb8898195609614b2a-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# firewall-cmd --list-services&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;IPA Server ve Kerberos Ticket Testi:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Kerberos'tan ticket alimi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_0c830162a8ca42c4b085adb69b2d0abf-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# kinit admin&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Ticketin basarili alinip alinmadigi kontrolu;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_f576a1e33d1744a1b9f509d106306588-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# klist&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-server servislerinin kontrolu;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_63ab957fe0464612a44b348f16c25e8c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipactl status&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Hersey saglam gorunuyorsa sunucu dnslerini local adrese donusturulmesi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-1"&gt;&lt;/a&gt;search piesso.local
-&lt;a name="rest_code_6a1b88d8c0134ca9b0529a98cfac16a0-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1
-&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>freeipa</category><guid>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</guid><pubDate>Sat, 21 Jan 2017 19:15:13 GMT</pubDate></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>ipa</category><category>ipa-client</category><guid>https://blog.piesso.com/posts/ipa-client-kurulumu/</guid><pubDate>Sun, 22 Jan 2017 13:24:47 GMT</pubDate></item></channel></rss>
