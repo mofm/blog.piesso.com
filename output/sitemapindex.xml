@@ -7,126 +7,126 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://blog.piesso.com/categories/active-directory.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/ansible.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/caching.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/centos.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/draft.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/freeipa.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/genel.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/gentoo.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/gezegen.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/git.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/ingress.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/ipa-client.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/ipa.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/kubernetes.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/kvm.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/libvirt.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/loadtesting.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/locust.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/nginx.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/openldap.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/openvswitch.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/portage.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/postfix.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/qemu.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/reverse-proxy.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/schema.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/ssh.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/static-websites.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/tools.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2020-12-17T12:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/rss.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/sitemap.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2020-12-17T12:12:00Z</lastmod>
  </sitemap>
 </sitemapindex>

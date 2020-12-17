@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 08 Dec 2020 00:31:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ingress path redirection appends port</title><link>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;&lt;/p&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Thu, 17 Dec 2020 12:12:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ingress path redirection appends port</title><link>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;&lt;/p&gt;
 &lt;pre class="code bash"&gt;&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-1"&gt;&lt;/a&gt;$ curl -I http://cafe.example.com/coffee/
 &lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-2"&gt;&lt;/a&gt;
 &lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-3"&gt;&lt;/a&gt;HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
@@ -249,7 +249,7 @@ Senaryo semasinin ayrintilari asagidaki gibidir:&lt;/p&gt;
 &lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_45685fe9ebce466890922eb719d16631-1"&gt;&lt;/a&gt;$ kubectl apply -f ingress.yaml
 &lt;/pre&gt;&lt;p&gt;ingress tanimlamamiz da yapildigina gore &lt;em&gt;http://blog.example.com/blog&lt;/em&gt; adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>kubernetes</category><category>static websites</category><guid>https://blog.piesso.com/posts/kubernetes-static-website-git/</guid><pubDate>Sat, 05 Dec 2020 15:12:03 GMT</pubDate></item><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I writed a schema.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>kubernetes</category><category>static websites</category><guid>https://blog.piesso.com/posts/kubernetes-static-website-git/</guid><pubDate>Sat, 05 Dec 2020 15:12:03 GMT</pubDate></item><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I wrote a schema.&lt;/p&gt;
 &lt;dl class="simple"&gt;
 &lt;dt&gt;postfix-new.schema:&lt;/dt&gt;
 &lt;dd&gt;&lt;ul class="simple"&gt;
