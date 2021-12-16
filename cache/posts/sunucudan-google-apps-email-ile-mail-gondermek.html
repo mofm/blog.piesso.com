@@ -2,7 +2,7 @@
 <p>Sunucunuz ya da bilgisayarınız üzerinden mailleri dışardaki mail sunucusuna yönlendirmek için "ssmtp"i kullanabiliriz.CentOS üzerine "ssmtp" i kurmak için olmazsa olmaz ek depolardan "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>"in eklenmiş olması lazım."EPEL"i eklemek için <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">bu yazıyı</a> takip edebilirsiniz.</p>
 <p>İlk olarak "<em>ssmtp</em>"i kuralım :
 </p><pre><strong># yum install ssmtp </strong></pre>
-"ssmtp" i kurduktan sonra "<em>ssmtp.conf</em>" dosyasına <strong>Google Apps Email</strong> hesap bilgilerimizi ve <strong>smtp</strong> ayarlarımızı ekleyelim :
+"ssmtp" i kurduktan sonra "<em>ssmtp.conf</em>" dosyasına <strong>Google Apps Email</strong> hesap bilgilerimizi ve <strong>smtp</strong> ayarlarımızı ekleyelim :</p>
 <pre><strong># vi /etc/ssmtp/ssmtp.conf</strong>
 </pre>
 <pre>root=kullanici_adi@domain_adi.com</pre>
@@ -11,9 +11,9 @@
 AuthPass=parola
 UseSTARTTLS=YES
 </pre>
-Bilgileri ekledikten sonra test maili gönderelim.
+<p>Bilgileri ekledikten sonra test maili gönderelim.</p>
 <pre><strong>$ echo test | mail -s "test" kullanici_adi@domain_adi.com</strong></pre>
-<strong>Diğer Başka Kaynaklar :</strong></p>
+<p><strong>Diğer Başka Kaynaklar :</strong></p>
 <p><a href="https://wiki.archlinux.org/index.php/SSMTP" target="_blank">Arch Linux için Ssmtp</a></p>
 <p><a href="http://wiki.debian.org/sSMTP" target="_blank">Debian için Ssmtp</a></p>
 <p><a href="http://www.freebsd.org/doc/handbook/outgoing-only.html" target="_blank">FreeBSD için Ssmtp</a></p>

@@ -80,21 +80,20 @@
 <pre>;; SERVER: 00.00.00.00#53(00.00.00.00)</pre>
 <pre>;; WHEN: Thu Jan 27 20:58:38 2011</pre>
 <pre>;; MSG SIZE  rcvd: 62</pre>
-Yukarda görüldüğü gibi <strong>Bind DNS</strong> sunucusu öntanımlı olarak dışarıya  kendi ve versiyonu ile ilgili bilgileri vermektedir.Bind DNS sunucumuzun versiyonu "9.2.4" müş.Kimliğimizi dışarıya vermemek ya da yanıltmak için "named.conf" dosyamızın içindeki "options" kısmına "version" satırını ekleyerek kimliğimizi dışarıya karşı maskeleyelim."version" satırı için istediğimiz bir isim ekleyebiliriz.
+<p>Yukarda görüldüğü gibi <strong>Bind DNS</strong> sunucusu öntanımlı olarak dışarıya  kendi ve versiyonu ile ilgili bilgileri vermektedir.Bind DNS sunucumuzun versiyonu "9.2.4" müş.Kimliğimizi dışarıya vermemek ya da yanıltmak için "named.conf" dosyamızın içindeki "options" kısmına "version" satırını ekleyerek kimliğimizi dışarıya karşı maskeleyelim."version" satırı için istediğimiz bir isim ekleyebiliriz.</p>
 <pre><strong># vi /var/named/chroot/etc/named.conf</strong></pre>
-options {
+<p>options {
 directory "/var/named";
 dump-file "/var/named/data/cache_dump.db";
 statistics-file "/var/named/data/named_stats.txt";
 recursion no ;
 allow-transfer { none; };
 dnssec-enable yes;
-<strong>version "DNS Server" ;</strong>
-<p>Sunucumuzu yeniden başlatalım :
-</p>
+<strong>version "DNS Server" ;</strong></p>
+<p>Sunucumuzu yeniden başlatalım :</p>
 <pre><strong># /sbin/service named restart</strong>
 </pre>
-Yukarda görüldüğü gibi "<em>options</em>" kısmına " <em>version "DNS Server" ; </em>" satırını ekledik.DNS sunucumuzun versiyonunu tekrar sorgulattığımızda artık bize "<strong>DNS Server</strong>" adını göstermesi lazım.
+<p>Yukarda görüldüğü gibi "<em>options</em>" kısmına " <em>version "DNS Server" ; </em>" satırını ekledik.DNS sunucumuzun versiyonunu tekrar sorgulattığımızda artık bize "<strong>DNS Server</strong>" adını göstermesi lazım.</p>
 <pre> <strong>$ dig @ns1.mydomain.com -c CH -t txt version.bind
 </strong>
 ; &lt;&lt;&gt;&gt; DiG 9.7.2-P2 &lt;&lt;&gt;&gt; @ns1.mydomain.com -c CH -t txt version.bind
@@ -104,25 +103,29 @@ Yukarda görüldüğü gibi "<em>options</em>" kısmına " <em>version "DNS Serv
 ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 29215
 ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 0
 ;; WARNING: recursion requested but not available
-<p>;; QUESTION SECTION:
-;version.bind.            CH    TXT</p>
-<p>;; ANSWER SECTION:
-version.bind.        0    CH    TXT    "DNS Server"</p>
-<p>;; AUTHORITY SECTION:
-version.bind.        0    CH    NS    version.bind.</p>
-<p>;; Query time: 110 msec
+
+;; QUESTION SECTION:
+;version.bind.            CH    TXT
+
+;; ANSWER SECTION:
+version.bind.        0    CH    TXT    "DNS Server"
+
+;; AUTHORITY SECTION:
+version.bind.        0    CH    NS    version.bind.
+
+;; Query time: 110 msec
 ;; SERVER: 00.00.00.00#53(00.00.00.00)
 ;; WHEN: Thu Jan 27 21:11:16 2011
 ;; MSG SIZE  rcvd: 60
-</p></pre>
-Artık DNS sunucumuz versiyon bilgisi vermiyor.Onun yerine yazmış olduğumuz "<strong>DNS Server</strong>" yazısını ekrana yazıyor.Sadece bunu yaparak DNS sunucumuzu güvende mi tutuyoruz?Elbetteki hayır! Şu an sadece sunucumuzun versiyonunu maskelemiş olduk.Yoksa  maskeleyemedik mi ???
-<p>Aslında tam olarak da maskeleyemedik."<a href="http://code.google.com/p/fpdns/" target="_blank"><strong>Finger print DNS</strong></a> " yazılımı ile kolayca sunucumuzun kimliğini ifşa edebilirler.Kimse etmeden ilk biz deneyelim."<strong>fpdns</strong>" yazılımı neredeyse her dağıtımın deposunda mevcut.Hemen bu yazılımı kuralım:
-</p>
+</pre>
+<p>Artık DNS sunucumuz versiyon bilgisi vermiyor.Onun yerine yazmış olduğumuz "<strong>DNS Server</strong>" yazısını ekrana yazıyor.Sadece bunu yaparak DNS sunucumuzu güvende mi tutuyoruz?Elbetteki hayır! Şu an sadece sunucumuzun versiyonunu maskelemiş olduk.Yoksa  maskeleyemedik mi ???</p>
+<p>Aslında tam olarak da maskeleyemedik."<a href="http://code.google.com/p/fpdns/" target="_blank"><strong>Finger print DNS</strong></a> " yazılımı ile kolayca sunucumuzun kimliğini ifşa edebilirler.Kimse etmeden ilk biz deneyelim."<strong>fpdns</strong>" yazılımı neredeyse her dağıtımın deposunda mevcut.Hemen bu yazılımı kuralım:</p>
 <pre><strong># yum install fpdns</strong></pre>
-"fpdns" yazılımını kurduktan sonra sunucumuzu sorgulatalım.
+<p>"fpdns" yazılımını kurduktan sonra sunucumuzu sorgulatalım.</p>
 <pre><strong>$  fpdns ns1.mydomain.com</strong></pre>
 <pre>fingerprint (ns1.mydomain.com, 00.00.00.00): BIND 9.2.3rc1 -- 9.4.0a0</pre>
-Yukarda görüldüğü gibi demek ki çok da iyi saklayamamışız :)</div>
+<p>Yukarda görüldüğü gibi demek ki çok da iyi saklayamamışız :)</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/kullanicilari-ve-surecleri-kontrol-etme/" class="u-url">Kullanıcıları ve süreçleri kontrol etme</a></h1>
         <div class="metadata">
@@ -147,25 +150,27 @@ Yukarda görüldüğü gibi demek ki çok da iyi saklayamamışız :)</div>
 Diğer bazı dağıtımlarda "<strong>psacct</strong>" yerine "<strong>acct</strong>" yazarak kurabilirsiniz.Örneğin ;
 <pre># emerge acct   (Gentoo için)</pre>
 <pre># yum install acct ( Suse için )</pre>
-Kurulum yaptıktan sonra "<strong>/var</strong>" dizini altında "<em>account</em>" adlı bir klasör ve bu klasörün içinde "<em>pacct</em>" adlı dosya oluşturması gerekir.Eğer bu klasör ve dosyayı oluşturmamışsa elle oluşturalım.
+<p>Kurulum yaptıktan sonra "<strong>/var</strong>" dizini altında "<em>account</em>" adlı bir klasör ve bu klasörün içinde "<em>pacct</em>" adlı dosya oluşturması gerekir.Eğer bu klasör ve dosyayı oluşturmamışsa elle oluşturalım.</p>
 <pre># mkdir /var/account</pre>
 <pre># touch /var/account/pacct</pre>
 <pre># chmod 660 /var/account/pacct</pre>
-Süreç kayıtlarını aktif hale getirelim.
+<p>Süreç kayıtlarını aktif hale getirelim.</p>
 <pre># accton /var/account/pacct</pre>
-"<strong>acct</strong>" uygulamasını başlangıça ekleyelim ve çalıştıralım.( <em>CentOS</em> )
+<p>"<strong>acct</strong>" uygulamasını başlangıça ekleyelim ve çalıştıralım.( <em>CentOS</em> )</p>
 <pre># chkconfig psacct on</pre>
 <pre># service psacct start</pre>
-Artık "<strong>acct</strong>" uygulaması ile gelen bazı yararlı komutları inceleyelim."<strong>ac</strong>" komutu ile başlayalım."<strong>ac</strong>" komutu kullanıcının sistem üzerinde ne kadar süredir bağlı kaldığını gösterir.
+<p>Artık "<strong>acct</strong>" uygulaması ile gelen bazı yararlı komutları inceleyelim."<strong>ac</strong>" komutu ile başlayalım."<strong>ac</strong>" komutu kullanıcının sistem üzerinde ne kadar süredir bağlı kaldığını gösterir.</p>
 <pre> # ac
  total      537.71
 </pre>
-Yukarda görüldüğü gibi "<strong>ac</strong>" komutu hiç bir parametre almadan sadece komutu veren kullanıcının ne kadar süre sistemde olduğunu gösteriyor.Eğer sistem üzerinde tüm kullanıcıların ne kadar süre sistem üzerinde olduklarını görmek için ise "<strong>-p</strong>"(people)  parametresi kullanıyoruz.
+<p>Yukarda görüldüğü gibi "<strong>ac</strong>" komutu hiç bir parametre almadan sadece komutu veren kullanıcının ne kadar süre sistemde olduğunu gösteriyor.Eğer sistem üzerinde tüm kullanıcıların ne kadar süre sistem üzerinde olduklarını görmek için ise "<strong>-p</strong>"(people)  parametresi kullanıyoruz.</p>
 <pre># ac -p
  ares                           537.95</pre>
 <pre> zeus                           100.00
  total      637.95</pre>
-* İkinci yararlı komutumuz ise "<strong>lastcomm</strong>" . "<strong>lastcomm</strong>" komutu ile hangi komutu kim,ne zaman,nerede verildiği hakkında bilgi verir.
+<ul>
+<li>İkinci yararlı komutumuz ise "<strong>lastcomm</strong>" . "<strong>lastcomm</strong>" komutu ile hangi komutu kim,ne zaman,nerede verildiği hakkında bilgi verir.</li>
+</ul>
 <pre># lastcomm</pre>
 <pre>grep                   root     pts/0      0.00 secs Fri Jan 21 06:56
 sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
@@ -186,7 +191,7 @@ sh                F    root     pts/0      0.00 secs 
 sh                F    root     pts/0      0.00 secs Fri Jan 21 06:56
 sed                    root     pts/0      0.00 secs Fri Jan 21 06:56
 </pre>
-"<strong>lastcomm</strong>" komutu parametresiz sistem üzerinde verilen tüm komutları listeler.Eğer belli bir kullanıcının verdiği komutları görmek istersek "<strong>lastcomm</strong>" komutundan sonra "<strong>kullanıcı adı</strong>"nı yazıyoruz.
+<p>"<strong>lastcomm</strong>" komutu parametresiz sistem üzerinde verilen tüm komutları listeler.Eğer belli bir kullanıcının verdiği komutları görmek istersek "<strong>lastcomm</strong>" komutundan sonra "<strong>kullanıcı adı</strong>"nı yazıyoruz.</p>
 <pre># lastcomm ares</pre>
 <pre>bash                   ares pts/1      0.02 secs Fri Jan 21 03:46</pre>
 <pre>clear                  ares pts/1      0.00 secs Fri Jan 21 04:43</pre>
@@ -195,19 +200,21 @@ sed                    root     pts/0      0.00 secs
 <pre>bash                   ares pts/0      0.04 secs Thu Jan 20 19:39</pre>
 <pre>clear                  ares pts/0      0.00 secs Fri Jan 21 04:43</pre>
 <pre>ssh                    ares pts/1      0.03 secs Fri Jan 21 03:46</pre>
-<pre>firefox              X ares <strong>       1860.00 secs Thu Jan 20 16:24</strong></pre>
-<pre>plugin-containe        ares        454.73 secs Thu Jan 20 16:24</pre>
-<pre>task1                X ares <strong>         0.35 secs Fri Jan 21 04:35</strong></pre>
-<pre>gnome-panel       F    ares          0.00 secs Fri Jan 21 04:35</pre>
+<pre>firefox              X ares __       1860.00 secs Thu Jan 20 16:24</pre>
+<pre>plugin-containe        ares __       454.73 secs Thu Jan 20 16:24</pre>
+<pre>task1                X ares __         0.35 secs Fri Jan 21 04:35</pre>
+<pre>gnome-panel       F    ares __         0.00 secs Fri Jan 21 04:35</pre>
 <pre>xauth            S     ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
 <pre>whoami                 ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
 <pre>uname                  ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
 <pre>uname                  ares pts/0      0.00 secs Fri Jan 21 04:31</pre>
-* Diğer bir komut ise "<strong>sa</strong>" . "<strong>sa</strong>" komutu ile kayıt altına komutları ve bu komutların kaç defa çalıştırıldığını gösterir.
+<ul>
+<li>Diğer bir komut ise "<strong>sa</strong>" . "<strong>sa</strong>" komutu ile kayıt altına komutları ve bu komutların kaç defa çalıştırıldığını gösterir.</li>
+</ul>
 <pre># sa</pre>
 <pre>8014       0.16re       0.00cp         0avio      4475k   mv</pre>
 <pre> 5495       0.01re       0.00cp         0avio      2052k   dirname</pre>
-<pre> 5484       0.78re       0.00cp         0avio      5707k   libtoolize<em></em></pre>
+<pre> 5484       0.78re       0.00cp         0avio      5707k   libtoolize*</pre>
 <pre> 4377       0.18re       0.00cp         0avio      2071k   stty</pre>
 <pre> 3621       0.02re       0.00cp         0avio      3445k   touch</pre>
 <pre> 3258       0.09re       0.00cp         0avio      2326k   tr</pre>
@@ -218,12 +225,12 @@ sed                    root     pts/0      0.00 secs
 <pre> 2557       0.01re       0.00cp         0avio      2034k   expr</pre>
 <pre> 2118       0.28re       0.00cp         0avio      2752k   sort</pre>
 <pre> 1868       0.00re       0.00cp         0avio      2183k   uname</pre>
-<pre> 1860       0.08re       0.00cp         0avio      5617k   autoconf-2.65</pre>
-<pre> 1610       0.09re       0.00cp         0avio     17421k   python2.6<em></em></pre>
+<pre> 1860       0.08re       0.00cp         0avio      5617k   autoconf-2.65*</pre>
+<pre> 1610       0.09re       0.00cp         0avio     17421k   python2.6*</pre>
 <pre> 1466       0.02re       0.00cp         0avio      1894k   ln</pre>
 <pre> 1320       0.00re       0.00cp         0avio      3721k   chgrp</pre>
-<pre> 1225       0.00re       0.00cp         0avio      5547k   shtool</pre>
-"acct" ile gelen diğer bazı komutlar ise ;
+<pre> 1225       0.00re       0.00cp         0avio      5547k   shtool*</pre>
+<p>"acct" ile gelen diğer bazı komutlar ise ;</p>
 <p><strong>last =</strong>Sisteme en son giriş yapan kullanıcılar listeler.</p>
 <p><strong>dump-acct =</strong> Kayıt dosyasını okunabilir  şekilde ekrana yazdırır.</p>
 <p>"<strong>acct</strong>" ve komutları hakkında daha fazla bilgi için man sayfalarına ve <a href="http://www.gnu.org/software/acct/manual/html_chapter/accounting.html" target="_blank">şuraya</a> bakabilirsiniz.</p>
@@ -247,24 +254,23 @@ sed                    root     pts/0      0.00 secs
 <p></p>
 <a href="http://www.qmailtoaster.com/" target="_blank"><strong>Qmail-Toaster</strong></a> kurulumu için hazırlanmış olan scriptler işimizi kolaylaştırıyordu.Kaldırmak içinde yine bir script işimizi kolaylaşıtırıyor.Qmail-Toaster mail listesinde  bunun için hazırlanmış bir script ile karşılaştım .İhtiyacımız olduğunda kullanabiliriz.
 <p><strong>NOT: </strong>Script içinde "<strong>MYSQLPW</strong>" için vpopmail veritabanının parolasını girip,düzenlenmeyi unutmayın!</p>
-<p>Scripti dosya halinde indirmek için <a href="http://linux.piesso.com/programs/remove_toaster.sh" target="_blank">tıklayın</a> .
-</p>
+<p>Scripti dosya halinde indirmek için <a href="http://linux.piesso.com/programs/remove_toaster.sh" target="_blank">tıklayın</a> .</p>
 <pre>#!/bin/sh
-<h2>CentOS 5</h2>
-<h2>Remove Qmail-Toaster</h2>
-<h2>Removes all the qmailtoaster rpms except zlib.  Deletes all the needed users.</h2>
-<h2>Deletes the Database. Deletes ALL the files and directories left behind. THIS</h2>
-<h2>WILL WIPE THE SLATE CLEAN.  YOU WERE WARNED. No Guarantee it will work for you.</h2>
-<h2>Modify as you see fit. Pass improvements back to below email.</h2>
-<h2></h2>
-<h2></h2>
-<h2></h2>
-<h2>Set mysql password</h2>
-<p>MYSQLPW=your pasword here</p>
-<h2></h2>
-<h2>Remove rpms in order of deps.</h2>
-<p>echo
-echo "Removing <em>ALL</em> Toaster RPMs in order of deps, except zlib"
+# CentOS 5
+# Remove Qmail-Toaster
+# Removes all the qmailtoaster rpms except zlib.  Deletes all the needed users.
+#Deletes the Database. Deletes ALL the files and directories left behind. THIS
+#WILL WIPE THE SLATE CLEAN.  YOU WERE WARNED. No Guarantee it will work for you.
+# Modify as you see fit. Pass improvements back to below email.
+#
+#
+#
+# Set mysql password
+MYSQLPW=your pasword here
+#
+# Remove rpms in order of deps.
+echo
+echo "Removing *ALL* Toaster RPMs in order of deps, except zlib"
 rpm -e simscan-toaster
 rpm -e clamav-toaster
 rpm -e spamassassin-toaster
@@ -285,17 +291,17 @@ rpm -e qmail-toaster
 rpm -e vpopmail-toaster
 rpm -e ucspi-tcp-toaster
 rpm -e daemontools-toaster
-rpm -e send-emails-toaster</p>
-<h2></h2>
-<h2>Drop vpopmail database.</h2>
-<h2></h2>
-<p>echo
+rpm -e send-emails-toaster
+#
+#Drop vpopmail database.
+#
+echo
 echo "Dropping vpopmail database"
-mysqladmin -f -uroot -p$MYSQLPW drop vpopmail</p>
-<h2></h2>
-<h2>Delete directories and files.</h2>
-<h2></h2>
-<p>echo
+mysqladmin -f -uroot -p$MYSQLPW drop vpopmail
+#
+#Delete directories and files.
+#
+echo
 echo "Removing all directories and files associated with Qmail-Toaster"
 rm -f /etc/freshclam.conf.rpmsave
 rm -f /etc/tcprules.d/tcp.smtp.rpmsave
@@ -305,8 +311,8 @@ rm -Rf /etc/log.d/scripts/services/vpopmail
 rm -Rf /etc/log.d/scripts/services/courier
 rm -Rf /etc/log.d/scripts/services/clamav
 rm -Rf /etc/log.d/scripts/services/qmail
-rm -f /usr/src/redhat/RPMS/i386/<em>toaster</em>.rpm
-rm -f /usr/src/redhat/RPMS/noarch/<em>toaster</em>.rpm
+rm -f /usr/src/redhat/RPMS/i386/*toaster*.rpm
+rm -f /usr/src/redhat/RPMS/noarch/*toaster*.rpm
 rm -Rf /usr/share/toaster
 rm -Rf /usr/share/clamav
 rm -Rf /usr/src/qtms-install
@@ -318,11 +324,12 @@ rm -Rf /var/log/clamav
 rm -Rf /var/log/qmail
 rm -Rf /home/vpopmail
 echo
-echo "All done."</p>
-<h2></h2>
-<h2></h2>
-<p>exit
-</p></pre>
+echo "All done."
+#
+#
+exit
+</pre>
+<p></p>
 </div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sunucu-kimligi-maskeleme/" class="u-url">Sunucu kimliği maskeleme</a></h1>
@@ -353,24 +360,24 @@ ServerTokens Prod</strong></p>
 <pre># yum install nmap</pre>
 Eğer grafik arabirimi ile kullanmak istiyorsanız "<a href="http://nmap.org/zenmap/" target="_blank">zenmap</a>" i kurabilirsiniz."<strong>zenmap</strong>"i de kurmak için;
 <pre># yum install zenmap</pre>
-Sistemimize "nmap" kuruldu ise sunucunuzun ip  adresini ya da adını yazarak taratın.Eğer sunucuyu maskelememişsek nmap Apache'nin parmak izini(<em>fingerprint</em>) tanıyacaktır ve size 80. portta Apache sunucusunun çalıştığını söylecektir.
+<p>Sistemimize "nmap" kuruldu ise sunucunuzun ip  adresini ya da adını yazarak taratın.Eğer sunucuyu maskelememişsek nmap Apache'nin parmak izini(<em>fingerprint</em>) tanıyacaktır ve size 80. portta Apache sunucusunun çalıştığını söylecektir.</p>
 <p><strong>Zenmap'ten :</strong></p>
 <p><a href="http://i51.tinypic.com/2d18cqh.png"><img class="alignnone" title="Zenmap" src="http://i51.tinypic.com/2d18cqh.png" alt="" width="396" height="67"></a></p>
-<p>Demek ki Apache'deki "<em>ServerSignature Off</em> " ve "<em>ServerTokens Prod</em>" değerleri sunucu bilgisini gizleyemiyor sadece kısıtlama yapabiliyor.Şimdi sunucu bilgilerimizi tamamen saklayalım.Bu maskeleme işlemini Apache'nin "<a href="http://www.modsecurity.org/" target="_blank">mod_security</a>" ile yapacağız.Eğer "<strong>mod_security</strong>" modülü yüklü değilse yükleyelim.CentOS üzerine bu modülü yüklemek için "<em>EPEL</em>" deposunu eklemiş olmanız gerekiyor.(" Epel deposu eklemek için <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">yardım</a> ")Paket yöneticisi ile hemen yükleyelim;
-</p>
+<p>Demek ki Apache'deki "<em>ServerSignature Off</em> " ve "<em>ServerTokens Prod</em>" değerleri sunucu bilgisini gizleyemiyor sadece kısıtlama yapabiliyor.Şimdi sunucu bilgilerimizi tamamen saklayalım.Bu maskeleme işlemini Apache'nin "<a href="http://www.modsecurity.org/" target="_blank">mod_security</a>" ile yapacağız.Eğer "<strong>mod_security</strong>" modülü yüklü değilse yükleyelim.CentOS üzerine bu modülü yüklemek için "<em>EPEL</em>" deposunu eklemiş olmanız gerekiyor.(" Epel deposu eklemek için <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">yardım</a> ")Paket yöneticisi ile hemen yükleyelim;</p>
 <pre># yum install mod_security</pre>
-Modülü kurduktan sonra ilk önce "mod_security" kuralları aktif edelim."<strong>modsecurity_crs_10_config.conf</strong>" dosyasına "SecRuleEngine On" satırını ekleyelim.
+<p>Modülü kurduktan sonra ilk önce "mod_security" kuralları aktif edelim."<strong>modsecurity_crs_10_config.conf</strong>" dosyasına "SecRuleEngine On" satırını ekleyelim.</p>
 <pre># vi /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf</pre>
 <pre>+  SecRuleEngine On
 </pre>
-Şu an "mod_security" modülümüz hazır.Artık Apache'nin kimliğini maskeleyelim.Bunun için biraz önce " <em>SecRuleEngine On</em> " satırını eklediğimiz "<strong>modsecurity_crs_10_config.conf</strong>" dosyasına "<strong>SecServerSignature</strong> " satırını eklemeliyiz."<strong>SecServerSignature </strong>" değeri için istediğiniz ismi girebilirsiniz,hatta farklı aldatmaca sunucu kimlikleri de kullanabilirsiniz.Örnek olarak :
+<p>Şu an "mod_security" modülümüz hazır.Artık Apache'nin kimliğini maskeleyelim.Bunun için biraz önce " <em>SecRuleEngine On</em> " satırını eklediğimiz "<strong>modsecurity_crs_10_config.conf</strong>" dosyasına "<strong>SecServerSignature</strong> " satırını eklemeliyiz."<strong>SecServerSignature </strong>" değeri için istediğiniz ismi girebilirsiniz,hatta farklı aldatmaca sunucu kimlikleri de kullanabilirsiniz.Örnek olarak :</p>
 <pre>+ SecServerSignature  " Ulak Web Server"</pre>
-Yukardaki satırı ekledikten sonra Apache'deki "<strong>ServerTokens</strong>" değerini "<em>Major</em>" olarak değiştirin.
+<p>Yukardaki satırı ekledikten sonra Apache'deki "<strong>ServerTokens</strong>" değerini "<em>Major</em>" olarak değiştirin.</p>
 <pre># vi /etc/httpd/conf/httpd.conf</pre>
 <pre>" ServerTokens Major "</pre>
-Bu değişikliği de yaptıysanız "<strong>Apache</strong>"yi yeniden başlatalım.
+<p>Bu değişikliği de yaptıysanız "<strong>Apache</strong>"yi yeniden başlatalım.</p>
 <pre># service httpd restart</pre>
-Web sunucumuzun kimliği dışarıya karşı maskelendi.Artık testler yaparak kontrol edebiliriz.</div>
+<p>Web sunucumuzun kimliği dışarıya karşı maskelendi.Artık testler yaparak kontrol edebiliriz.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/epel-ve-rpmforge-depolarini-ekleyin/" class="u-url">EPEL ve RPMforge depolarını ekleyin</a></h1>
         <div class="metadata">
@@ -479,35 +486,33 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
     <div>
 <p></p>
 <a href="http://www.qmailtoaster.com/" target="_blank"><img class="alignright" title="qmail" src="http://techyguru.com/images/kl-qmail-w.gif" alt="" width="200" height="163">QMail-Toaster</a> Mail sunucunuz üzerinde mailleri <a href="http://www.dkim.org/" target="_blank">DKIM</a>(<em>DomainKeys Identified Mail</em>) ile imzalamaya kısaca değineceğim.DKIM ile imzalamak mail sunucunuzdan çıkan her mailin gerçekten sizin sunucunuzdan çıktığını kanıtlamak için kullanılır.Özellikle bazı büyük mail sağlayıcıları yahoo,gmail bunu kullanmaktadır.
-<p>Qmail-Toaster üzerine <strong>DKIM</strong>'i kurmaya başalamadan önce eğer Centos(<em>ya da RHEL,FEDORA</em>) üzerine "rpmforge" deposunu eklemediyseniz hemen ekleyelim."RpmForge" ek deposunu eklemek için kendi dağıtım ve sürümünüze uygun rpmforge "rpm" paketini "<a href="http://dag.wieers.com/rpm/packages/rpmforge-release/" target="_blank">http://dag.wieers.com/rpm/packages/rpmforge-release/</a>" adresinden indirelim ve indirdiğimiz paketi kuralım.
-</p>
+<p>Qmail-Toaster üzerine <strong>DKIM</strong>'i kurmaya başalamadan önce eğer Centos(<em>ya da RHEL,FEDORA</em>) üzerine "rpmforge" deposunu eklemediyseniz hemen ekleyelim."RpmForge" ek deposunu eklemek için kendi dağıtım ve sürümünüze uygun rpmforge "rpm" paketini "<a href="http://dag.wieers.com/rpm/packages/rpmforge-release/" target="_blank">http://dag.wieers.com/rpm/packages/rpmforge-release/</a>" adresinden indirelim ve indirdiğimiz paketi kuralım.</p>
 <pre>$ wget <a href="http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm" target="_blank">http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm</a> (Centos 5 64 bit için)</pre>
 <pre># rpm -i rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm</pre>
-"RpmForge"  paketini kurduktan sonra paket depolarını güncelleyin.
+<p>"RpmForge"  paketini kurduktan sonra paket depolarını güncelleyin.</p>
 <pre># yum update</pre>
-Böylece depomuza "rpmforge" ek deposunu ekledik.Şimdi "DKIM" kurulumuna geçebiliriz.İlk QMail-Toaster'ın DKIM scriptlerini sisteme indirelim.
-<p>$ wget <a href="http://qmailtoaster.com/dkim.tgz" target="_blank">http://qmailtoaster.com/dkim.tgz</a>
-</p>
+<p>Böylece depomuza "rpmforge" ek deposunu ekledik.Şimdi "DKIM" kurulumuna geçebiliriz.İlk QMail-Toaster'ın DKIM scriptlerini sisteme indirelim.</p>
+<p>$ wget <a href="http://qmailtoaster.com/dkim.tgz" target="_blank">http://qmailtoaster.com/dkim.tgz</a></p>
 <pre>$ tar zxvf dkim.tgz</pre>
 <pre>$ cd  dkim</pre>
-"dkim" paketini sisteme indirip,açtıktan sonra kurulum adımlarına devam edelim.Eksik perl paketlerini sisteme kuralım;(bazı paketler Centos dağıtım depolarında bulunmadığı için "rpmforge" ek depolarını kurmuştuk.Özellikle "perl-Mail-DKIM" paketi ve bağımlılıkları dağıtım deposunda bulunmuyor.)
+<p>"dkim" paketini sisteme indirip,açtıktan sonra kurulum adımlarına devam edelim.Eksik perl paketlerini sisteme kuralım;(bazı paketler Centos dağıtım depolarında bulunmadığı için "rpmforge" ek depolarını kurmuştuk.Özellikle "perl-Mail-DKIM" paketi ve bağımlılıkları dağıtım deposunda bulunmuyor.)</p>
 <pre># yum install perl-XML-Simple perl-Mail-DKIM perl-XML-Parser</pre>
-Eksik paketlerimizde kurulduysa bu adımda başarı ile tamamlandı.Artık "DKIM"i "QMail"e adapte edelim.Bunun için ise control dosyalarının olduğu bölüme "dkim" adlı bir dizin oluşturup içine "dkim" imzamızı oluşturalım.Aşağıdaki adımları sırayla takip edin;
+<p>Eksik paketlerimizde kurulduysa bu adımda başarı ile tamamlandı.Artık "DKIM"i "QMail"e adapte edelim.Bunun için ise control dosyalarının olduğu bölüme "dkim" adlı bir dizin oluşturup içine "dkim" imzamızı oluşturalım.Aşağıdaki adımları sırayla takip edin;</p>
 <pre># mkdir /var/qmail/control/dkim</pre>
 <pre># cp signconf.xml /var/qmail/control/dkim/</pre>
 <pre># chown -R qmailr:qmail /var/qmail/control/dkim/</pre>
 <pre># dknewkey /var/qmail/control/dkim/global.key &gt; /var/qmail/control/dkim/public.txt</pre>
 <pre># perl -pi -e 's/global.key/dkim1/' /var/qmail/control/dkim/public.txt</pre>
 <pre># qmailctl stop</pre>
-Bu adımlardan sonra imzamızı oluşturduk ve en sonunda "qmail"i durdurduk,şimdi eski "qmail-remote" dosyasını "dkim" paketi ile gelen "qmail-remote" dosyası değiştirip izinleri ayarlayalım.
+<p>Bu adımlardan sonra imzamızı oluşturduk ve en sonunda "qmail"i durdurduk,şimdi eski "qmail-remote" dosyasını "dkim" paketi ile gelen "qmail-remote" dosyası değiştirip izinleri ayarlayalım.</p>
 <pre># mv /var/qmail/bin/qmail-remote /var/qmail/bin/qmail-remote.orig</pre>
 <pre># mv qmail-remote /var/qmail/bin</pre>
 <pre># chmod 777 /var/qmail/bin/qmail-remote</pre>
 <pre># chown root:qmail /var/qmail/bin/qmail-remote</pre>
 <pre># qmailctl start</pre>
-Buraya kadar hiçbir hata ile karşılaşmadıysanız "DKIM" başarı ile kuruldu ve artık geriye sadece dns'imize oluşan TXT kaydını eklemek kaldı.
+<p>Buraya kadar hiçbir hata ile karşılaşmadıysanız "DKIM" başarı ile kuruldu ve artık geriye sadece dns'imize oluşan TXT kaydını eklemek kaldı.</p>
 <pre>$ cat /var/qmail/control/dkim/public.txt</pre>
-Yukardaki komuttan sonra çıkan <strong>TXT </strong>kaydını DNS Zone dosyanızda yayınlayın.Tüm adımlar bu kadar.Artık mailleriniz "DKIM" ile imzalanacak.
+<p>Yukardaki komuttan sonra çıkan <strong>TXT </strong>kaydını DNS Zone dosyanızda yayınlayın.Tüm adımlar bu kadar.Artık mailleriniz "DKIM" ile imzalanacak.</p>
 <p><a href="http://wiki.qmailtoaster.com/index.php/How_to_Setup_DKIM_with_Qmail_Toaster" target="_blank">How to setup DKIM with qmail-toaster</a></p>
 </div>
     </div>
@@ -619,7 +624,7 @@ Encrypted: $1$M1Gou/$U4rKvFwErxqZkpt9MiHYm0</p>
             <li class="next">
                 <a href="index-15.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

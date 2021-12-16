@@ -70,24 +70,21 @@ conn L2TP-PSK
     fi<span class="nt">&lt;/code&gt;</span>
 </code></pre>
 
-
 <p>Şu şekilde görünmeli;</p>
 <p><code>start() {
         checkconfig || return 1</p>
 <h6>############l2tp-control dosyasi olusturmak icin eklendi.</h6>
-<pre class="code literal-block"><span></span><code><span class="err">    if !([ -f /var/run/xl2tpd/l2tp-control ]); then</span>
-<span class="err">            mkdir -p /var/run/xl2tpd</span>
-<span class="err">            touch /var/run/xl2tpd/l2tp-control</span>
-<span class="err">    fi</span>
+<pre class="code literal-block"><span></span><code>    <span class="k">if</span> <span class="o">!</span><span class="p">([</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">xl2tpd</span><span class="o">/</span><span class="n">l2tp</span><span class="o">-</span><span class="n">control</span> <span class="p">]);</span> <span class="n">then</span>
+            <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">xl2tpd</span>
+            <span class="n">touch</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">xl2tpd</span><span class="o">/</span><span class="n">l2tp</span><span class="o">-</span><span class="n">control</span>
+    <span class="n">fi</span>
 </code></pre>
-
 
 <h6></h6>
-<pre class="code literal-block"><span></span><code><span class="err">    ebegin &quot;Starting xl2tpd&quot;</span>
-<span class="err">    start-stop-daemon --start --quiet --exec /usr/sbin/xl2tpd</span>
-<span class="err">    eend $?</span>
+<pre class="code literal-block"><span></span><code>    <span class="nv">ebegin</span> <span class="s2">&quot;</span><span class="s">Starting xl2tpd</span><span class="s2">&quot;</span>
+    <span class="nv">start</span><span class="o">-</span><span class="nv">stop</span><span class="o">-</span><span class="nv">daemon</span> <span class="o">--</span><span class="nv">start</span> <span class="o">--</span><span class="nv">quiet</span> <span class="o">--</span><span class="k">exec</span> <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">xl2tpd</span>
+    <span class="nv">eend</span> $?
 </code></pre>
-
 
 <p>}
 </code></p>

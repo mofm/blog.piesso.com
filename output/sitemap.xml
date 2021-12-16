@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://blog.piesso.com/</loc>
-  <lastmod>2020-12-06T14:04:00Z</lastmod>
+  <lastmod>2021-12-15T19:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2009/</loc>
@@ -46,8 +46,12 @@
   <lastmod>2020-12-05T15:39:00Z</lastmod>
  </url>
  <url>
+  <loc>https://blog.piesso.com/2021/</loc>
+  <lastmod>2021-12-15T19:00:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://blog.piesso.com/archive.html</loc>
-  <lastmod>2020-12-08T00:04:00Z</lastmod>
+  <lastmod>2021-12-15T23:26:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/</loc>
@@ -171,95 +175,95 @@
  </url>
  <url>
   <loc>https://blog.piesso.com/index-1.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-10.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-11.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-12.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-13.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-14.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-15.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-16.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-17.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-18.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-19.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-2.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-20.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-21.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-22.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-23.html</loc>
-  <lastmod>2020-12-08T00:04:00Z</lastmod>
+  <lastmod>2021-12-15T23:26:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-3.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-4.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-5.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-6.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-7.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-8.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-9.html</loc>
-  <lastmod>2020-12-07T20:46:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/pages/about-me/</loc>
@@ -340,6 +344,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/bir-websitenin-hostunda-bulunan-diger-siteleri-bulma/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/block-ads-and-malware-via-bind9-rpz/</loc>
+  <lastmod>2021-12-15T19:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/break-i/</loc>
@@ -516,6 +524,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/for-dongusu/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/free-updated-geoip-databases/</loc>
+  <lastmod>2021-12-15T23:26:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/</loc>
@@ -1116,6 +1128,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/uptime-suresini-ogrenme-ve-engelleme/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/urls-of-blacklists/</loc>
+  <lastmod>2021-12-15T22:40:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/usb-flash-diskten-linux-kurulumu/</loc>

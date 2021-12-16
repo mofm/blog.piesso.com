@@ -23,7 +23,7 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/draft.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/freeipa.xml</loc>
@@ -31,7 +31,7 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/genel.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/gentoo.xml</loc>
@@ -39,7 +39,7 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/gezegen.xml</loc>
-  <lastmod>2020-12-05T11:57:00Z</lastmod>
+  <lastmod>2021-12-15T19:19:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/git.xml</loc>
@@ -83,7 +83,7 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/openldap.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2021-12-15T21:07:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/openvswitch.xml</loc>
@@ -95,7 +95,7 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/postfix.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2021-12-15T21:07:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/qemu.xml</loc>
@@ -107,7 +107,7 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/schema.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2021-12-15T21:07:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/categories/ssh.xml</loc>
@@ -123,10 +123,10 @@
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/rss.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2021-12-15T23:26:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://blog.piesso.com/sitemap.xml</loc>
-  <lastmod>2020-12-08T00:31:00Z</lastmod>
+  <lastmod>2021-12-15T23:26:00Z</lastmod>
  </sitemap>
 </sitemapindex>

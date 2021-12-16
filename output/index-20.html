@@ -114,10 +114,16 @@
 <p></p>
 <img class="alignleft" title="Yeni Yıl 2012" src="http://img718.imageshack.us/img718/1909/yenignuyil.jpg" alt="" width="259" height="253"><pre>
 <pre>
-<p>cat /<em>dev/null; echo "MUTLU YILLAR"!
-cat &lt;&lt;c</em>/ /<em>dev/null | cat &gt; /dev/null
-c </em>/ () {} /<em>
-c </em>/ main() { cat(); printf("MUTLU YILLAR!\n"); } /<em>
+
+
+
+
+
+
+cat /*dev/null; echo "MUTLU YILLAR"\!
+cat &lt;&lt;c*/ /*dev/null | cat &gt; /dev/null
+c */ () {} /*
+c */ main() { cat(); printf("MUTLU YILLAR!\n"); } /*
 17      format('  MUTLU YILLAR!')
         write (6,17)
         stop
@@ -125,8 +131,9 @@ c </em>/ main() { cat(); printf("MUTLU YILLAR!\n"); } /<em>
 c This program runs in four languages with the same effect.
 c The languages are C, Fortran, C Shell and Bourne Shell.
 c Written by Vadim Antonov, avg@hq.demos.su
-c</em>/</p></pre>
+c*/</pre>
 <strong>"Hoşgeldin 2012! Yeni yılınız kutlu olsun!!"</strong></pre>
+<p></p>
 </div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/1164/" class="u-url">IPv6 Ağına dahil olun</a></h1>
@@ -178,14 +185,14 @@ c</em>/</p></pre>
 <pre># mkdir /chroot/bash</pre>
 <pre># mkdir /chroot/bash/lib64</pre>
 <pre># mkdir /chroot/bash/bin</pre>
-Gerekli olan dizinleri oluşturduktan sonra bash kabuğunun ihtiyacı olan kütüphaneleri dizine (lib64) kopyalamamız lazım.Bash'in ihtiyacı olan kütüphaneleri bulalım.ldd(list dynamic dependencies) komutu ile bu kütüphaneleri listeleyelim:
+<p>Gerekli olan dizinleri oluşturduktan sonra bash kabuğunun ihtiyacı olan kütüphaneleri dizine (lib64) kopyalamamız lazım.Bash'in ihtiyacı olan kütüphaneleri bulalım.ldd(list dynamic dependencies) komutu ile bu kütüphaneleri listeleyelim:</p>
 <pre># ldd /bin/bash</pre>
 <pre>linux-vdso.so.1 =&gt;  (0x00007fffe2511000)
  libncurses.so.5 =&gt; /lib64/libncurses.so.5 (0x00007f137fe71000)
  libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007f137fc6d000)
  libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f137f902000)
  /lib64/ld-linux-x86-64.so.2 (0x00007f13800c4000)</pre>
-Yukardaki çıktıda görüldüğü gibi gerekli olan kütüphaneler:
+<p>Yukardaki çıktıda görüldüğü gibi gerekli olan kütüphaneler:</p>
 <ul>
 <li>
 <p>libncurses.so.5</p>
@@ -200,16 +207,15 @@ Yukardaki çıktıda görüldüğü gibi gerekli olan kütüphaneler:
 <p>ld-linux-x86-64.so.2</p>
 </li>
 </ul>
-<p>Yukardaki kütüphaneleri oluşturduğunuz dizine(lib64 - sisteminize göre bu dizin "lib" olabilir.) taşıyın:
-</p>
+<p>Yukardaki kütüphaneleri oluşturduğunuz dizine(lib64 - sisteminize göre bu dizin "lib" olabilir.) taşıyın:</p>
 <pre># cp /lib64/libncurses.so.5 /chroot/bash/lib64
 </pre>
 <pre># cp /lib64/libdl.so.2 /chroot/bash/lib64</pre>
 <pre># cp /lib64/libc.so.6 /chroot/bash/lib64</pre>
 <pre># cp /lib64/ld-linux-x86-64.so.2 /chroot/bash/lib64</pre>
-Bu işlemi yaptıktan sonra "<em>bash</em>" komutunu oluşturduğumuz "<strong>bin</strong>" dizinine kopyalayalım.
+<p>Bu işlemi yaptıktan sonra "<em>bash</em>" komutunu oluşturduğumuz "<strong>bin</strong>" dizinine kopyalayalım.</p>
 <pre># cp /bin/bash /chroot/bash/bin</pre>
-Şimdi ihtiyacımız olan komutları chroot bash kabuğunuza kopyalayın.Mesela "<em>ls</em>" komutundan başlayalım.
+<p>Şimdi ihtiyacımız olan komutları chroot bash kabuğunuza kopyalayın.Mesela "<em>ls</em>" komutundan başlayalım.</p>
 <pre># ldd /bin/ls</pre>
 <pre>linux-vdso.so.1 =&gt;  (0x00007fff161ff000)
  librt.so.1 =&gt; /lib64/librt.so.1 (0x00007fa1effe5000)
@@ -219,15 +225,15 @@ Bu işlemi yaptıktan sonra "<em>bash</em>" komutunu oluşturduğumuz "<strong>b
  /lib64/ld-linux-x86-64.so.2 (0x00007fa1f01ee000)
  libattr.so.1 =&gt; /lib64/libattr.so.1 (0x00007fa1ef64f000)
 </pre>
-"ls" komutu için gerekli olan kütüphaneler yukardaki gibi.Hemen bunları chroot bash kabuğu ortamındaki "lib64" dizinine kopyalayın.
+<p>"ls" komutu için gerekli olan kütüphaneler yukardaki gibi.Hemen bunları chroot bash kabuğu ortamındaki "lib64" dizinine kopyalayın.</p>
 <pre># cp /lib64/librt.so.1 /chroot/bash/lib64</pre>
 <pre># cp /lib64/libacl.so.1 /chroot/bash/lib64</pre>
 <pre># cp /lib64/libpthread.so.0 /chroot/bash/lib64</pre>
 <pre># cp /lib64/libattr.so.1 /chroot/bash/lib64</pre>
-<strong>libc.so.6</strong> ve <strong>ld-linux-x86-64.so.2</strong> kütüphanelerini daha önce kopyaladığımız için bunlara gerek yok.Bu kütüphaneleri kopyaladıktan sonra "<em>ls</em>" komutunu oluşturduğumuz "<strong>bin</strong>" dizinine kopyalabiliriz.
+<p><strong>libc.so.6</strong> ve <strong>ld-linux-x86-64.so.2</strong> kütüphanelerini daha önce kopyaladığımız için bunlara gerek yok.Bu kütüphaneleri kopyaladıktan sonra "<em>ls</em>" komutunu oluşturduğumuz "<strong>bin</strong>" dizinine kopyalabiliriz.</p>
 <pre># cp /bin/ls /chroot/bash/bin
 </pre>
-Dizinimizdeki(lib64) kütüphaneler ile test edeceğimiz bash kabuğu için yeterli komutları çalıştırabiliriz.İhitiyacım olan <em> cp,cat,touch,mkdir,rm,mv</em> komutlarını kopyalayalım.
+<p>Dizinimizdeki(lib64) kütüphaneler ile test edeceğimiz bash kabuğu için yeterli komutları çalıştırabiliriz.İhitiyacım olan <em> cp,cat,touch,mkdir,rm,mv</em> komutlarını kopyalayalım.</p>
 <pre># cp /bin/cp /chroot/bash/bin</pre>
 <pre># cp /bin/mv /chroot/bash/bin</pre>
 <pre># cp /bin/cat /chroot/bash/bin</pre>
@@ -235,9 +241,10 @@ Dizinimizdeki(lib64) kütüphaneler ile test edeceğimiz bash kabuğu için yete
 <pre># cp /bin/mkdir /chroot/bash/bin</pre>
 <pre># cp /bin/touch /chroot/bash/bin
 </pre>
-Kabuğumuz için ihtiyacımız olan komutlarını koyduktan sonra artık kısıtlı bash kabuğumuza giriş yapabiliriz.
+<p>Kabuğumuz için ihtiyacımız olan komutlarını koyduktan sonra artık kısıtlı bash kabuğumuza giriş yapabiliriz.</p>
 <pre># chroot /chroot/bash /bin/bash</pre>
-Hiçbir hata almadıysanız kabuk ortamına girdiniz,şimdi koyduğunuz komutları test edebilirsiniz.</div>
+<p>Hiçbir hata almadıysanız kabuk ortamına girdiniz,şimdi koyduğunuz komutları test edebilirsiniz.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/yeni-kamusal-malozgur-ve-akk-yazilim/" class="u-url">Yeni Kamusal Mal:Özgür ve AKK Yazılım</a></h1>
         <div class="metadata">
@@ -292,44 +299,30 @@ Hiçbir hata almadıysanız kabuk ortamına girdiniz,şimdi koyduğunuz komutlar
 </p>
 <pre>$ <code>dd if=/dev/zero of=1MB.img bs=1024 count=0 seek=1024</code></pre>
  
-<p><strong>10 MB'lık test dosyası :</strong>
-</p>
+<p><strong>10 MB'lık test dosyası :</strong></p>
 <pre>$ <code>dd if=/dev/zero of=10MB.img bs=1024 count=0 seek=$[1024*10]</code></pre>
- 
-<p><strong>100 MB'lık test dosyası :</strong>
-</p>
+<p><strong>100 MB'lık test dosyası :</strong></p>
 <pre>$ <code>dd if=/dev/zero of=100MB.img bs=1024 count=0 seek=$[1024*100]</code></pre>
- 
 <p><strong>1 GB'lık test dosyası :</strong></p>
 <p><strong>
-</strong>
-</p>
-<pre>$ <code>dd if=/dev/zero of=1GB.img bs=1024 count=0 seek=$[1024<em>100</em>10]</code></pre>
-Şimdi oluşturduğumuz dosyaları ve boyutlarını kontrol edelim:
-<p></p>
+</strong></p>
+<pre>$ <code>dd if=/dev/zero of=1GB.img bs=1024 count=0 seek=$[1024*100*10]</code></pre>
+<p>Şimdi oluşturduğumuz dosyaları ve boyutlarını kontrol edelim:</p>
 <pre>$ ls -lh</pre>
 <pre>-rw-r--r--  1 piesso   piesso    100M Kas 17 10:18 100MB.img
 -rw-r--r--  1 piesso   piesso     10M Kas 17 10:17 10MB.img
 -rw-r--r--  1 piesso   piesso   1000M Kas 17 10:19 1GB.img
 -rw-r--r--  1 piesso   piesso    1,0M Kas 17 10:17 1MB.img</pre>
- 
-<p><strong>10 GB'lık test dosyası :</strong>
-</p>
-<pre>$ <code>dd if=/dev/zero of=10GB.img bs=1024 count=0 seek=$[1024<em>1000</em>10]</code></pre>
- 
+<p><strong>10 GB'lık test dosyası :</strong></p>
+<pre>$ <code>dd if=/dev/zero of=10GB.img bs=1024 count=0 seek=$[1024*1000*10]</code></pre>
 <p>Son olarak 10 GB boyutunda test dosyası da oluşturduktan sonra bir noktaya değinelim.Aşağıdaki iki komutun çıktısını dikkatlice inceleyelim.</p>
 <p>Örnek olarak en son oluşturduğumuz 10GB'lık "<em>10GB.img</em>" dosyasının büyüklüğüne "<em>ls -lh</em>" komutu ile bakalım.</p>
-<p></p>
 <pre>$ ls -lh</pre>
 <pre>-rw-r--r--  1 piesso   piesso    9,8G Kas 17 10:28 10GB.img</pre>
- 
 <p>Yukarıda görüldüğü gibi "<em>10GB.img</em>" adlı dosyasının boyutu <em>9.8 GB</em> büyüklüğünde.Bu dosyanın büyüklüğüne birde "<em>du -h</em>" komutu ile bakalım:</p>
-<p></p>
 <pre>$ du -h 10GB.img</pre>
 <pre>0    10GB.img</pre>
- 
-<p>Yukardaki çıktıda bu dosyayının hiçbir büyüklüğünün olmadığını görüyorsunuz.Buradaki ince nokta "<em>ls -lh</em>" komutu dosyanın boyutunu ekrana yazdırırken , "du -h" komutu bu dosyanın diskimizde ne kadar yer kapladığını göstermektedir.Oluşturduğumuz "<em>image dosyaları</em>"na hiçbir data yazmadığımız için diskimizde yer kaplamaktadır.Bunu daha iyi anlamak için aşağıdaki komutla diskimizde ne kadar block kapladığına bakalım.
-</p>
+<p>Yukardaki çıktıda bu dosyayının hiçbir büyüklüğünün olmadığını görüyorsunuz.Buradaki ince nokta "<em>ls -lh</em>" komutu dosyanın boyutunu ekrana yazdırırken , "du -h" komutu bu dosyanın diskimizde ne kadar yer kapladığını göstermektedir.Oluşturduğumuz "<em>image dosyaları</em>"na hiçbir data yazmadığımız için diskimizde yer kaplamaktadır.Bunu daha iyi anlamak için aşağıdaki komutla diskimizde ne kadar block kapladığına bakalım.</p>
 <pre>$ stat 10GB.img</pre>
 <pre>
 </pre>
@@ -340,16 +333,13 @@ Access: (0644/-rw-r--r--)  Uid: ( 1000/piesso)   Gid: ( 1000/piesso)
 Access: 2011-11-17 10:28:09.000000000 +0200
 Modify: 2011-11-17 10:28:09.000000000 +0200
 Change: 2011-11-17 10:28:09.000000000 +0200</pre>
- 
 <p>Yukardaki çıktıdan da anlaşılacağı gibi bu dosya diskimizde "0" bloğa sahip.Birde diskimiz yer kaplayan test dosyası oluşturalım ve bunu daha iyi anlayalım.</p>
-<p><strong>500 MB'lık test dosyası :</strong>
-</p>
+<p><strong>500 MB'lık test dosyası :</strong></p>
 <pre>$ dd if=/dev/zero of=test.img bs=1MB count=500</pre>
 <pre>500+0 records in
 500+0 records out
 500000000 bytes (500 MB) copied, 2,20355 s, 227 MB/s</pre>
-Şimdi oluşturduğumuz "test.img" adlı dosyanın boyutunu ve diskte kapladığı yeri inceleyelim.
-<p></p>
+<p>Şimdi oluşturduğumuz "test.img" adlı dosyanın boyutunu ve diskte kapladığı yeri inceleyelim.</p>
 <pre>$ ls -lh</pre>
 <pre>-rw-r--r--  1 piesso   piesso    477M Kas 17 10:40 test.img</pre>
 <pre>
@@ -358,8 +348,7 @@ Change: 2011-11-17 10:28:09.000000000 +0200</pre>
 <pre>478M    test.img</pre>
 <pre>
 </pre>
-Yukardaki çıktıdan anlaşılacağı gibi bu dosya diskimizde "478 MB" lık yer kaplamaktadır.Daha detaylı bir çıktı alalım.
-<p></p>
+<p>Yukardaki çıktıdan anlaşılacağı gibi bu dosya diskimizde "478 MB" lık yer kaplamaktadır.Daha detaylı bir çıktı alalım.</p>
 <pre>$ stat test.img</pre>
 <pre>File: `test.img'
  Size: 500000000     Blocks: 977536     IO Block: 4096   normal dosya
@@ -368,7 +357,8 @@ Access: (0644/-rw-r--r--)  Uid: ( 1000/piesso)   Gid: ( 1000/piesso)
 Access: 2011-11-17 10:40:17.000000000 +0200
 Modify: 2011-11-17 10:40:19.000000000 +0200
 Change: 2011-11-17 10:40:19.000000000 +0200</pre>
-Oluşturduğumuz bu dosya diskte "977536" block kaplıyor.Bu şekilde aradaki farkı görebiliriz.</div>
+<p>Oluşturduğumuz bu dosya diskte "977536" block kaplıyor.Bu şekilde aradaki farkı görebiliriz.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/gentoo-wiki/" class="u-url">Gentoo Wiki</a></h1>
         <div class="metadata">
@@ -431,32 +421,26 @@ Oluşturduğumuz bu dosya diskte "977536" block kaplıyor.Bu şekilde aradaki fa
 </p>
 <h6><strong>1. Adım :</strong></h6>
 Kenar Switch'e "rw" kullanıcısı ile telnet ya da ssh yoluyla bağlanalım.
-<p></p>
 <h6><strong>2.Adım:</strong></h6>
-Switch üzerinde çalışan konfigurasyonun yedeğini alalım.( daha önce bu <a href="http://linux.piesso.com/enterasys-yedek-almak" target="_blank">yazıda </a>detaylı bahsetmiştim. )
+<p>Switch üzerinde çalışan konfigurasyonun yedeğini alalım.( daha önce bu <a href="http://linux.piesso.com/enterasys-yedek-almak" target="_blank">yazıda </a>detaylı bahsetmiştim. )</p>
 <h2><strong>show config outfile configs/28102011</strong></h2>
-<p></p>
 <h6><strong>3.Adım:</strong></h6>
-Yedeğini aldığımız konfigurasyon dosyasını TFTP sunucumuza upload edelim.( daha önce bu <a href="posts/enterasys-yedek-almak" target="_blank">yazıda </a>detaylı bahsetmiştim. )
+<p>Yedeğini aldığımız konfigurasyon dosyasını TFTP sunucumuza upload edelim.( daha önce bu <a href="posts/enterasys-yedek-almak" target="_blank">yazıda </a>detaylı bahsetmiştim. )</p>
 <h2>
 <strong>copy configs/28102011 tftp://192.168.1.12/28102011 </strong><em>(kendi TFTP sunucu adresinizi yazın.)</em><strong> </strong>
 </h2>
-<p></p>
 <h6><strong>4.Adım:</strong></h6>
-TFTP <strong>su</strong>nucusuna upload ettiğimiz yedeği herhangi bir editörle açalım ve aşağıdaki gibi olan "admin" kullanıcısına parola atanan konfigurasyon satırını dosyadan silelim,
+<p>TFTP <strong>su</strong>nucusuna upload ettiğimiz yedeği herhangi bir editörle açalım ve aşağıdaki gibi olan "admin" kullanıcısına parola atanan konfigurasyon satırını dosyadan silelim,</p>
 <p>set system login admin super-user enable password :4f543cb3af317e6d7d5aea1534345625d1435d80698760262972042a9c736e0c4e2d8b30d50a5c2661:</p>
-<p></p>
 <h6>5.Adım:</h6>
-Yukardaki satırı sildikten sonra dosyayı kaydedelim ve bu dosyayı switch'e yeni dosya ismiyle tekrar yükleyelim,
+<p>Yukardaki satırı sildikten sonra dosyayı kaydedelim ve bu dosyayı switch'e yeni dosya ismiyle tekrar yükleyelim,</p>
 <h2><strong>copy tftp://<em>192.168.1.12</em>/<em>28102011</em> configs/<em>passconf</em></strong></h2>
-<p></p>
 <h6><strong>6.Adım:</strong></h6>
-Yeniden yüklediğimiz konfigurasyon dosyasının yüklenip yüklenmediğini kontrol edelim ve switch'i bu dosyadan yeniden konfigure edelim.
+<p>Yeniden yüklediğimiz konfigurasyon dosyasının yüklenip yüklenmediğini kontrol edelim ve switch'i bu dosyadan yeniden konfigure edelim.</p>
 <p><em><strong># dir</strong></em></p>
-<p><em><strong># configure configs/passconf</strong></em>
-</p>
+<p><em><strong># configure configs/passconf</strong></em></p>
 <h6>7.Adım :</h6>
-"admin" kullanıcısının parolası bu şekilde sıfırlanmış oldu.Switch yeni açılınca kullanıcı adına "admin" yazıp ,parola kısmını "enter"layıp geçin.
+<p>"admin" kullanıcısının parolası bu şekilde sıfırlanmış oldu.Switch yeni açılınca kullanıcı adına "admin" yazıp ,parola kısmını "enter"layıp geçin.</p>
 <p><strong>
 </strong></p>
 </div>
@@ -506,15 +490,13 @@ configs:
 07102011                         12389
 logs:
 current.log                      167441</p>
-<p>Yukarıda görüldüğü gibi "<em>07102011</em>" dosya isimli bir yedek mevcut.
-</p>
+<p>Yukarıda görüldüğü gibi "<em>07102011</em>" dosya isimli bir yedek mevcut.</p>
 <h5>2.Adım:</h5>
-Switch üzerindeki şu anki konfigurasyonun yeni yedeğini alalım,
+<p>Switch üzerindeki şu anki konfigurasyonun yeni yedeğini alalım,</p>
 <p><strong># show config outfile configs/26102011</strong></p>
-<p>"<em>26102011</em>" dosya ismiyle yedeğimizi oluşturduk.
-</p>
+<p>"<em>26102011</em>" dosya ismiyle yedeğimizi oluşturduk.</p>
 <h5>3.Adım:</h5>
-Şimdi yedeğini aldığımız konfigurasyon dosyasını uzaktaki TFTP sunucusuna yükleyelim.
+<p>Şimdi yedeğini aldığımız konfigurasyon dosyasını uzaktaki TFTP sunucusuna yükleyelim.</p>
 <p><strong># copy configs/26102011 tftp://192.168.1.12/26102011</strong><a href="http://10.1.60.7/c2-series_05.02.13.0003" target="_blank"></a></p>
 </div>
     </div>
@@ -528,7 +510,7 @@ Switch üzerindeki şu anki konfigurasyonun yeni yedeğini alalım,
             <li class="next">
                 <a href="index-19.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

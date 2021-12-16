@@ -55,8 +55,7 @@
     <div>
 <p></p>
 <strong><img class="alignright" title="nagios" src="http://blog.netways.de/wp-content/uploads/2008/03/nagios_logo.png" alt="" width="230" height="62">Nagios Nedir?</strong> NAGIOS sistem ve ağ denetleme uygulamasıdır.Belirtilen makine üzerinde çalışan servislerin durumunu kontrol eder ve uygulamalarda bir problem olduğunda belirtilen yöntemle kullanıcıya bildirir.Aynı segmentte ya da değil Nagios ile belirtilen makina,servisler kontrol edilebilir.
-<p>Nagios ile ne yapılabilir:
-</p>
+<p>Nagios ile ne yapılabilir:</p>
 <ul>
 <li><em>Network servisleri denetleneme (SMTP, POP3, HTTP, NNTP, PING, vs)</em></li>
     <li><em>Makine kaynakları denetleneme (disk kullanımı vs )</em></li>
@@ -68,24 +67,21 @@
     <li><em>Mail , SMS , Telefon , ICQ vb yöntemlerle uyarı verebilme</em></li>
     <li><em>Web arayüzünden makinelerin , servislerin ,logların ayrıntılı takibi</em></li>
 </ul>
-olarak sıralanabilir. [<a href="http://www.google.com.tr/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CCIQFjAA&amp;url=http%3A%2F%2Fwww.enderunix.org%2Fdocs%2Fnagios.pdf&amp;ei=EIqPTZT4Oo3V4gbB-ZCrCw&amp;usg=AFQjCNF6ZpEBGDdzpDLEhy70b2qE0gET9w" target="_blank">1</a>]
+<p>olarak sıralanabilir. [<a href="http://www.google.com.tr/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CCIQFjAA&amp;url=http%3A%2F%2Fwww.enderunix.org%2Fdocs%2Fnagios.pdf&amp;ei=EIqPTZT4Oo3V4gbB-ZCrCw&amp;usg=AFQjCNF6ZpEBGDdzpDLEhy70b2qE0gET9w" target="_blank">1</a>]</p>
 <p>Nagios hakkında kısa bir bilgi verdikten sonra,Debian Squeeze üzerine Nagios kurulumunu ve diğer Debian Squeeze sunucuların nasıl monitor edileceği hakkında kısaca değineceğim.</p>
-<p>İlk olarak Nagios'u monitoring yapacağımız makinaya kurulumunu yapalım ve daha sonra nagios client ile  izleyeceğimiz diğer sunuculara geçelim.Kısaca bir makinamız Nagios Server ve diğer izleyeceğimiz sunucu ise Nagios Client olarak anabiliriz.
-</p>
+<p>İlk olarak Nagios'u monitoring yapacağımız makinaya kurulumunu yapalım ve daha sonra nagios client ile  izleyeceğimiz diğer sunuculara geçelim.Kısaca bir makinamız Nagios Server ve diğer izleyeceğimiz sunucu ise Nagios Client olarak anabiliriz.</p>
 <h5>Nagios Server Kurulumu :</h5>
-Debian Squeeze depolarında nagios paketlerini bulunduğu için ,direk depodan kurulum yapacağım.Kaynak koddan kurulum yapmayacağım.Kaynak kodlardan kurulum için bu <a href="http://www.google.com.tr/url?sa=t&amp;source=web&amp;cd=3&amp;ved=0CCsQFjAC&amp;url=http%3A%2F%2Fwww.syslogs.org%2Fnagios-kurulumu-ve-yapilandirmasi%2F&amp;ei=24uPTaWoNYfM4gbs5pntCw&amp;usg=AFQjCNHAdCSZhOCGXCtsxfrLhCVXqdpn5A" target="_blank">adrese</a> bakabilirsiniz.
+<p>Debian Squeeze depolarında nagios paketlerini bulunduğu için ,direk depodan kurulum yapacağım.Kaynak koddan kurulum yapmayacağım.Kaynak kodlardan kurulum için bu <a href="http://www.google.com.tr/url?sa=t&amp;source=web&amp;cd=3&amp;ved=0CCsQFjAC&amp;url=http%3A%2F%2Fwww.syslogs.org%2Fnagios-kurulumu-ve-yapilandirmasi%2F&amp;ei=24uPTaWoNYfM4gbs5pntCw&amp;usg=AFQjCNHAdCSZhOCGXCtsxfrLhCVXqdpn5A" target="_blank">adrese</a> bakabilirsiniz.</p>
 <p>Depodan gerekli paketleri kuralım:</p>
-<p><em>Nagios Server</em>
-</p>
+<p><em>Nagios Server</em></p>
 <pre><strong># apt-get install nagios3 nagios-plugins nagios-nrpe-plugin</strong></pre>
-Bu kurulum aşamasında SAMBA sizden workgroup adı isteyecektir.Öntanımlı ayarları onaylayarak geçebilirsiniz.Ayrıca Nagiosadmin için sizden parola belirlemenizi isteyecektir.İsteğinize göre parola belirleyip devam edin.
+<p>Bu kurulum aşamasında SAMBA sizden workgroup adı isteyecektir.Öntanımlı ayarları onaylayarak geçebilirsiniz.Ayrıca Nagiosadmin için sizden parola belirlemenizi isteyecektir.İsteğinize göre parola belirleyip devam edin.</p>
 <p>Şimdi Nagios Client olan sunucumuza gerekli kurulumları yapabiliriz.</p>
 <p><em>Nagios Client</em></p>
 <p><strong># apt-get install nagios-nrpe-server nagios-plugins</strong></p>
-<p>Nagios Client sunucumuzda gerekli paketleri kurduktan sonra yapılandırmalara geçelim.Nagios Client sunucumuzda Nagios Server'ımızın ip adresini verelim.Bunun " <em>/etc/nagios/nrpe.cfg</em> " dosyasında gerekli değişiklikleri yapalım:
-</p>
+<p>Nagios Client sunucumuzda gerekli paketleri kurduktan sonra yapılandırmalara geçelim.Nagios Client sunucumuzda Nagios Server'ımızın ip adresini verelim.Bunun " <em>/etc/nagios/nrpe.cfg</em> " dosyasında gerekli değişiklikleri yapalım:</p>
 <pre><strong># vi /etc/nagios/nrpe.cfg</strong></pre>
-Dosyamızı açtıktan "<em>allowed_hosts= </em>" ile başlayan satırı bulun ve ;
+<p>Dosyamızı açtıktan "<em>allowed_hosts= </em>" ile başlayan satırı bulun ve ;</p>
 <p><strong>allowed_hosts=127.0.0.1</strong></p>
 <p>yerine Nagios Server'ımızın ip'sini girelim.( Örnek olarak <strong>192.168.1.45</strong> Nagios Server'ımın ip'si)</p>
 <p><strong>allowed_hosts=192.168.1.45</strong></p>
@@ -95,10 +91,9 @@ Dosyamızı açtıktan "<em>allowed_hosts= </em>" ile başlayan satırı bulun v
 (disklerimizi ve partitionlarınızı '<strong>df -h</strong>' komutuyla görebilirsiniz.)
 Örnek olarak '<strong>sda5</strong>' partition'ı izlemek için gerekli ayarlar:</p>
 <p><strong># vi /etc/nagios/nrpe.cfg</strong></p>
-<p>Dosyamızı açtıktan sonra aşağıdaki satırı bulup gerekli değişiklikleri yapalım.
-</p>
+<p>Dosyamızı açtıktan sonra aşağıdaki satırı bulup gerekli değişiklikleri yapalım.</p>
 <pre>command[check_hda1]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/hda1</pre>
-yerine
+<p>yerine</p>
 <p>command[check_sda5]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/sda5</p>
 <p>şeklinde değiştirin.</p>
 <p>Nagios Client tarafında gerekli ayarlamaları yaptıktan sonra 'nagios-nrpe' servisini yeniden başlatın.</p>
@@ -111,8 +106,7 @@ Client'ın ip'sini ve izleyeceğimiz servisleri verelim.(Client makinamın ip'si
 <p>Nagios Server'a bunları belirtmek için her ayrı client'a özel "<em>/etc/nagios3/conf.d/</em> " dizini altında bir konfigurasyon
 dosyası oluşturalım.</p>
 <p><strong># touch /etc/nagios3/conf.d/client1_nagios.cfg</strong></p>
-<p>dosyamızı oluşturduktan sonra aşağıdaki ayarları dosyaya yazıp,kaydedelim.
-</p>
+<p>dosyamızı oluşturduktan sonra aşağıdaki ayarları dosyaya yazıp,kaydedelim.</p>
 <pre>define host{
         use             generic-host
         host_name       client1
@@ -151,7 +145,7 @@ define service{
         check_command           check_nrpe_1arg!check_total_procs
 }
 </pre>
-Yukardaki gibi girildikten sonra Nagios servisini yeniden başlatalım.
+<p>Yukardaki gibi girildikten sonra Nagios servisini yeniden başlatalım.</p>
 <p><strong># /etc/init.d/nagios3 restart</strong></p>
 <p>Artık bir client için gerekli ayarları yaptık.Şimdi ayarlarımızı ve çalışıp,çalışmadığını test edelim:</p>
 <p><strong># cd /usr/lib/nagios/plugins/</strong>
@@ -180,29 +174,33 @@ Buarada anlatılanlardan daha fazla servis ve client ekleyebilirsiniz,hepsi size
 <p></p>
 <strong><img class="alignright" title="Mongodb" src="http://www.gonosql.com/wp-content/uploads/2010/03/mongodb-logo.png" alt="" width="210" height="70">Centos</strong> ve diğer <strong>RedHat</strong> tabanlı dağıtımlar üstünde <a href="http://www.mongodb.org/" target="_blank">MongoDB</a> ihtiyacı duyuyorsanız, resmi depolarda olmadığı için güvenilir ve sürekli güncellenen bir depoya ihtiyacınız olabilir.MongoDB geliştiricileri bu noktada ihtiyacınız olan depoyu oluşturmuşlar.Depoyu ekleyip,sisteme hemen kurulum yapabilirsiniz.
 <p>MongoDB geliştiricilerinin oluşturduğu depoda <strong>2</strong> farklı platform(<em>x86</em> , <em>x86_64</em>)  için <strong>3</strong> sürümü(<em> stable , unstable, snapshot</em>) bulunuyor.İstediğiniz sürümü depodan yükleyebilirsiniz.</p>
-<p>İlk olarak depomuzu ekleyelim:
-</p>
+<p>İlk olarak depomuzu ekleyelim:</p>
 <pre>#  touch /etc/yum.repos.d/10gen-mongodb.repo</pre>
-Oluşturduğumuz "<em>10gen-mongodb.repo</em>" dosyasına depo bilgilerini aşağıdaki gibi platformunuza göre ekleyin.
+<p>Oluşturduğumuz "<em>10gen-mongodb.repo</em>" dosyasına depo bilgilerini aşağıdaki gibi platformunuza göre ekleyin.</p>
 <h2>vi /etc/yum.repos.d/10gen-mongodb.repo</h2>
-<p><strong>X86_64 için :</strong>
-</p>
+<p><strong>X86_64 için :</strong></p>
 <div>[10gen]
 name=10gen Repository
 baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64
 gpgcheck=0 
-<p><strong>X86 için :</strong>
-</p>
+
+<strong>X86 için :</strong>
 <div>
 <div>
-<p>[10gen]
+
+[10gen]
 name=10gen Repository
 baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/i686
-gpgcheck=0</p>
-<p>Depomuzu ekledikten sonra MongoDB Server ve Client paketlerini yükleyebiliriz:</p>
-<p><em><strong>MongoDB Server ve Client Stable Sürüm :</strong></em></p>
-<h2>yum install mongo-10gen mongo-10gen-server</h2>
-<p></p>
+gpgcheck=0
+
+ 
+
+Depomuzu ekledikten sonra MongoDB Server ve Client paketlerini yükleyebiliriz:
+
+<em><strong>MongoDB Server ve Client Stable Sürüm :</strong></em>
+
+# yum install mongo-10gen mongo-10gen-server
+
 </div>
 <div><em><strong>MongoDB Server ve Client Unstable Sürüm :</strong></em></div>
 <div><em><strong>
@@ -230,6 +228,7 @@ gpgcheck=0</p>
 <div>Ve son olarak Mongo'nun çalışıp çalışmadığını test edin :</div>
 <pre># mongo 
 </pre>
+<p></p>
 </div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sunfire-t2000/" class="u-url">SunFire T2000 </a></h1>
@@ -278,30 +277,28 @@ f  7ffa2a19  90122270  15001eef  90100011
 <h6><strong><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;">Parolayı sıfırlamak için;</span></span></span></strong></h6>
 <h6><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>1.</strong> İlk olarak güç bağlantısını çıkarın ve 5 sn bekleyin.Daha sonra tekrar bağlayın.
 </span></span></span></span></span></h6>
-<span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>2</strong>.Alom boot etmeye başlayacaktır ve </span></span></span></span></span><em>"Return to Boot Monitor for Handshake ESC keypress detected."</em> yazısını gördüğünüz anda <em>"ESC"</em> tuşuna basın.
-<p><strong>3.</strong> <em>"ESC" </em>tuşuna bastıktan sonra<em> "ALOM boot escape menu"</em> karşınıza gelecektir.
-</p>
+<p><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>2</strong>.Alom boot etmeye başlayacaktır ve </span></span></span></span></span><em>"Return to Boot Monitor for Handshake ESC keypress detected."</em> yazısını gördüğünüz anda <em>"ESC"</em> tuşuna basın.</p>
+<p><strong>3.</strong> <em>"ESC" </em>tuşuna bastıktan sonra<em> "ALOM boot escape menu"</em> karşınıza gelecektir.</p>
 <pre>ALOM  Menu
-<p>e - Erase ALOM NVRAM.
+
+ e - Erase ALOM NVRAM.
  m - Run POST Menu.
  R - Reset ALOM.
  r - Return to bootmon.
- Your selection:</p></pre>
-<strong>4. </strong>Yukardaki gibi menu karşımıza çıktıktan sonra ilk <em>NVRAM</em>'i silip,daha sonra <em>ALOM</em>'u boot etmesine devam edelim.Bunun için ilk önce <strong>"e" </strong>ve daha sonra<strong> "r"</strong> yi tuşlayalım.
+ Your selection:</pre>
+<p><strong>4. </strong>Yukardaki gibi menu karşımıza çıktıktan sonra ilk <em>NVRAM</em>'i silip,daha sonra <em>ALOM</em>'u boot etmesine devam edelim.Bunun için ilk önce <strong>"e" </strong>ve daha sonra<strong> "r"</strong> yi tuşlayalım.</p>
 <p><strong>5.</strong>Bu adımlardan sonra "<strong>sc</strong>" ye doğrudan admin olarak giriş yapabileceksiniz.</p>
 <p><strong>Firmware Güncelleme :</strong></p>
 <p>SunFire T2000'in üstündeki firmware 6.1.10 ve bu firmware ile herhangi port edilmiş bir linux dağıtımını rahatlıkla kuramıyorsunuz.Bunun için firmware güncellemesi gerekli.Fakat dikkat edilecek nokta eğer  Oracle "CIS" numaranızı bilmiyorsanız "OpenSourceLab" ftp'sindeki 6.3.0 sürümünü indirip yükleyin.Aynı depoda 6.7.6 sürümü de mevcut fakat bu firmware geçersiz uyarısı alabilirsiniz."CIS" numaranız varsa zaten böyle bir sıkıntınız da olmayacaktır.</p>
 <p>SunFire T2000 'de ya da herhangi Sun Sparc makina da "<strong>sc</strong>" ye düştükten sonra;</p>
 <h2>showhost</h2>
-<p>komutuyla firmware versiyonunuzu öğrenebilirsiniz.Güncellemek için ben ilk olarak firmware'i indirip local'deki bir ftp sunucuya koydum ve flashupdate komutuyla güncelledim.Tabi ftp'ye bağlanmak için "NET MGT" portuna bağlantıyı takmanız lazım.Eğer ağınız otomatik ip almıyorsa;
-</p>
+<p>komutuyla firmware versiyonunuzu öğrenebilirsiniz.Güncellemek için ben ilk olarak firmware'i indirip local'deki bir ftp sunucuya koydum ve flashupdate komutuyla güncelledim.Tabi ftp'ye bağlanmak için "NET MGT" portuna bağlantıyı takmanız lazım.Eğer ağınız otomatik ip almıyorsa;</p>
 <pre># setupsc</pre>
-komutunu vererek ip atayabilirsiniz.
-<p>Firmware'i <a href="http://ftp.osuosl.org/pub/osl/tmp/124750-01/" target="_blank">buradan</a> indirip,bir public ftp'ye attıktan sonra aşağıdaki gibi güncelleyebilirsiniz:
-</p>
+<p>komutunu vererek ip atayabilirsiniz.</p>
+<p>Firmware'i <a href="http://ftp.osuosl.org/pub/osl/tmp/124750-01/" target="_blank">buradan</a> indirip,bir public ftp'ye attıktan sonra aşağıdaki gibi güncelleyebilirsiniz:</p>
 <pre># flashupdate -s [ftp_ip_adresi] -f /pub/Sun_System_Firmware-6_3_0-Sun_Fire_T2000.bin
 </pre>
-Artık firmware'miz güncelledi."<strong>resetsc" </strong>komutunu verip yeniden başlatın ve <strong>"showhost"</strong> komutuyla güncellenip güncellenmediğini kontrol edin.
+<p>Artık firmware'miz güncelledi."<strong>resetsc" </strong>komutunu verip yeniden başlatın ve <strong>"showhost"</strong> komutuyla güncellenip güncellenmediğini kontrol edin.</p>
 <p></p>
 </div>
     </div>
@@ -435,7 +432,7 @@ tam yüklenmemiş paketlerin olup olmadığını kontrol edelim.</p>
     <li><a id="ZLib" href="http://www.gzip.org/zlib/zlib_license.html">License of ZLib</a></li>
     <li><a id="Zope20" href="http://www.zope.org/Resources/ZPL">Zope Public License, versions 2.0 and 2.1</a></li>
 </ul>
-Aşağıdaki listede "Özgür Yazılım" lisansı olan fakat GNU GPL uyumlu olmayan lisanslar listelenmiştir:
+<p>Aşağıdaki listede "Özgür Yazılım" lisansı olan fakat GNU GPL uyumlu olmayan lisanslar listelenmiştir:</p>
 <h4>GNU GPL ile uyumlu olmayan ÖZGÜR YAZILIM LİSANSLARI :</h4>
 <ul>
 <li><a id="AGPLv1.0" href="http://www.affero.org/oagpl.html">Affero General Public License version 1</a></li>
@@ -478,7 +475,7 @@ Aşağıdaki listede "Özgür Yazılım" lisansı olan fakat GNU GPL uyumlu olma
     <li><a id="Zend" href="http://www.zend.com/license/2_00.txt">Zend License, Version 2.0</a></li>
     <li><a id="Zope" href="http://www.zope.org/Resources/ZPL">Zope Public License version 1</a></li>
 </ul>
-Aşağıdaki listede de "özgür olmayan" yazılım lisansları sıralandı.Tabi bunlar doğal olarak da GNU GPL ile de uyumlu değil.Önerim bu lisanslarla gelen yazılımlardan uzak durun!
+<p>Aşağıdaki listede de "özgür olmayan" yazılım lisansları sıralandı.Tabi bunlar doğal olarak da GNU GPL ile de uyumlu değil.Önerim bu lisanslarla gelen yazılımlardan uzak durun!</p>
 <h4>ÖZGÜR  OLMAYAN YAZILIM LİSANSLARI</h4>
 <ul>
 <li>Aladdin Free Public License</li>
@@ -511,7 +508,8 @@ Aşağıdaki listede de "özgür olmayan" yazılım lisansları sıralandı.Tabi
     <li><a id="UtahPublicLicense" href="http://www.cs.utah.edu/%7Egk/teem/txt/LICENSE.txt">University of Utah Public License</a></li>
     <li>YaST License</li>
 </ul>
-Listedeki lisansların daha detaylı açıklamasına ve neden bu kategorilerde listelendikleri hakkında daha detaylı bilgi almak için <a href="http://www.gnu.org/licenses/license-list.html#SoftwareLicenses" target="_blank">burayı</a> ziyaret edin.</div>
+<p>Listedeki lisansların daha detaylı açıklamasına ve neden bu kategorilerde listelendikleri hakkında daha detaylı bilgi almak için <a href="http://www.gnu.org/licenses/license-list.html#SoftwareLicenses" target="_blank">burayı</a> ziyaret edin.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/tivibu-ttnet-ve-rekabet-kurulu/" class="u-url">Tivibu,TTNET ve Rekabet Kurulu</a></h1>
         <div class="metadata">
@@ -541,18 +539,24 @@ Listedeki lisansların daha detaylı açıklamasına ve neden bu kategorilerde l
 <strong>Dosya Sayısı</strong>: 2010-2-272                          (İlk İnceleme)
 <strong>Karar Sayısı</strong> : 10-78/1619-621
 <strong>Karar Tarihi</strong> : 16.12.2010
-<p>A. TOPLANTIYA KATILAN ÜYELER</p>
-<p>Başkan               : Prof. Dr. Nurettin KALDIRIMCI
+
+A. TOPLANTIYA KATILAN ÜYELER
+
+Başkan               : Prof. Dr. Nurettin KALDIRIMCI
 Üyeler               : Doç. Dr. Mustafa ATEŞ, Mehmet Akif ERSİN, İsmail Hakkı
 KARAKELLE, Doç. Dr. Cevdet İlhan GÜNAY, Murat
-ÇETİNKAYA, Reşit GÜRPINAR</p>
-<p>B. RAPORTÖR          : Özgür Can ÖZBEK</p>
-<p>C. BAŞVURUDA       : - Emre ERYILMAZ
-BULUNAN            Adresi tespit edilememiştir.</p>
-<p>D. HAKKINDA İNCELEME YAPILAN:
+ÇETİNKAYA, Reşit GÜRPINAR
+
+B. RAPORTÖR          : Özgür Can ÖZBEK
+
+C. BAŞVURUDA       : - Emre ERYILMAZ
+BULUNAN            Adresi tespit edilememiştir.
+
+D. HAKKINDA İNCELEME YAPILAN:
 -Türk Telekomünikasyon A.Ş.
-Turgut Özal Bulvarı 06103 Aydınlıkevler- Ankara</p>
-<p>E. DOSYA KONUSU: Rekabet Kurulu’nun, 5.8.2010 tarih ve 10-52/982-349 sayılı
+Turgut Özal Bulvarı 06103 Aydınlıkevler- Ankara
+
+E. DOSYA KONUSU: Rekabet Kurulu’nun, 5.8.2010 tarih ve 10-52/982-349 sayılı
 kararının yeniden değerlendirilmesi talebi.
 F. İDDİALARIN ÖZETİ: Başvuruda, 5.8.2010 tarih ve 10-52/982-349 sayılı Rekabet
 Kurulu kararında bahsedilen Microsoft Silver Light adlı yazılımın Linux platformu
@@ -565,17 +569,20 @@ G. DOSYA EVRELERİ: Kurum kayıtlarına 27.10.2010 tarihinde, 8206 sayı ile int
 eden başvuru üzerine yapılan inceleme neticesinde hazırlanan 29.11.2010 tarih ve
 2010-2-272/İİ-10-392.ÖCÖ sayılı İlk İnceleme Raporu, 6.12.2010 tarih ve
 REK.0.06.00.00-110/601 sayılı Başkanlık önergesi ile birlikte 16.12.2010 tarih ve 10-
-78 sayılı Kurul toplantısında görüşülerek karara bağlanmıştır.</p>
-<p>H. RAPORTÖRÜN GÖRÜŞÜ: İlgili raporda; Türk Telekom hakkında 4054 sayılı
-Kanun kapsamında işlem tesis edilmesine gerek olmadığı ifade edilmiştir.</p>
-<p>I. DEĞERLENDİRME
+78 sayılı Kurul toplantısında görüşülerek karara bağlanmıştır.
+
+H. RAPORTÖRÜN GÖRÜŞÜ: İlgili raporda; Türk Telekom hakkında 4054 sayılı
+Kanun kapsamında işlem tesis edilmesine gerek olmadığı ifade edilmiştir.
+
+I. DEĞERLENDİRME
 Başvurunun değerlendirilmesi bakımından ilgili kararın değerlendirme kısmının göz
 önüne alınması gerekmektedir. İlgili kararda,
 “Yukarıda yer verilen bilgiler ışığında TTNET tarafından Tivibu hizmeti için tercih
 edilen MS Silverlight teknolojisinin teşebbüsün hizmeti için aradığı nitelikleri
 sağladığı, mümkün olduğunca geniş bir kullanıcı tabanına hitap etmek suretiyle
-10-78/1619-621</p>
-<p>makul bir ticari tercihi yansıttığı görülmektedir. Bahse konu teknoloji hâlihazırda
+10-78/1619-621
+
+makul bir ticari tercihi yansıttığı görülmektedir. Bahse konu teknoloji hâlihazırda
 Macintosh gibi başka bir işletim sistemiyle uyumlu çalışabilmekte, Linux ile uyumlu
 çalışabilmesi yönünde de çalışmalar devam etmektedir. Bu kapsamda Türk
 Telekom’un iştiraki TTNET ile Microsoft arasındaki anlaşmanın salt bir hizmet alım
@@ -594,10 +601,10 @@ gerektirmediği sonucuna ulaşılmıştır.
 J. SONUÇ
 Düzenlenen rapora ve incelenen dosya kapsamına göre; 27.10.2010 tarihinde 8206
 sayı ile yapılan başvuruya ilişkin olarak herhangi bir işlem yapılmasına gerek
-olmadığına, talebin reddine OYBİRLİĞİ ile karar verilmiştir.</p>
+olmadığına, talebin reddine OYBİRLİĞİ ile karar verilmiştir.</div>
 </div>
 </div>
-</div>
+<p></p>
 </div>
 </div>
     </div>
@@ -631,9 +638,9 @@ olmadığına, talebin reddine OYBİRLİĞİ ile karar verilmiştir.</p>
 AuthPass=parola
 UseSTARTTLS=YES
 </pre>
-Bilgileri ekledikten sonra test maili gönderelim.
+<p>Bilgileri ekledikten sonra test maili gönderelim.</p>
 <pre><strong>$ echo test | mail -s "test" kullanici_adi@domain_adi.com</strong></pre>
-<strong>Diğer Başka Kaynaklar :</strong>
+<p><strong>Diğer Başka Kaynaklar :</strong></p>
 <p><a href="https://wiki.archlinux.org/index.php/SSMTP" target="_blank">Arch Linux için Ssmtp</a></p>
 <p><a href="http://wiki.debian.org/sSMTP" target="_blank">Debian için Ssmtp</a></p>
 <p><a href="http://www.freebsd.org/doc/handbook/outgoing-only.html" target="_blank">FreeBSD için Ssmtp</a></p>
@@ -658,23 +665,23 @@ Bilgileri ekledikten sonra test maili gönderelim.
 <p></p>
 <a href="http://www.morningstarsecurity.com/research/whatweb" target="_blank">WhatWeb</a> yazılımı internet sitelerini üzerinde CMS,blog,stats,analiz,javascript vs. gibi yazılımların kimliklerini ve sürümlerini tespit etmeye yarayan bir araç.WhatWeb yazılımı herhangi bir web sitesinin üzerindeki özellikle popüler kullanılmakta olan CMS ve blog yazılımlarının kimliklerini,sürümlerini ve sunucu bilgilerini toplayabiliyor.İnternet üzerinde yayın yapmak için kullandığımız herhangi bir yazılımın özellikle sürüm bilgisini vermek zararlı olabilir.Hele bir de güncellemekte gecikiyor ya da üşeniyorsanız!
 <p>İlk olarak WhatWeb yazılımını kuralım.Arch Linux,FreeBSD,Mandriva Linux ve Gentoo Linux için hazır paketleri mevcut.Ben Gentoo Linux ve Ubuntu Linux üzerine kurmaya değineceğim.</p>
-<p>Gentoo Linux için "WhatWeb" "pentoo" overlay'inde mevcut.<a href="http://gentoo-overlays.zugaina.org/pentoo/" target="_blank">Pentoo Overlay</a>'ini portage'a ekleyelim.Eğer "layman" kurulu değil ise ilk olarak kurun.Layman hakkında yardım almak için <a href="http://www.gentoo.org/proj/en/overlays/userguide.xml" target="_blank">buradan</a> buyrun.
-</p>
+<p>Gentoo Linux için "WhatWeb" "pentoo" overlay'inde mevcut.<a href="http://gentoo-overlays.zugaina.org/pentoo/" target="_blank">Pentoo Overlay</a>'ini portage'a ekleyelim.Eğer "layman" kurulu değil ise ilk olarak kurun.Layman hakkında yardım almak için <a href="http://www.gentoo.org/proj/en/overlays/userguide.xml" target="_blank">buradan</a> buyrun.</p>
 <pre><strong># layman -a pentoo</strong></pre>
 <pre><strong># emerge -av whatweb </strong></pre>
-Ubuntu 'ya "<em>WhatWeb</em>" yüklemek için ilk olarak <strong>Ruby</strong> kurmamız gerekiyor.Daha sonra "<em>WhatWeb</em>"i indirip çalıştırabiliriz.
+<p>Ubuntu 'ya "<em>WhatWeb</em>" yüklemek için ilk olarak <strong>Ruby</strong> kurmamız gerekiyor.Daha sonra "<em>WhatWeb</em>"i indirip çalıştırabiliriz.</p>
 <pre><strong># apt-get install ruby ruby-dev libopenssl-ruby</strong></pre>
 <pre><strong>$ wget http://www.morningstarsecurity.com/downloads/whatweb-0.4.5.tar.gz</strong></pre>
 <pre><strong>$ tar zxvf whatweb-0.4.5.tar.gz</strong></pre>
 <pre><strong>$ cd whatweb-0.4.5</strong></pre>
-Artık "<em>WhatWeb</em>" ile testler yapmaya hazırız.Şimdi herhangi bir "<strong>Wordpress</strong>" sitesini test edip sürüm bilgilerini alalım.Daha sonra da sürüm bilgilerini Wordpress üstünden kaldırıp tekrar deneyelim.Yukarda da bahsetmem üzere sürüm güncellemekte gecikiyorsanız ya da güncelleme aralığınız uzuyorsa dışarıya sürümünüz hakkında bilgi vermemek en iyisidir.Belirsizlik karşıdakine daha çok zaman ve emek harcatır :)
-<p>İlk test yapalım :
-</p>
+<p>Artık "<em>WhatWeb</em>" ile testler yapmaya hazırız.Şimdi herhangi bir "<strong>Wordpress</strong>" sitesini test edip sürüm bilgilerini alalım.Daha sonra da sürüm bilgilerini Wordpress üstünden kaldırıp tekrar deneyelim.Yukarda da bahsetmem üzere sürüm güncellemekte gecikiyorsanız ya da güncelleme aralığınız uzuyorsa dışarıya sürümünüz hakkında bilgi vermemek en iyisidir.Belirsizlik karşıdakine daha çok zaman ve emek harcatır :)</p>
+<p>İlk test yapalım :</p>
 <pre><strong>$ ./whatweb linux.piesso.com</strong></pre>
-<address>http://linux.piesso.com [200] <strong>WordPress[3.0.4],</strong> HTTPServer[LWS], UncommonHeaders[x-pingback], JQuery[1.4.2], Title[| Linux ve Özgürlük], RSSFeed[http://linux.piesso.com/wp-content/themes/openark-blog/style.css], MetaGenerator[WordPress 3.0.4], Tag-Hash[304a800265809c99e32ff96b774225fe], MD5[d1f3d9cdb0766514a3d290cceb2eccc3], Header-Hash[a82619f7784e56b660f31017e1d0174f], Footer-Hash[b7509d9fc94073b62bfe3d809e9ad5a9]</address>Yukarda görüldüğü gibi "WhatWeb" sitenin "Wordpress" ile oluşturulduğunu ve sürümünün "3.0.4" olduğunun çıktısını verdi."WhatWeb" sadece "Wordpress" değil bir çok yazılımının kimliğini tespit edebiliyor.Bunları görmek için de "-l" parametresini kullanabiliriz;
+<address>http://linux.piesso.com [200] <strong>WordPress[3.0.4],</strong> HTTPServer[LWS], UncommonHeaders[x-pingback], JQuery[1.4.2], Title[| Linux ve Özgürlük], RSSFeed[http://linux.piesso.com/wp-content/themes/openark-blog/style.css], MetaGenerator[WordPress 3.0.4], Tag-Hash[304a800265809c99e32ff96b774225fe], MD5[d1f3d9cdb0766514a3d290cceb2eccc3], Header-Hash[a82619f7784e56b660f31017e1d0174f], Footer-Hash[b7509d9fc94073b62bfe3d809e9ad5a9]</address>
+<p>Yukarda görüldüğü gibi "WhatWeb" sitenin "Wordpress" ile oluşturulduğunu ve sürümünün "3.0.4" olduğunun çıktısını verdi."WhatWeb" sadece "Wordpress" değil bir çok yazılımının kimliğini tespit edebiliyor.Bunları görmek için de "-l" parametresini kullanabiliriz;</p>
 <pre><strong>$ ./whatweb -l</strong></pre>
 <pre>Plugins Loaded
-<hr><p>360-Web-Manager,0.1
+------------------------------
+360-Web-Manager,0.1
 ANECMS,0.1
 ASP-Nuke,0.2
 AVTech-Video-Web-Server,0.1
@@ -971,12 +978,13 @@ samPHPweb,0.1
 syntaxCMS,0.1
 uPortal,0.1
 xGB,0.1
-</p></pre>
-WhatWeb'ten Wordpress sürümü gizlemek için ise temanızın "<strong><em>function.php</em></strong>" adlı dosyası içine aşağıdaki satırını yapıştırarak kaldıralım .
+</pre>
+<p>WhatWeb'ten Wordpress sürümü gizlemek için ise temanızın "<strong><em>function.php</em></strong>" adlı dosyası içine aşağıdaki satırını yapıştırarak kaldıralım .</p>
 <pre><strong><code>remove_action(</code><code>'wp_head'</code><code>, </code><code>'wp_generator'</code><code>);</code></strong></pre>
-Wordpress'ten sürüm bilgilerini kaldırdığımıza göre "<em>WhatWeb</em>" ile tekrar test edelim.
+<p>Wordpress'ten sürüm bilgilerini kaldırdığımıza göre "<em>WhatWeb</em>" ile tekrar test edelim.</p>
 <pre><strong>$ ./whatweb linux.piesso.com</strong></pre>
 <address>http://linux.piesso.com [200] <strong>probably</strong> WordPress, HTTPServer[LWS], UncommonHeaders[x-pingback], JQuery[1.4.2], Title[| Linux ve Özgürlük], RSSFeed[http://linux.piesso.com/wp-content/themes/openark-blog/style.css], Tag-Hash[1875deb75c633e2ea1bbe2e6b8c856e3], MD5[29c17973306dcde19d75e8c9b3f72861], Header-Hash[a82619f7784e56b660f31017e1d0174f], Footer-Hash[b7509d9fc94073b62bfe3d809e9ad5a9]</address>
+
 <p>Görüldüğü gibi artık <strong>Wordpress</strong> sürüm bilgisi vermiyor.</p>
 </div>
     </div>
@@ -1001,51 +1009,52 @@ Wordpress'ten sürüm bilgilerini kaldırdığımıza göre "<em>WhatWeb</em>" i
 </p>
 <pre># emerge -av hping ( Gentoo )</pre>
 <pre># apt-get install hping3 (Ubuntu )</pre>
-Centos'a yüklemek için "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>" deposunu eklemiş olmanız lazım.Eğer bu depoyu eklemediysen <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">buradan</a> yardım alabilirsiniz.
+<p>Centos'a yüklemek için "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>" deposunu eklemiş olmanız lazım.Eğer bu depoyu eklemediysen <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">buradan</a> yardım alabilirsiniz.</p>
 <pre># yum install hping3</pre>
-Hping yazılımını yükledikten sonra herhangi bir sunucunun uptime süresini öğrenmek bize cevap verecek herhangi bir <strong>TCP</strong> portuna bir istek gönderip,cevap alalım.Şimdi herhangi bir sunucunun uptime süresini öğrenelim:
+<p>Hping yazılımını yükledikten sonra herhangi bir sunucunun uptime süresini öğrenmek bize cevap verecek herhangi bir <strong>TCP</strong> portuna bir istek gönderip,cevap alalım.Şimdi herhangi bir sunucunun uptime süresini öğrenelim:</p>
 <pre><strong># hping --tcp-timestamp www.examples.com -p 80 -c 2 -S</strong></pre>
 <pre>HPING www.examples.com (eth0 00.00.00.00): S set, 40 headers + 0 data bytes
 len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=0 win=5792 rtt=20.0 ms
  TCP timestamp: tcpts=966942747
-<p>len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=1 win=5792 rtt=19.8 ms
+
+len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=1 win=5792 rtt=19.8 ms
  TCP timestamp: tcpts=966942997
  HZ seems hz=100
- System uptime seems: 111 days, 21 hours, 57 minutes, 9 seconds</p>
-<p>--- www.examples.com hping statistic ---
+ System uptime seems: 111 days, 21 hours, 57 minutes, 9 seconds
+
+--- www.examples.com hping statistic ---
 2 packets tramitted, 2 packets received, 0% packet loss
-round-trip min/avg/max = 19.8/19.9/20.0 ms</p></pre>
-Yukardaki örnekte de görüldüğü gibi "<em>www.examples.com</em>" sunucusunun 111 gündür vs vs detaylı uptime süresini öğrenebiliyoruz.Uzaktaki sistemin "<strong>uptime</strong>" süresini öğrenmeye değindik,şimdi  "<em>kendi sunucumuzun uptime süresini vermesini istemiyorsak ne yapmalıyız</em>?" ona biraz değinelim.
-<p>Eğer sunucumuzun "<strong>timestamps</strong>" gönderip göndermediğini bilmiyorsak ona bakalım:
-</p>
+round-trip min/avg/max = 19.8/19.9/20.0 ms</pre>
+<p>Yukardaki örnekte de görüldüğü gibi "<em>www.examples.com</em>" sunucusunun 111 gündür vs vs detaylı uptime süresini öğrenebiliyoruz.Uzaktaki sistemin "<strong>uptime</strong>" süresini öğrenmeye değindik,şimdi  "<em>kendi sunucumuzun uptime süresini vermesini istemiyorsak ne yapmalıyız</em>?" ona biraz değinelim.</p>
+<p>Eğer sunucumuzun "<strong>timestamps</strong>" gönderip göndermediğini bilmiyorsak ona bakalım:</p>
 <pre><strong># /sbin/sysctl -a |grep tcp_timestamps </strong></pre>
 <pre>net.ipv4.tcp_timestamps = 1</pre>
-Yukardaki komutun çıktısına "<strong>net.ipv4.tcp_timestamps = 1</strong>" değeri alıyorsanız , uptime süre bilginiz öğrenebilinir demektir.Bu bilgiyi dışarıya vermemek için "<strong>1</strong>" değerini "<strong>0</strong>" yapalım.
-<p><strong>I .Yöntem :</strong>
-</p>
+<p>Yukardaki komutun çıktısına "<strong>net.ipv4.tcp_timestamps = 1</strong>" değeri alıyorsanız , uptime süre bilginiz öğrenebilinir demektir.Bu bilgiyi dışarıya vermemek için "<strong>1</strong>" değerini "<strong>0</strong>" yapalım.</p>
+<p><strong>I .Yöntem :</strong></p>
 <pre>#  echo 0 &gt; /proc/sys/net/ipv4/tcp_timestamps</pre>
-<strong>II.Yöntem :</strong>
-<p>Bu yöntemde ise "<em>sysctl.conf</em>" dosyasına "<em>net.ipv4.tcp_timestamps = 0</em>" satırını ekleyelerek yapabiliriz.
-</p>
+<p><strong>II.Yöntem :</strong></p>
+<p>Bu yöntemde ise "<em>sysctl.conf</em>" dosyasına "<em>net.ipv4.tcp_timestamps = 0</em>" satırını ekleyelerek yapabiliriz.</p>
 <pre><strong># vi /etc/sysctl.conf</strong></pre>
-Aşağıdaki satırı ekleyin:
+<p>Aşağıdaki satırı ekleyin:</p>
 <pre><strong>net.ipv4.tcp_timestamps = 0</strong></pre>
-Satırı ekledikten sonra dosyayı kaydedip,kapatın.Ayarların aktif olabilmesi için bilgisayarı <strong>yeniden başlatın</strong> ya da aşağıdaki komutu verin .
+<p>Satırı ekledikten sonra dosyayı kaydedip,kapatın.Ayarların aktif olabilmesi için bilgisayarı <strong>yeniden başlatın</strong> ya da aşağıdaki komutu verin .</p>
 <pre><strong># sysctl -p</strong></pre>
-Yeni ayarlarımız aktif olduktan sonra uptime bilgimizin gönderilip,gönderilmediğini test edelim.
+<p>Yeni ayarlarımız aktif olduktan sonra uptime bilgimizin gönderilip,gönderilmediğini test edelim.</p>
 <pre><strong># hping --tcp-timestamp www.examples.com -p 80 -c 2 -S</strong></pre>
 <pre>HPING www.examples.com (eth0 00.00.00.00): S set, 40 headers + 0 data bytes
 len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=0 win=32792 rtt=0.1 ms
  TCP timestamp: tcpts=0
-<p>len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=1 win=32792 rtt=0.1 ms
+
+len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=1 win=32792 rtt=0.1 ms
  TCP timestamp: tcpts=0
-</p></pre>
+</pre>
 <pre>--- www.examples.com hping statistic ---</pre>
 <pre>2 packets tramitted, 2 packets received, 0% packet loss</pre>
 <pre>round-trip min/avg/max = 0.1/0.1/0.1 ms</pre>
-Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiyorum.Eğer "<strong>icmp</strong>" isteklerini engellememişseniz bu yolla da "<strong>timestamp</strong>s" bilginiz öğrenilebilinir."icmp" ile dışarıya "timestamps" göndermek istemiyorsanız özetle <strong>iptables</strong> ile bunu engelleyebilirsiniz.Örnek olarak :
+<p>Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiyorum.Eğer "<strong>icmp</strong>" isteklerini engellememişseniz bu yolla da "<strong>timestamp</strong>s" bilginiz öğrenilebilinir."icmp" ile dışarıya "timestamps" göndermek istemiyorsanız özetle <strong>iptables</strong> ile bunu engelleyebilirsiniz.Örnek olarak :</p>
 <pre>   ipchains -A input -p icmp --icmp-type timestamp-request -j DROP</pre>
 <pre>   ipchains -A output -p icmp --icmp-type timestamp-reply -j DROP</pre>
+<p></p>
 </div>
     </div>
     </article>
@@ -1058,7 +1067,7 @@ Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiy
             <li class="next">
                 <a href="index-16.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

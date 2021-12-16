@@ -1,9 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s?</title><link>https://blog.piesso.com/</link><description>Ignotum Per Ignotius</description><atom:link href="https://blog.piesso.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s?</title><link>https://blog.piesso.com/</link><description>Ignotum Per Ignotius</description><atom:link href="https://blog.piesso.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 08 Dec 2020 00:31:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ingress path redirection appends port</title><link>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;&lt;/p&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Wed, 15 Dec 2021 23:31:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Updated GeoIP Databases</title><link>https://blog.piesso.com/posts/free-updated-geoip-databases/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;I found and use an up-to-date and free GeoIP databases from &lt;a class="reference external" href="https://mailfud.org/geoip-legacy/"&gt;https://mailfud.org/geoip-legacy/&lt;/a&gt; . There are 5 different GeoIP databases(&lt;em&gt;also IPv6&lt;/em&gt;) :&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Country&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;City&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ASN&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ISP&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Organization&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also it has update script(&lt;strong&gt;geoip_update.sh&lt;/strong&gt;). Thanks mailfud.org :)&lt;/p&gt;
+&lt;p&gt;You can test City database from &lt;a class="reference external" href="https://ip.piesso.com"&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><guid>https://blog.piesso.com/posts/free-updated-geoip-databases/</guid><pubDate>Wed, 15 Dec 2021 23:04:00 GMT</pubDate></item><item><title>URLs of Blacklists</title><link>https://blog.piesso.com/posts/urls-of-blacklists/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Free, up-to-date and large blacklist databases for those who want to set up DNS firewall:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;&lt;em&gt;Name&lt;/em&gt;&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;&lt;em&gt;URL&lt;/em&gt;&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Abuse.ch&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://threatfox.abuse.ch/"&gt;https://threatfox.abuse.ch/&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Adaway&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://adaway.org/"&gt;https://adaway.org/&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Adguard List&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://justdomains.github.io/blocklists/#the-lists"&gt;https://justdomains.github.io/blocklists/#the-lists&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Blocklist.site&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/blocklistproject/Lists"&gt;https://github.com/blocklistproject/Lists&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EasyList&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://justdomains.github.io/blocklists/#the-lists"&gt;https://justdomains.github.io/blocklists/#the-lists&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Easyprivacy&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://justdomains.github.io/blocklists/#the-lists"&gt;https://justdomains.github.io/blocklists/#the-lists&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;NoCoin List&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://justdomains.github.io/blocklists/#the-lists"&gt;https://justdomains.github.io/blocklists/#the-lists&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PornTop1M List&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/chadmayfield/my-pihole-blocklists"&gt;https://github.com/chadmayfield/my-pihole-blocklists&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Simple Ad List&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"&gt;https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Simple Tracker List&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"&gt;https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;StevenBlack/hosts&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"&gt;https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WindowsSpyBlocker&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/crazy-max/WindowsSpyBlocker"&gt;https://github.com/crazy-max/WindowsSpyBlocker&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YoYo List&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://pgl.yoyo.org/adservers/"&gt;https://pgl.yoyo.org/adservers/&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;</description><guid>https://blog.piesso.com/posts/urls-of-blacklists/</guid><pubDate>Wed, 15 Dec 2021 22:38:15 GMT</pubDate></item><item><title>Block ads and malware via BIND9 RPZ</title><link>https://blog.piesso.com/posts/block-ads-and-malware-via-bind9-rpz/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;h3&gt;Installation on Ubuntu 20.04 LTS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Run following command to install BIND 9 on Ubuntu 20.04&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;$ sudo apt update
+$ sudo apt install bind9 bind9utils bind9-dnsutils
+&lt;/pre&gt;
+&lt;h3&gt;Configurations for recursive DNS resolver with RPZ(response policy zone)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To enable recursion service, edit &lt;strong&gt;&lt;em&gt;/etc/bind/named.conf.options&lt;/em&gt;&lt;/strong&gt; :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nv"&gt;hide&lt;/span&gt; &lt;span class="nv"&gt;version&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="nv"&gt;from&lt;/span&gt; &lt;span class="nv"&gt;clients&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;security&lt;/span&gt; &lt;span class="nv"&gt;reasons&lt;/span&gt;.
+    &lt;span class="nv"&gt;version&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;not currently available&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nv"&gt;optional&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;BIND&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="nv"&gt;behavior&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;recursion&lt;/span&gt;
+    &lt;span class="nv"&gt;recursion&lt;/span&gt; &lt;span class="nv"&gt;yes&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nv"&gt;provide&lt;/span&gt; &lt;span class="nv"&gt;recursion&lt;/span&gt; &lt;span class="nv"&gt;service&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;trusted&lt;/span&gt; &lt;span class="nv"&gt;clients&lt;/span&gt; &lt;span class="nv"&gt;only&lt;/span&gt;
+    &lt;span class="nv"&gt;allow&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;recursion&lt;/span&gt; { &lt;span class="mi"&gt;127&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="c1"&gt;; 192.168.0.0/24; 10.10.10.0/24; };&lt;/span&gt;
+
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nv"&gt;disallow&lt;/span&gt; &lt;span class="nv"&gt;zone&lt;/span&gt; &lt;span class="nv"&gt;transfer&lt;/span&gt;
+    &lt;span class="nv"&gt;allow&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;transfer&lt;/span&gt; { &lt;span class="nv"&gt;none&lt;/span&gt;&lt;span class="c1"&gt;; };&lt;/span&gt;
+
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nv"&gt;enable&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;query&lt;/span&gt; &lt;span class="nv"&gt;log&lt;/span&gt;
+    &lt;span class="nv"&gt;querylog&lt;/span&gt; &lt;span class="nv"&gt;yes&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+
+    &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;enable&lt;/span&gt; &lt;span class="nv"&gt;response&lt;/span&gt; &lt;span class="nv"&gt;policy&lt;/span&gt; &lt;span class="nv"&gt;zone&lt;/span&gt;.
+    &lt;span class="nv"&gt;response&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;policy&lt;/span&gt; {
+        &lt;span class="nv"&gt;zone&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;blocked.local&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+    }&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add RPZ zone in &lt;strong&gt;&lt;em&gt;/etc/bind/named.conf.local&lt;/em&gt;&lt;/strong&gt; :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    zone "blocked.local" {
+        type master;
+        file "/etc/bind/db.blocked.local";
+        allow-query { localhost; };
+        allow-transfer { localhost; };
+    };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;add following lines in &lt;strong&gt;&lt;em&gt;/etc/bind/named.conf&lt;/em&gt;&lt;/strong&gt; to use separate log file for RPZ(recommended):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="n"&gt;logging&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;channel&lt;/span&gt; &lt;span class="n"&gt;blockedlog&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="s2"&gt;"/var/log/named/blocked-zone.log"&lt;/span&gt; &lt;span class="n"&gt;versions&lt;/span&gt; &lt;span class="n"&gt;unlimited&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;category&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;severity&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;severity&lt;/span&gt; &lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;};&lt;/span&gt;
+        &lt;span class="n"&gt;category&lt;/span&gt; &lt;span class="n"&gt;rpz&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;blockedlog&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+    &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If &lt;strong&gt;&lt;em&gt;/var/log/named/&lt;/em&gt;&lt;/strong&gt; directory doesn't exist, create it and make bind as the owner:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo mkdir /var/log/named/
+$ sudo chown bind:bind /var/log/named/ -R
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Creating Zone File&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;first, clone this repository:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ git clone https://github.com/mofm/blocked-zone.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If there is domain(s) you want to block, you can add it to the blacklist file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;execute the blocked-zone.sh script(this script downloads StevenBlack host file and then creates RPZ zone file):&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo bash blocked-zone.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Check configurations and service:&lt;/h3&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo named-checkconf
+$ sudo named-checkzone rpz /etc/bind/db.blocked.local
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If no problem, restart and enable bind9 service;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo systemctl restart bind9
+$ sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; bind9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Test:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;You can run the dig command on the BIND server to see if RPZ is working:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ dig A adskeeper.com @127.0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can also check '/var/log/named/blocked-zone.log' for query log:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo tail /var/log/named/blocked-zone.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;READY, you can add this BIND9 host IP address to your host(s).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Optional&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;You can add cronjob for schedule update&lt;/li&gt;
+&lt;li&gt;You can change the URL to StevenBlack GitHub Hosts in &lt;strong&gt;&lt;em&gt;blocked-zone.sh&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;You can download and use auto-generated RPZ zone files from &lt;a href="https://scripttiger.github.io/alts/"&gt;https://scripttiger.github.io/alts/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Also you can download and use abuse.ch RPZ zone file from &lt;a href="https://urlhaus.abuse.ch/downloads/rpz/"&gt;https://urlhaus.abuse.ch/downloads/rpz/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><guid>https://blog.piesso.com/posts/block-ads-and-malware-via-bind9-rpz/</guid><pubDate>Wed, 15 Dec 2021 18:57:56 GMT</pubDate></item><item><title>Ingress path redirection appends port</title><link>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;&lt;/p&gt;
 &lt;pre class="code bash"&gt;&lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-1"&gt;&lt;/a&gt;$ curl -I http://cafe.example.com/coffee/
 &lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-2"&gt;&lt;/a&gt;
 &lt;a name="rest_code_1edb79fee71c4dabae9261e39936d02e-3"&gt;&lt;/a&gt;HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
@@ -249,7 +435,7 @@ Senaryo semasinin ayrintilari asagidaki gibidir:&lt;/p&gt;
 &lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_45685fe9ebce466890922eb719d16631-1"&gt;&lt;/a&gt;$ kubectl apply -f ingress.yaml
 &lt;/pre&gt;&lt;p&gt;ingress tanimlamamiz da yapildigina gore &lt;em&gt;http://blog.example.com/blog&lt;/em&gt; adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>kubernetes</category><category>static websites</category><guid>https://blog.piesso.com/posts/kubernetes-static-website-git/</guid><pubDate>Sat, 05 Dec 2020 15:12:03 GMT</pubDate></item><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I writed a schema.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>kubernetes</category><category>static websites</category><guid>https://blog.piesso.com/posts/kubernetes-static-website-git/</guid><pubDate>Sat, 05 Dec 2020 15:12:03 GMT</pubDate></item><item><title>OpenLDAP Schema for Postfix</title><link>https://blog.piesso.com/posts/openldap-schema-for-postfix/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I have written a schema.&lt;/p&gt;
 &lt;dl class="simple"&gt;
 &lt;dt&gt;postfix-new.schema:&lt;/dt&gt;
 &lt;dd&gt;&lt;ul class="simple"&gt;
@@ -546,255 +732,4 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;p&gt;Sizde yapmis oldugunuz konfigurasyonu test ederek cache durumunuzu kontrol edebilirsiniz. Kolay gelsin :)&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>caching</category><category>nginx</category><category>reverse proxy</category><guid>https://blog.piesso.com/posts/nginx-reverse-proxy-cache/</guid><pubDate>Sat, 09 Dec 2017 12:13:35 GMT</pubDate></item><item><title>Locust: Load Testing Tool</title><link>https://blog.piesso.com/posts/locust-load-testing-tool/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;em&gt;Locust&lt;/em&gt;, kullanimi diger uygulamalara gore kolay distributed load testing aracidir. Websitenizi ya da diger sistemlerinizi kullanici sayilarini simule ederek yazdiginiz kodlari ya da sistemlerinizi load testing yaparak kontrol etmenize olanak saglar.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Locust'un ozellikleri:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Kolay test senaryosu yazma. Diger araclara gore daha sade ve kolay syntax ile yazabilme. Python'a asina olanlar icin yabancilik cekmeyecekleri sekilde python kod.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Distributed load testing. Tekil ya da coklu makinelerle load testing yapabilme. Ister kullandiginiz bir bilgisayarla isterse 20 makine ile test yapabilme imkani.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Webarayuzu. Locust HTML+JS ile size realtime test sonuclarini webarayuzunden izleyebilme imkani sagliyor.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Her turlu sistemi test edebilirsiniz. Sadece websitelerini degil ldap,smtp gibi servis verdiginiz her turlu sistemleri biraz python biliyorsaniz client kod vs yazayarak test edebilirsiniz.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Apache JMeter gibi java bagimliliginiz kalmadan bu testlerinizi yapabilirsiniz.( JMeter uzerinde SSL sertifikaniz 4096 bit gibi yuksek sifrelenmis ise javanin en yuksek 2048 bit desteklemesi yuzunden basarili olamayabilirsiniz. )&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Kurulumu&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Locust, Python 2.7, 3.3, 3.4, 3.5,3.6. versiyonlarini desteklemektedir. Sistemizdeki 'pip' kurulu oldugundan emin olun. Bir cok modern sistemlerde halihazirda kurulu olarak zaten geliyor.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_ac9f8eb68bb942b58cbcf73f0e130aca-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# pip install locustio&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Eger sadece kendi kullaniciniz icin kuracaksaniz;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_c2f26513e85a45338e282e21eda7d3bc-1"&gt;&lt;/a&gt;$ pip install --user locustio
-&lt;/pre&gt;&lt;p&gt;Ardindan '~/.local/bin/' dizinini "PATH'inize ekleyin. GNU/Linux dagitiminiza ya da sisteminize gore '.bashrc' ya da 'bash_profile' dosyaniza eklemeniz gerekir.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_9ae1cec3776846188b18a247948b4ea8-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:~/.local/bin
-&lt;/pre&gt;&lt;p&gt;Kurulum adimlari bu kadar.&lt;/p&gt;
-&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
-&lt;p&gt;Son olarak not dusmek gerekir. Eger load testing yaparken yuksek sayida kullanici ile senaryo gerceklestirecekseniz sistemiz ve load-testing yapan kullaniciniz icin file-limit degerlerini yukseltmeniz gerekebilir.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Ilk olarak sistemiz uzerinden file-limit degerini ogrenip yukseltmek icin;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e1228d893e464035934603071241c433-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# cat /proc/sys/fs/file-max&lt;/span&gt;
-&lt;a name="rest_code_e1228d893e464035934603071241c433-2"&gt;&lt;/a&gt;&lt;span class="m"&gt;75000&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Yukarda goruldugu gibi sistem uzerinde file-limit degeri '75000'. Bu degeri ornek olarak '750000' yukseltmek icin;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_29429d4bbe9841c9ac4518f2b880bbad-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sysctl -w fs.file-max=750000&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Sistem uzerinde kalici olarak degistirmek icin, "/etc/sysctl.conf" dosyasina asagidaki satiri ekleyin.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_4ed49813ab024aa09872fd8d151e33dc-1"&gt;&lt;/a&gt;fs.file-max &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;750000&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Aktif etmek icin;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_aa1e20cd0d8e4483b8e9cd8da391b8c2-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# sysctl -p&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Bu limit degerlerini sisteme giris yaptiginiz ya da test yapacaginiz kullanici icin yukseltmek icin '/etc/security/limits.conf' dosyaniza asagidaki gibi degerleri ekleyin;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;## hard limit&lt;/span&gt;
-&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-2"&gt;&lt;/a&gt;kullanici1        hard nofile &lt;span class="m"&gt;10000&lt;/span&gt;
-&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;## soft limit&lt;/span&gt;
-&lt;a name="rest_code_372509ef58454bc784dbacf04fb701eb-4"&gt;&lt;/a&gt;kullanici1        soft nofile &lt;span class="m"&gt;5000&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Yaptiginiz degisikligin aktif olmasi icin cikis yapip tekrar giris yapmaniz gereklidir.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Senaryo olusturma&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Locust icin cesitli senaryolar yazabilirsiniz. Iki basit ornek verelim.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Ornek 1:&lt;/em&gt; Websitenizin anasayfasini ve hakkimda sayfalarini test etmek icin load-testing senaryosu yazalim.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;locust&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TaskSet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;task&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyTaskSet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TaskSet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-4"&gt;&lt;/a&gt;     &lt;span class="nd"&gt;@task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-5"&gt;&lt;/a&gt;     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-6"&gt;&lt;/a&gt;             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-7"&gt;&lt;/a&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-8"&gt;&lt;/a&gt;     &lt;span class="nd"&gt;@task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-9"&gt;&lt;/a&gt;     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;about&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-10"&gt;&lt;/a&gt;             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/hakkinda/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-11"&gt;&lt;/a&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-12"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyLocust&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-13"&gt;&lt;/a&gt;     &lt;span class="n"&gt;task_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MyTaskSet&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-14"&gt;&lt;/a&gt;     &lt;span class="n"&gt;min_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;
-&lt;a name="rest_code_03b106badf2d4f4f941526fb5822d530-15"&gt;&lt;/a&gt;     &lt;span class="n"&gt;max_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;15000&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;'min_wait' ve 'max_wait' degerleri simule eden kullanicilarin bu sureler arasinda istek yapmasini gosterir.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Ornek 2:&lt;/em&gt; Websitenizin login sayfasina kullanici ile giris yapip, anasayfasini ve profile sayfasini test senaryosu yazalim.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;locust&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TaskSet&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;login&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-4"&gt;&lt;/a&gt;     &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/login"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"username"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;"ellen_key"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"password"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;"education"&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-5"&gt;&lt;/a&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-6"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-7"&gt;&lt;/a&gt;     &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-8"&gt;&lt;/a&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-9"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;profile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-10"&gt;&lt;/a&gt;     &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/profile"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-11"&gt;&lt;/a&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-12"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UserBehavior&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TaskSet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-13"&gt;&lt;/a&gt;     &lt;span class="n"&gt;tasks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;profile&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-14"&gt;&lt;/a&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-15"&gt;&lt;/a&gt;     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-16"&gt;&lt;/a&gt;             &lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-17"&gt;&lt;/a&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-18"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;WebsiteUser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpLocust&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-19"&gt;&lt;/a&gt;     &lt;span class="n"&gt;task_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;UserBehavior&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-20"&gt;&lt;/a&gt;     &lt;span class="n"&gt;min_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;
-&lt;a name="rest_code_21b81d96c0384ca592dc569fa435bffd-21"&gt;&lt;/a&gt;     &lt;span class="n"&gt;max_wait&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;9000&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Load-Testing Yapmak&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Locust ile yazdigimiz senaryolar ile load-testing yapmak icin;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_a7f48c8f465b47068ac4260819ca996d-1"&gt;&lt;/a&gt;$ locust --host&lt;span class="o"&gt;=&lt;/span&gt;http://example.com
-&lt;/pre&gt;&lt;p&gt;ya da yazdigimiz senaryo dosyasinin yolunu belirterek;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_21bf7dbb80914d3ab7d9ff5987e1b1e8-1"&gt;&lt;/a&gt;$ locust -f locust_files/my_locust_file.py --host&lt;span class="o"&gt;=&lt;/span&gt;http://example.com
-&lt;/pre&gt;&lt;p&gt;Test basladiktan sonra tarayiciniza 'localhost:8089' yazarak kullanicilari simule edip testinizi izleyebilirsiniz.&lt;/p&gt;&lt;/div&gt;</description><category>loadtesting</category><category>locust</category><category>tools</category><guid>https://blog.piesso.com/posts/locust-load-testing-tool/</guid><pubDate>Sun, 03 Dec 2017 21:37:28 GMT</pubDate></item><item><title>FreeIPA ve Active Directory Entegrasyonu</title><link>https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;dl class="simple"&gt;
-&lt;dt&gt;&lt;strong&gt;Kurulum oncesi hazirlik:&lt;/strong&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;dl class="simple"&gt;
-&lt;dt&gt;FreeIPA Server 4.4.0-14 ( CentOS 7 )&lt;/dt&gt;
-&lt;dd&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;IPA Server IP Adresi: 172.16.183.128&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;IPA Server Hostname: ipaserver.piesso.local&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;IPA Domain: piesso.local&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;IPA Netbios: PIESSO&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;IPA Kerberos realm: PIESSO.LOCAL&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="simple"&gt;
-&lt;dt&gt;Windows Server 2012 R2&lt;/dt&gt;
-&lt;dd&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Active Directory IP Adresi: 172.16.183.132&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Active Directory Hostname: ad.pencere.local&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Active Directory Domain: pencere.local&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Active Directory Netbios: PENCERE&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;Windows Server 2012 R2 ve FreeIPA icin kerberos ticket vs gibi sorunlar yasanmamasi icin ntp ile zaman esitlemesi mutlaka baslatilmalidir. FreeIPA kurulumunda ontanimli olarak ntp client "time sync" islemini ntp pool'larindan alarak esitlemektedir. Fakat Windows Server 2012 R2 uzerinde de bunu yapmak icin manuel ntp pool sunucularini girip zaman servisini yeniden baslatilmasi gerekmektedir.&lt;/p&gt;
-&lt;div class="admonition warning"&gt;
-&lt;p class="admonition-title"&gt;Warning&lt;/p&gt;
-&lt;p&gt;2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin "+3" oldugunu kontrol edin.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;(Powershell uzerinde)&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code powershell"&gt;&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="n"&gt;stop&lt;/span&gt; &lt;span class="n"&gt;w32time&lt;/span&gt;
-&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-2"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w32tm&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;syncfromflags&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;manual&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;manualpeerlist&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;centos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ntp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;centos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ntp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;centos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ntp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
-&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-3"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;w32tm&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;reliable&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;
-&lt;a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-4"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="nb"&gt;start &lt;/span&gt;&lt;span class="n"&gt;w32time&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;FreeIPA ve Active Directory Cross-Realm Trust:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Ilk olarak "ipa-adtrust-install" paketini repodan kuralim:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_cd50fe50a08e409f9b681be3c944cfb7-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-adtrust-install&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;IPA Server uzerinde cross-realm islemi icin:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_84c304852399415fb7a7605880e45db7-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-adtrust-install --netbios-name=PIESSO -a password&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Firewall Konfigurasyonu:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300&lt;/span&gt;
-&lt;a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;UDP ports: 88, 464, 53, 123, 138, 139, 389, 445&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl disable firewalld&lt;/span&gt;
-&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl stop firewalld&lt;/span&gt;
-&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install -y iptables-services&lt;/span&gt;
-&lt;a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl enable iptables&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;"/etc/sysconfig/iptables" dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;\*filter&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-2"&gt;&lt;/a&gt;&lt;span class="go"&gt;:INPUT ACCEPT [0:0]&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-3"&gt;&lt;/a&gt;&lt;span class="go"&gt;:FORWARD ACCEPT [0:0]&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-4"&gt;&lt;/a&gt;&lt;span class="go"&gt;:OUTPUT ACCEPT [0:0]&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-5"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-6"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p icmp -j ACCEPT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-7"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -i lo -j ACCEPT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-8"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-9"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-10"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-11"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-12"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p udp -j REJECT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-13"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A INPUT -p tcp -j REJECT&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-14"&gt;&lt;/a&gt;&lt;span class="go"&gt;-A FORWARD -j REJECT --reject-with icmp-host-prohibited&lt;/span&gt;
-&lt;a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-15"&gt;&lt;/a&gt;&lt;span class="go"&gt;COMMIT&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Iptables servisini baslatabiliriz:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_fb6326f0f2eb449697d4407f8cdf258b-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# systemctl start iptables&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;DNS Forward Zone:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Windows Server 2012 R2 uzerinde:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code powershell"&gt;&lt;a name="rest_code_0bc6fb2df2394b21916b604a64f2aeee-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;dnscmd&lt;/span&gt; &lt;span class="n"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ZoneAdd&lt;/span&gt; &lt;span class="n"&gt;piesso&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Forwarder&lt;/span&gt; &lt;span class="n"&gt;172&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;16&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;183&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;128&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;FreeIPA Server uzerinde:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_8e8c2f18f4c24eb7a9e5071049c3f6ff-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;Windows Server 2012 R2 (PowerShell):&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code powershell"&gt;&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;nslookup&lt;/span&gt;
-&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-2"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;srv&lt;/span&gt;
-&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-3"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;_ldap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ad_domain&lt;/span&gt;
-&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-4"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;_ldap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_tcp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipa_domain&lt;/span&gt;
-&lt;a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-5"&gt;&lt;/a&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;quit&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;FreeIPA Server uzerinde:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# dig SRV _ldap._tcp.ipa_domain&lt;/span&gt;
-&lt;a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# dig SRV _ldap._tcp.ad_domain&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Cross-Realm Trust:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Freeipa ile Active Directory arasinda "Two-way trust" konfigurasyonu:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_fb0605c4ecac40a5867a7a7712d84b87-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;"Two-way trust" baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa trust-fetch-domains "pencere.local"&lt;/span&gt;
-&lt;a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa trustdomain-find "pencere.local"&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><category>active directory</category><category>freeipa</category><guid>https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/</guid><pubDate>Sun, 22 Jan 2017 14:20:37 GMT</pubDate></item><item><title>IPA Client Kurulumu</title><link>https://blog.piesso.com/posts/ipa-client-kurulumu/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;dl&gt;
-&lt;dt&gt;&lt;strong&gt;Kullanilan yazilimlar:&lt;/strong&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Centos Linux 7.2&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-client&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ipa-admin-tools&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;&lt;strong&gt;Kurulum Oncesi Hazirlik:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-1"&gt;&lt;/a&gt;&lt;span class="nv"&gt;FQDN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ipaclient.piesso.local
-&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-2"&gt;&lt;/a&gt;&lt;span class="nv"&gt;IP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;172&lt;/span&gt;.16.183.135/24
-&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-3"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ipa.piesso.local
-&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-4"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;DOMAIN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; piesso.local
-&lt;a name="rest_code_be49731c5bf145c9a256781147932cb9-5"&gt;&lt;/a&gt;IPA &lt;span class="nv"&gt;NETBIOS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; PIESSO
-&lt;/pre&gt;&lt;p&gt;Kuruluma  baslamadan once kontrol edilmesi gerekenler;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;Hostname&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;/etc/hosts&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Sistem update&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;em&gt;Hostname:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# hostnamectl set-hostname ipaclient.piesso.local&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;em&gt;/etc/hosts:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_15c38659790447f8a288f092a83e8996-1"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.135 ipaclient.piesso.local ipaclient
-&lt;a name="rest_code_15c38659790447f8a288f092a83e8996-2"&gt;&lt;/a&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.183.128 ipa.piesso.local
-&lt;/pre&gt;&lt;p&gt;&lt;em&gt;Sistem update:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum update -y&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Kurulum:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# yum install ipa-client ipa-admintools&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;ipa-client kurulumu;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_1910355d47d14b69883d616125586182-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;IPA Client ve Kerberos Ticket Testi:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_1389b757d7f3440295bd446966ad571c-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# getent passwd admin&lt;/span&gt;
-&lt;a name="rest_code_1389b757d7f3440295bd446966ad571c-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# getent group admins&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Kerberos'tan ticket alimi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# kinit admin&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Ticketin basarili alinip alinmadigi kontrolu;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# klist&lt;/span&gt;
-&lt;/pre&gt;&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;/etc/resolv.conf:&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"&gt;&lt;/a&gt;search piesso.local
-&lt;a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"&gt;&lt;/a&gt;nameserver &lt;span class="m"&gt;172&lt;/span&gt;.16.183.128
-&lt;/pre&gt;&lt;/div&gt;</description><category>centos</category><category>ipa</category><category>ipa-client</category><guid>https://blog.piesso.com/posts/ipa-client-kurulumu/</guid><pubDate>Sun, 22 Jan 2017 13:24:47 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>caching</category><category>nginx</category><category>reverse proxy</category><guid>https://blog.piesso.com/posts/nginx-reverse-proxy-cache/</guid><pubDate>Sat, 09 Dec 2017 12:13:35 GMT</pubDate></item></channel></rss>

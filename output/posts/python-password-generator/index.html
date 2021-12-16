@@ -74,8 +74,7 @@ those characters are hard to tell '>
 <p>"""
 A simple script for making random passwords, WITHOUT 1,l,O,0.  Because
 those characters are hard to tell the difference between in some fonts.</p></code>
-<p><em>"""</em>
-</p>
+<p><em>"""</em></p>
 <pre><em>#Import Modules
 import sys
 from random import Random</em></pre>
@@ -87,8 +86,8 @@ allchars = righthand + lefthand</em></pre>
 <pre><em>try:
 passwordLength = int(sys.argv[1])
 except:
-<h2>user didn't specify a length.  that's ok, just use 8</h2>
-<p>passwordLength = 8
+#user didn't specify a length.  that's ok, just use 8
+passwordLength = 8
 try:
 alternate_hands = sys.argv[2] == 'alt'
 if not alternate_hands:
@@ -96,7 +95,7 @@ print "USAGE:"
 print sys.argv[0], "[length of password]",
 print "[alt (if you want the password to alternate hands]"
 except:
-alternate_hands = False</p></em></pre>
+alternate_hands = False</em></pre>
 <pre><em>for i in range(passwordLength):
 if not alternate_hands:
 sys.stdout.write( rng.choice(allchars) )
@@ -105,6 +104,7 @@ if i%2:
 sys.stdout.write( rng.choice(lefthand) )
 else:
 sys.stdout.write( rng.choice(righthand) )</em></pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -137,7 +137,7 @@ sys.stdout.write( rng.choice(righthand) )</em></pre>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

@@ -76,51 +76,52 @@
 </p>
 <pre># emerge -av hping ( Gentoo )</pre>
 <pre># apt-get install hping3 (Ubuntu )</pre>
-Centos'a yüklemek için "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>" deposunu eklemiş olmanız lazım.Eğer bu depoyu eklemediysen <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">buradan</a> yardım alabilirsiniz.
+<p>Centos'a yüklemek için "<a href="http://fedoraproject.org/wiki/EPEL" target="_blank">EPEL</a>" deposunu eklemiş olmanız lazım.Eğer bu depoyu eklemediysen <a href="http://linux.piesso.com/epel-ve-rpmforge-depolarini-ekleyin" target="_blank">buradan</a> yardım alabilirsiniz.</p>
 <pre># yum install hping3</pre>
-Hping yazılımını yükledikten sonra herhangi bir sunucunun uptime süresini öğrenmek bize cevap verecek herhangi bir <strong>TCP</strong> portuna bir istek gönderip,cevap alalım.Şimdi herhangi bir sunucunun uptime süresini öğrenelim:
+<p>Hping yazılımını yükledikten sonra herhangi bir sunucunun uptime süresini öğrenmek bize cevap verecek herhangi bir <strong>TCP</strong> portuna bir istek gönderip,cevap alalım.Şimdi herhangi bir sunucunun uptime süresini öğrenelim:</p>
 <pre><strong># hping --tcp-timestamp www.examples.com -p 80 -c 2 -S</strong></pre>
 <pre>HPING www.examples.com (eth0 00.00.00.00): S set, 40 headers + 0 data bytes
 len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=0 win=5792 rtt=20.0 ms
  TCP timestamp: tcpts=966942747
-<p>len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=1 win=5792 rtt=19.8 ms
+
+len=56 ip=00.00.00.00 ttl=55 DF id=0 sport=80 flags=SA seq=1 win=5792 rtt=19.8 ms
  TCP timestamp: tcpts=966942997
  HZ seems hz=100
- System uptime seems: 111 days, 21 hours, 57 minutes, 9 seconds</p>
-<p>--- www.examples.com hping statistic ---
+ System uptime seems: 111 days, 21 hours, 57 minutes, 9 seconds
+
+--- www.examples.com hping statistic ---
 2 packets tramitted, 2 packets received, 0% packet loss
-round-trip min/avg/max = 19.8/19.9/20.0 ms</p></pre>
-Yukardaki örnekte de görüldüğü gibi "<em>www.examples.com</em>" sunucusunun 111 gündür vs vs detaylı uptime süresini öğrenebiliyoruz.Uzaktaki sistemin "<strong>uptime</strong>" süresini öğrenmeye değindik,şimdi  "<em>kendi sunucumuzun uptime süresini vermesini istemiyorsak ne yapmalıyız</em>?" ona biraz değinelim.
-<p>Eğer sunucumuzun "<strong>timestamps</strong>" gönderip göndermediğini bilmiyorsak ona bakalım:
-</p>
+round-trip min/avg/max = 19.8/19.9/20.0 ms</pre>
+<p>Yukardaki örnekte de görüldüğü gibi "<em>www.examples.com</em>" sunucusunun 111 gündür vs vs detaylı uptime süresini öğrenebiliyoruz.Uzaktaki sistemin "<strong>uptime</strong>" süresini öğrenmeye değindik,şimdi  "<em>kendi sunucumuzun uptime süresini vermesini istemiyorsak ne yapmalıyız</em>?" ona biraz değinelim.</p>
+<p>Eğer sunucumuzun "<strong>timestamps</strong>" gönderip göndermediğini bilmiyorsak ona bakalım:</p>
 <pre><strong># /sbin/sysctl -a |grep tcp_timestamps </strong></pre>
 <pre>net.ipv4.tcp_timestamps = 1</pre>
-Yukardaki komutun çıktısına "<strong>net.ipv4.tcp_timestamps = 1</strong>" değeri alıyorsanız , uptime süre bilginiz öğrenebilinir demektir.Bu bilgiyi dışarıya vermemek için "<strong>1</strong>" değerini "<strong>0</strong>" yapalım.
-<p><strong>I .Yöntem :</strong>
-</p>
+<p>Yukardaki komutun çıktısına "<strong>net.ipv4.tcp_timestamps = 1</strong>" değeri alıyorsanız , uptime süre bilginiz öğrenebilinir demektir.Bu bilgiyi dışarıya vermemek için "<strong>1</strong>" değerini "<strong>0</strong>" yapalım.</p>
+<p><strong>I .Yöntem :</strong></p>
 <pre>#  echo 0 &gt; /proc/sys/net/ipv4/tcp_timestamps</pre>
-<strong>II.Yöntem :</strong>
-<p>Bu yöntemde ise "<em>sysctl.conf</em>" dosyasına "<em>net.ipv4.tcp_timestamps = 0</em>" satırını ekleyelerek yapabiliriz.
-</p>
+<p><strong>II.Yöntem :</strong></p>
+<p>Bu yöntemde ise "<em>sysctl.conf</em>" dosyasına "<em>net.ipv4.tcp_timestamps = 0</em>" satırını ekleyelerek yapabiliriz.</p>
 <pre><strong># vi /etc/sysctl.conf</strong></pre>
-Aşağıdaki satırı ekleyin:
+<p>Aşağıdaki satırı ekleyin:</p>
 <pre><strong>net.ipv4.tcp_timestamps = 0</strong></pre>
-Satırı ekledikten sonra dosyayı kaydedip,kapatın.Ayarların aktif olabilmesi için bilgisayarı <strong>yeniden başlatın</strong> ya da aşağıdaki komutu verin .
+<p>Satırı ekledikten sonra dosyayı kaydedip,kapatın.Ayarların aktif olabilmesi için bilgisayarı <strong>yeniden başlatın</strong> ya da aşağıdaki komutu verin .</p>
 <pre><strong># sysctl -p</strong></pre>
-Yeni ayarlarımız aktif olduktan sonra uptime bilgimizin gönderilip,gönderilmediğini test edelim.
+<p>Yeni ayarlarımız aktif olduktan sonra uptime bilgimizin gönderilip,gönderilmediğini test edelim.</p>
 <pre><strong># hping --tcp-timestamp www.examples.com -p 80 -c 2 -S</strong></pre>
 <pre>HPING www.examples.com (eth0 00.00.00.00): S set, 40 headers + 0 data bytes
 len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=0 win=32792 rtt=0.1 ms
  TCP timestamp: tcpts=0
-<p>len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=1 win=32792 rtt=0.1 ms
+
+len=44 ip=00.00.00.00 ttl=64 DF id=0 sport=80 flags=SA seq=1 win=32792 rtt=0.1 ms
  TCP timestamp: tcpts=0
-</p></pre>
+</pre>
 <pre>--- www.examples.com hping statistic ---</pre>
 <pre>2 packets tramitted, 2 packets received, 0% packet loss</pre>
 <pre>round-trip min/avg/max = 0.1/0.1/0.1 ms</pre>
-Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiyorum.Eğer "<strong>icmp</strong>" isteklerini engellememişseniz bu yolla da "<strong>timestamp</strong>s" bilginiz öğrenilebilinir."icmp" ile dışarıya "timestamps" göndermek istemiyorsanız özetle <strong>iptables</strong> ile bunu engelleyebilirsiniz.Örnek olarak :
+<p>Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiyorum.Eğer "<strong>icmp</strong>" isteklerini engellememişseniz bu yolla da "<strong>timestamp</strong>s" bilginiz öğrenilebilinir."icmp" ile dışarıya "timestamps" göndermek istemiyorsanız özetle <strong>iptables</strong> ile bunu engelleyebilirsiniz.Örnek olarak :</p>
 <pre>   ipchains -A input -p icmp --icmp-type timestamp-request -j DROP</pre>
 <pre>   ipchains -A output -p icmp --icmp-type timestamp-reply -j DROP</pre>
+<p></p>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
@@ -152,7 +153,7 @@ Artık sunucumuz dışarıya uptime bilgisi vermiyor.Birde şuna değinmek istiy
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

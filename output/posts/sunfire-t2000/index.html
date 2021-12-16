@@ -102,30 +102,28 @@ f  7ffa2a19  90122270  15001eef  90100011
 <h6><strong><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;">Parolayı sıfırlamak için;</span></span></span></strong></h6>
 <h6><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>1.</strong> İlk olarak güç bağlantısını çıkarın ve 5 sn bekleyin.Daha sonra tekrar bağlayın.
 </span></span></span></span></span></h6>
-<span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>2</strong>.Alom boot etmeye başlayacaktır ve </span></span></span></span></span><em>"Return to Boot Monitor for Handshake ESC keypress detected."</em> yazısını gördüğünüz anda <em>"ESC"</em> tuşuna basın.
-<p><strong>3.</strong> <em>"ESC" </em>tuşuna bastıktan sonra<em> "ALOM boot escape menu"</em> karşınıza gelecektir.
-</p>
+<p><span><span><span style="color: black; font-family: arial; font-size: x-small;"><span style="color: black; font-family: arial; font-size: x-small;"><span style="font-family: Arial,Helvetica,sans-serif;"><strong>2</strong>.Alom boot etmeye başlayacaktır ve </span></span></span></span></span><em>"Return to Boot Monitor for Handshake ESC keypress detected."</em> yazısını gördüğünüz anda <em>"ESC"</em> tuşuna basın.</p>
+<p><strong>3.</strong> <em>"ESC" </em>tuşuna bastıktan sonra<em> "ALOM boot escape menu"</em> karşınıza gelecektir.</p>
 <pre>ALOM  Menu
-<p>e - Erase ALOM NVRAM.
+
+ e - Erase ALOM NVRAM.
  m - Run POST Menu.
  R - Reset ALOM.
  r - Return to bootmon.
- Your selection:</p></pre>
-<strong>4. </strong>Yukardaki gibi menu karşımıza çıktıktan sonra ilk <em>NVRAM</em>'i silip,daha sonra <em>ALOM</em>'u boot etmesine devam edelim.Bunun için ilk önce <strong>"e" </strong>ve daha sonra<strong> "r"</strong> yi tuşlayalım.
+ Your selection:</pre>
+<p><strong>4. </strong>Yukardaki gibi menu karşımıza çıktıktan sonra ilk <em>NVRAM</em>'i silip,daha sonra <em>ALOM</em>'u boot etmesine devam edelim.Bunun için ilk önce <strong>"e" </strong>ve daha sonra<strong> "r"</strong> yi tuşlayalım.</p>
 <p><strong>5.</strong>Bu adımlardan sonra "<strong>sc</strong>" ye doğrudan admin olarak giriş yapabileceksiniz.</p>
 <p><strong>Firmware Güncelleme :</strong></p>
 <p>SunFire T2000'in üstündeki firmware 6.1.10 ve bu firmware ile herhangi port edilmiş bir linux dağıtımını rahatlıkla kuramıyorsunuz.Bunun için firmware güncellemesi gerekli.Fakat dikkat edilecek nokta eğer  Oracle "CIS" numaranızı bilmiyorsanız "OpenSourceLab" ftp'sindeki 6.3.0 sürümünü indirip yükleyin.Aynı depoda 6.7.6 sürümü de mevcut fakat bu firmware geçersiz uyarısı alabilirsiniz."CIS" numaranız varsa zaten böyle bir sıkıntınız da olmayacaktır.</p>
 <p>SunFire T2000 'de ya da herhangi Sun Sparc makina da "<strong>sc</strong>" ye düştükten sonra;</p>
 <h2>showhost</h2>
-<p>komutuyla firmware versiyonunuzu öğrenebilirsiniz.Güncellemek için ben ilk olarak firmware'i indirip local'deki bir ftp sunucuya koydum ve flashupdate komutuyla güncelledim.Tabi ftp'ye bağlanmak için "NET MGT" portuna bağlantıyı takmanız lazım.Eğer ağınız otomatik ip almıyorsa;
-</p>
+<p>komutuyla firmware versiyonunuzu öğrenebilirsiniz.Güncellemek için ben ilk olarak firmware'i indirip local'deki bir ftp sunucuya koydum ve flashupdate komutuyla güncelledim.Tabi ftp'ye bağlanmak için "NET MGT" portuna bağlantıyı takmanız lazım.Eğer ağınız otomatik ip almıyorsa;</p>
 <pre># setupsc</pre>
-komutunu vererek ip atayabilirsiniz.
-<p>Firmware'i <a href="http://ftp.osuosl.org/pub/osl/tmp/124750-01/" target="_blank">buradan</a> indirip,bir public ftp'ye attıktan sonra aşağıdaki gibi güncelleyebilirsiniz:
-</p>
+<p>komutunu vererek ip atayabilirsiniz.</p>
+<p>Firmware'i <a href="http://ftp.osuosl.org/pub/osl/tmp/124750-01/" target="_blank">buradan</a> indirip,bir public ftp'ye attıktan sonra aşağıdaki gibi güncelleyebilirsiniz:</p>
 <pre># flashupdate -s [ftp_ip_adresi] -f /pub/Sun_System_Firmware-6_3_0-Sun_Fire_T2000.bin
 </pre>
-Artık firmware'miz güncelledi."<strong>resetsc" </strong>komutunu verip yeniden başlatın ve <strong>"showhost"</strong> komutuyla güncellenip güncellenmediğini kontrol edin.
+<p>Artık firmware'miz güncelledi."<strong>resetsc" </strong>komutunu verip yeniden başlatın ve <strong>"showhost"</strong> komutuyla güncellenip güncellenmediğini kontrol edin.</p>
 <p></p>
 </div>
     </div>
@@ -158,7 +156,7 @@ Artık firmware'miz güncelledi."<strong>resetsc" </strong>komutunu verip yenide
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

@@ -128,31 +128,30 @@
 <pre>$ aptitude install apache2  (eğer ki apt-get kullanıyorsanız aptitude kullanmanızı tavsiye ederim.)</pre>
 Şimdi apache server kurulumu tamamlandı.Hemen mod_rewrite modülünü aktif edelim:
 <pre>$ updatedb (bu komutla locate veritabanını yenileyelim.)</pre>
-Daha sonra
+<p>Daha sonra</p>
 <pre>$locate mod_rewrite</pre>
-bendeki sonuç şöyle : " <em>/usr/lib/apache2/modules</em> " birazdan bu yol bize lazım olacak.
-<p>Hemen <em>/etc/apache2/mods-enabled</em> dizinine geçelim ve "<em>rewrite.load</em>" adlı bir dosya oluşturalım.
-</p>
+<p>bendeki sonuç şöyle : " <em>/usr/lib/apache2/modules</em> " birazdan bu yol bize lazım olacak.</p>
+<p>Hemen <em>/etc/apache2/mods-enabled</em> dizinine geçelim ve "<em>rewrite.load</em>" adlı bir dosya oluşturalım.</p>
 <pre>$cd /etc/apache2/mods-enabled</pre>
 <pre>$touch rewrite.load</pre>
-Oluşturduğumuz rewrite.load adlı dosyamızın için aşağıdaki kodları yapıştırıyoruz.
+<p>Oluşturduğumuz rewrite.load adlı dosyamızın için aşağıdaki kodları yapıştırıyoruz.</p>
 <pre>" <code>LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so " ==&gt; biraz önce öğrendiğimiz yol burada bizim işimizi görüyor.</code></pre>
-Bu adımda da <em>/etc/apache2/sites-enabled</em> klasörüne geçelim ve "<em>000-default</em>" adlı dosyayı editleyelim.
+<p>Bu adımda da <em>/etc/apache2/sites-enabled</em> klasörüne geçelim ve "<em>000-default</em>" adlı dosyayı editleyelim.</p>
 <pre>$ cd /etc/apache2/sites-enabled</pre>
 <pre>$ gedit 000-default</pre>
-<strong> " Options Indexes FollowSymLinks MultiViews
+<p><strong> " Options Indexes FollowSymLinks MultiViews</strong></p>
 <p>AllowOverride None</p>
 <p>Order allow,deny</p>
-<p>allow from all "</p></strong>
+<p>allow from all "</p>
 <p>ve bu dizideki " AllowOverride None" yerine "AllowOverride all" yapıyoruz.Yani yeni şekli şöyle olmalıdır:</p>
 <p><strong>" Options Indexes FollowSymLinks MultiViews</strong></p>
 <p>AllowOverride all</p>
 <p>Order allow,deny</p>
 <p>allow from all"</p>
-<p>Son adımda apache serverımızı yeniden başlatıyoruz ve işlemimiz burada bitiyor.
-</p>
+<p>Son adımda apache serverımızı yeniden başlatıyoruz ve işlemimiz burada bitiyor.</p>
 <pre>$/etc/init.d/apache2 restart</pre>
-Kolay gelsin.</div>
+<p>Kolay gelsin.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/get-cwd/" class="u-url">get.cwd </a></h1>
         <div class="metadata">
@@ -173,7 +172,6 @@ Kolay gelsin.</div>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding:utf-8 -</em>-</h2></code>
-<p></p>
 <pre>import os</pre>
 <pre>here=os.getcwd()</pre>
 <pre>print here ," dizininde bulunmaktasınız."</pre>
@@ -183,6 +181,7 @@ c=0
 for i in os.listdir(here):
 c=c+1
 print c," . ", i</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -205,7 +204,6 @@ print c," . ", i</pre>
 <blockquote>
 <code>#!usr/bin/env python
 <h2>-<em>- coding:utf-8 -</em>-</h2></code>
-<p></p>
 <pre>import os</pre>
 <pre>a=os.listdir("/home/semrelin")
 c=0</pre>
@@ -213,6 +211,7 @@ c=0</pre>
 if c&lt;len(a):
 c=c+1
 print c,".", dosyalar</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -235,12 +234,12 @@ print c,".", dosyalar</pre>
 <blockquote>
 <code>#!usr/bin/env python
 <h2>-<em>- coding:utf-8 -</em>-</h2></code>
-<p></p>
 <pre>import os</pre>
 <pre>if os.name=="posix":
 print os.name</pre>
 <pre>if os.name=="nt":
 print os.name</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -263,7 +262,6 @@ print os.name</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding: utf-8 -</em>-</h2></code>
-<p></p>
 <pre>print "'10 soruluk Dünya'nın enleri testine hoşgeldiniz!'"</pre>
 <pre>soru1=raw_input("Dünyanın en uzun nehrinin adı nedir?: ")
 if soru1=="nil":
@@ -365,6 +363,7 @@ elif soru10=="ÇİN":
 print "Doğru cevap zaman ayırdığınız için teşekkürler"
 else:
 print "Yanlış cevap,sorunun cevabı Çin olacaktı.Zaman ayırdığınız için teşekkürler"</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -388,7 +387,6 @@ print "Yanlış cevap,sorunun cevabı Çin olacaktı.Zaman ayırdığınız içi
 <code>#!/usr/bin/env python
 <h2>-<em>-coding:utf-8-</em>-</h2>
 <h2>Linux Bilgilendirme Projesi</h2></code>
-<p></p>
 <pre>print "Linux Konsol Bilgilendirme Projesi'ne Hoşgeldiniz"
 while True:
 arama=raw_input("Lütfen meta giriniz: ")</pre>
@@ -404,6 +402,7 @@ gibi çok sayıda donanım platformunda da çalışabilmektedir."}</pre>
 <pre>print veritabani.get(arama,"Aradığınız öğe halen eklenmemiştir.")</pre>
 <pre>if arama=="q":
 break</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -426,10 +425,10 @@ break</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>-coding:utf-8-</em>-</h2></code>
-<p></p>
 <pre>soru=raw_input("Şehrinizin adını tamamı küçük harf olacak şekilde yazınız: ")</pre>
 <pre>cevap={"istanbul":"gök gürültülü ve sağanak yağışlı", "ankara":"açık ve güneşli", "izmir":"bulutlu"}</pre>
 <pre>print cevap.get(soru,"Bu şehre ilişkin hava durumu bilgisi bulunmamaktadır.")</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -443,7 +442,7 @@ break</pre>
             <li class="next">
                 <a href="index-2.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

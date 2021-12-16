@@ -91,13 +91,11 @@ dir: not found
 &gt; <strong>echo *</strong>
 bin dev etc lib linuxrc mnt proc sbin usr var webs
 </tt></blockquote>
-
-<p>Artık dizini listeleyebiliyoruz :)Modemimizi biraz daha karıştıralım ve modemin "CPU" hakkında bilgi edinelim.
-</p>
-<blockquote>
-<tt>
+<p>Artık dizini listeleyebiliyoruz :)Modemimizi biraz daha karıştıralım ve modemin "CPU" hakkında bilgi edinelim.</p>
+<blockquote><tt>
 &gt; <strong>cat proc/cpuinfo</strong>
-</tt><p>system type             : 96338L-2M-8M
+
+system type             : 96338L-2M-8M
 processor               : 0
 cpu model               : BCM6338 V1.0
 BogoMIPS                : 239.20
@@ -108,14 +106,13 @@ extra interrupt vector  : yes
 hardware watchpoint     : no
 VCED exceptions         : not available
 VCEI exceptions         : not available
-</p>
-</blockquote>
-<p>Şimdi "RAM"i hakkında bilgi edinelim.
-</p>
-<blockquote>
-<tt>
+</tt></blockquote>
+
+<p>Şimdi "RAM"i hakkında bilgi edinelim.</p>
+<blockquote><tt>
 &gt; <strong>cat proc/meminfo</strong>
-</tt><p>MemTotal:         6100 kB
+
+MemTotal:         6100 kB
 MemFree:           432 kB
 Buffers:           132 kB
 Cached:            960 kB
@@ -137,8 +134,8 @@ PageTables:        244 kB
 VmallocTotal:  1048560 kB
 VmallocUsed:      1092 kB
 VmallocChunk:  1047428 kB
-</p>
-</blockquote>
+</tt></blockquote>
+
 <p>Linux kernel versiyonunu öğrenelim.</p>
 <blockquote><tt>
 &gt; <strong>cat proc/version</strong>
@@ -190,7 +187,6 @@ blaa_dd 6880 0 - Live 0xc000d000
 adsldd 140320 0 - Live 0xc0066000
 atmapi 64640 3 br2684,blaa_dd,adsldd, Live 0xc0025000
 </tt></blockquote>
-
 <p>Modemde çalışan "prosesleri" görelim.</p>
 <blockquote><tt>
 &gt; <strong>ps</strong>
@@ -220,54 +216,57 @@ atmapi 64640 3 br2684,blaa_dd,adsldd, Live 0xc0025000
  1384 admin       264 R   ps 
 </tt></blockquote>
 
-<p>Network ayarları hakkında detaylı bilgi alalım.
-</p>
-<blockquote>
-<tt>
+<p>Network ayarları hakkında detaylı bilgi alalım.</p>
+<blockquote><tt>
 &gt; <strong>ifconfig</strong>
-</tt><p>br0             Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC<br>
+
+br0             Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC  
                 inet addr:192.168.1.1  Bcast:192.168.1.255  Mask:255.255.255.0
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:5061439 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:5372416 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:0 
-                RX bytes:420761271 (401.2 MiB)  TX bytes:2239306342 (2.0 GiB)</p>
-<p>eth0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC<br>
+                RX bytes:420761271 (401.2 MiB)  TX bytes:2239306342 (2.0 GiB)
+
+eth0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC  
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:4793160 errors:329 dropped:0 overruns:0 frame:0
                 TX packets:5023907 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:1000 
                 RX bytes:547037243 (521.6 MiB)  TX bytes:1825231120 (1.6 GiB)
-                Interrupt:23 Base address:0x2800 </p>
-<p>lo              Link encap:Local Loopback<br>
+                Interrupt:23 Base address:0x2800 
+
+lo              Link encap:Local Loopback  
                 inet addr:127.0.0.1  Mask:255.0.0.0
                 UP LOOPBACK RUNNING  MTU:16436  Metric:1
                 RX packets:4 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:0 
-                RX bytes:365 (365.0 B)  TX bytes:365 (365.0 B)</p>
-<p>nas_8_35        Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DF<br>
+                RX bytes:365 (365.0 B)  TX bytes:365 (365.0 B)
+
+nas_8_35        Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DF  
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:5458874 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:5051758 errors:0 dropped:19208 overruns:0 carrier:0
                 collisions:0 txqueuelen:1000 
-                RX bytes:2212357361 (2.0 GiB)  TX bytes:577014523 (550.2 MiB)</p>
-<p>ppp_8_35_1      Link encap:Point-Point Protocol<br>
-                inet addr:8<em>.</em>.<em>.</em>  P-t-P:8<em>.</em><em>.</em>.*  Mask:255.255.255.255
+                RX bytes:2212357361 (2.0 GiB)  TX bytes:577014523 (550.2 MiB)
+
+ppp_8_35_1      Link encap:Point-Point Protocol  
+                inet addr:8*.*.*.*  P-t-P:8*.**.*.*  Mask:255.255.255.255
                 UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1492  Metric:1
                 RX packets:4068092 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:3791577 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:3 
-                RX bytes:488070832 (465.4 MiB)  TX bytes:314043576 (299.4 MiB)</p>
-<p>usb0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DD<br>
+                RX bytes:488070832 (465.4 MiB)  TX bytes:314043576 (299.4 MiB)
+
+usb0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DD  
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:350896 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:432777 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:1000 
                 RX bytes:43181752 (41.1 MiB)  TX bytes:514828098 (490.9 MiB)
-</p>
-</blockquote>
-IP Routing table için :
+</tt></blockquote>
+<p>IP Routing table için :</p>
 <blockquote><tt>
 &gt; <strong>route show</strong>
 
@@ -278,7 +277,6 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 default         8*.**.*.*      0.0.0.0         UG    0      0        0 ppp_8_35_1
 
 </tt></blockquote>
-
 <p>IPTable için :</p>
 <blockquote><tt>
 &gt; <strong>iptables -L -n</strong>
@@ -315,7 +313,6 @@ target     prot opt source               destination
 &gt; <strong>cat webs/main.html</strong>
 
 </tt></blockquote>
-
 <p></p>
 </div>
     </div>
@@ -348,7 +345,7 @@ target     prot opt source               destination
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

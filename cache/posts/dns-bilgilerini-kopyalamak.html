@@ -11,23 +11,26 @@
 <p>AXFR protokolü hakkında detaylı  bilgi için , <a href="http://cr.yp.to/djbdns/axfr-notes.html" target="_blank">"How the AXFR protocol works"</a> - <em>D.J.Bernstein</em></p>
 <p>Şimdi örnek bir domainin bütün bilgilerini ve sahip olduğu subdomainleri dns sunucusundan çekelim;</p>
 <p>İlk olarak bilgilerini almak istediğimiz domain'in yetkili "nameserver" bilgilerini alalım: <a href="http://linux.die.net/man/1/dig" target="_blank">('dig' komutu man sayfası)</a>
-</p><pre><strong># dig zargan.com NS</strong></pre>
+</p><pre><strong># dig zargan.com NS</strong></pre></p>
 <pre>; &lt;&lt;&gt;&gt; DiG 9.8.1 &lt;&lt;&gt;&gt; zargan.com NS
 ;; global options: +cmd
 ;; Got answer:
 ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 3226
-;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0</p>
-<p>;; QUESTION SECTION:
-;zargan.com.            IN    NS</p>
-<p>;; ANSWER SECTION:
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;zargan.com.            IN    NS
+
+;; ANSWER SECTION:
 zargan.com.        3600    IN    NS    ns2.hayatbilgi.net.
-zargan.com.        3600    IN    NS    ns1.hayatbilgi.net.</p>
-<p>;; Query time: 542 msec
+zargan.com.        3600    IN    NS    ns1.hayatbilgi.net.
+
+;; Query time: 542 msec
 ;; SERVER: 8.8.8.8#53(8.8.8.8)
 ;; WHEN: Thu Jan 12 23:17:03 2012
 ;; MSG SIZE  rcvd: 78
 </pre>
-zargan.com domain adresinin dns sunucuları <em>"ns1.hayatbilgi.net,ns2.hayatbilgi.net"</em> .Şimdi dns sunucularının herhangi birisinden domain bilgilerini çekelim:
+<p>zargan.com domain adresinin dns sunucuları <em>"ns1.hayatbilgi.net,ns2.hayatbilgi.net"</em> .Şimdi dns sunucularının herhangi birisinden domain bilgilerini çekelim:</p>
 <pre><strong># dig @ns1.hayatbilgi.net zargan.com axfr</strong></pre>
 <pre>; &lt;&lt;&gt;&gt; DiG 9.8.1 &lt;&lt;&gt;&gt; @ns1.hayatbilgi.net zargan.com axfr
 ; (1 server found)
@@ -58,4 +61,4 @@ zargan.com.        3600    IN    SOA    ns1.hayatbilgi.net. hostm
 ;; SERVER: 93.94.249.2#53(93.94.249.2)
 ;; WHEN: Thu Jan 12 23:20:51 2012
 ;; XFR size: 22 records (messages 22, bytes 1361)</pre>
-Yukardaki çıktıda görüldüğü gibi bu protokol ile domain dns bilgilerini replike edebilirsiniz.</body></html></p>
+<p>Yukardaki çıktıda görüldüğü gibi bu protokol ile domain dns bilgilerini replike edebilirsiniz.</body></html></p>

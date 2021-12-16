@@ -77,12 +77,13 @@ Python programlama diline yeni başlayanlar için(benim gibi) mysql veritabanı 
 <p><strong>mysql&gt;</strong><em>insert into kutuphane values ("Python Linux","Great TUX","Linux Yayinlari","2009");</em></p>
 <p><em>Query OK</em>,ile başlayan mesajı aldıysanız  veritabanına ilk  veri girişimiz başarıyla tamamlanmış demektir.Eklediğimiz verileri tabloda görmek için;</p>
 <p><strong>mysql&gt;</strong><em>select * from kutuphane;</em> #yazarak görebilirsiniz.</p>
-<p>Böylece MySQL'de veritabanımızı,tablomuzu ve ilk örnek verimizi girmiş olduk.Sıra geldi yazacağımız Python  ile bu veritabanına veri ekleyeceğimiz küçük bir program yazmaya.Aşağıda örnek kodları mevcut dikkatle inceleyin.
-</p>
+<p>Böylece MySQL'de veritabanımızı,tablomuzu ve ilk örnek verimizi girmiş olduk.Sıra geldi yazacağımız Python  ile bu veritabanına veri ekleyeceğimiz küçük bir program yazmaya.Aşağıda örnek kodları mevcut dikkatle inceleyin.</p>
 <pre lang="python">#!/usr/bin/env python
-<h2>-<em>- coding:utf-8 -</em>-</h2>
-<p>import MySQLdb</p>
-<p>def ekle():
+#-*- coding:utf-8 -*-
+
+import MySQLdb
+
+def ekle():
  x=raw_input("Lütfen ekleyeceğiniz kitabın adını girin: ")
  y=raw_input("Eklediğiniz kitabın yazarını girin: "
  z=raw_input("Yayınevi : ")
@@ -90,9 +91,10 @@ Python programlama diline yeni başlayanlar için(benim gibi) mysql veritabanı 
  db=MySQLdb.connect(host="localhost",user="root",passwd="123456",db="ornek")
  cursor=db.cursor()
  s="""insert into kutuphane (kitap,yazar,yayin,yil) values (%s,%s,%s,%s)"""
- cursor.executemany(s,[(x,y,z,v)])</p>
-<p>ekle()</p></pre>
-Bu kodları herhangi bir metin düzenliyici ile yazıp "ornek.py" olarak kaydedin.Konsoldan dosyanın bulunduğu dizine girip;
+ cursor.executemany(s,[(x,y,z,v)])
+
+ekle()</pre>
+<p>Bu kodları herhangi bir metin düzenliyici ile yazıp "ornek.py" olarak kaydedin.Konsoldan dosyanın bulunduğu dizine girip;</p>
 <p><em>$python ornek.py</em> #yazarak veritabanınıza veri ekleyin.(Kodlarda yanlışlık olabilir eğer varsa yorumlarda belirtin lütfen)</p>
 <p>Kolay gelsin.</p>
 </div>
@@ -126,7 +128,7 @@ Bu kodları herhangi bir metin düzenliyici ile yazıp "ornek.py" olarak kaydedi
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

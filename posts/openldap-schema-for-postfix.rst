@@ -7,7 +7,7 @@
 .. description: 
 .. type: text
 
-If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I writed a schema.
+If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I have written a schema.
 
 postfix-new.schema:
 	* 4 Attributes ( mailacceptinggeneralid, maildrop, mailEnabled, mailQuota )

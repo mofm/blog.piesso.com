@@ -7,16 +7,16 @@ Ev kullanıcılarının OpenDns'i daha sağlıklı kullanmaları için "ADSL mod
 <p>$aptitude install ddclient (debian ve türevleri için)</p>
 <p>Kurulumu tamamlandığında,hemen konfigurasyon dosyasını açıp editliyoruz.</p>
 <p>$gedit /etc/ddclient.conf</p>
-<p>Buraya aşağıdaki gibi kendi bilgilerinizi yazarak kaydediyoruz.
-<pre>##</p>
-<h2>OpenDNS.com account-configuration</h2>
-<h2></h2>
-<p>use=web, web=whatismyip.org
+<p>Buraya aşağıdaki gibi kendi bilgilerinizi yazarak kaydediyoruz.</p>
+<pre>##
+## OpenDNS.com account-configuration
+##
+use=web, web=whatismyip.org
 server=updates.opendns.com
 protocol=dyndns2
 login=user_name #Opendns'e kaydolduğunuz kullanıcı adınız
 password='123456' #Kullanıcı şifreniz
 newset  #Opendns'te oluşturduğunuz ağ adınız</pre>
-ve ddclient'ın kaç saniye bir ip'mizi güncellemesini istiyorsak aşağıdaki komutu giriyoruz.</p>
+<p>ve ddclient'ın kaç saniye bir ip'mizi güncellemesini istiyorsak aşağıdaki komutu giriyoruz.</p>
 <p><code>/usr/sbin/ddclient -daemon 300 -syslog #Buradaki 300 rakamı saniye sayısıdır.İstediğiniz saniye aralığı ile değiştirebilirsiniz.</code></p>
 <p>Artık rahatça internette gezinebilirsiniz.</body></html></p>

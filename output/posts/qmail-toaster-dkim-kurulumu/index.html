@@ -70,35 +70,33 @@
     <div>
 <p></p>
 <a href="http://www.qmailtoaster.com/" target="_blank"><img class="alignright" title="qmail" src="http://techyguru.com/images/kl-qmail-w.gif" alt="" width="200" height="163">QMail-Toaster</a> Mail sunucunuz üzerinde mailleri <a href="http://www.dkim.org/" target="_blank">DKIM</a>(<em>DomainKeys Identified Mail</em>) ile imzalamaya kısaca değineceğim.DKIM ile imzalamak mail sunucunuzdan çıkan her mailin gerçekten sizin sunucunuzdan çıktığını kanıtlamak için kullanılır.Özellikle bazı büyük mail sağlayıcıları yahoo,gmail bunu kullanmaktadır.
-<p>Qmail-Toaster üzerine <strong>DKIM</strong>'i kurmaya başalamadan önce eğer Centos(<em>ya da RHEL,FEDORA</em>) üzerine "rpmforge" deposunu eklemediyseniz hemen ekleyelim."RpmForge" ek deposunu eklemek için kendi dağıtım ve sürümünüze uygun rpmforge "rpm" paketini "<a href="http://dag.wieers.com/rpm/packages/rpmforge-release/" target="_blank">http://dag.wieers.com/rpm/packages/rpmforge-release/</a>" adresinden indirelim ve indirdiğimiz paketi kuralım.
-</p>
+<p>Qmail-Toaster üzerine <strong>DKIM</strong>'i kurmaya başalamadan önce eğer Centos(<em>ya da RHEL,FEDORA</em>) üzerine "rpmforge" deposunu eklemediyseniz hemen ekleyelim."RpmForge" ek deposunu eklemek için kendi dağıtım ve sürümünüze uygun rpmforge "rpm" paketini "<a href="http://dag.wieers.com/rpm/packages/rpmforge-release/" target="_blank">http://dag.wieers.com/rpm/packages/rpmforge-release/</a>" adresinden indirelim ve indirdiğimiz paketi kuralım.</p>
 <pre>$ wget <a href="http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm" target="_blank">http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm</a> (Centos 5 64 bit için)</pre>
 <pre># rpm -i rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm</pre>
-"RpmForge"  paketini kurduktan sonra paket depolarını güncelleyin.
+<p>"RpmForge"  paketini kurduktan sonra paket depolarını güncelleyin.</p>
 <pre># yum update</pre>
-Böylece depomuza "rpmforge" ek deposunu ekledik.Şimdi "DKIM" kurulumuna geçebiliriz.İlk QMail-Toaster'ın DKIM scriptlerini sisteme indirelim.
-<p>$ wget <a href="http://qmailtoaster.com/dkim.tgz" target="_blank">http://qmailtoaster.com/dkim.tgz</a>
-</p>
+<p>Böylece depomuza "rpmforge" ek deposunu ekledik.Şimdi "DKIM" kurulumuna geçebiliriz.İlk QMail-Toaster'ın DKIM scriptlerini sisteme indirelim.</p>
+<p>$ wget <a href="http://qmailtoaster.com/dkim.tgz" target="_blank">http://qmailtoaster.com/dkim.tgz</a></p>
 <pre>$ tar zxvf dkim.tgz</pre>
 <pre>$ cd  dkim</pre>
-"dkim" paketini sisteme indirip,açtıktan sonra kurulum adımlarına devam edelim.Eksik perl paketlerini sisteme kuralım;(bazı paketler Centos dağıtım depolarında bulunmadığı için "rpmforge" ek depolarını kurmuştuk.Özellikle "perl-Mail-DKIM" paketi ve bağımlılıkları dağıtım deposunda bulunmuyor.)
+<p>"dkim" paketini sisteme indirip,açtıktan sonra kurulum adımlarına devam edelim.Eksik perl paketlerini sisteme kuralım;(bazı paketler Centos dağıtım depolarında bulunmadığı için "rpmforge" ek depolarını kurmuştuk.Özellikle "perl-Mail-DKIM" paketi ve bağımlılıkları dağıtım deposunda bulunmuyor.)</p>
 <pre># yum install perl-XML-Simple perl-Mail-DKIM perl-XML-Parser</pre>
-Eksik paketlerimizde kurulduysa bu adımda başarı ile tamamlandı.Artık "DKIM"i "QMail"e adapte edelim.Bunun için ise control dosyalarının olduğu bölüme "dkim" adlı bir dizin oluşturup içine "dkim" imzamızı oluşturalım.Aşağıdaki adımları sırayla takip edin;
+<p>Eksik paketlerimizde kurulduysa bu adımda başarı ile tamamlandı.Artık "DKIM"i "QMail"e adapte edelim.Bunun için ise control dosyalarının olduğu bölüme "dkim" adlı bir dizin oluşturup içine "dkim" imzamızı oluşturalım.Aşağıdaki adımları sırayla takip edin;</p>
 <pre># mkdir /var/qmail/control/dkim</pre>
 <pre># cp signconf.xml /var/qmail/control/dkim/</pre>
 <pre># chown -R qmailr:qmail /var/qmail/control/dkim/</pre>
 <pre># dknewkey /var/qmail/control/dkim/global.key &gt; /var/qmail/control/dkim/public.txt</pre>
 <pre># perl -pi -e 's/global.key/dkim1/' /var/qmail/control/dkim/public.txt</pre>
 <pre># qmailctl stop</pre>
-Bu adımlardan sonra imzamızı oluşturduk ve en sonunda "qmail"i durdurduk,şimdi eski "qmail-remote" dosyasını "dkim" paketi ile gelen "qmail-remote" dosyası değiştirip izinleri ayarlayalım.
+<p>Bu adımlardan sonra imzamızı oluşturduk ve en sonunda "qmail"i durdurduk,şimdi eski "qmail-remote" dosyasını "dkim" paketi ile gelen "qmail-remote" dosyası değiştirip izinleri ayarlayalım.</p>
 <pre># mv /var/qmail/bin/qmail-remote /var/qmail/bin/qmail-remote.orig</pre>
 <pre># mv qmail-remote /var/qmail/bin</pre>
 <pre># chmod 777 /var/qmail/bin/qmail-remote</pre>
 <pre># chown root:qmail /var/qmail/bin/qmail-remote</pre>
 <pre># qmailctl start</pre>
-Buraya kadar hiçbir hata ile karşılaşmadıysanız "DKIM" başarı ile kuruldu ve artık geriye sadece dns'imize oluşan TXT kaydını eklemek kaldı.
+<p>Buraya kadar hiçbir hata ile karşılaşmadıysanız "DKIM" başarı ile kuruldu ve artık geriye sadece dns'imize oluşan TXT kaydını eklemek kaldı.</p>
 <pre>$ cat /var/qmail/control/dkim/public.txt</pre>
-Yukardaki komuttan sonra çıkan <strong>TXT </strong>kaydını DNS Zone dosyanızda yayınlayın.Tüm adımlar bu kadar.Artık mailleriniz "DKIM" ile imzalanacak.
+<p>Yukardaki komuttan sonra çıkan <strong>TXT </strong>kaydını DNS Zone dosyanızda yayınlayın.Tüm adımlar bu kadar.Artık mailleriniz "DKIM" ile imzalanacak.</p>
 <p><a href="http://wiki.qmailtoaster.com/index.php/How_to_Setup_DKIM_with_Qmail_Toaster" target="_blank">How to setup DKIM with qmail-toaster</a></p>
 </div>
     </div>
@@ -131,7 +129,7 @@ Yukardaki komuttan sonra çıkan <strong>TXT </strong>kaydını DNS Zone dosyan�
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

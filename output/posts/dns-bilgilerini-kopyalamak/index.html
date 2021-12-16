@@ -97,17 +97,20 @@ Full Zone Transfer (AXFR)
 ;; Got answer:
 ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 3226
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
-<p>;; QUESTION SECTION:
-;zargan.com.            IN    NS</p>
-<p>;; ANSWER SECTION:
+
+;; QUESTION SECTION:
+;zargan.com.            IN    NS
+
+;; ANSWER SECTION:
 zargan.com.        3600    IN    NS    ns2.hayatbilgi.net.
-zargan.com.        3600    IN    NS    ns1.hayatbilgi.net.</p>
-<p>;; Query time: 542 msec
+zargan.com.        3600    IN    NS    ns1.hayatbilgi.net.
+
+;; Query time: 542 msec
 ;; SERVER: 8.8.8.8#53(8.8.8.8)
 ;; WHEN: Thu Jan 12 23:17:03 2012
 ;; MSG SIZE  rcvd: 78
-</p></pre>
-zargan.com domain adresinin dns sunucuları <em>"ns1.hayatbilgi.net,ns2.hayatbilgi.net"</em> .Şimdi dns sunucularının herhangi birisinden domain bilgilerini çekelim:
+</pre>
+<p>zargan.com domain adresinin dns sunucuları <em>"ns1.hayatbilgi.net,ns2.hayatbilgi.net"</em> .Şimdi dns sunucularının herhangi birisinden domain bilgilerini çekelim:</p>
 <pre><strong># dig @ns1.hayatbilgi.net zargan.com axfr</strong></pre>
 <pre>; &lt;&lt;&gt;&gt; DiG 9.8.1 &lt;&lt;&gt;&gt; @ns1.hayatbilgi.net zargan.com axfr
 ; (1 server found)
@@ -138,7 +141,8 @@ zargan.com.        3600    IN    SOA    ns1.hayatbilgi.net. hostm
 ;; SERVER: 93.94.249.2#53(93.94.249.2)
 ;; WHEN: Thu Jan 12 23:20:51 2012
 ;; XFR size: 22 records (messages 22, bytes 1361)</pre>
-Yukardaki çıktıda görüldüğü gibi bu protokol ile domain dns bilgilerini replike edebilirsiniz.</div>
+<p>Yukardaki çıktıda görüldüğü gibi bu protokol ile domain dns bilgilerini replike edebilirsiniz.</p>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
@@ -169,7 +173,7 @@ Yukardaki çıktıda görüldüğü gibi bu protokol ile domain dns bilgilerini 
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

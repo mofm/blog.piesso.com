@@ -89,32 +89,38 @@ OpenVZ altında çalışan bir sanal sistem en fazla <strong>64 GB</strong> bell
 bir OpenVZ çekirdeği aynı anda en fazla <strong>100</strong> sanal işletim sistemi yönetebilir. [<a href="http://www.enderunix.org/docs/openvz.pdf" target="_blank">1</a>]</p>
 <p><strong>Debian Squeeze OpenVZ Kurulumu</strong></p>
 <p>Debian Squeeze üzerine OpenVZ ve gerekli araçları kurmak için ,</p>
-<p>İlk önce depolarımızı güncelleyelim:
-</p>
+<p>İlk önce depolarımızı güncelleyelim:</p>
 <pre><strong># apt-get update</strong></pre>
-OpenVZ kernelimizi ve araçları yükleyelim:
+<p>OpenVZ kernelimizi ve araçları yükleyelim:</p>
 <pre><strong># apt-get install linux-image-openvz-amd64 vzctl vzquota vzdump rsync iproute libatml</strong></pre>
-Yeni kernelimiz ve araçlarımız yüklendikten sonra kernelimizdeki gerekli değişiklikleri yapalım.Bunun için "<strong>/etc/sysctl.conf</strong>" dosyasında bazı değişiklikler yapıyoruz.Kendi "<em>sysctl.conf</em>" dosyanızda aşağıdaki değişikleri ya da eklemeleri yapın:
+<p>Yeni kernelimiz ve araçlarımız yüklendikten sonra kernelimizdeki gerekli değişiklikleri yapalım.Bunun için "<strong>/etc/sysctl.conf</strong>" dosyasında bazı değişiklikler yapıyoruz.Kendi "<em>sysctl.conf</em>" dosyanızda aşağıdaki değişikleri ya da eklemeleri yapın:</p>
 <pre>[...]
-<h2>On Hardware Node we generally need</h2>
-<h2>packet forwarding enabled and proxy arp disabled</h2>
-<p>net.ipv4.conf.default.forwarding=1
+
+# On Hardware Node we generally need
+# packet forwarding enabled and proxy arp disabled
+
+net.ipv4.conf.default.forwarding=1
 net.ipv4.conf.default.proxy_arp=0
-net.ipv4.ip_forward=1</p>
-<h2>Enables source route verification</h2>
-<p>net.ipv4.conf.all.rp_filter=1</p>
-<h2>Enables the magic-sysrq key</h2>
-<p>kernel.sysrq=1</p>
-<h2>TCP Explict Congestion Notification</h2>
-<h2>net.ipv4.tcp_ecn=0</h2>
-<h2>we do not want all our interfaces to send redirects</h2>
-<p>net.ipv4.conf.default.send_redirects=1
-net.ipv4.conf.all.send_redirects=0</p>
-<p>[...]
-</p></pre>
-Dosyada gerekli değişikleri yaptıysanız , yeni kernelimizle sistemimizi başlatalım:
+net.ipv4.ip_forward=1
+
+# Enables source route verification
+net.ipv4.conf.all.rp_filter=1
+
+# Enables the magic-sysrq key
+kernel.sysrq=1
+
+# TCP Explict Congestion Notification
+#net.ipv4.tcp_ecn=0
+
+# we do not want all our interfaces to send redirects
+net.ipv4.conf.default.send_redirects=1
+net.ipv4.conf.all.send_redirects=0
+
+[...]
+</pre>
+<p>Dosyada gerekli değişikleri yaptıysanız , yeni kernelimizle sistemimizi başlatalım:</p>
 <pre><strong># reboot</strong></pre>
-Sistem açıldıktan sonra kontrollerimizi yapalım :
+<p>Sistem açıldıktan sonra kontrollerimizi yapalım :</p>
 <pre><strong># uname -r</strong>
 2.6.32-5-openvz-amd64</pre>
 <pre><strong># ps ax | grep vz</strong>
@@ -127,9 +133,8 @@ Sistem açıldıktan sonra kontrollerimizi yapalım :
  TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
  collisions:0 txqueuelen:0
  RX bytes:0 (0.0 B)  TX bytes:252 (252.0 B)</pre>
-<strong>Yeni SANAL Makina Oluşturalım </strong>
-<p>Sanal makina oluşturmadan önce bir tane template indirelim:
-</p>
+<p><strong>Yeni SANAL Makina Oluşturalım </strong></p>
+<p>Sanal makina oluşturmadan önce bir tane template indirelim:</p>
 <pre><strong># cd /var/lib/vz/template/cache</strong></pre>
 <pre><strong># wget http://download.openvz.org/template/precreated/contrib/debian-6.0-amd64-minimal.tar.gz</strong>
 <strong># vzctl create 01 --ostemplate debian-6.0-amd64-minimal</strong> (yeni makinamızı oluşturalım.)
@@ -140,11 +145,11 @@ Sistem açıldıktan sonra kontrollerimizi yapalım :
 <strong># ping 10.1.0.100</strong> ( verdiğimiz ip'yi test edelim.)
 <strong># vzctl exec 01 parola</strong> ( parola atayalım.)
 <strong># vzctl enter 01</strong> ( Sanal makinaya geçiş yapalım. )</pre>
-Daha detaylı bilgi için <a href="http://wiki.openvz.org/Man/vzctl.8" target="_blank">vzctl</a> , <a href="http://wiki.openvz.org/Man/vzlist.8" target="_blank">vzlist</a> , <a href="http://wiki.openvz.org/Man/vz.conf.5" target="_blank">vz.conf </a>man sayfalarına bakabilirsiniz ya da daha kolay yönetilebileceğiniz "OpenVZ Web Panel"i yükleyebilirsiniz.
+<p>Daha detaylı bilgi için <a href="http://wiki.openvz.org/Man/vzctl.8" target="_blank">vzctl</a> , <a href="http://wiki.openvz.org/Man/vzlist.8" target="_blank">vzlist</a> , <a href="http://wiki.openvz.org/Man/vz.conf.5" target="_blank">vz.conf </a>man sayfalarına bakabilirsiniz ya da daha kolay yönetilebileceğiniz "OpenVZ Web Panel"i yükleyebilirsiniz.</p>
 <h2>OpenVZ Web Panel Kurulumu</h2>
-OpenVZ'i daha rahat yönetebilmek ve diğer kullanıcılarında yetkileriyle kendi VPS'lerini yönetebilmesi için "<a href="http://code.google.com/p/ovz-web-panel/" target="_blank">OpenVZ Web Panel</a>"i tek satırda kuralım:
+<p>OpenVZ'i daha rahat yönetebilmek ve diğer kullanıcılarında yetkileriyle kendi VPS'lerini yönetebilmesi için "<a href="http://code.google.com/p/ovz-web-panel/" target="_blank">OpenVZ Web Panel</a>"i tek satırda kuralım:</p>
 <pre><strong># <tt>wget -O - http://ovz-web-panel.googlecode.com/svn/installer/ai.sh | sh</tt></strong></pre>
-Bu komuttan sonra eksik "ruby" paketleri sisteme kurulup paneliniz  burada "<strong>http://adresiniz:3000</strong>" hazır durumdadır.
+<p>Bu komuttan sonra eksik "ruby" paketleri sisteme kurulup paneliniz  burada "<strong>http://adresiniz:3000</strong>" hazır durumdadır.</p>
 <p><img class="alignnone" title="OpenVZ Web Panel" src="http://ovz-web-panel.googlecode.com/svn/wiki/images/promo.png" alt="" width="650" height="500"></p>
 </div>
     </div>
@@ -177,7 +182,7 @@ Bu komuttan sonra eksik "ruby" paketleri sisteme kurulup paneliniz  burada "<st
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

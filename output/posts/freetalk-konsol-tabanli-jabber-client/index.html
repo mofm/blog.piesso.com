@@ -84,31 +84,27 @@ Freetalk konsol tabanlı bir jabber client'tır.Konsoldan freetalk programı ile
 <p>freetalk  [<var>seçenek</var>] örnek [seçenek] : - j=Jabber id , -jid=jabber-id(Jabber kullanıcı id'si)</p>
 <p>Script kullanımı ; -s=<var>SCRIPT-FILE</var> | –script=<var>SCRIPT-FILE </var></p>
 <p>-V  | -version = version numarasını gösterir.</p>
-<p>-? | –help | –usage = yardım ekranını getirir.
-</p>
+<p>-? | –help | –usage = yardım ekranını getirir.</p>
 <h4><strong>Feetalk komutları :</strong></h4>
 <h4><strong>connect</strong></h4>
-<strong>komut:</strong> /connect
-<p>Konfigure edilmiş servera bağlanır.
-</p>
+<p><strong>komut:</strong> /connect</p>
+<p>Konfigure edilmiş servera bağlanır.</p>
 <pre>~\/~ /connect
 Connecting...
 ~\/~</pre>
-Eğer sunucu konfigure edilmemişse,hata mesajı verir ve durur;
+<p>Eğer sunucu konfigure edilmemişse,hata mesajı verir ve durur;</p>
 <pre>~\/~ /connect
 Server not set
 ~\/~</pre>
 <h4>disconnect</h4>
-<strong>komut :</strong> /disconnect
-<p>O an bağlı bulunan server ile bağlantısını keser.
-</p>
+<p><strong>komut :</strong> /disconnect</p>
+<p>O an bağlı bulunan server ile bağlantısını keser.</p>
 <pre>~\/~ /disconnect
 Disconnected from <var>server</var>. Reason (0): User request
 ~\/~</pre>
 <h4>server</h4>
-<strong>komut:</strong> <strong>/server </strong><em> [servername]</em>
-<p><em>Bağlanmak istediğiniz herhangi biri servere bağlar ya da bağlı bulunduğunuz serverı size gösterir.</em>
-</p>
+<p><strong>komut:</strong> <strong>/server </strong><em> [servername]</em></p>
+<p><em>Bağlanmak istediğiniz herhangi biri servere bağlar ya da bağlı bulunduğunuz serverı size gösterir.</em></p>
 <pre>~\/~ /server
 Current server:
 ~\/~ /server jabber.org
@@ -116,50 +112,45 @@ Current server:
 Current server: jabber.org
 ~\/~</pre>
 <h4>jid</h4>
-<strong>komut:</strong> <strong>/jid</strong><em> [kullanıcı_adı@domain[/kaynak]]</em>
-<p><em>Kayıtlı olduğunuz kullanıcı adı ile bağlanmak için ya da bağlı bulunan kullanıcının adını ekrana yazdırır.</em>
-</p>
+<p><strong>komut:</strong> <strong>/jid</strong><em> [kullanıcı_adı@domain[/kaynak]]</em></p>
+<p><em>Kayıtlı olduğunuz kullanıcı adı ile bağlanmak için ya da bağlı bulunan kullanıcının adını ekrana yazdırır.</em></p>
 <pre>~\/~ /jid
 Current JID:
 ~\/~ /jid avati@jabber.org
 ~\/~ /jid
 Current JID: avati@jabber.org</pre>
-<em>
-</em>
+<p><em>
+</em></p>
 <h4>add</h4>
-<strong>komut:</strong> <strong>/add</strong><em> kullanıcı_adı@domain</em>
-<p><em>Bu komut adresini yazdığınız adresi sizin buddy list'ize ekler.</em>
-</p>
+<p><strong>komut:</strong> <strong>/add</strong><em> kullanıcı_adı@domain</em></p>
+<p><em>Bu komut adresini yazdığınız adresi sizin buddy list'ize ekler.</em></p>
 <pre>~\/~ /add harshavardhanacool@gmail.com
 ~\/~
 <h4>allow</h4>
 <strong>komut :</strong> <strong>/allow</strong><em> kullanıcı_adı@domain
-<p></p></em><em> </em></pre>
-Adresini yazdığınız kullanıcının sizin durumunuzu görmesine izin verir.
+
+</em><em> </em></pre>
+<p>Adresini yazdığınız kullanıcının sizin durumunuzu görmesine izin verir.</p>
 <pre>~\/~ /allow haddock@marlinspike.org</pre>
 <h4>deny</h4>
-<strong>komut:</strong> <strong>/deny</strong><em> kullanıcı_adı@domain</em>
-<p><em>Yazdığınız kişi sizin durumunuzu görmesini engellersiniz.</em>
-</p>
+<p><strong>komut:</strong> <strong>/deny</strong><em> kullanıcı_adı@domain</em></p>
+<p><em>Yazdığınız kişi sizin durumunuzu görmesini engellersiniz.</em></p>
 <pre>~\/~ /deny cacafonix@village.gl</pre>
 <h4>quit</h4>
-<strong>komut:</strong><strong> </strong><strong>/quit</strong><em> mesaj</em>
-<p><em>Freetalk programından çıkmanızı sağlar.</em>
-</p>
+<p><strong>komut:</strong><strong> </strong><strong>/quit</strong><em> mesaj</em></p>
+<p><em>Freetalk programından çıkmanızı sağlar.</em></p>
 <pre>~\/~ /quit
 shell$</pre>
 <h4>restart</h4>
-<strong>komut:</strong> <strong>/restart</strong>
-<p><strong>Bu komutla programı yeniden başlatırsınız.</strong>
-</p>
+<p><strong>komut:</strong> <strong>/restart</strong></p>
+<p><strong>Bu komutla programı yeniden başlatırsınız.</strong></p>
 <pre>~\/~ /restart
 Loading dictionary [/usr/share/dict/words]... [38619] words
 Jabber ID:
 <h4>who</h4>
 </pre>
-<strong>komut:</strong> <strong>/who</strong>
-<p><strong>Bu komut listenizde bulunan kişileri durumları ile birlikte gösterir.</strong>
-</p>
+<p><strong>komut:</strong> <strong>/who</strong></p>
+<p><strong>Bu komut listenizde bulunan kişileri durumları ile birlikte gösterir.</strong></p>
 <pre>~\/~ /who
  * abindian@gmail.com (ab)
    twistedlogix@gmail.com
@@ -169,18 +160,16 @@ Jabber ID:
 ~\/~
 <h4>status</h4>
 </pre>
-<strong>komut:</strong><strong> /status</strong><em> [online|away|chat|xa|dnd] [Mesaj]</em>
-<p><em>Bu komutla durumunuzu değiştirebilirsiniz.</em>
-</p>
+<p><strong>komut:</strong><strong> /status</strong><em> [online|away|chat|xa|dnd] [Mesaj]</em></p>
+<p><em>Bu komutla durumunuzu değiştirebilirsiniz.</em></p>
 <pre>~\/~ /status online Using Freetalk
 ~\/~ /status
 Current status: online Using Freetalk
 ~\/~
 <h4>whoami</h4>
 </pre>
-<strong>komut:</strong> <strong>/whoami</strong>
-<p><strong>O an hangi kimlikle giriş yaptığınızı gösterir.</strong>
-</p>
+<p><strong>komut:</strong> <strong>/whoami</strong></p>
+<p><strong>O an hangi kimlikle giriş yaptığınızı gösterir.</strong></p>
 <pre>~\/~ /whoami
 ~\/~ /whoami
 Jabber ID: avati@zresearch.com
@@ -188,36 +177,33 @@ Jabber Server: jabber.org
 Status: hacking
 ~\/~</pre>
 <h4>version</h4>
-<strong>komut:</strong> <strong>/version</strong>
-<p><strong>Freetalk programının versiyonunu ekrana yazar.</strong>
-</p>
+<p><strong>komut:</strong> <strong>/version</strong></p>
+<p><strong>Freetalk programının versiyonunu ekrana yazar.</strong></p>
 <pre>~\/~ /version
 freetalk (Freetalk) 3.2
 Copyright (C) 2005, 2007 FreeTalk Core Team
 …
-<p>~\/~</p></pre>
+
+~\/~</pre>
 <h4>logout</h4>
-<strong>komut:</strong> <strong>/logout</strong>
-<p><strong>Bu komut /disconnect komutu ile aynıdır.</strong>
-</p>
+<p><strong>komut:</strong> <strong>/logout</strong></p>
+<p><strong>Bu komut /disconnect komutu ile aynıdır.</strong></p>
 <pre>~\/~ /logout
 Disconnected from <var>server</var>, reason(0): User request
 ~\/~</pre>
 <h4>history</h4>
-<strong>komut: </strong><strong>/history</strong><em> [kullanıcı_adı]</em>
-<p>Bu komutla geçmiş görüşmeleri ekrana yazdırabilirsin.Eğer kullanıcı adı girilmemişse o an ki açık olan oturumdaki geçmişi gösterir.
-</p>
+<p><strong>komut: </strong><strong>/history</strong><em> [kullanıcı_adı]</em></p>
+<p>Bu komutla geçmiş görüşmeleri ekrana yazdırabilirsin.Eğer kullanıcı adı girilmemişse o an ki açık olan oturumdaki geçmişi gösterir.</p>
 <pre>~\/~ /history emre.eryilmaz@jabber.org
-<p>Prints the history of messages with</p></pre>
+
+Prints the history of messages with</pre>
 <pre>emre.eryilmaz@jabber.org paginated by <code>less</code>.</pre>
-~\/~ /history
+<p>~\/~ /history</p>
 <p>Prints this history of messages of the current session.</p>
-<p>~\/~
-</p>
+<p>~\/~</p>
 <h4>login</h4>
-<strong>komut:</strong> <strong>/login</strong>
-<p><strong>/disconnect ile çıkış yaptıktan daha sonra bu komutla normal giriş yapabilirsiniz.</strong>
-</p>
+<p><strong>komut:</strong> <strong>/login</strong></p>
+<p><strong>/disconnect ile çıkış yaptıktan daha sonra bu komutla normal giriş yapabilirsiniz.</strong></p>
 <pre>~\/~ /login
 Jabber ID: emre.eryilmaz@jabber.org
 Password:
@@ -227,24 +213,23 @@ Connecting...
 ~\/~
 <h4>help</h4>
 </pre>
-<strong>komut:</strong> <strong>/help</strong><em> [freetalk-komutu]</em>
-<p><em>/help komutu yanına yazılan diğer komut hakkında bilgi gösterir.</em>
-</p>
+<p><strong>komut:</strong> <strong>/help</strong><em> [freetalk-komutu]</em></p>
+<p><em>/help komutu yanına yazılan diğer komut hakkında bilgi gösterir.</em></p>
 <pre>~\/~ /help /history
 /history - /history [BUDDY]
          Display history page by page
 ~\/~</pre>
 <h4>freetalk</h4>
-<strong>komut:</strong> <strong>/freetalk</strong><em> kullanıcı_adı</em>
-<p><em>Bu komutla yazdığınız kullanıcının freetalk kullanıp kullanmadığını öğrenirsiniz.</em>
-</p>
+<p><strong>komut:</strong> <strong>/freetalk</strong><em> kullanıcı_adı</em></p>
+<p><em>Bu komutla yazdığınız kullanıcının freetalk kullanıp kullanmadığını öğrenirsiniz.</em></p>
 <pre>~\/~ /freetalk emre.eryilmaz@jabber.org
-<p>Yes emre.eryilmaz@jabber.org is using freetalk.</p>
-<p>~\/~</p></pre>
-Şimdilik en önemli olan komutlardan bahsettik.
+
+Yes emre.eryilmaz@jabber.org is using freetalk.
+
+~\/~</pre>
+<p>Şimdilik en önemli olan komutlardan bahsettik.</p>
 <p>Eğer freetalk programının açıldığında otomatik olarak giriş yapmasını istiyorsak</p>
-<p>"<tt><em><strong>~/.freetalk/freetalk.scm</strong></em>"  yolundaki dosyayı aşağıdaki örnekteki gibi editleyebiliriz.</tt>
-</p>
+<p>"<tt><em><strong>~/.freetalk/freetalk.scm</strong></em>"  yolundaki dosyayı aşağıdaki örnekteki gibi editleyebiliriz.</tt></p>
 <pre>;; Sample ~/.freetalk/freetalk.scm
 ;; It sets connection parameters and tries to connect on
 ;; starting freetalk
@@ -256,6 +241,7 @@ Connecting...
                 ;; Proxy support
                 (ft-set-proxyserver! "your.proxy.org")
                 (ft-set-proxyport! "8080"))</pre>
+<p></p>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
@@ -287,7 +273,7 @@ Connecting...
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

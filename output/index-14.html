@@ -116,7 +116,6 @@ sleep 10
 echo exit) | telnet
 
   </tt></blockquote>
-
 <p></p>
 </div>
     </div>
@@ -166,13 +165,11 @@ dir: not found
 &gt; <strong>echo *</strong>
 bin dev etc lib linuxrc mnt proc sbin usr var webs
 </tt></blockquote>
-
-<p>Artık dizini listeleyebiliyoruz :)Modemimizi biraz daha karıştıralım ve modemin "CPU" hakkında bilgi edinelim.
-</p>
-<blockquote>
-<tt>
+<p>Artık dizini listeleyebiliyoruz :)Modemimizi biraz daha karıştıralım ve modemin "CPU" hakkında bilgi edinelim.</p>
+<blockquote><tt>
 &gt; <strong>cat proc/cpuinfo</strong>
-</tt><p>system type             : 96338L-2M-8M
+
+system type             : 96338L-2M-8M
 processor               : 0
 cpu model               : BCM6338 V1.0
 BogoMIPS                : 239.20
@@ -183,14 +180,13 @@ extra interrupt vector  : yes
 hardware watchpoint     : no
 VCED exceptions         : not available
 VCEI exceptions         : not available
-</p>
-</blockquote>
-<p>Şimdi "RAM"i hakkında bilgi edinelim.
-</p>
-<blockquote>
-<tt>
+</tt></blockquote>
+
+<p>Şimdi "RAM"i hakkında bilgi edinelim.</p>
+<blockquote><tt>
 &gt; <strong>cat proc/meminfo</strong>
-</tt><p>MemTotal:         6100 kB
+
+MemTotal:         6100 kB
 MemFree:           432 kB
 Buffers:           132 kB
 Cached:            960 kB
@@ -212,8 +208,8 @@ PageTables:        244 kB
 VmallocTotal:  1048560 kB
 VmallocUsed:      1092 kB
 VmallocChunk:  1047428 kB
-</p>
-</blockquote>
+</tt></blockquote>
+
 <p>Linux kernel versiyonunu öğrenelim.</p>
 <blockquote><tt>
 &gt; <strong>cat proc/version</strong>
@@ -265,7 +261,6 @@ blaa_dd 6880 0 - Live 0xc000d000
 adsldd 140320 0 - Live 0xc0066000
 atmapi 64640 3 br2684,blaa_dd,adsldd, Live 0xc0025000
 </tt></blockquote>
-
 <p>Modemde çalışan "prosesleri" görelim.</p>
 <blockquote><tt>
 &gt; <strong>ps</strong>
@@ -295,54 +290,57 @@ atmapi 64640 3 br2684,blaa_dd,adsldd, Live 0xc0025000
  1384 admin       264 R   ps 
 </tt></blockquote>
 
-<p>Network ayarları hakkında detaylı bilgi alalım.
-</p>
-<blockquote>
-<tt>
+<p>Network ayarları hakkında detaylı bilgi alalım.</p>
+<blockquote><tt>
 &gt; <strong>ifconfig</strong>
-</tt><p>br0             Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC<br>
+
+br0             Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC  
                 inet addr:192.168.1.1  Bcast:192.168.1.255  Mask:255.255.255.0
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:5061439 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:5372416 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:0 
-                RX bytes:420761271 (401.2 MiB)  TX bytes:2239306342 (2.0 GiB)</p>
-<p>eth0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC<br>
+                RX bytes:420761271 (401.2 MiB)  TX bytes:2239306342 (2.0 GiB)
+
+eth0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DC  
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:4793160 errors:329 dropped:0 overruns:0 frame:0
                 TX packets:5023907 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:1000 
                 RX bytes:547037243 (521.6 MiB)  TX bytes:1825231120 (1.6 GiB)
-                Interrupt:23 Base address:0x2800 </p>
-<p>lo              Link encap:Local Loopback<br>
+                Interrupt:23 Base address:0x2800 
+
+lo              Link encap:Local Loopback  
                 inet addr:127.0.0.1  Mask:255.0.0.0
                 UP LOOPBACK RUNNING  MTU:16436  Metric:1
                 RX packets:4 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:0 
-                RX bytes:365 (365.0 B)  TX bytes:365 (365.0 B)</p>
-<p>nas_8_35        Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DF<br>
+                RX bytes:365 (365.0 B)  TX bytes:365 (365.0 B)
+
+nas_8_35        Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DF  
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:5458874 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:5051758 errors:0 dropped:19208 overruns:0 carrier:0
                 collisions:0 txqueuelen:1000 
-                RX bytes:2212357361 (2.0 GiB)  TX bytes:577014523 (550.2 MiB)</p>
-<p>ppp_8_35_1      Link encap:Point-Point Protocol<br>
-                inet addr:8<em>.</em>.<em>.</em>  P-t-P:8<em>.</em><em>.</em>.*  Mask:255.255.255.255
+                RX bytes:2212357361 (2.0 GiB)  TX bytes:577014523 (550.2 MiB)
+
+ppp_8_35_1      Link encap:Point-Point Protocol  
+                inet addr:8*.*.*.*  P-t-P:8*.**.*.*  Mask:255.255.255.255
                 UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1492  Metric:1
                 RX packets:4068092 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:3791577 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:3 
-                RX bytes:488070832 (465.4 MiB)  TX bytes:314043576 (299.4 MiB)</p>
-<p>usb0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DD<br>
+                RX bytes:488070832 (465.4 MiB)  TX bytes:314043576 (299.4 MiB)
+
+usb0            Link encap:Ethernet  HWaddr 00:08:5C:8E:B7:DD  
                 UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
                 RX packets:350896 errors:0 dropped:0 overruns:0 frame:0
                 TX packets:432777 errors:0 dropped:0 overruns:0 carrier:0
                 collisions:0 txqueuelen:1000 
                 RX bytes:43181752 (41.1 MiB)  TX bytes:514828098 (490.9 MiB)
-</p>
-</blockquote>
-IP Routing table için :
+</tt></blockquote>
+<p>IP Routing table için :</p>
 <blockquote><tt>
 &gt; <strong>route show</strong>
 
@@ -353,7 +351,6 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 default         8*.**.*.*      0.0.0.0         UG    0      0        0 ppp_8_35_1
 
 </tt></blockquote>
-
 <p>IPTable için :</p>
 <blockquote><tt>
 &gt; <strong>iptables -L -n</strong>
@@ -390,7 +387,6 @@ target     prot opt source               destination
 &gt; <strong>cat webs/main.html</strong>
 
 </tt></blockquote>
-
 <p></p>
 </div>
     </div>
@@ -421,6 +417,7 @@ target     prot opt source               destination
 <blockquote><tt>$ cat /proc/cpuinfo <em>(CPU Bilgileri)</em> </tt></blockquote>
 <blockquote><tt>$ cat /proc/meminfo<em> (Memory bilgileri)</em> </tt></blockquote>
 <blockquote><tt># lshw <em>(Centos ya da bazı linux dağıtımlarda donanımı listeler)</em> </tt></blockquote>
+
 <p>Farklı olarak dmesg ve grep komutlarını da kullanarak donanım hakkında daha fazla bilgi sahibi olabilirsiniz.</p>
 </div>
     </div>
@@ -469,38 +466,39 @@ target     prot opt source               destination
 <p></p>
 <img class="alignright" title="CUPS" src="http://www.cups.org/doc-1.1/images/cups-large.gif" alt="" width="179" height="212">Yazıcınız "SAMBA" ile değilde,"CUPS" ile ağınızda paylaşmak istiyorsanız adımları takip edin:
 <p><strong>1-</strong> "<em>/etc/cups/cups.conf</em>" dosyasını metin düzenleyici ile açın yada diğer bir yol ise ; tarayıcınıza " <em>http://localhost:631</em> " yazın ve CUPS web arayüzüne ulaşın.CUPS web arayüzünden "<em>Administrator</em>" sekmesini tıklayın ve oradan "<em>Edit Configuration File</em>" butonuna tıklayıp düzenleme yapacağımız sayfayı açın.</p>
-<p><strong>2-</strong>Ağınızdaki ip grublarına izin verin.
-</p>
+<p><strong>2-</strong>Ağınızdaki ip grublarına izin verin.</p>
 <blockquote>
 <tt>
-<h2>Restrict access to the server...</h2></tt>
-<p><tt>Order allow,deny
+# Restrict access to the server...</tt>
+
+<tt>Order allow,deny
 <strong> Allow localhost
 Allow from 192.168.1.*</strong>
-</tt></p>
+</tt>
 </blockquote>
-<strong>3-</strong> Tarayıcı ile ulaşmalarına izin verin.
-<blockquote>
-<tt>
-<h2>Show shared printers on the local network.</h2>
-</tt><p>Browsing On
+<p><strong>3-</strong> Tarayıcı ile ulaşmalarına izin verin.</p>
+<blockquote><tt>
+# Show shared printers on the local network.
+Browsing On
 BrowseOrder allow,deny
 BrowseAllow all
-<strong>BrowseAddress 192.168.1.*:631</strong></p>
-</blockquote>
-<strong>4- </strong>Eğer uzaktaki bir bilgisayarın yazıcıyı yönetilmesine izin vermek istiyorsanız.(Örnek olarak "192.168.1.3" ip'li bilgisayara izin verdik):
+<strong>BrowseAddress 192.168.1.*:631</strong></tt></blockquote>
+<p><strong>4- </strong>Eğer uzaktaki bir bilgisayarın yazıcıyı yönetilmesine izin vermek istiyorsanız.(Örnek olarak "192.168.1.3" ip'li bilgisayara izin verdik):</p>
 <blockquote>
 <tt>
-<h2>Restrict access to the admin pages...</h2></tt>
-<p><tt>Encryption Required
+# Restrict access to the admin pages...</tt>
+
+<tt>Encryption Required
 Order allow,deny
 <strong>Allow localhost
-Allow 192.168.1.3</strong></tt></p>
-<p><tt></tt></p>
+Allow 192.168.1.3</strong></tt>
+
+<tt></tt>
 </blockquote>
-<strong>5- </strong>Bu ayarları yaptıktan sonra "CUPS"u yeniden başlatalım.
+<p><strong>5- </strong>Bu ayarları yaptıktan sonra "CUPS"u yeniden başlatalım.</p>
 <blockquote><tt># /etc/init.d/cupsd restart</tt></blockquote>
-<strong>6-</strong>Uzaktaki bilgisayara yazıcıyı ayarlamak için "<em>/etc/cups/client.conf</em>" dosyasına "<em>Servername</em>" ile printer server adını yazın ya da Gnome masaüstü kullanıyorsanız ""<strong>Sistem&gt;&gt;Yönetim&gt;&gt;Yazdırma&gt;&gt;Ekle&gt;&gt;Ağ yazıcısı bul</strong>"" yolunu izleyerek çıkan ekranda printer server ip adresini yazarak ağdaki printerı otomatik olarak makinenize tanımlayabilirsiniz.</div>
+<p><strong>6-</strong>Uzaktaki bilgisayara yazıcıyı ayarlamak için "<em>/etc/cups/client.conf</em>" dosyasına "<em>Servername</em>" ile printer server adını yazın ya da Gnome masaüstü kullanıyorsanız ""<strong>Sistem&gt;&gt;Yönetim&gt;&gt;Yazdırma&gt;&gt;Ekle&gt;&gt;Ağ yazıcısı bul</strong>"" yolunu izleyerek çıkan ekranda printer server ip adresini yazarak ağdaki printerı otomatik olarak makinenize tanımlayabilirsiniz.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/linux-ile-aginizda-dosyalarinizi-paylasin/" class="u-url">Linux ile ağınızda dosyalarınızı paylaşın</a></h1>
         <div class="metadata">
@@ -519,24 +517,23 @@ Allow 192.168.1.3</strong></tt></p>
     <div>
 <p></p>
 <img class="alignright" title="Gentoo" src="http://www.uz-freiburg.com/gentoo-logo.png" alt="" width="89" height="91">Birden fazla bilgisayarınızın olduğu evinizde,küçük işletmenizde dosyalarınızı,dizinlerinizi ya da disklerinizi paylaşmak isteyebilirsiniz.Herhangi bir linux dağıtımı ile bunu birkaç adımda ve  kısa sürede gerçekleştirebilirsiniz.Bu yazıda NFS server olarak Gentoo Linux dağıtımını,NFS Client olarak Ubuntu Linux dağıtımı olarak anlatacağım.
-<p>1- İlk olarak "NFS Server"ı Gentoo kurulu sistemimize kuralım.
-</p>
+<p>1- İlk olarak "NFS Server"ı Gentoo kurulu sistemimize kuralım.</p>
 <blockquote><tt># emerge -av nfs-utils</tt></blockquote>
-2- "NFS Server" kuruldu.Şimdi paylaşacağımız dizinleri <em>/etc/exports</em> dosyasına yazalım.Siz kendiniz farklı dizinleri paylaşabilirsiniz.
+<p>2- "NFS Server" kuruldu.Şimdi paylaşacağımız dizinleri <em>/etc/exports</em> dosyasına yazalım.Siz kendiniz farklı dizinleri paylaşabilirsiniz.</p>
 <blockquote><tt>/home/kullanici/paylasilan_dizin 192.168.1.3(async,rw,no_subtree_check)</tt></blockquote>
-Yukardaki örnekte "/home/kullanici/paylasilan_dizin" yolundaki "paylasilan_dizin" adlı klasörü "192.168.1.3" ip adresindeki bilgisayar ile paylaşıma açtık.Sizin paylaşacağınız dizin farklı yolda ve bu klasörü paylaşacağınız adres farklı olabilir.Mesela paylaşacağınız dizini ağdaki tüm bilgisayarlara açabilirsiniz.Bunun içinse örnek olarak "192.168.<em>.</em>" şeklinde ya da ip adresi yerine " * " kullanabilirsiniz.
-Dikkat edilecek bir nokta ise yukardaki paylaştığımız dizine ağdaki diğer bilgisayar için yazma ve okuma yetkisi verdik.Eğer sadece okuma yetkisi vermek isterseniz aşağıdaki gibi yapabilirsiniz.
+<p>Yukardaki örnekte "/home/kullanici/paylasilan_dizin" yolundaki "paylasilan_dizin" adlı klasörü "192.168.1.3" ip adresindeki bilgisayar ile paylaşıma açtık.Sizin paylaşacağınız dizin farklı yolda ve bu klasörü paylaşacağınız adres farklı olabilir.Mesela paylaşacağınız dizini ağdaki tüm bilgisayarlara açabilirsiniz.Bunun içinse örnek olarak "192.168.<em>.</em>" şeklinde ya da ip adresi yerine " * " kullanabilirsiniz.
+Dikkat edilecek bir nokta ise yukardaki paylaştığımız dizine ağdaki diğer bilgisayar için yazma ve okuma yetkisi verdik.Eğer sadece okuma yetkisi vermek isterseniz aşağıdaki gibi yapabilirsiniz.</p>
 <blockquote><tt>/home/kullanici/paylasilan_dizin 192.168.1.3(ro,async)</tt></blockquote>
-<em>/etc/exports</em> dosyasına yukardaki istediğiniz ayarlardan birini yazarak,kaydedip çıkabilirsiniz.
-<p>3- NFS Serverı başlatın ve sistem başlangıçına ekleyin.Aşağıdaki adımlarda dağıtıma göre değişebilir.
-</p>
+<p><em>/etc/exports</em> dosyasına yukardaki istediğiniz ayarlardan birini yazarak,kaydedip çıkabilirsiniz.</p>
+<p>3- NFS Serverı başlatın ve sistem başlangıçına ekleyin.Aşağıdaki adımlarda dağıtıma göre değişebilir.</p>
 <blockquote><tt># /etc/init.d/nfs start </tt></blockquote>
 <blockquote><tt>#rc-update add nfs default </tt></blockquote>
-4- Şimdi Ubuntu sistemimize NFS Client kuralım ve paylaşılan dizini sistemimize ekleyelim.
+<p>4- Şimdi Ubuntu sistemimize NFS Client kuralım ve paylaşılan dizini sistemimize ekleyelim.</p>
 <blockquote><tt># apt-get install portmap nfs-common</tt></blockquote>
-NFS Client kurulumu bittikten sonra <em>/etc/fstab</em> dosyasına ağdaki paylaşılan dizini ekleyelim.Aşağıdaki örnek sizin paylaşacağınız dizine ve NFS Server'ın ip adresine göre değişiklik gösterebilir.
+<p>NFS Client kurulumu bittikten sonra <em>/etc/fstab</em> dosyasına ağdaki paylaşılan dizini ekleyelim.Aşağıdaki örnek sizin paylaşacağınız dizine ve NFS Server'ın ip adresine göre değişiklik gösterebilir.</p>
 <blockquote><tt>192.168.1.2:/home/kullanici/paylasilan_dizin      /home/ubuntu_kullanicisi/paylasilan_dizin       nfs     defaults 0 0</tt></blockquote>
-Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/paylasilan_dizin" yolundaki dizini 192.168.1.3 adresinde bulunan NFS Client istemcisi tarafından "/home/ubuntu_kullanici/paylasilan_dizin" yoluna her açılışta otomatik bağlayacaktır.</div>
+<p>Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/paylasilan_dizin" yolundaki dizini 192.168.1.3 adresinde bulunan NFS Client istemcisi tarafından "/home/ubuntu_kullanici/paylasilan_dizin" yoluna her açılışta otomatik bağlayacaktır.</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/google-servislerine-konsoldan-ulasin/" class="u-url">Google Servislerine Konsoldan Ulaşın</a></h1>
         <div class="metadata">
@@ -561,8 +558,7 @@ Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/p
 <p><strong>* Blogger</strong></p>
 <p><strong>* Google Calendar</strong></p>
 <p><strong>* Google Contacts</strong></p>
-<p>"GoogleCL" hakkında daha fazla bilgi almak için sitesini <a href="http://code.google.com/p/googlecl/" target="_blank">buradan</a> ziyaret edebilirsiniz.Bilgisayarınıza "GoogleCL" bu <a href="http://code.google.com/p/googlecl/downloads/list" target="_blank">linkten</a> indirebilirsiniz.Debian ve Ubuntu tabanlı dağıtımlar için ".deb" paketi mevcut.Örnek "GoogleCL" komutları:
-</p>
+<p>"GoogleCL" hakkında daha fazla bilgi almak için sitesini <a href="http://code.google.com/p/googlecl/" target="_blank">buradan</a> ziyaret edebilirsiniz.Bilgisayarınıza "GoogleCL" bu <a href="http://code.google.com/p/googlecl/downloads/list" target="_blank">linkten</a> indirebilirsiniz.Debian ve Ubuntu tabanlı dağıtımlar için ".deb" paketi mevcut.Örnek "GoogleCL" komutları:</p>
 <ul>
 <li><strong>Blogger</strong></li>
 <blockquote><tt>$ google blogger post --title "foo" "command line posting"</tt></blockquote>
@@ -587,6 +583,7 @@ Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/p
 <li><strong>Youtube</strong></li>
 <blockquote><tt>$ google youtube post --category Education killer_robots.avi</tt></blockquote>
 </ul>
+<p></p>
 </div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/unix-hakkinda-daha-detali-bilgi-icin/" class="u-url">Unix hakkında </a></h1>
@@ -639,7 +636,7 @@ Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/p
             <li class="next">
                 <a href="index-13.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

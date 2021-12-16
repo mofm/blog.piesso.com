@@ -64,25 +64,26 @@
 <a href="http://img251.imageshack.us/img251/6217/virtualboxlogo.jpg"><img title="VirtualBox Kurulumu" src="http://img251.imageshack.us/img251/6217/virtualboxlogo.jpg" alt="" width="302" height="312"></a>
 <p><strong>Debian Lenny</strong> kullanıcıları <strong>VirtualBox</strong> kurarken normal kurulum sırasında bir hata almazlarken,Unstable(sid) ve Squeeze(testing) kullanıcıları "kernel modul" hatası almaktadır.Aşağıda basit adımlarla Debian testing ve unstable sürümleri üzerine VirtualBox kurulumunu çok basit adımlarla anlatmaktadır.</p>
 <ol>
-<li>İlk önce konsolumuzu açıp root oluyoruz ve ;
+<li>İlk önce konsolumuzu açıp root oluyoruz ve ;</li>
+</ol>
 <pre>$ aptitude install virtualbox-ose
 </pre>
-</li>
-<li>Yukardaki komutu verdikten sonra ,virtualbox modullerimizi yukleyelim;
+<ol>
+<li>Yukardaki komutu verdikten sonra ,virtualbox modullerimizi yukleyelim;</li>
+</ol>
 <pre>$ aptitude install virtualbox-ose-modules-$(uname -r)
 </pre>
-Eğer yukardaki komutta bulunamadı uyarısını alırsanız 3.adımdaki gibi yapıyoruz;</li>
-</ol>
-<p>3.Modülleri yükleme;
-</p>
+<p>Eğer yukardaki komutta bulunamadı uyarısını alırsanız 3.adımdaki gibi yapıyoruz;</p>
+<p>3.Modülleri yükleme;</p>
 <pre>$ aptitude install module-assistant
 $ m-a a-i virtualbox-ose-source
 </pre>
-4.Son olarak;
+<p>4.Son olarak;</p>
 <pre>$modprobe vboxdrv</pre>
-Artık "VirtualBox" sistemimize kuruldu.VirtualBox'a <strong>Gnome Menu Paneli</strong>'nden <em>Uygulamalar&gt;&gt;Sistem Araçları&gt;&gt;VirtualBox OSE</em> sırasını izleyerek açabilirsiniz ya da uçbirimden
+<p>Artık "VirtualBox" sistemimize kuruldu.VirtualBox'a <strong>Gnome Menu Paneli</strong>'nden <em>Uygulamalar&gt;&gt;Sistem Araçları&gt;&gt;VirtualBox OSE</em> sırasını izleyerek açabilirsiniz ya da uçbirimden</p>
 <pre>$virtualbox</pre>
-yazarakda açabilirsiniz.Sorularınız için yorum bırakabilirsiniz.</div>
+<p>yazarakda açabilirsiniz.Sorularınız için yorum bırakabilirsiniz.</p>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
@@ -113,7 +114,7 @@ yazarakda açabilirsiniz.Sorularınız için yorum bırakabilirsiniz.</div>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

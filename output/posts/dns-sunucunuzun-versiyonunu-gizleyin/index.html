@@ -97,21 +97,20 @@
 <pre>;; SERVER: 00.00.00.00#53(00.00.00.00)</pre>
 <pre>;; WHEN: Thu Jan 27 20:58:38 2011</pre>
 <pre>;; MSG SIZE  rcvd: 62</pre>
-Yukarda görüldüğü gibi <strong>Bind DNS</strong> sunucusu öntanımlı olarak dışarıya  kendi ve versiyonu ile ilgili bilgileri vermektedir.Bind DNS sunucumuzun versiyonu "9.2.4" müş.Kimliğimizi dışarıya vermemek ya da yanıltmak için "named.conf" dosyamızın içindeki "options" kısmına "version" satırını ekleyerek kimliğimizi dışarıya karşı maskeleyelim."version" satırı için istediğimiz bir isim ekleyebiliriz.
+<p>Yukarda görüldüğü gibi <strong>Bind DNS</strong> sunucusu öntanımlı olarak dışarıya  kendi ve versiyonu ile ilgili bilgileri vermektedir.Bind DNS sunucumuzun versiyonu "9.2.4" müş.Kimliğimizi dışarıya vermemek ya da yanıltmak için "named.conf" dosyamızın içindeki "options" kısmına "version" satırını ekleyerek kimliğimizi dışarıya karşı maskeleyelim."version" satırı için istediğimiz bir isim ekleyebiliriz.</p>
 <pre><strong># vi /var/named/chroot/etc/named.conf</strong></pre>
-options {
+<p>options {
 directory "/var/named";
 dump-file "/var/named/data/cache_dump.db";
 statistics-file "/var/named/data/named_stats.txt";
 recursion no ;
 allow-transfer { none; };
 dnssec-enable yes;
-<strong>version "DNS Server" ;</strong>
-<p>Sunucumuzu yeniden başlatalım :
-</p>
+<strong>version "DNS Server" ;</strong></p>
+<p>Sunucumuzu yeniden başlatalım :</p>
 <pre><strong># /sbin/service named restart</strong>
 </pre>
-Yukarda görüldüğü gibi "<em>options</em>" kısmına " <em>version "DNS Server" ; </em>" satırını ekledik.DNS sunucumuzun versiyonunu tekrar sorgulattığımızda artık bize "<strong>DNS Server</strong>" adını göstermesi lazım.
+<p>Yukarda görüldüğü gibi "<em>options</em>" kısmına " <em>version "DNS Server" ; </em>" satırını ekledik.DNS sunucumuzun versiyonunu tekrar sorgulattığımızda artık bize "<strong>DNS Server</strong>" adını göstermesi lazım.</p>
 <pre> <strong>$ dig @ns1.mydomain.com -c CH -t txt version.bind
 </strong>
 ; &lt;&lt;&gt;&gt; DiG 9.7.2-P2 &lt;&lt;&gt;&gt; @ns1.mydomain.com -c CH -t txt version.bind
@@ -121,25 +120,29 @@ Yukarda görüldüğü gibi "<em>options</em>" kısmına " <em>version "DNS Serv
 ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 29215
 ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 0
 ;; WARNING: recursion requested but not available
-<p>;; QUESTION SECTION:
-;version.bind.            CH    TXT</p>
-<p>;; ANSWER SECTION:
-version.bind.        0    CH    TXT    "DNS Server"</p>
-<p>;; AUTHORITY SECTION:
-version.bind.        0    CH    NS    version.bind.</p>
-<p>;; Query time: 110 msec
+
+;; QUESTION SECTION:
+;version.bind.            CH    TXT
+
+;; ANSWER SECTION:
+version.bind.        0    CH    TXT    "DNS Server"
+
+;; AUTHORITY SECTION:
+version.bind.        0    CH    NS    version.bind.
+
+;; Query time: 110 msec
 ;; SERVER: 00.00.00.00#53(00.00.00.00)
 ;; WHEN: Thu Jan 27 21:11:16 2011
 ;; MSG SIZE  rcvd: 60
-</p></pre>
-Artık DNS sunucumuz versiyon bilgisi vermiyor.Onun yerine yazmış olduğumuz "<strong>DNS Server</strong>" yazısını ekrana yazıyor.Sadece bunu yaparak DNS sunucumuzu güvende mi tutuyoruz?Elbetteki hayır! Şu an sadece sunucumuzun versiyonunu maskelemiş olduk.Yoksa  maskeleyemedik mi ???
-<p>Aslında tam olarak da maskeleyemedik."<a href="http://code.google.com/p/fpdns/" target="_blank"><strong>Finger print DNS</strong></a> " yazılımı ile kolayca sunucumuzun kimliğini ifşa edebilirler.Kimse etmeden ilk biz deneyelim."<strong>fpdns</strong>" yazılımı neredeyse her dağıtımın deposunda mevcut.Hemen bu yazılımı kuralım:
-</p>
+</pre>
+<p>Artık DNS sunucumuz versiyon bilgisi vermiyor.Onun yerine yazmış olduğumuz "<strong>DNS Server</strong>" yazısını ekrana yazıyor.Sadece bunu yaparak DNS sunucumuzu güvende mi tutuyoruz?Elbetteki hayır! Şu an sadece sunucumuzun versiyonunu maskelemiş olduk.Yoksa  maskeleyemedik mi ???</p>
+<p>Aslında tam olarak da maskeleyemedik."<a href="http://code.google.com/p/fpdns/" target="_blank"><strong>Finger print DNS</strong></a> " yazılımı ile kolayca sunucumuzun kimliğini ifşa edebilirler.Kimse etmeden ilk biz deneyelim."<strong>fpdns</strong>" yazılımı neredeyse her dağıtımın deposunda mevcut.Hemen bu yazılımı kuralım:</p>
 <pre><strong># yum install fpdns</strong></pre>
-"fpdns" yazılımını kurduktan sonra sunucumuzu sorgulatalım.
+<p>"fpdns" yazılımını kurduktan sonra sunucumuzu sorgulatalım.</p>
 <pre><strong>$  fpdns ns1.mydomain.com</strong></pre>
 <pre>fingerprint (ns1.mydomain.com, 00.00.00.00): BIND 9.2.3rc1 -- 9.4.0a0</pre>
-Yukarda görüldüğü gibi demek ki çok da iyi saklayamamışız :)</div>
+<p>Yukarda görüldüğü gibi demek ki çok da iyi saklayamamışız :)</p>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
@@ -170,7 +173,7 @@ Yukarda görüldüğü gibi demek ki çok da iyi saklayamamışız :)</div>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

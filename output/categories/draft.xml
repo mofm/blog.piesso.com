@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about draft)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/draft.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about draft)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/draft.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Apache IPv6</title><link>https://blog.piesso.com/posts/1265/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Apache web sunucunuzun IPv6 bağlantılarını dinlemesi istiyorsanız;&lt;/p&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Wed, 15 Dec 2021 19:19:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Apache IPv6</title><link>https://blog.piesso.com/posts/1265/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Apache web sunucunuzun IPv6 bağlantılarını dinlemesi istiyorsanız;&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;li&amp;gt;&lt;/span&gt; İlk olarak IPv6 desteğini vererek derleyen : ./configure --enable-rule=INET6&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt; Gentoo Linux kullanıcılarının "ipv6" use flag'ini aktif etmeleri yeterli.&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;p&gt;IPv6 desteği ile apache'i kurduktan sonra;&lt;/p&gt;
 &lt;p&gt;Sadece 'tek IP' IPv6 bağlantısı ve 80 portu  için:&lt;/p&gt;
@@ -28,10 +27,8 @@ rw              read-write  enabled&lt;/p&gt;
 &lt;p&gt;IPv6'da olan trafik işgal edici &lt;a title="Paket (sayfa mevcut değil)" href="http://tr.wikipedia.org/w/index.php?title=Paket&amp;amp;action=edit&amp;amp;redlink=1"&gt;paket&lt;/a&gt; başlıkları kaldırılarak bir hız arttırımına gidilmiştir. Ayrıca yeni eklenen &lt;a title="Şifreleme" href="http://tr.wikipedia.org/wiki/%C5%9Eifreleme"&gt;şifreleme&lt;/a&gt; sistemleriyle daha güvenli iletimler sağlanmaktadır. Uçlar arasında şifreli iletimi kolaylaştıran AH ve ESP başlıkları mevcuttur. AH ve ESP başlıkları uçlar arasındaki tüm veri iletimini şifreleyen &lt;a title="IPSec (sayfa mevcut değil)" href="http://tr.wikipedia.org/w/index.php?title=IPSec&amp;amp;action=edit&amp;amp;redlink=1"&gt;IPSec protokolünü&lt;/a&gt; desteklemek amaçlı kullanılmıştır.&lt;/p&gt;
 &lt;p&gt;Ayrıca şu anda IPv4'ün, &lt;a title="QoS" href="http://tr.wikipedia.org/wiki/QoS"&gt;QoS&lt;/a&gt; eklentisiyle idare ettiği ama tam olarak destekleyemediği görüntü ve ses iletimi sıkıntısı IPv6 ile çözülecektir. IPv6, görüntü ve ses paketlerine "öncelikli pakettir" ibaresi atanarak bunlara trafikte öncelik tanımasına olanak sağlamaktadır.&lt;/p&gt;
 &lt;dl&gt;&lt;dd&gt;&lt;img src="http://upload.wikimedia.org/wikipedia/tr/math/f/f/0/ff06680dcec164576181d8eda703eb09.png" alt="2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456 \asymp 3,4 \cdot 10^{38}"&gt;&lt;/dd&gt;&lt;/dl&gt;
-
 &lt;p&gt;adet IPv6 adresi demektir. 32 bitlik adres (IPv4) yapısı demek&lt;/p&gt;
 &lt;dl&gt;&lt;dd&gt;&lt;img src="http://upload.wikimedia.org/wikipedia/tr/math/8/8/d/88de6adbec11c0e0aa0ddf90e05cb5df.png" alt="2^{32} = 4.294.967.296 \asymp 4,3 \cdot 10^{9}"&gt;&lt;/dd&gt;&lt;/dl&gt;
-
 &lt;p&gt;adet IPv4 adresi demektir.**&lt;/p&gt;
 &lt;p&gt;IPv6 hakkında daha detaylı bilgiye &lt;a href="http://www.ipv6.net.tr/"&gt;http://www.ipv6.net.tr/&lt;/a&gt; adresinden ulaşabilirsiniz.IPv6 hakkında kısaca bahsettikten sonra bu ağa dahil olalım.&lt;/p&gt;&lt;/div&gt;</description><category>draft</category><category>Genel</category><guid>https://blog.piesso.com/posts/1164/</guid><pubDate>Mon, 05 Dec 2011 07:45:51 GMT</pubDate></item><item><title>RHEL 6 Sun Java</title><link>https://blog.piesso.com/posts/1070/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;RHEL 6 ve tabanlı Linux dağıtımları için öntanımlı OpenJDK yerine SUN Java JDK-JRE yüklemek için aşağıdaki kısa adımları tamamlayın.&lt;/p&gt;
 &lt;p&gt;1-  Bu adresten Sun Java JDK ve JRE'yi indirin.(Şu anki versiyonu JDK 6 Update 25 )&lt;/p&gt;
@@ -72,13 +69,13 @@ tam yüklenmemiş paketlerin olup olmadığını kontrol edelim.&lt;/p&gt;
 &lt;/p&gt;&lt;pre lang="html"&gt;Please go to &amp;lt;a href="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4Lm9yZy8%3D&amp;amp;b=5"&amp;gt; &amp;lt;img src="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4Lm9yZy9pbWFnZXMvbGluay9taWNyby5naWY%3D&amp;amp;b=5" mce_src="http://www.linux.org/images/link/micro.gif" align="middle" width="88" HEIGHT="31" alt="Linux Online"/&amp;gt;&amp;lt;/a&amp;gt; for Linux news and information.&lt;/pre&gt;
 Sitenizde görünümü aşağıdaki gibi olacaktır;&lt;!--more--&gt;
 &lt;p&gt;&amp;lt;br /&amp;gt; Please go to &amp;lt;a href="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4Lm9yZy8%3D&amp;amp;b=5"&amp;gt; &amp;lt;img src="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4Lm9yZy9pbWFnZXMvbGluay9taWNyby5naWY%3D&amp;amp;b=5" mce_src="http://www.linux.org/images/link/micro.gif" align="middle" width="88" HEIGHT="31" alt="Linux Online"/&amp;gt;&amp;lt;/a&amp;gt; for Linux news and information.&amp;lt;br /&amp;gt;&lt;/p&gt;
-&lt;p&gt;Eğer sitenize "Kernel.org"dan geliştirilen kernellerin durumu hakkındaki bilgileri yayınlamak istiyorsanız,aşağıdaki kodları yukardaki gibi sitenizde istediğin bir yere yerleştirebilirsiniz.Kodlar:
-&lt;/p&gt;&lt;pre&gt;Please go to &amp;lt;a HREF="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4aHEuY29tLw%3D%3D&amp;amp;b=5"&amp;gt;&amp;lt;img SRC="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4aHEuY29tL2ltYWdlcy9saW5rL21pY3JvLmdpZg%3D%3D&amp;amp;b=5" mce_SRC="http://www.linuxhq.com/images/link/micro.gif" ALIGN=MIDDLE WIDTH=88 HEIGHT=31 ALT="LinuxHQ"/&amp;gt;&amp;lt;/a&amp;gt; for Linux kernel and development information.&lt;/pre&gt;
-Sitenizde görünümü aşağıdaki gibi olacaktır;
+&lt;p&gt;Eğer sitenize "Kernel.org"dan geliştirilen kernellerin durumu hakkındaki bilgileri yayınlamak istiyorsanız,aşağıdaki kodları yukardaki gibi sitenizde istediğin bir yere yerleştirebilirsiniz.Kodlar:&lt;/p&gt;
+&lt;pre&gt;Please go to &amp;lt;a HREF="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4aHEuY29tLw%3D%3D&amp;amp;b=5"&amp;gt;&amp;lt;img SRC="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4aHEuY29tL2ltYWdlcy9saW5rL21pY3JvLmdpZg%3D%3D&amp;amp;b=5" mce_SRC="http://www.linuxhq.com/images/link/micro.gif" ALIGN=MIDDLE WIDTH=88 HEIGHT=31 ALT="LinuxHQ"/&amp;gt;&amp;lt;/a&amp;gt; for Linux kernel and development information.&lt;/pre&gt;
+&lt;p&gt;Sitenizde görünümü aşağıdaki gibi olacaktır;&lt;/p&gt;
 &lt;p&gt;&amp;lt;br /&amp;gt; Please go to &amp;lt;a HREF="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4aHEuY29tLw%3D%3D&amp;amp;b=5"&amp;gt;&amp;lt;img SRC="http://www.firewallfilter.com/init.php?u=Oi8vd3d3LmxpbnV4aHEuY29tL2ltYWdlcy9saW5rL21pY3JvLmdpZg%3D%3D&amp;amp;b=5" mce_SRC="http://www.linuxhq.com/images/link/micro.gif" ALIGN=MIDDLE WIDTH=88 HEIGHT=31 ALT="LinuxHQ"/&amp;gt;&amp;lt;/a&amp;gt; for Linux kernel and development information.&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;/div&gt;</description><category>draft</category><guid>https://blog.piesso.com/posts/sitenize-linux-haberleri-ekleyin/</guid><pubDate>Sun, 10 Jan 2010 03:24:07 GMT</pubDate></item><item><title>Sözlük I</title><link>https://blog.piesso.com/posts/sozluk-i/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;code&gt;#!/usr/bin/env python
 &lt;h2&gt;-&lt;em&gt;-coding:utf-8-&lt;/em&gt;-&lt;/h2&gt;
 &lt;h2&gt;Linux Bilgilendirme Projesi&lt;/h2&gt;&lt;/code&gt;
-&lt;p&gt;&lt;/p&gt;&lt;pre&gt;print "Linux Konsol Bilgilendirme Projesi'ne Hoşgeldiniz"
+&lt;pre&gt;print "Linux Konsol Bilgilendirme Projesi'ne Hoşgeldiniz"
 while True:
 arama=raw_input("Lütfen meta giriniz: ")&lt;/pre&gt;
 &lt;pre&gt;veritabani={ "linux":"GNU/Linux, Linux çekirdeği kullanan Unix benzeri işletim sistemlerini çağrıştıran genel kullanım şeklidir.
@@ -93,4 +90,4 @@ gibi çok sayıda donanım platformunda da çalışabilmektedir."}&lt;/pre&gt;
 &lt;pre&gt;print veritabani.get(arama,"Aradığınız öğe halen eklenmemiştir.")&lt;/pre&gt;
 &lt;pre&gt;if arama=="q":
 break&lt;/pre&gt;
-&lt;/blockquote&gt;&lt;/div&gt;</description><category>draft</category><category>Genel</category><guid>https://blog.piesso.com/posts/sozluk-i/</guid><pubDate>Fri, 11 Dec 2009 19:32:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt;</description><category>draft</category><category>Genel</category><guid>https://blog.piesso.com/posts/sozluk-i/</guid><pubDate>Fri, 11 Dec 2009 19:32:00 GMT</pubDate></item></channel></rss>

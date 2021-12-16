@@ -57,7 +57,6 @@
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding: utf-8 -</em>-</h2></code>
-<p></p>
 <pre>print "   Açık Artırma"</pre>
 <pre>a=200</pre>
 <pre>while a &lt; 1000:
@@ -67,6 +66,7 @@ a=input("Taban fiyattan aşağı teklif verilemez.Lütfen yükseltin: " )</pre>
 <pre>a=a+(a/100)*5
 print a ,"tl Mahmut bey verdiğiniz fiyatı yükseltti."</pre>
 <pre>print "Mahmut Bey Açık Artırmayı kazandı.Tebrikler :)"</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -89,13 +89,12 @@ print a ,"tl Mahmut bey verdiğiniz fiyatı yükseltti."</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding: utf-8 -</em>-</h2></code>
-<p></p>
 <pre>print "     Yaşam Saniyesi Hesaplama Programına Hoşgeldiniz!"</pre>
 <pre>dakika=60                                        # Dakika saniyesi
-saat=dakika<em>60                                   # Saatin saniyesi
-gun=saat</em>24                                      # Gunun saniyesi
-ay=30<em>gun                                        # Ayin saniyesi
-yil=365</em>gun                                      # Yilin saniyesi
+saat=dakika*60                                   # Saatin saniyesi
+gun=saat*24                                      # Gunun saniyesi
+ay=30*gun                                        # Ayin saniyesi
+yil=365*gun                                      # Yilin saniyesi
 y=input("  Lütfen doğum yılınızı giriniz: ")       # Kisinin kendi dogum yili
 a=input("  Lütfen doğdunuz ayı rakamla başında sıfır olmadan giriniz: ")#     //    //    //  ayi
 g=input("  Doğdunuz günü rakamla giriniz: ")       #    //    //    //   gunu
@@ -105,12 +104,13 @@ p=input("  Şu anki günü giriniz: ")                #  //  
 t=o-y                                            # Matematikesel Yil hesaplamasi
 c=k-a                                            #  //          Ay       //
 m=p-g                                            #  //          Gun      //
-T=t<em>yil+c</em>ay+m<em>gun                               # Toplam Yaşam Saniyesi
+T=t*yil+c*ay+m*gun                               # Toplam Yaşam Saniyesi
 soluk=T/17                                       # Ortalama soluk alıp verme
-uyku=(8</em>saat)<em>(t</em>365+c<em>30+1</em>m)                   # Ortalama uykuda gecen sure
+uyku=(8*saat)*(t*365+c*30+1*m)                   # Ortalama uykuda gecen sure
 kalp=70*(T/60)                                   # Ortalama dakikada kalp atışı</pre>
 <pre>print  T, "saniyedir yaşamakta",soluk," defa ortalama soluk alıp vermekte",uyku," saniye ömrünüzü uykuda geçirmekte",
 kalp," defa kalbiniz atış yapmıştır."</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -133,9 +133,9 @@ kalp," defa kalbiniz atış yapmıştır."</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding: utf-8 -</em>-</h2></code>
-<p></p>
 <pre>for sarki in range (1,15):
 print sarki, "mumdur"</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -158,7 +158,6 @@ print sarki, "mumdur"</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>-coding:utf-8-</em>-</h2></code>
-<p></p>
 <pre>import random</pre>
 <pre>print " Loto Çekiliş Programına Hoşgeldiniz!!!! "</pre>
 <pre>secenek1=" (1) Sayısal Loto "
@@ -196,6 +195,7 @@ print
 print "Şans Topu uğurlu sayılarınız: ",sans_topu1,"+",sans_topu2
 if secim=="q":
 break</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -218,12 +218,12 @@ break</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding: utf-8 -</em>-</h2></code>
-<p></p>
 <pre>a=raw_input("Lütfen bir parola belirleyin: ")</pre>
 <pre>if len(a) &gt;=6:
 print "Seçtiğiniz parola en fazla 5 karakterden oluşabilir!"</pre>
 <pre>else:
 print "Parolanız etkinleştirilmiştir."</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -275,8 +275,7 @@ print a, "ile", b, "birbirlerini", e, c+g,".Bu yuzden", a, b+s+"e", f, d,</code>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding:utf-8 -</em>-</h2></code>
-<p></p>
-<pre>from <strong>future</strong> import division</pre>
+<pre>from __future__ import division</pre>
 <pre>while True:</pre>
 <pre>secenek1="    (1) toplama"
 secenek2="    (2) çıkarma"
@@ -303,7 +302,7 @@ print sayi3, "-", sayi4, ":", sayi3 - sayi4</pre>
 sayi5=input("  Lütfen çarpma işlemi için ilk sayıyı girin: ")
 print sayi5
 sayi6=input("  Lütfen çarpma işlemi için ikinci sayıyı girin: ")
-print sayi5, "<em>", sayi6, ":", sayi5 * sayi6</em></pre>
+print sayi5, "*", sayi6, ":", sayi5 * sayi6</pre>
 <pre>if soru=="4":
 sayi7=input("  Lütfen bölme işlemi için ilk sayıyı girin: ")
 print sayi7
@@ -313,7 +312,8 @@ print sayi7, "/", sayi8, ":", sayi7 / sayi8</pre>
 sayi9=input("  Lütfen üs alacağınız sayıyı girin: ")
 print sayi9
 sayi10=input("  Lütfen alacağınız üssü girin: ")
-print sayi9, "<em>" , sayi10, ":", sayi9 </em>* sayi10</pre>
+print sayi9, "**" , sayi10, ":", sayi9 ** sayi10</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -336,9 +336,9 @@ print sayi9, "<em>" , sayi10, ":", sayi9 </em>* sayi10</pre>
 <blockquote>
 <code>#!/usr/bin/env python
 <h2>-<em>- coding: utf-8 -</em>-</h2></code>
-<p></p>
 <pre>for kelimeler in "linux":
 print kelimeler</pre>
+<p></p>
 </blockquote>
 </div>
     </div>
@@ -404,7 +404,7 @@ print a
             <li class="next">
                 <a href="index-1.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

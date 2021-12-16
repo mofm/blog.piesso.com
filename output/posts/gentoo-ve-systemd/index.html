@@ -74,11 +74,10 @@
 <p>Systemd büyük bir hızla ,öncelikle güncel linux dağıtımlarında yerini almaya başladı.Systemd linux çekirdeği için geliştirilen ve klasik init sistemlerinin(openrc vs.) yerine geçecek olan daha hızlı ve kararlı bir sistem yönetim daemonu.</p>
 <p><img class="  " alt="systemd pstree çıktısı" src="https://raw.githubusercontent.com/hut/minirc/master/screenshot.png" width="368" height="277"> systemd pstree çıktısı</p>
 <p><img class=" " alt="init pstree çıktısı" src="https://cdn-images-1.medium.com/max/582/1*-QPL92V3VJo6BuGRJ6qJ-w.png" width="357" height="251"> init pstree çıktısı
- 
-</p>
+ </p>
 <p>Yukardaki ekran görüntüleri örneklerinde de gördüğünüz gibi systemd 'nin sistem üzerindeki ilk daemon(ve proses) olduğu ve userspace üzerinde çalışacak olan tüm prosesler klasik init sistemlerinde olduğu gibi systemd'nin alt proseslerini oluşturmaktadir.Systemd'nin yapısını biraz daha iyi anlamak için aşağıdaki şema yardımcı olacaktır.
 </p>
-<img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri
+<p><img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri</p>
 <p>Binary Linux Dağıtımlarında eğer systemd'ye geçilmişse ayrıca birşey yapmanıza gerek yok.Fakat Gentoo Linux dağıtımında şu an stage 3'te öntanımlı gelmediği için kendiniz yardımcı araçlarla geçebilirsiniz.(ki gentoo geliştiricileri bunun için birçok şeyi hazırlamış bulunmakta.)</p>
 <p>Kısa adımlarla systemd'ye geçişten bahsedebilirim:</p>
 <ol>
@@ -107,104 +106,97 @@
 [14]  hardened/linux/amd64/no-multilib/selinux
 [15]  hardened/linux/amd64/x32
 [16]  hardened/linux/uclibc/amd64
-Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.
-</p>
+Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.</p>
 <pre># eselect profile set 5</pre>
- 
 <ol>
-<li>Bu adımda <i>"systemd"</i>yi yükleyelim.
+<li>Bu adımda <i>"systemd"</i>yi yükleyelim.</li>
+</ol>
 <pre># emerge --ask systemd</pre>
-</li>
-<li>
-<p>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
-</p>
-<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
-şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.
-<pre># emerge -NuDa world</pre>
-Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.
-</li>
-<li>
-<p>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</p>
+<ol>
+<li>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
 </li>
 </ol>
-<p>( /boot/grub/menu.lst )
-</p>
+<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
+<p>şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.</p>
+<pre># emerge -NuDa world</pre>
+<p>Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.</p>
+<ol>
+<li>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</li>
+</ol>
+<p>( /boot/grub/menu.lst )</p>
 <pre>kernel /vmlinuz-3.7.10-r1 root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
-Grub 2 için;
-<p>( /boot/grub/grub.cfg )
-</p>
+<p>Grub 2 için;</p>
+<p>( /boot/grub/grub.cfg )</p>
 <pre>linux /vmlinuz-3.7.10-r1 root=UUID=21312312-12312312-1231121 init=/usr/lib/systemd/systemd</pre>
-UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
-"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;
+<p>UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
+"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;</p>
 <pre>root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
-6.Sistemi yeniden başlatın.
+<p>6.Sistemi yeniden başlatın.</p>
 <p>7.Sistem yeniden başladıktan sonra eski(Openrc vs.) init sistemi üzerinde tanımladığımız hostname,locale ayarları artık systemd üzerinde geçerli olmayacaktır.</p>
-<p>Systemd hostname ayarlamak için;
-</p>
+<p>Systemd hostname ayarlamak için;</p>
 <pre># hostnamectl set-hostname benimpc</pre>
-Systemd klavye ayarları için;
+<p>Systemd klavye ayarları için;</p>
 <pre># localectl set-keymap trq</pre>
-X11 için;
+<p>X11 için;</p>
 <pre># localectl set-x11-keymap tr</pre>
-Sistem locale ayarı için;
+<p>Sistem locale ayarı için;</p>
 <pre># localectl set-locale LANG=en_US.UTF-8</pre>
-Türkçe için;
+<p>Türkçe için;</p>
 <pre># localectl set-locale LANG=tr_TR.UTF-8</pre>
-8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.
-<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;
-</p>
+<p>8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.</p>
+<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;</p>
 <pre># systemctl</pre>
-Aktif ve deaktif tüm servislerin durumunu görmek için;
+<p>Aktif ve deaktif tüm servislerin durumunu görmek için;</p>
 <pre># systemctl list-unit-files</pre>
-Herhangi bir servisi sistem açılışına eklemek için;
+<p>Herhangi bir servisi sistem açılışına eklemek için;</p>
 <pre># systemd enable vixie-cron.service</pre>
-Herhangi bir servisi çalıştırmak için;
+<p>Herhangi bir servisi çalıştırmak için;</p>
 <pre># systemctl start syslog-ng.service</pre>
-<b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.
-<p>Herhangi bir servisin durumunu görmek için;
-</p>
+<p><b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.</p>
+<p>Herhangi bir servisin durumunu görmek için;</p>
 <pre># systemctl status NetworkManager.service</pre>
-Herhangi bir servisi durdurmak için;
+<p>Herhangi bir servisi durdurmak için;</p>
 <pre># systemctl stop upower.service</pre>
-Herhangi bir servisi yeniden başlatmak için;
+<p>Herhangi bir servisi yeniden başlatmak için;</p>
 <pre># systemctl restart dhcpcd.service</pre>
-<b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;
+<p><b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;</p>
 <pre># systemctl enable xdm.service</pre>
-Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;
-<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,
-</p>
+<p>Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;</p>
+<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,</p>
 <pre>[Service]
 ExecStart=/usr/bin/xdm -nodaemon</pre>
---&gt; satırını;
-<p>(GDM için)
-</p>
+<p>--&gt; satırını;</p>
+<p>(GDM için)</p>
 <pre>[Service]
 ExecStart=/usr/bin/gdm</pre>
----&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.
+<p>---&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.</p>
 <ol>
 <li>Değinebileceğim diğer bir nokta ise açılışta otomatik yüklenmesi istediğiniz modüller ve network ayarları.</li>
 </ol>
 <p>Sistem açılışında otomatik yüklenmesi istediğiniz modül ya da  modülleri <b>"/etc/modules-load.d"</b> dizini içerisine isterseniz ayrı ayrı,istediğiniz sekilde isimlendirdiğiniz dosyaların içerisine ilk satıra ve ya tek bir dosya içerisinde her modül tek satırda olacak şekilde yazabilirsiniz.Örnek:</p>
-<p>( /etc/modules-load.d/modullerim.conf )
-</p>
+<p>( /etc/modules-load.d/modullerim.conf )</p>
 <pre>bridge
-<p>tun</p></pre>
+
+tun</pre>
 <pre>şeklinde ekleyebilirsiniz.
-<p>Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</p></pre>
+
+Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</pre>
 <pre># systemctl enable dhcpcd.service</pre>
-Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;
+<p>Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;</p>
 <pre># systemctl enable NetworkManager.service</pre>
-Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;
-<p>( /etc/systemd/system/mynetwork.service )
-</p>
+<p>Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;</p>
+<p>( /etc/systemd/system/mynetwork.service )</p>
 <pre>[Unit]
 Description=network ayarlarim
 After=network.target
-<p>[Service]
+
+[Service]
 Type=oneshot
-RemainAfterExit=yes</p>
-<p>EnvironmentFile=/etc/conf.d/bridge.conf</p>
-<p>ExecStart=/bin/ifconfig eth0 up
+RemainAfterExit=yes
+
+EnvironmentFile=/etc/conf.d/bridge.conf
+
+ExecStart=/bin/ifconfig eth0 up
 ExecStart=/bin/ifconfig eth1 up
 ExecStart=/usr/bin/tunctl -b -u rico -t tap0
 ExecStart=/bin/ifconfig tap0 up promisc
@@ -212,8 +204,9 @@ ExecStart=/sbin/brctl addbr br0
 ExecStart=/sbin/brctl addif br0 eth0
 ExecStart=/sbin/brctl addif br0 eth1
 ExecStart=/sbin/brctl addif br0 tap0
-ExecStart=/sbin/dhcpcd br0</p>
-<p>ExecStop=/usr/bin/killall dhcpcd
+ExecStart=/sbin/dhcpcd br0
+
+ExecStop=/usr/bin/killall dhcpcd
 ExecStop=/bin/ifconfig eth0 down
 ExecStop=/bin/ifconfig eth1 down
 ExecStop=/bin/ifconfig tap0 down
@@ -222,10 +215,12 @@ ExecStop=/usr/bin/tunctl -d tap0
 ExecStop=/sbin/brctl delif br0 eth0
 ExecStop=/sbin/brctl delif br0 eth1
 ExecStop=/bin/ifconfig br0 down
-ExexStop=/sbin/brctl delbr br0</p>
-<p>[Install]
-WantedBy=multi-user.target</p></pre>
-Systemd ile iyi keyifler :)</div>
+ExexStop=/sbin/brctl delbr br0
+
+[Install]
+WantedBy=multi-user.target</pre>
+<p>Systemd ile iyi keyifler :)</p>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
@@ -256,7 +251,7 @@ Systemd ile iyi keyifler :)</div>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

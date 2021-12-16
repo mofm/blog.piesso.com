@@ -67,41 +67,42 @@ Heroes Of Might And Magic Oyunu Linux kurulu sistemde oynamak istiyorsanız,yapm
 <strong>1.</strong> İlk olarak <a href="http://thepiratebay.org/torrent/3299161/Heroes_Of_Might_And_Magic_3_Linux_ISO" target="_blank">bu adresten </a>torrent dosyasını indirin.(Dosya büyüklüğü=358 MB)
 <strong>2.</strong>Bir "Torrent programı" ile (önerim Transmission) bilgisayarınıza 'iso' dosyasını indirin.
 <strong>3.</strong>İndirdiğiniz "iso" dosyasını sistemimize bağlayalım.Bunun içinde şu adımları uygulayın;</p>
-<p style="text-align: left;"><em>$ <em>cd /mnt</em></em></p>
-<p style="text-align: left;">$ <em>sudo mkdir iso</em></p>
-<p style="text-align: left;"><em>$ <em>sudo mount -o loop -t iso9660 </em>HMM3-Linux.iso<em> /mnt/iso/</em></em></p>
+<p style="text-align: left;">*$ <em>cd /mnt</em></p>
+<p style="text-align: left;">*$ <em>sudo mkdir iso</em></p>
+<p style="text-align: left;">*$ <em>sudo mount -o loop -t iso9660 </em>HMM3-Linux.iso<em> /mnt/iso/</em></p>
 <p style="text-align: left;"><em></em>
 <strong>4.</strong>Böylece indirdiğimiz iso dosyasını "/mnt/iso" dizinine bağlamış olduk.Artık oyunu kurabiliriz.Yapmanız gereken tek şey ise;</p>
-<p style="text-align: left;">$ cd /mnt/iso</p>
-<p style="text-align: left;"><em>$<em>sudo sh setup.sh</em>
-komutunu verip oyunu sisteminize yüklemek.Kurulum bitince;</em></p>
-<p style="text-align: left;">$ <em>heroes3 </em>komutu vererek oyuna başlayabilirsiniz.</p>
+<p style="text-align: left;">*$ cd /mnt/iso</p>
+<p style="text-align: left;">*$<em>sudo sh setup.sh</em>
+komutunu verip oyunu sisteminize yüklemek.Kurulum bitince;</p>
+<p style="text-align: left;">*$ <em>heroes3 </em>komutu vererek oyuna başlayabilirsiniz.</p>
 <p style="text-align: left;">NOT: Eğer sisteminiz "x86_64" ise yapmanız gereken :</p>
 <p style="text-align: left;">"setup.sh" dosyasındaki aşağıdaki kısımı değiştirmektir.</p>
 <p style="text-align: left;"><strong>Önceki:</strong></p>
 <p style="text-align: left;">DetectARCH()
 {
 status=1
-case <code>uname -m</code> in
+case `uname -m` in
 i?86) echo "x86"
 status=0;;
-<em>) echo "<code>uname -m</code>"
-status=0;;
-esac
-return $status
-}</em></p>
-<p style="text-align: left;"><strong>Yeni:</strong></p>
-<p style="text-align: left;">DetectARCH()
-{
-status=1
-case <code>uname -m</code> in
-i?86) echo "x86"
-status=0;;
-) echo "x86"
+*) echo "`uname -m`"
 status=0;;
 esac
 return $status
 }</p>
+<p style="text-align: left;"><strong>Yeni:</strong></p>
+<p style="text-align: left;">DetectARCH()
+{
+status=1
+case `uname -m` in
+i?86) echo "x86"
+status=0;;
+*) echo "x86"
+status=0;;
+esac
+return $status
+}</p>
+<p></p>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
@@ -133,7 +134,7 @@ return $status
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             

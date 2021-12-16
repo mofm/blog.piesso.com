@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about Genel)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/genel.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hardened .*(nt|log)s? (Posts about Genel)</title><link>https://blog.piesso.com/</link><description></description><atom:link href="https://blog.piesso.com/categories/genel.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:emre.eryilmaz@piesso.com"&gt;mofm&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 15 Feb 2020 15:39:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Linux Yaz Kampi 2014</title><link>https://blog.piesso.com/posts/linux-yaz-kampi-2014/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Ilki 2010 yilinda Isik Universitesi'nde baslayan Linux Yaz Kampi, bu yil 3.defa Bolu Abant Izzet Baysal Universitesi ev sahipliginde 11-23 Agustos tarihleri arasinda yapilacak.
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Wed, 15 Dec 2021 19:19:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Linux Yaz Kampi 2014</title><link>https://blog.piesso.com/posts/linux-yaz-kampi-2014/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Ilki 2010 yilinda Isik Universitesi'nde baslayan Linux Yaz Kampi, bu yil 3.defa Bolu Abant Izzet Baysal Universitesi ev sahipliginde 11-23 Agustos tarihleri arasinda yapilacak.
 &lt;/p&gt;&lt;ol&gt;
     &lt;li&gt;Linux Yaz Kampi ( 2010 - Isik Universitesi )&lt;/li&gt;
     &lt;li&gt;Linux Yaz Kampi ( 2011 - Duzce Universitesi )&lt;/li&gt;
@@ -17,14 +17,14 @@ Sadece bir sinif ve 20-30 kisi ile baslayan Linux Yaz Kampi, artik 10'u askin si
     &lt;li&gt;Web Uygulama Guvenligi ve Guvenli Kod Gelistirme&lt;/li&gt;
     &lt;li&gt;Tersine Muhendislik&lt;/li&gt;
 &lt;/ul&gt;
-Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, eglenceli ve verimli yaz kampi olmasi dilegiyle.
+&lt;p&gt;Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, eglenceli ve verimli yaz kampi olmasi dilegiyle.&lt;/p&gt;
 &lt;p&gt;Linux Yaz Kampi icin detayli bilgi icin &lt;a href="http://kamp.linux.org.tr/2014/" target="_blank"&gt;tiklayin&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</description><category>Genel</category><category>gezegen</category><guid>https://blog.piesso.com/posts/linux-yaz-kampi-2014/</guid><pubDate>Sat, 26 Jul 2014 15:31:57 GMT</pubDate></item><item><title>Gentoo ve Systemd</title><link>https://blog.piesso.com/posts/gentoo-ve-systemd/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Systemd büyük bir hızla ,öncelikle güncel linux dağıtımlarında yerini almaya başladı.Systemd linux çekirdeği için geliştirilen ve klasik init sistemlerinin(openrc vs.) yerine geçecek olan daha hızlı ve kararlı bir sistem yönetim daemonu.&lt;/p&gt;
 &lt;p&gt;&lt;img class="  " alt="systemd pstree çıktısı" src="https://raw.githubusercontent.com/hut/minirc/master/screenshot.png" width="368" height="277"&gt; systemd pstree çıktısı&lt;/p&gt;
 &lt;p&gt;&lt;img class=" " alt="init pstree çıktısı" src="https://cdn-images-1.medium.com/max/582/1*-QPL92V3VJo6BuGRJ6qJ-w.png" width="357" height="251"&gt; init pstree çıktısı
- 
-&lt;/p&gt;&lt;p&gt;Yukardaki ekran görüntüleri örneklerinde de gördüğünüz gibi systemd 'nin sistem üzerindeki ilk daemon(ve proses) olduğu ve userspace üzerinde çalışacak olan tüm prosesler klasik init sistemlerinde olduğu gibi systemd'nin alt proseslerini oluşturmaktadir.Systemd'nin yapısını biraz daha iyi anlamak için aşağıdaki şema yardımcı olacaktır.
+ &lt;/p&gt;
+&lt;p&gt;Yukardaki ekran görüntüleri örneklerinde de gördüğünüz gibi systemd 'nin sistem üzerindeki ilk daemon(ve proses) olduğu ve userspace üzerinde çalışacak olan tüm prosesler klasik init sistemlerinde olduğu gibi systemd'nin alt proseslerini oluşturmaktadir.Systemd'nin yapısını biraz daha iyi anlamak için aşağıdaki şema yardımcı olacaktır.
 &lt;/p&gt;
-&lt;img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"&gt; Systemd Bileşenleri
+&lt;p&gt;&lt;img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"&gt; Systemd Bileşenleri&lt;/p&gt;
 &lt;p&gt;Binary Linux Dağıtımlarında eğer systemd'ye geçilmişse ayrıca birşey yapmanıza gerek yok.Fakat Gentoo Linux dağıtımında şu an stage 3'te öntanımlı gelmediği için kendiniz yardımcı araçlarla geçebilirsiniz.(ki gentoo geliştiricileri bunun için birçok şeyi hazırlamış bulunmakta.)&lt;/p&gt;
 &lt;p&gt;Kısa adımlarla systemd'ye geçişten bahsedebilirim:&lt;/p&gt;
 &lt;ol&gt;
@@ -52,92 +52,96 @@ Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, e
 [14]  hardened/linux/amd64/no-multilib/selinux
 [15]  hardened/linux/amd64/x32
 [16]  hardened/linux/uclibc/amd64
-Beşinci seçenekte olan &lt;i&gt;"default/linux/amd64/13.0/desktop/gnome/systemd"&lt;/i&gt; profili ile değiştirelim.
-&lt;/p&gt;&lt;pre&gt;# eselect profile set 5&lt;/pre&gt;
- 
+Beşinci seçenekte olan &lt;i&gt;"default/linux/amd64/13.0/desktop/gnome/systemd"&lt;/i&gt; profili ile değiştirelim.&lt;/p&gt;
+&lt;pre&gt;# eselect profile set 5&lt;/pre&gt;
 &lt;ol&gt;
-&lt;li&gt;Bu adımda &lt;i&gt;"systemd"&lt;/i&gt;yi yükleyelim.
-&lt;pre&gt;# emerge --ask systemd&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Profilimizi değiştirdiğimiz için sistemi güncellemeden önce &lt;i&gt;"sys-apps/dbus"&lt;/i&gt; uygulamasının &lt;i&gt;"systemd" &lt;b&gt;USE FLAG&lt;/b&gt;'ını deaktif(&lt;/i&gt;
-&lt;/p&gt;&lt;pre&gt;/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"&lt;/pre&gt;
-şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.
-&lt;pre&gt;# emerge -NuDa world&lt;/pre&gt;
-Sistemimize bu şekilde gerekli systemd desteğini vererek &lt;b&gt;"systemd"&lt;/b&gt; ile açılmasına hazır hale getirdik.
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Bu adımda &lt;i&gt;"systemd"&lt;/i&gt;yi yükleyelim.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;( /boot/grub/menu.lst )
-&lt;/p&gt;&lt;pre&gt;kernel /vmlinuz-3.7.10-r1 root=/dev/sda2 init=/usr/lib/systemd/systemd&lt;/pre&gt;
-Grub 2 için;
-&lt;p&gt;( /boot/grub/grub.cfg )
-&lt;/p&gt;&lt;pre&gt;linux /vmlinuz-3.7.10-r1 root=UUID=21312312-12312312-1231121 init=/usr/lib/systemd/systemd&lt;/pre&gt;
-UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
-"&lt;b&gt;Processor type and features&lt;/b&gt;" -&amp;gt; "&lt;b&gt;Built-in kernel command line&lt;/b&gt;" içine aşağıdaki gibi ekleyebilirsiniz;
+&lt;pre&gt;# emerge --ask systemd&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;Profilimizi değiştirdiğimiz için sistemi güncellemeden önce &lt;i&gt;"sys-apps/dbus"&lt;/i&gt; uygulamasının &lt;i&gt;"systemd" &lt;b&gt;USE FLAG&lt;/b&gt;'ını deaktif(&lt;/i&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"&lt;/pre&gt;
+&lt;p&gt;şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.&lt;/p&gt;
+&lt;pre&gt;# emerge -NuDa world&lt;/pre&gt;
+&lt;p&gt;Sistemimize bu şekilde gerekli systemd desteğini vererek &lt;b&gt;"systemd"&lt;/b&gt; ile açılmasına hazır hale getirdik.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;( /boot/grub/menu.lst )&lt;/p&gt;
+&lt;pre&gt;kernel /vmlinuz-3.7.10-r1 root=/dev/sda2 init=/usr/lib/systemd/systemd&lt;/pre&gt;
+&lt;p&gt;Grub 2 için;&lt;/p&gt;
+&lt;p&gt;( /boot/grub/grub.cfg )&lt;/p&gt;
+&lt;pre&gt;linux /vmlinuz-3.7.10-r1 root=UUID=21312312-12312312-1231121 init=/usr/lib/systemd/systemd&lt;/pre&gt;
+&lt;p&gt;UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
+"&lt;b&gt;Processor type and features&lt;/b&gt;" -&amp;gt; "&lt;b&gt;Built-in kernel command line&lt;/b&gt;" içine aşağıdaki gibi ekleyebilirsiniz;&lt;/p&gt;
 &lt;pre&gt;root=/dev/sda2 init=/usr/lib/systemd/systemd&lt;/pre&gt;
-6.Sistemi yeniden başlatın.
+&lt;p&gt;6.Sistemi yeniden başlatın.&lt;/p&gt;
 &lt;p&gt;7.Sistem yeniden başladıktan sonra eski(Openrc vs.) init sistemi üzerinde tanımladığımız hostname,locale ayarları artık systemd üzerinde geçerli olmayacaktır.&lt;/p&gt;
-&lt;p&gt;Systemd hostname ayarlamak için;
-&lt;/p&gt;&lt;pre&gt;# hostnamectl set-hostname benimpc&lt;/pre&gt;
-Systemd klavye ayarları için;
+&lt;p&gt;Systemd hostname ayarlamak için;&lt;/p&gt;
+&lt;pre&gt;# hostnamectl set-hostname benimpc&lt;/pre&gt;
+&lt;p&gt;Systemd klavye ayarları için;&lt;/p&gt;
 &lt;pre&gt;# localectl set-keymap trq&lt;/pre&gt;
-X11 için;
+&lt;p&gt;X11 için;&lt;/p&gt;
 &lt;pre&gt;# localectl set-x11-keymap tr&lt;/pre&gt;
-Sistem locale ayarı için;
+&lt;p&gt;Sistem locale ayarı için;&lt;/p&gt;
 &lt;pre&gt;# localectl set-locale LANG=en_US.UTF-8&lt;/pre&gt;
-Türkçe için;
+&lt;p&gt;Türkçe için;&lt;/p&gt;
 &lt;pre&gt;# localectl set-locale LANG=tr_TR.UTF-8&lt;/pre&gt;
-8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.
-&lt;p&gt;Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;
-&lt;/p&gt;&lt;pre&gt;# systemctl&lt;/pre&gt;
-Aktif ve deaktif tüm servislerin durumunu görmek için;
+&lt;p&gt;8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.&lt;/p&gt;
+&lt;p&gt;Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;&lt;/p&gt;
+&lt;pre&gt;# systemctl&lt;/pre&gt;
+&lt;p&gt;Aktif ve deaktif tüm servislerin durumunu görmek için;&lt;/p&gt;
 &lt;pre&gt;# systemctl list-unit-files&lt;/pre&gt;
-Herhangi bir servisi sistem açılışına eklemek için;
+&lt;p&gt;Herhangi bir servisi sistem açılışına eklemek için;&lt;/p&gt;
 &lt;pre&gt;# systemd enable vixie-cron.service&lt;/pre&gt;
-Herhangi bir servisi çalıştırmak için;
+&lt;p&gt;Herhangi bir servisi çalıştırmak için;&lt;/p&gt;
 &lt;pre&gt;# systemctl start syslog-ng.service&lt;/pre&gt;
-&lt;b&gt;NOT:&lt;/b&gt; systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.
-&lt;p&gt;Herhangi bir servisin durumunu görmek için;
-&lt;/p&gt;&lt;pre&gt;# systemctl status NetworkManager.service&lt;/pre&gt;
-Herhangi bir servisi durdurmak için;
+&lt;p&gt;&lt;b&gt;NOT:&lt;/b&gt; systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.&lt;/p&gt;
+&lt;p&gt;Herhangi bir servisin durumunu görmek için;&lt;/p&gt;
+&lt;pre&gt;# systemctl status NetworkManager.service&lt;/pre&gt;
+&lt;p&gt;Herhangi bir servisi durdurmak için;&lt;/p&gt;
 &lt;pre&gt;# systemctl stop upower.service&lt;/pre&gt;
-Herhangi bir servisi yeniden başlatmak için;
+&lt;p&gt;Herhangi bir servisi yeniden başlatmak için;&lt;/p&gt;
 &lt;pre&gt;# systemctl restart dhcpcd.service&lt;/pre&gt;
-&lt;b&gt;NOT:&lt;/b&gt; Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;
+&lt;p&gt;&lt;b&gt;NOT:&lt;/b&gt; Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;&lt;/p&gt;
 &lt;pre&gt;# systemctl enable xdm.service&lt;/pre&gt;
-Burada dikkat edilecek nokta openrc'den systemd'ye geçişte &lt;i&gt;"/etc/conf.d/xdm"&lt;/i&gt; içerisinde yapmış olduğumuz herhangi bir &lt;i&gt;"display manager"&lt;/i&gt; ayarımız geçersiz olacaktır.Geçerli olan &lt;i&gt;"display manager"&lt;/i&gt;i xdm'nin açılışta çalıştırması istiyorsanız;
-&lt;p&gt;&lt;i&gt;"/usr/lib/systemd/system/xdm.service"&lt;/i&gt; dosyası içindeki ,
-&lt;/p&gt;&lt;pre&gt;[Service]
+&lt;p&gt;Burada dikkat edilecek nokta openrc'den systemd'ye geçişte &lt;i&gt;"/etc/conf.d/xdm"&lt;/i&gt; içerisinde yapmış olduğumuz herhangi bir &lt;i&gt;"display manager"&lt;/i&gt; ayarımız geçersiz olacaktır.Geçerli olan &lt;i&gt;"display manager"&lt;/i&gt;i xdm'nin açılışta çalıştırması istiyorsanız;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;"/usr/lib/systemd/system/xdm.service"&lt;/i&gt; dosyası içindeki ,&lt;/p&gt;
+&lt;pre&gt;[Service]
 ExecStart=/usr/bin/xdm -nodaemon&lt;/pre&gt;
---&amp;gt; satırını;
-&lt;p&gt;(GDM için)
-&lt;/p&gt;&lt;pre&gt;[Service]
+&lt;p&gt;--&amp;gt; satırını;&lt;/p&gt;
+&lt;p&gt;(GDM için)&lt;/p&gt;
+&lt;pre&gt;[Service]
 ExecStart=/usr/bin/gdm&lt;/pre&gt;
----&amp;gt; şeklinde değiştirin.Bu şekilde sistem açılışında &lt;b&gt;"gdm"&lt;/b&gt;yi aktifleştirebiliyoruz.
+&lt;p&gt;---&amp;gt; şeklinde değiştirin.Bu şekilde sistem açılışında &lt;b&gt;"gdm"&lt;/b&gt;yi aktifleştirebiliyoruz.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Değinebileceğim diğer bir nokta ise açılışta otomatik yüklenmesi istediğiniz modüller ve network ayarları.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Sistem açılışında otomatik yüklenmesi istediğiniz modül ya da  modülleri &lt;b&gt;"/etc/modules-load.d"&lt;/b&gt; dizini içerisine isterseniz ayrı ayrı,istediğiniz sekilde isimlendirdiğiniz dosyaların içerisine ilk satıra ve ya tek bir dosya içerisinde her modül tek satırda olacak şekilde yazabilirsiniz.Örnek:&lt;/p&gt;
-&lt;p&gt;( /etc/modules-load.d/modullerim.conf )
-&lt;/p&gt;&lt;pre&gt;bridge
-&lt;p&gt;tun&lt;/p&gt;&lt;/pre&gt;
+&lt;p&gt;( /etc/modules-load.d/modullerim.conf )&lt;/p&gt;
+&lt;pre&gt;bridge
+
+tun&lt;/pre&gt;
 &lt;pre&gt;şeklinde ekleyebilirsiniz.
-&lt;p&gt;Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.&lt;/p&gt;&lt;/pre&gt;
+
+Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.&lt;/pre&gt;
 &lt;pre&gt;# systemctl enable dhcpcd.service&lt;/pre&gt;
-Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;
+&lt;p&gt;Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;&lt;/p&gt;
 &lt;pre&gt;# systemctl enable NetworkManager.service&lt;/pre&gt;
-Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;
-&lt;p&gt;( /etc/systemd/system/mynetwork.service )
-&lt;/p&gt;&lt;pre&gt;[Unit]
+&lt;p&gt;Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;&lt;/p&gt;
+&lt;p&gt;( /etc/systemd/system/mynetwork.service )&lt;/p&gt;
+&lt;pre&gt;[Unit]
 Description=network ayarlarim
 After=network.target
-&lt;p&gt;[Service]
+
+[Service]
 Type=oneshot
-RemainAfterExit=yes&lt;/p&gt;
-&lt;p&gt;EnvironmentFile=/etc/conf.d/bridge.conf&lt;/p&gt;
-&lt;p&gt;ExecStart=/bin/ifconfig eth0 up
+RemainAfterExit=yes
+
+EnvironmentFile=/etc/conf.d/bridge.conf
+
+ExecStart=/bin/ifconfig eth0 up
 ExecStart=/bin/ifconfig eth1 up
 ExecStart=/usr/bin/tunctl -b -u rico -t tap0
 ExecStart=/bin/ifconfig tap0 up promisc
@@ -145,8 +149,9 @@ ExecStart=/sbin/brctl addbr br0
 ExecStart=/sbin/brctl addif br0 eth0
 ExecStart=/sbin/brctl addif br0 eth1
 ExecStart=/sbin/brctl addif br0 tap0
-ExecStart=/sbin/dhcpcd br0&lt;/p&gt;
-&lt;p&gt;ExecStop=/usr/bin/killall dhcpcd
+ExecStart=/sbin/dhcpcd br0
+
+ExecStop=/usr/bin/killall dhcpcd
 ExecStop=/bin/ifconfig eth0 down
 ExecStop=/bin/ifconfig eth1 down
 ExecStop=/bin/ifconfig tap0 down
@@ -155,10 +160,11 @@ ExecStop=/usr/bin/tunctl -d tap0
 ExecStop=/sbin/brctl delif br0 eth0
 ExecStop=/sbin/brctl delif br0 eth1
 ExecStop=/bin/ifconfig br0 down
-ExexStop=/sbin/brctl delbr br0&lt;/p&gt;
-&lt;p&gt;[Install]
-WantedBy=multi-user.target&lt;/p&gt;&lt;/pre&gt;
-Systemd ile iyi keyifler :)&lt;/div&gt;</description><category>Genel</category><category>gezegen</category><guid>https://blog.piesso.com/posts/gentoo-ve-systemd/</guid><pubDate>Tue, 22 Oct 2013 06:24:38 GMT</pubDate></item><item><title>Alcatel-Lucent Switch Konsol Pin Sıralaması</title><link>https://blog.piesso.com/posts/alcatel-lucent-switch-konsol-pin-siralamas/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Elinizde cihazın (&lt;em&gt;Alcatel-Lucent&lt;/em&gt;) &lt;a title="Seri Port" href="http://tr.wikipedia.org/wiki/Seri_port" target="_blank"&gt;seri port&lt;/a&gt; (&lt;a title="RS-232" href="http://tr.wikipedia.org/wiki/RS-232" target="_blank"&gt;RS -232&lt;/a&gt; bakın.) bağlantı kablosu kayıp ve ya yoksa üzülmeyin.Aramanıza ya da yeni bir tane sipariş etmekte harcayacağınız enerjinizi kendize hemen bir tane yaparak çözüm sağlayabilirsiniz.Daha önce de &lt;a title="Enterasys N/X Serisi Konsol Bağlantısı" href="http://linux.piesso.com/enterasys-n-ve-x-serisi-konsol-baglantisi" target="_blank"&gt;Enterasys N7 backbone&lt;/a&gt; cihazları için pin sırasını vermiştim.Şimdi Alcatel-Lucent marka switch'lerin ( &lt;em&gt;örn: 6850 ve 9800&lt;/em&gt; ) DB9 ve RJ45 pin sırası:
+ExexStop=/sbin/brctl delbr br0
+
+[Install]
+WantedBy=multi-user.target&lt;/pre&gt;
+&lt;p&gt;Systemd ile iyi keyifler :)&lt;/p&gt;&lt;/div&gt;</description><category>Genel</category><category>gezegen</category><guid>https://blog.piesso.com/posts/gentoo-ve-systemd/</guid><pubDate>Tue, 22 Oct 2013 06:24:38 GMT</pubDate></item><item><title>Alcatel-Lucent Switch Konsol Pin Sıralaması</title><link>https://blog.piesso.com/posts/alcatel-lucent-switch-konsol-pin-siralamas/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Elinizde cihazın (&lt;em&gt;Alcatel-Lucent&lt;/em&gt;) &lt;a title="Seri Port" href="http://tr.wikipedia.org/wiki/Seri_port" target="_blank"&gt;seri port&lt;/a&gt; (&lt;a title="RS-232" href="http://tr.wikipedia.org/wiki/RS-232" target="_blank"&gt;RS -232&lt;/a&gt; bakın.) bağlantı kablosu kayıp ve ya yoksa üzülmeyin.Aramanıza ya da yeni bir tane sipariş etmekte harcayacağınız enerjinizi kendize hemen bir tane yaparak çözüm sağlayabilirsiniz.Daha önce de &lt;a title="Enterasys N/X Serisi Konsol Bağlantısı" href="http://linux.piesso.com/enterasys-n-ve-x-serisi-konsol-baglantisi" target="_blank"&gt;Enterasys N7 backbone&lt;/a&gt; cihazları için pin sırasını vermiştim.Şimdi Alcatel-Lucent marka switch'lerin ( &lt;em&gt;örn: 6850 ve 9800&lt;/em&gt; ) DB9 ve RJ45 pin sırası:
 &lt;img alt="console pin" src="http://4.bp.blogspot.com/_Fduwa95b3Ac/TMB9s0Bq6AI/AAAAAAAADNE/grUS0E2yqMI/s1600/Alcatel+console.jpg" width="437" height="452"&gt;&lt;/p&gt;&lt;/div&gt;</description><category>Genel</category><category>gezegen</category><guid>https://blog.piesso.com/posts/alcatel-lucent-switch-konsol-pin-siralamas/</guid><pubDate>Sun, 14 Jul 2013 21:17:43 GMT</pubDate></item><item><title>Google Reader'a Özgür Alternatif : NewsBlur</title><link>https://blog.piesso.com/posts/google-reader-ozgur-alternatif-newsblur/</link><dc:creator>mofm</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;img class="alignright" alt="NewsBlur" src="http://media.tumblr.com/tumblr_li3v0f3zPR1qg4k90.png" width="180" height="180"&gt;Google Reader servisinin özgür yazılım alternatifi olan "&lt;em&gt;NewsBlur&lt;/em&gt;" ile istediginiz blog ya da web adreslerinin RSS'lerini tarayıcınızdan takip edebilirsiniz.NewsBlur'un websitesine[ &lt;a title="NewsBlur" href="https://www.newsblur.com/" target="_blank"&gt;https://www.newsblur.com/&lt;/a&gt; ] birkaç adımda kayıt olarak online takip etmeye başlayabilir ya da GitHub[ &lt;a title="NewsBlur" href="https://github.com/samuelclay/NewsBlur" target="_blank"&gt;https://github.com/samuelclay/NewsBlur&lt;/a&gt; ] üzerinden kaynak kodlarını( &lt;em&gt;MIT Lisansı ile&lt;/em&gt;) indirip kendiniz kurabilirsiniz.
 &lt;p&gt;&lt;strong&gt;Mimarisi:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;* Django
@@ -274,24 +280,21 @@ conn L2TP-PSK
     fi&lt;span class="nt"&gt;&amp;lt;/code&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;p&gt;Şu şekilde görünmeli;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;start() {
         checkconfig || return 1&lt;/code&gt;&lt;/p&gt;
 &lt;h6&gt;############l2tp-control dosyasi olusturmak icin eklendi.&lt;/h6&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;    if !([ -f /var/run/xl2tpd/l2tp-control ]); then&lt;/span&gt;
-&lt;span class="err"&gt;            mkdir -p /var/run/xl2tpd&lt;/span&gt;
-&lt;span class="err"&gt;            touch /var/run/xl2tpd/l2tp-control&lt;/span&gt;
-&lt;span class="err"&gt;    fi&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;xl2tpd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;l2tp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt; &lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt;
+            &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;xl2tpd&lt;/span&gt;
+            &lt;span class="n"&gt;touch&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;xl2tpd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;l2tp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;
+    &lt;span class="n"&gt;fi&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;h6&gt;&lt;/h6&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;    ebegin "Starting xl2tpd"&lt;/span&gt;
-&lt;span class="err"&gt;    start-stop-daemon --start --quiet --exec /usr/sbin/xl2tpd&lt;/span&gt;
-&lt;span class="err"&gt;    eend $?&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="nv"&gt;ebegin&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;Starting xl2tpd&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+    &lt;span class="nv"&gt;start&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;stop&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;daemon&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;start&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;quiet&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;exec&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;sbin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;xl2tpd&lt;/span&gt;
+    &lt;span class="nv"&gt;eend&lt;/span&gt; $?
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;p&gt;}
 &lt;/p&gt;

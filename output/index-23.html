@@ -38,7 +38,340 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/centos-7-uzerine-freeipa-kurulumu/" class="u-url">Centos 7 uzerine FreeIPA Kurulumu</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/locust-load-testing-tool/" class="u-url">Locust: Load Testing Tool</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/locust-load-testing-tool/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-12-04T00:37:28+03:00" title="2017-12-04 00:37">2017-12-04 00:37</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/locust-load-testing-tool/#disqus_thread" data-disqus-identifier="cache/posts/locust-load-testing-tool.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p><em>Locust</em>, kullanimi diger uygulamalara gore kolay distributed load testing aracidir. Websitenizi ya da diger sistemlerinizi kullanici sayilarini simule ederek yazdiginiz kodlari ya da sistemlerinizi load testing yaparak kontrol etmenize olanak saglar.</p>
+<p><strong>Locust'un ozellikleri:</strong></p>
+<ul class="simple">
+<li><p>Kolay test senaryosu yazma. Diger araclara gore daha sade ve kolay syntax ile yazabilme. Python'a asina olanlar icin yabancilik cekmeyecekleri sekilde python kod.</p></li>
+<li><p>Distributed load testing. Tekil ya da coklu makinelerle load testing yapabilme. Ister kullandiginiz bir bilgisayarla isterse 20 makine ile test yapabilme imkani.</p></li>
+<li><p>Webarayuzu. Locust HTML+JS ile size realtime test sonuclarini webarayuzunden izleyebilme imkani sagliyor.</p></li>
+<li><p>Her turlu sistemi test edebilirsiniz. Sadece websitelerini degil ldap,smtp gibi servis verdiginiz her turlu sistemleri biraz python biliyorsaniz client kod vs yazayarak test edebilirsiniz.</p></li>
+<li><p>Apache JMeter gibi java bagimliliginiz kalmadan bu testlerinizi yapabilirsiniz.( JMeter uzerinde SSL sertifikaniz 4096 bit gibi yuksek sifrelenmis ise javanin en yuksek 2048 bit desteklemesi yuzunden basarili olamayabilirsiniz. )</p></li>
+</ul>
+<p><strong>Kurulumu</strong></p>
+<p>Locust, Python 2.7, 3.3, 3.4, 3.5,3.6. versiyonlarini desteklemektedir. Sistemizdeki 'pip' kurulu oldugundan emin olun. Bir cok modern sistemlerde halihazirda kurulu olarak zaten geliyor.</p>
+<pre class="code bash"><a name="rest_code_ac9f8eb68bb942b58cbcf73f0e130aca-1"></a><span class="c1"># pip install locustio</span>
+</pre>
+<p>Eger sadece kendi kullaniciniz icin kuracaksaniz;</p>
+<pre class="code bash"><a name="rest_code_c2f26513e85a45338e282e21eda7d3bc-1"></a>$ pip install --user locustio
+</pre>
+<p>Ardindan '~/.local/bin/' dizinini "PATH'inize ekleyin. GNU/Linux dagitiminiza ya da sisteminize gore '.bashrc' ya da 'bash_profile' dosyaniza eklemeniz gerekir.</p>
+<pre class="code bash"><a name="rest_code_9ae1cec3776846188b18a247948b4ea8-1"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin
+</pre>
+<p>Kurulum adimlari bu kadar.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Son olarak not dusmek gerekir. Eger load testing yaparken yuksek sayida kullanici ile senaryo gerceklestirecekseniz sistemiz ve load-testing yapan kullaniciniz icin file-limit degerlerini yukseltmeniz gerekebilir.</p>
+</div>
+<p>Ilk olarak sistemiz uzerinden file-limit degerini ogrenip yukseltmek icin;</p>
+<pre class="code bash"><a name="rest_code_e1228d893e464035934603071241c433-1"></a><span class="c1"># cat /proc/sys/fs/file-max</span>
+<a name="rest_code_e1228d893e464035934603071241c433-2"></a><span class="m">75000</span>
+</pre>
+<p>Yukarda goruldugu gibi sistem uzerinde file-limit degeri '75000'. Bu degeri ornek olarak '750000' yukseltmek icin;</p>
+<pre class="code bash"><a name="rest_code_29429d4bbe9841c9ac4518f2b880bbad-1"></a><span class="c1"># sysctl -w fs.file-max=750000</span>
+</pre>
+<p>Sistem uzerinde kalici olarak degistirmek icin, "/etc/sysctl.conf" dosyasina asagidaki satiri ekleyin.</p>
+<pre class="code bash"><a name="rest_code_4ed49813ab024aa09872fd8d151e33dc-1"></a>fs.file-max <span class="o">=</span> <span class="m">750000</span>
+</pre>
+<p>Aktif etmek icin;</p>
+<pre class="code bash"><a name="rest_code_aa1e20cd0d8e4483b8e9cd8da391b8c2-1"></a><span class="c1"># sysctl -p</span>
+</pre>
+<p>Bu limit degerlerini sisteme giris yaptiginiz ya da test yapacaginiz kullanici icin yukseltmek icin '/etc/security/limits.conf' dosyaniza asagidaki gibi degerleri ekleyin;</p>
+<pre class="code bash"><a name="rest_code_372509ef58454bc784dbacf04fb701eb-1"></a><span class="c1">## hard limit</span>
+<a name="rest_code_372509ef58454bc784dbacf04fb701eb-2"></a>kullanici1        hard nofile <span class="m">10000</span>
+<a name="rest_code_372509ef58454bc784dbacf04fb701eb-3"></a><span class="c1">## soft limit</span>
+<a name="rest_code_372509ef58454bc784dbacf04fb701eb-4"></a>kullanici1        soft nofile <span class="m">5000</span>
+</pre>
+<p>Yaptiginiz degisikligin aktif olmasi icin cikis yapip tekrar giris yapmaniz gereklidir.</p>
+<p><strong>Senaryo olusturma</strong></p>
+<p>Locust icin cesitli senaryolar yazabilirsiniz. Iki basit ornek verelim.</p>
+<p><em>Ornek 1:</em> Websitenizin anasayfasini ve hakkimda sayfalarini test etmek icin load-testing senaryosu yazalim.</p>
+<pre class="code python"><a name="rest_code_03b106badf2d4f4f941526fb5822d530-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span><span class="p">,</span> <span class="n">task</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-2"></a>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-3"></a><span class="k">class</span> <span class="nc">MyTaskSet</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-4"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-5"></a>     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-6"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-7"></a>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-8"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-9"></a>     <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-10"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/hakkinda/"</span><span class="p">)</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-11"></a>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-12"></a><span class="k">class</span> <span class="nc">MyLocust</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-13"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">MyTaskSet</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-14"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
+<a name="rest_code_03b106badf2d4f4f941526fb5822d530-15"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">15000</span>
+</pre>
+<p>'min_wait' ve 'max_wait' degerleri simule eden kullanicilarin bu sureler arasinda istek yapmasini gosterir.</p>
+<p><em>Ornek 2:</em> Websitenizin login sayfasina kullanici ile giris yapip, anasayfasini ve profile sayfasini test senaryosu yazalim.</p>
+<pre class="code python"><a name="rest_code_21b81d96c0384ca592dc569fa435bffd-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-2"></a>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-3"></a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-4"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/login"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"ellen_key"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span><span class="s2">"education"</span><span class="p">})</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-5"></a>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-6"></a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-7"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-8"></a>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-9"></a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-10"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/profile"</span><span class="p">)</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-11"></a>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-12"></a><span class="k">class</span> <span class="nc">UserBehavior</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-13"></a>     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-14"></a>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-15"></a>     <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-16"></a>             <span class="n">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-17"></a>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-18"></a><span class="k">class</span> <span class="nc">WebsiteUser</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-19"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">UserBehavior</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-20"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
+<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-21"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">9000</span>
+</pre>
+<p><strong>Load-Testing Yapmak</strong></p>
+<p>Locust ile yazdigimiz senaryolar ile load-testing yapmak icin;</p>
+<pre class="code bash"><a name="rest_code_a7f48c8f465b47068ac4260819ca996d-1"></a>$ locust --host<span class="o">=</span>http://example.com
+</pre>
+<p>ya da yazdigimiz senaryo dosyasinin yolunu belirterek;</p>
+<pre class="code bash"><a name="rest_code_21bf7dbb80914d3ab7d9ff5987e1b1e8-1"></a>$ locust -f locust_files/my_locust_file.py --host<span class="o">=</span>http://example.com
+</pre>
+<p>Test basladiktan sonra tarayiciniza 'localhost:8089' yazarak kullanicilari simule edip testinizi izleyebilirsiniz.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/freeipa-ve-active-directory-entegrasyonu/" class="u-url">FreeIPA ve Active Directory Entegrasyonu</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/freeipa-ve-active-directory-entegrasyonu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-22T17:20:37+03:00" title="2017-01-22 17:20">2017-01-22 17:20</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/freeipa-ve-active-directory-entegrasyonu/#disqus_thread" data-disqus-identifier="cache/posts/freeipa-ve-active-directory-entegrasyonu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<dl class="simple">
+<dt><strong>Kurulum oncesi hazirlik:</strong></dt>
+<dd><ol class="arabic simple">
+<li><dl class="simple">
+<dt>FreeIPA Server 4.4.0-14 ( CentOS 7 )</dt>
+<dd><ul class="simple">
+<li><p>IPA Server IP Adresi: 172.16.183.128</p></li>
+<li><p>IPA Server Hostname: ipaserver.piesso.local</p></li>
+<li><p>IPA Domain: piesso.local</p></li>
+<li><p>IPA Netbios: PIESSO</p></li>
+<li><p>IPA Kerberos realm: PIESSO.LOCAL</p></li>
+</ul></dd>
+</dl></li>
+<li><dl class="simple">
+<dt>Windows Server 2012 R2</dt>
+<dd><ul class="simple">
+<li><p>Active Directory IP Adresi: 172.16.183.132</p></li>
+<li><p>Active Directory Hostname: ad.pencere.local</p></li>
+<li><p>Active Directory Domain: pencere.local</p></li>
+<li><p>Active Directory Netbios: PENCERE</p></li>
+</ul></dd>
+</dl></li>
+</ol></dd>
+</dl>
+<p>Windows Server 2012 R2 ve FreeIPA icin kerberos ticket vs gibi sorunlar yasanmamasi icin ntp ile zaman esitlemesi mutlaka baslatilmalidir. FreeIPA kurulumunda ontanimli olarak ntp client "time sync" islemini ntp pool'larindan alarak esitlemektedir. Fakat Windows Server 2012 R2 uzerinde de bunu yapmak icin manuel ntp pool sunucularini girip zaman servisini yeniden baslatilmasi gerekmektedir.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin "+3" oldugunu kontrol edin.</p>
+</div>
+<p><em>(Powershell uzerinde)</em></p>
+<pre class="code powershell"><a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
+<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="err">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="err">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
+<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="err">:</span><span class="n">yes</span>
+<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
+</pre>
+<p><strong>FreeIPA ve Active Directory Cross-Realm Trust:</strong></p>
+<ul class="simple">
+<li><p>Ilk olarak "ipa-adtrust-install" paketini repodan kuralim:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_cd50fe50a08e409f9b681be3c944cfb7-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
+</pre>
+<ul class="simple">
+<li><p>IPA Server uzerinde cross-realm islemi icin:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_84c304852399415fb7a7605880e45db7-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
+</pre>
+<p><strong>Firewall Konfigurasyonu:</strong></p>
+<p>Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.</p>
+<pre class="code console"><a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
+<a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
+</pre>
+<p>Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:</p>
+<pre class="code bash"><a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-1"></a><span class="c1"># systemctl disable firewalld</span>
+<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-2"></a><span class="c1"># systemctl stop firewalld</span>
+<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-3"></a><span class="c1"># yum install -y iptables-services</span>
+<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-4"></a><span class="c1"># systemctl enable iptables</span>
+</pre>
+<p>"/etc/sysconfig/iptables" dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:</p>
+<pre class="code console"><a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-1"></a><span class="go">\*filter</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
+<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-15"></a><span class="go">COMMIT</span>
+</pre>
+<p>Iptables servisini baslatabiliriz:</p>
+<pre class="code bash"><a name="rest_code_fb6326f0f2eb449697d4407f8cdf258b-1"></a><span class="c1"># systemctl start iptables</span>
+</pre>
+<p><strong>DNS Forward Zone:</strong></p>
+<p>Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.</p>
+<ul class="simple">
+<li><p>Windows Server 2012 R2 uzerinde:</p></li>
+</ul>
+<pre class="code powershell"><a name="rest_code_0bc6fb2df2394b21916b604a64f2aeee-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
+</pre>
+<ul class="simple">
+<li><p>FreeIPA Server uzerinde:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_8e8c2f18f4c24eb7a9e5071049c3f6ff-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
+</pre>
+<ul class="simple">
+<li><p>Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:</p></li>
+</ul>
+<p><em>Windows Server 2012 R2 (PowerShell):</em></p>
+<pre class="code powershell"><a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
+<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
+</pre>
+<ul class="simple">
+<li><p>FreeIPA Server uzerinde:</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
+<a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
+</pre>
+<p><strong>Cross-Realm Trust:</strong></p>
+<p>Freeipa ile Active Directory arasinda "Two-way trust" konfigurasyonu:</p>
+<pre class="code bash"><a name="rest_code_fb0605c4ecac40a5867a7a7712d84b87-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
+</pre>
+<p>"Two-way trust" baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:</p>
+<pre class="code bash"><a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-1"></a><span class="c1"># ipa trust-fetch-domains "pencere.local"</span>
+<a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-2"></a><span class="c1"># ipa trustdomain-find "pencere.local"</span>
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ipa-client-kurulumu/" class="u-url">IPA Client Kurulumu</a></h1>
+        <div class="metadata">
+            <p class="dateline"><a href="posts/ipa-client-kurulumu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-22T16:24:47+03:00" title="2017-01-22 16:24">2017-01-22 16:24</time></a></p>
+            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+                <p class="commentline"><i class="fa fa-comment"></i> 
+        
+    <a href="posts/ipa-client-kurulumu/#disqus_thread" data-disqus-identifier="cache/posts/ipa-client-kurulumu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<dl>
+<dt><strong>Kullanilan yazilimlar:</strong></dt>
+<dd><ul>
+<li>
+<p>Centos Linux 7.2</p>
+<blockquote>
+<ul class="simple">
+<li><p>ipa-client</p></li>
+<li><p>ipa-admin-tools</p></li>
+</ul>
+</blockquote>
+</li>
+</ul></dd>
+</dl>
+<p><strong>Kurulum Oncesi Hazirlik:</strong></p>
+<pre class="code bash"><a name="rest_code_be49731c5bf145c9a256781147932cb9-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
+<a name="rest_code_be49731c5bf145c9a256781147932cb9-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
+</pre>
+<p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
+<blockquote>
+<ol class="arabic simple">
+<li><p>Hostname</p></li>
+<li><p>/etc/hosts</p></li>
+<li><p>Sistem update</p></li>
+</ol>
+</blockquote>
+<p><em>Hostname:</em></p>
+<pre class="code bash"><a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
+</pre>
+<p><em>/etc/hosts:</em></p>
+<pre class="code bash"><a name="rest_code_15c38659790447f8a288f092a83e8996-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
+<a name="rest_code_15c38659790447f8a288f092a83e8996-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
+</pre>
+<p><em>Sistem update:</em></p>
+<pre class="code bash"><a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"></a><span class="c1"># yum update -y</span>
+</pre>
+<p><strong>Kurulum:</strong></p>
+<ul class="simple">
+<li><p>ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
+</pre>
+<ul class="simple">
+<li><p>ipa-client kurulumu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_1910355d47d14b69883d616125586182-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
+</pre>
+<p><strong>IPA Client ve Kerberos Ticket Testi:</strong></p>
+<ul class="simple">
+<li><p>FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_1389b757d7f3440295bd446966ad571c-1"></a><span class="c1"># getent passwd admin</span>
+<a name="rest_code_1389b757d7f3440295bd446966ad571c-2"></a><span class="c1"># getent group admins</span>
+</pre>
+<ul class="simple">
+<li><p>Kerberos'tan ticket alimi;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"></a><span class="c1"># kinit admin</span>
+</pre>
+<ul class="simple">
+<li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
+</ul>
+<pre class="code bash"><a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"></a><span class="c1"># klist</span>
+</pre>
+<ul class="simple">
+<li><p>Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;</p></li>
+</ul>
+<p><em>/etc/resolv.conf:</em></p>
+<pre class="code bash"><a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"></a>search piesso.local
+<a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"></a>nameserver <span class="m">172</span>.16.183.128
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/centos-7-uzerine-freeipa-kurulumu/" class="u-url">Centos 7 uzerine FreeIPA Kurulumu</a></h1>
         <div class="metadata">
             <p class="dateline"><a href="posts/centos-7-uzerine-freeipa-kurulumu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-21T22:15:13+03:00" title="2017-01-21 22:15">2017-01-21 22:15</time></a></p>
             <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
@@ -208,7 +541,7 @@ Sadece bir sinif ve 20-30 kisi ile baslayan Linux Yaz Kampi, artik 10'u askin si
     <li>Web Uygulama Guvenligi ve Guvenli Kod Gelistirme</li>
     <li>Tersine Muhendislik</li>
 </ul>
-Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, eglenceli ve verimli yaz kampi olmasi dilegiyle.
+<p>Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, eglenceli ve verimli yaz kampi olmasi dilegiyle.</p>
 <p>Linux Yaz Kampi icin detayli bilgi icin <a href="http://kamp.linux.org.tr/2014/" target="_blank">tiklayin</a>.</p>
 </div>
     </div>
@@ -231,11 +564,10 @@ Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, e
 <p>Systemd büyük bir hızla ,öncelikle güncel linux dağıtımlarında yerini almaya başladı.Systemd linux çekirdeği için geliştirilen ve klasik init sistemlerinin(openrc vs.) yerine geçecek olan daha hızlı ve kararlı bir sistem yönetim daemonu.</p>
 <p><img class="  " alt="systemd pstree çıktısı" src="https://raw.githubusercontent.com/hut/minirc/master/screenshot.png" width="368" height="277"> systemd pstree çıktısı</p>
 <p><img class=" " alt="init pstree çıktısı" src="https://cdn-images-1.medium.com/max/582/1*-QPL92V3VJo6BuGRJ6qJ-w.png" width="357" height="251"> init pstree çıktısı
- 
-</p>
+ </p>
 <p>Yukardaki ekran görüntüleri örneklerinde de gördüğünüz gibi systemd 'nin sistem üzerindeki ilk daemon(ve proses) olduğu ve userspace üzerinde çalışacak olan tüm prosesler klasik init sistemlerinde olduğu gibi systemd'nin alt proseslerini oluşturmaktadir.Systemd'nin yapısını biraz daha iyi anlamak için aşağıdaki şema yardımcı olacaktır.
 </p>
-<img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri
+<p><img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri</p>
 <p>Binary Linux Dağıtımlarında eğer systemd'ye geçilmişse ayrıca birşey yapmanıza gerek yok.Fakat Gentoo Linux dağıtımında şu an stage 3'te öntanımlı gelmediği için kendiniz yardımcı araçlarla geçebilirsiniz.(ki gentoo geliştiricileri bunun için birçok şeyi hazırlamış bulunmakta.)</p>
 <p>Kısa adımlarla systemd'ye geçişten bahsedebilirim:</p>
 <ol>
@@ -264,104 +596,97 @@ Yeni eklenen bu egitimler ile beraber toplam 8 kurs bulunuyor. Bu yilda guzel, e
 [14]  hardened/linux/amd64/no-multilib/selinux
 [15]  hardened/linux/amd64/x32
 [16]  hardened/linux/uclibc/amd64
-Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.
-</p>
+Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.</p>
 <pre># eselect profile set 5</pre>
- 
 <ol>
-<li>Bu adımda <i>"systemd"</i>yi yükleyelim.
+<li>Bu adımda <i>"systemd"</i>yi yükleyelim.</li>
+</ol>
 <pre># emerge --ask systemd</pre>
-</li>
-<li>
-<p>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
-</p>
-<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
-şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.
-<pre># emerge -NuDa world</pre>
-Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.
-</li>
-<li>
-<p>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</p>
+<ol>
+<li>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
 </li>
 </ol>
-<p>( /boot/grub/menu.lst )
-</p>
+<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
+<p>şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.</p>
+<pre># emerge -NuDa world</pre>
+<p>Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.</p>
+<ol>
+<li>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</li>
+</ol>
+<p>( /boot/grub/menu.lst )</p>
 <pre>kernel /vmlinuz-3.7.10-r1 root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
-Grub 2 için;
-<p>( /boot/grub/grub.cfg )
-</p>
+<p>Grub 2 için;</p>
+<p>( /boot/grub/grub.cfg )</p>
 <pre>linux /vmlinuz-3.7.10-r1 root=UUID=21312312-12312312-1231121 init=/usr/lib/systemd/systemd</pre>
-UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
-"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;
+<p>UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
+"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;</p>
 <pre>root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
-6.Sistemi yeniden başlatın.
+<p>6.Sistemi yeniden başlatın.</p>
 <p>7.Sistem yeniden başladıktan sonra eski(Openrc vs.) init sistemi üzerinde tanımladığımız hostname,locale ayarları artık systemd üzerinde geçerli olmayacaktır.</p>
-<p>Systemd hostname ayarlamak için;
-</p>
+<p>Systemd hostname ayarlamak için;</p>
 <pre># hostnamectl set-hostname benimpc</pre>
-Systemd klavye ayarları için;
+<p>Systemd klavye ayarları için;</p>
 <pre># localectl set-keymap trq</pre>
-X11 için;
+<p>X11 için;</p>
 <pre># localectl set-x11-keymap tr</pre>
-Sistem locale ayarı için;
+<p>Sistem locale ayarı için;</p>
 <pre># localectl set-locale LANG=en_US.UTF-8</pre>
-Türkçe için;
+<p>Türkçe için;</p>
 <pre># localectl set-locale LANG=tr_TR.UTF-8</pre>
-8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.
-<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;
-</p>
+<p>8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.</p>
+<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;</p>
 <pre># systemctl</pre>
-Aktif ve deaktif tüm servislerin durumunu görmek için;
+<p>Aktif ve deaktif tüm servislerin durumunu görmek için;</p>
 <pre># systemctl list-unit-files</pre>
-Herhangi bir servisi sistem açılışına eklemek için;
+<p>Herhangi bir servisi sistem açılışına eklemek için;</p>
 <pre># systemd enable vixie-cron.service</pre>
-Herhangi bir servisi çalıştırmak için;
+<p>Herhangi bir servisi çalıştırmak için;</p>
 <pre># systemctl start syslog-ng.service</pre>
-<b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.
-<p>Herhangi bir servisin durumunu görmek için;
-</p>
+<p><b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.</p>
+<p>Herhangi bir servisin durumunu görmek için;</p>
 <pre># systemctl status NetworkManager.service</pre>
-Herhangi bir servisi durdurmak için;
+<p>Herhangi bir servisi durdurmak için;</p>
 <pre># systemctl stop upower.service</pre>
-Herhangi bir servisi yeniden başlatmak için;
+<p>Herhangi bir servisi yeniden başlatmak için;</p>
 <pre># systemctl restart dhcpcd.service</pre>
-<b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;
+<p><b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;</p>
 <pre># systemctl enable xdm.service</pre>
-Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;
-<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,
-</p>
+<p>Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;</p>
+<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,</p>
 <pre>[Service]
 ExecStart=/usr/bin/xdm -nodaemon</pre>
---&gt; satırını;
-<p>(GDM için)
-</p>
+<p>--&gt; satırını;</p>
+<p>(GDM için)</p>
 <pre>[Service]
 ExecStart=/usr/bin/gdm</pre>
----&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.
+<p>---&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.</p>
 <ol>
 <li>Değinebileceğim diğer bir nokta ise açılışta otomatik yüklenmesi istediğiniz modüller ve network ayarları.</li>
 </ol>
 <p>Sistem açılışında otomatik yüklenmesi istediğiniz modül ya da  modülleri <b>"/etc/modules-load.d"</b> dizini içerisine isterseniz ayrı ayrı,istediğiniz sekilde isimlendirdiğiniz dosyaların içerisine ilk satıra ve ya tek bir dosya içerisinde her modül tek satırda olacak şekilde yazabilirsiniz.Örnek:</p>
-<p>( /etc/modules-load.d/modullerim.conf )
-</p>
+<p>( /etc/modules-load.d/modullerim.conf )</p>
 <pre>bridge
-<p>tun</p></pre>
+
+tun</pre>
 <pre>şeklinde ekleyebilirsiniz.
-<p>Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</p></pre>
+
+Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</pre>
 <pre># systemctl enable dhcpcd.service</pre>
-Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;
+<p>Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;</p>
 <pre># systemctl enable NetworkManager.service</pre>
-Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;
-<p>( /etc/systemd/system/mynetwork.service )
-</p>
+<p>Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;</p>
+<p>( /etc/systemd/system/mynetwork.service )</p>
 <pre>[Unit]
 Description=network ayarlarim
 After=network.target
-<p>[Service]
+
+[Service]
 Type=oneshot
-RemainAfterExit=yes</p>
-<p>EnvironmentFile=/etc/conf.d/bridge.conf</p>
-<p>ExecStart=/bin/ifconfig eth0 up
+RemainAfterExit=yes
+
+EnvironmentFile=/etc/conf.d/bridge.conf
+
+ExecStart=/bin/ifconfig eth0 up
 ExecStart=/bin/ifconfig eth1 up
 ExecStart=/usr/bin/tunctl -b -u rico -t tap0
 ExecStart=/bin/ifconfig tap0 up promisc
@@ -369,8 +694,9 @@ ExecStart=/sbin/brctl addbr br0
 ExecStart=/sbin/brctl addif br0 eth0
 ExecStart=/sbin/brctl addif br0 eth1
 ExecStart=/sbin/brctl addif br0 tap0
-ExecStart=/sbin/dhcpcd br0</p>
-<p>ExecStop=/usr/bin/killall dhcpcd
+ExecStart=/sbin/dhcpcd br0
+
+ExecStop=/usr/bin/killall dhcpcd
 ExecStop=/bin/ifconfig eth0 down
 ExecStop=/bin/ifconfig eth1 down
 ExecStop=/bin/ifconfig tap0 down
@@ -379,10 +705,12 @@ ExecStop=/usr/bin/tunctl -d tap0
 ExecStop=/sbin/brctl delif br0 eth0
 ExecStop=/sbin/brctl delif br0 eth1
 ExecStop=/bin/ifconfig br0 down
-ExexStop=/sbin/brctl delbr br0</p>
-<p>[Install]
-WantedBy=multi-user.target</p></pre>
-Systemd ile iyi keyifler :)</div>
+ExexStop=/sbin/brctl delbr br0
+
+[Install]
+WantedBy=multi-user.target</pre>
+<p>Systemd ile iyi keyifler :)</p>
+</div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alcatel-lucent-switch-konsol-pin-siralamas/" class="u-url">Alcatel-Lucent Switch Konsol Pin Sıralaması</a></h1>
         <div class="metadata">
@@ -438,7 +766,7 @@ Systemd ile iyi keyifler :)</div>
             <li class="next">
                 <a href="index-22.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2021         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
             
