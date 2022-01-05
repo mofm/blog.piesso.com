@@ -1,0 +1,28 @@
+<p>Vim supported channels for inter-process communication and job channels communicate with other processes.
+Also, The vim packages contains the demo channel server(demoserver.py). You can find <strong>demoserver.py</strong> script in <em>&quot;$VIMRUNTIME/tools/&quot;</em>. <em>&quot;$VIMRUNTIME&quot;</em> path, may change according to your distro:</p>
+<p>My path, &quot;/usr/share/vim/vim82/tools/demoserver.py&quot; on Gentoo Linux.</p>
+<ul class="simple">
+<li><p>First, run the demo server in a terminal.</p></li>
+</ul>
+<pre class="code bash"><a id="rest_code_a5b075140da548f6ab02f122eab21038-1" name="rest_code_a5b075140da548f6ab02f122eab21038-1"></a>$ python /usr/share/vim/vim82/tools/demoserver.py
+</pre><ul>
+<li><p>And then, run Vim in another terminal.</p></li>
+<li><p>For detailed information, I am quoting from the script:</p>
+<pre class="literal-block"># Server that will accept connections from a Vim channel.
+# Run this server and then in Vim you can open the channel:
+#  :let handle = ch_open('localhost:8765')
+#
+# Then Vim can send requests to the server:
+#  :let response = ch_sendexpr(handle, 'hello!')
+#
+# And you can control Vim by typing a JSON message here, e.g.:
+#   [&quot;ex&quot;,&quot;echo 'hi there'&quot;]
+#
+# There is no prompt, just type a line and press Enter.
+# To exit cleanly type &quot;quit&lt;Enter&gt;&quot;.
+#
+# See &quot;:help channel-demo&quot; in Vim.
+#
+# This requires Python 2.6 or later.</pre>
+</li>
+</ul>

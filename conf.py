@@ -137,14 +137,23 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 #          with a ``/``, otherwise end them with ``/index.html`` — or
 #          else they won’t be highlighted when active.
 
+#NAVIGATION_LINKS = {
+#    DEFAULT_LANG: (
+#        ('/index.html', 'Home', 'fas fa-home'),
+#	('/archive.html', 'Archives', 'fas fa-archive'),
+#	('/categories/index.html', 'Tags', 'fas fa-tags'),
+#	('/rss.xml', 'RSS', 'fas fa-rss'),
+#	('/pages/about-me', 'About me', 'fa fa-user'),
+#	('https://github.com/mofm', 'My Github', 'fab fa-github'),
+#    ),
+#}
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ('/index.html', 'Home', 'fas fa-home'),
-	('/archive.html', 'Archives', 'fas fa-archive'),
-	('/categories/index.html', 'Tags', 'fas fa-tags'),
-	('/rss.xml', 'RSS', 'fas fa-rss'),
-	('/pages/about-me', 'About me', 'fa fa-user'),
-	('https://github.com/mofm', 'My Github', 'fab fa-github'),
+        ("/index.html", "Home"),
+        ("/archive.html", "Archive"),
+        ("/categories/", "Tags"),
+        ("/pages/about-me", "About me"),
+        ('https://github.com/mofm', 'Github'),
     ),
 }
 
@@ -156,7 +165,8 @@ NAVIGATION_ALT_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "zen"
+#THEME = "zen-forkawesome"
+THEME = "bootstrap4-simplex"
 
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.
@@ -652,11 +662,11 @@ REDIRECTIONS = []
 #     ]
 # }
 
-#DEPLOY_COMMANDS = {
-#    'default': [
-#        "rsync -rav --delete output/ mofm@172.16.0.6:/home/mofm/",
-#    ]
-#}
+DEPLOY_COMMANDS = {
+    'default': [
+        "rsync -ravz --delete --exclude 'robots.txt' -e 'ssh -p 2212' output/ mofm@172.16.0.6:/home/mofm/blog",
+    ]
+}
 
 # github_deploy configuration
 # For more details, read the manual:
@@ -912,6 +922,15 @@ CODE_COLOR_SCHEME = 'monokai'
 #     ("icon", "/icon_128x128.png", "128x128"),
 # )
 
+FAVICONS = (
+    ("icon", "/images/website/favicon.ico", "16x16"),
+    ("icon", "/images/website/favicon-32x32.png", "32x32"),
+    ("icon", "/images/website/favicon-16x16.png", "16x16"),
+    ("icon", "/images/website/apple-touch-icon.png", "180x180"),
+    ("icon", "/images/website/android-chrome-512x512.png", "512x512"),
+    ("icon", "/images/website/android-chrome-192x192.png", "192x192"),
+)
+
 # Show teasers (instead of full posts) in indexes? Defaults to False.
 # INDEX_TEASERS = False
 
@@ -945,18 +964,18 @@ FEED_LINKS_APPEND_QUERY = False
 
 # A HTML fragment describing the license, for the sidebar.
 # (translatable)
-#LICENSE = ""
+LICENSE = ""
 # I recommend using the Creative Commons' wizard:
 # https://creativecommons.org/choose/
-LICENSE = """
-<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-<img alt="Creative Commons License BY-NC-SA"
-style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>"""
+#LICENSE = """
+#<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+#<img alt="Creative Commons License BY-NC-SA"
+#style="border-width:0; margin-bottom:12px;"
+#src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>"""
 
 # A small copyright notice for the page footer (in HTML).
 # (translatable)
-CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         {license}'
+CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         {license}'
 
 # Things that will be passed to CONTENT_FOOTER.format().  This is done
 # for translatability, as dicts are not formattable.  Nikola will
@@ -1149,6 +1168,7 @@ COPY_SOURCES = False
 # By default, Nikola generates RSS files for the website and for tags, and
 # links to it.  Set this to False to disable everything RSS-related.
 # GENERATE_RSS = True
+GENERATE_RSS = False
 
 # By default, Nikola does not generates Atom files for indexes and links to
 # them. Generate Atom for tags by setting TAG_PAGES_ARE_INDEXES to True.
@@ -1158,6 +1178,7 @@ COPY_SOURCES = False
 # are generated even for old indexes and have pagination link relations
 # between each other. Old Atom feeds with no changes are marked as archived.
 # GENERATE_ATOM = False
+GENERATE_ATOM = False
 
 # Only include teasers in Atom and RSS feeds. Disabling include the full
 # content. Defaults to True.
@@ -1232,10 +1253,11 @@ COPY_SOURCES = False
 # before </head>
 # (translatable)
 # EXTRA_HEAD_DATA = ""
-EXTRA_HEAD_DATA = """
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Red+Hat+Display&family=Roboto:wght@700&display=swap" rel="stylesheet">
-"""
+#EXTRA_HEAD_DATA = """
+#<link rel="preconnect" href="https://fonts.gstatic.com">
+#<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Red+Hat+Display&family=Roboto:wght@700&display=swap" rel="stylesheet">
+#"""
+#
 # Google Analytics or whatever else you use. Added to the bottom of <body>
 # in the default template (base.tmpl).
 # (translatable)

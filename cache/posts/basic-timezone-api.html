@@ -1,0 +1,93 @@
+<p>timezone-api is lightweight Flask app with TimezoneFinder(L) python library and
+provides a simple interface. Your request the timezone information for specific
+latitude and longtitude pair.</p>
+<h2>Request Parameters</h2>
+<p>Parameters are separated using the ampersand(&amp;) character.</p>
+<ul>
+<li><strong>lat</strong>: latitude (eg. lat=39.6034810) <em>(Required)</em></li>
+<li><strong>lng</strong>: longtitude (eg. lng=-119.6822510) <em>(Required)</em></li>
+<li><strong>timestamp</strong>: timestamp (eg. timestamp=1331161200) <em>(Required)</em></li>
+</ul>
+<h3>Example Request</h3>
+<p><strong>Request:</strong></p>
+<p>API urls must follow this format:</p>
+<p><code>https://api.example.com/timezone/api?lng=-119.6822510&amp;lat=39.6034810&amp;timestamp=1331766000</code></p>
+<p><strong>Response:</strong></p>
+<p><code>{"dstoffset":3600.0,"rawoffset":-28800.0,"status":200,"tzname":"America/Los_Angeles"}</code></p>
+<pre class="code literal-block"><span></span><code><span class="o">-</span> <span class="nv">tzname</span>: <span class="nv">Timezone</span> <span class="nv">name</span>
+<span class="o">-</span> <span class="nv">dstoffset</span>: <span class="nv">the</span> <span class="nv">offset</span> <span class="k">for</span> <span class="nv">daylight</span><span class="o">-</span><span class="nv">savings</span> <span class="nv">time</span> <span class="nv">in</span> <span class="nv">seconds</span>.
+<span class="nv">This</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">zero</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">time</span> <span class="nv">zone</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">in</span> <span class="nv">Daylight</span> <span class="nv">Savings</span> <span class="nv">Time</span> <span class="nv">during</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">timestamp</span>.
+<span class="o">-</span> <span class="nv">rawoffset</span>: <span class="nv">the</span> <span class="nv">offset</span> <span class="nv">from</span> <span class="nv">UTC</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">seconds</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">given</span> <span class="nv">location</span>.
+<span class="nv">This</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">take</span> <span class="nv">into</span> <span class="nv">effect</span> <span class="nv">daylight</span> <span class="nv">savings</span>.
+<span class="o">-</span> <span class="nv">status</span>: <span class="nv">response</span> <span class="nv">code</span>
+    <span class="o">-</span> <span class="mi">200</span>: <span class="nv">the</span> <span class="nv">request</span> <span class="nv">was</span> <span class="nv">successful</span>
+    <span class="o">-</span> <span class="mi">400</span>: <span class="nv">missing</span> <span class="nv">parameter</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+    <span class="o">-</span> <span class="mi">422</span>: <span class="nv">out</span> <span class="nv">of</span> <span class="nv">bounds</span> <span class="nv">error</span>
+</code></pre>
+
+<h2>API Health</h2>
+<p>To check the API status or health</p>
+<p><strong>Request:</strong></p>
+<p><code>https://api.example.com/timezone/health/</code></p>
+<p><strong>Response:</strong>
+OK</p>
+<h2>API Info</h2>
+<p>For information about API</p>
+<p><strong>Request:</strong></p>
+<p><code>https://api.example.com/timezone/info/</code></p>
+<p><strong>Response:</strong></p>
+<p><code>{"debug":false,"running-since":1620688782.0930135,"version":"0.0.1"}</code></p>
+<pre class="code literal-block"><span></span><code>- debug: APP debug status
+- running-since: API start time
+- version: API version
+</code></pre>
+
+<h2>Installation</h2>
+<h3>I. Method: From Docker Hub</h3>
+<pre class="code literal-block">$ docker run -d -p <span class="m">8080</span>:8000 --name timezone-35 mofm/timezone-api
+</pre>
+<ul>
+<li>Test</li>
+</ul>
+<pre class="code literal-block">$ curl --request GET  <span class="s2">&quot;http://127.0.0.1:8080/timezone/api/?lng=-119.6822510&amp;lat=39.6034810&amp;timestamp=1331766000&quot;</span>
+</pre>
+<pre class="code literal-block"><span></span><code>{
+  &quot;dstoffset&quot;: 3600.0,
+  &quot;rawoffset&quot;: -28800.0,
+  &quot;status&quot;: 200,
+  &quot;tzname&quot;: &quot;America/Los_Angeles&quot;
+}
+</code></pre>
+
+<h3>II. Method: Build Docker image</h3>
+<ul>
+<li>Clone this repostory</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ git clone https://github.com/mofm/timezone-api.git
+</code></pre>
+
+<ul>
+<li>Build Docker image (slim image with Google Distroless)</li>
+</ul>
+<pre class="code literal-block"><span></span><code>docker build -t timezone-img .
+</code></pre>
+
+<ul>
+<li>Running Docker image</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ docker run -d -p <span class="m">8080</span>:8000 --name timezone-api ti
+</code></pre>
+
+<ul>
+<li>Test</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ curl --request GET  <span class="s2">&quot;http://127.0.0.1:8080/timezone/api/?lng=-119.6822510&amp;lat=39.6034810&amp;timestamp=1331766000&quot;</span>
+</code></pre>
+
+<pre class="code literal-block"><span></span><code>{
+  &quot;dstoffset&quot;: 3600.0,
+  &quot;rawoffset&quot;: -28800.0,
+  &quot;status&quot;: 200,
+  &quot;tzname&quot;: &quot;America/Los_Angeles&quot;
+}
+</code></pre>
