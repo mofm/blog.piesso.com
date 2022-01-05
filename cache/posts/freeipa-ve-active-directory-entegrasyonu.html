@@ -28,79 +28,79 @@
 </dd>
 </dl>
 <p>Windows Server 2012 R2 ve FreeIPA icin kerberos ticket vs gibi sorunlar yasanmamasi icin ntp ile zaman esitlemesi mutlaka baslatilmalidir. FreeIPA kurulumunda ontanimli olarak ntp client &quot;time sync&quot; islemini ntp pool'larindan alarak esitlemektedir. Fakat Windows Server 2012 R2 uzerinde de bunu yapmak icin manuel ntp pool sunucularini girip zaman servisini yeniden baslatilmasi gerekmektedir.</p>
-<div class="admonition warning">
+<aside class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin &quot;+3&quot; oldugunu kontrol edin.</p>
-</div>
+</aside>
 <p><em>(Powershell uzerinde)</em></p>
-<pre class="code powershell"><a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
-<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="err">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="err">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
-<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="err">:</span><span class="n">yes</span>
-<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
+<pre class="code powershell"><a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-1" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
+<a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-2" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="p">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="p">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
+<a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-3" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="p">:</span><span class="n">yes</span>
+<a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-4" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
 </pre><p><strong>FreeIPA ve Active Directory Cross-Realm Trust:</strong></p>
 <ul class="simple">
 <li><p>Ilk olarak &quot;ipa-adtrust-install&quot; paketini repodan kuralim:</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_cd50fe50a08e409f9b681be3c944cfb7-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
+<pre class="code bash"><a id="rest_code_f64302c937ad4238a2b9d786c795492a-1" name="rest_code_f64302c937ad4238a2b9d786c795492a-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
 </pre><ul class="simple">
 <li><p>IPA Server uzerinde cross-realm islemi icin:</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_84c304852399415fb7a7605880e45db7-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
+<pre class="code bash"><a id="rest_code_949e2ffa089d4e16b28a67ea92477537-1" name="rest_code_949e2ffa089d4e16b28a67ea92477537-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
 </pre><p><strong>Firewall Konfigurasyonu:</strong></p>
 <p>Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.</p>
-<pre class="code console"><a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
-<a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
+<pre class="code console"><a id="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-1" name="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
+<a id="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-2" name="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
 </pre><p>Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:</p>
-<pre class="code bash"><a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-1"></a><span class="c1"># systemctl disable firewalld</span>
-<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-2"></a><span class="c1"># systemctl stop firewalld</span>
-<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-3"></a><span class="c1"># yum install -y iptables-services</span>
-<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-4"></a><span class="c1"># systemctl enable iptables</span>
+<pre class="code bash"><a id="rest_code_bd8340030b2748229584ec664d0ad881-1" name="rest_code_bd8340030b2748229584ec664d0ad881-1"></a><span class="c1"># systemctl disable firewalld</span>
+<a id="rest_code_bd8340030b2748229584ec664d0ad881-2" name="rest_code_bd8340030b2748229584ec664d0ad881-2"></a><span class="c1"># systemctl stop firewalld</span>
+<a id="rest_code_bd8340030b2748229584ec664d0ad881-3" name="rest_code_bd8340030b2748229584ec664d0ad881-3"></a><span class="c1"># yum install -y iptables-services</span>
+<a id="rest_code_bd8340030b2748229584ec664d0ad881-4" name="rest_code_bd8340030b2748229584ec664d0ad881-4"></a><span class="c1"># systemctl enable iptables</span>
 </pre><p>&quot;/etc/sysconfig/iptables&quot; dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:</p>
-<pre class="code console"><a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-1"></a><span class="go">\*filter</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-15"></a><span class="go">COMMIT</span>
+<pre class="code console"><a id="rest_code_317d88750e3d4b26988d64711564cc55-1" name="rest_code_317d88750e3d4b26988d64711564cc55-1"></a><span class="go">\*filter</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-2" name="rest_code_317d88750e3d4b26988d64711564cc55-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-3" name="rest_code_317d88750e3d4b26988d64711564cc55-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-4" name="rest_code_317d88750e3d4b26988d64711564cc55-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-5" name="rest_code_317d88750e3d4b26988d64711564cc55-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-6" name="rest_code_317d88750e3d4b26988d64711564cc55-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-7" name="rest_code_317d88750e3d4b26988d64711564cc55-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-8" name="rest_code_317d88750e3d4b26988d64711564cc55-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-9" name="rest_code_317d88750e3d4b26988d64711564cc55-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-10" name="rest_code_317d88750e3d4b26988d64711564cc55-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-11" name="rest_code_317d88750e3d4b26988d64711564cc55-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-12" name="rest_code_317d88750e3d4b26988d64711564cc55-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-13" name="rest_code_317d88750e3d4b26988d64711564cc55-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-14" name="rest_code_317d88750e3d4b26988d64711564cc55-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
+<a id="rest_code_317d88750e3d4b26988d64711564cc55-15" name="rest_code_317d88750e3d4b26988d64711564cc55-15"></a><span class="go">COMMIT</span>
 </pre><p>Iptables servisini baslatabiliriz:</p>
-<pre class="code bash"><a name="rest_code_fb6326f0f2eb449697d4407f8cdf258b-1"></a><span class="c1"># systemctl start iptables</span>
+<pre class="code bash"><a id="rest_code_871b4cfe247a410ba109c0f2efa02e51-1" name="rest_code_871b4cfe247a410ba109c0f2efa02e51-1"></a><span class="c1"># systemctl start iptables</span>
 </pre><p><strong>DNS Forward Zone:</strong></p>
 <p>Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.</p>
 <ul class="simple">
 <li><p>Windows Server 2012 R2 uzerinde:</p></li>
 </ul>
-<pre class="code powershell"><a name="rest_code_0bc6fb2df2394b21916b604a64f2aeee-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
+<pre class="code powershell"><a id="rest_code_9a984f55d7044824b0923967727c0f5b-1" name="rest_code_9a984f55d7044824b0923967727c0f5b-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
 </pre><ul class="simple">
 <li><p>FreeIPA Server uzerinde:</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_8e8c2f18f4c24eb7a9e5071049c3f6ff-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
+<pre class="code bash"><a id="rest_code_fe67551074da4b5fa054b30fcbbe5e6b-1" name="rest_code_fe67551074da4b5fa054b30fcbbe5e6b-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
 </pre><ul class="simple">
 <li><p>Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:</p></li>
 </ul>
 <p><em>Windows Server 2012 R2 (PowerShell):</em></p>
-<pre class="code powershell"><a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
+<pre class="code powershell"><a id="rest_code_3a9ebbaf58564539ab71991e1c643894-1" name="rest_code_3a9ebbaf58564539ab71991e1c643894-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
+<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-2" name="rest_code_3a9ebbaf58564539ab71991e1c643894-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
+<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-3" name="rest_code_3a9ebbaf58564539ab71991e1c643894-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
+<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-4" name="rest_code_3a9ebbaf58564539ab71991e1c643894-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
+<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-5" name="rest_code_3a9ebbaf58564539ab71991e1c643894-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
 </pre><ul class="simple">
 <li><p>FreeIPA Server uzerinde:</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
-<a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
+<pre class="code bash"><a id="rest_code_3396a6965fa84cc2895936ee19357dfd-1" name="rest_code_3396a6965fa84cc2895936ee19357dfd-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
+<a id="rest_code_3396a6965fa84cc2895936ee19357dfd-2" name="rest_code_3396a6965fa84cc2895936ee19357dfd-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
 </pre><p><strong>Cross-Realm Trust:</strong></p>
 <p>Freeipa ile Active Directory arasinda &quot;Two-way trust&quot; konfigurasyonu:</p>
-<pre class="code bash"><a name="rest_code_fb0605c4ecac40a5867a7a7712d84b87-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
+<pre class="code bash"><a id="rest_code_cf00f9fc9fd844c7bc2a8a2d86cd8b83-1" name="rest_code_cf00f9fc9fd844c7bc2a8a2d86cd8b83-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
 </pre><p>&quot;Two-way trust&quot; baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:</p>
-<pre class="code bash"><a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-1"></a><span class="c1"># ipa trust-fetch-domains &quot;pencere.local&quot;</span>
-<a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-2"></a><span class="c1"># ipa trustdomain-find &quot;pencere.local&quot;</span>
+<pre class="code bash"><a id="rest_code_e03bf3571de540a7a7fc031959f04829-1" name="rest_code_e03bf3571de540a7a7fc031959f04829-1"></a><span class="c1"># ipa trust-fetch-domains &quot;pencere.local&quot;</span>
+<a id="rest_code_e03bf3571de540a7a7fc031959f04829-2" name="rest_code_e03bf3571de540a7a7fc031959f04829-2"></a><span class="c1"># ipa trustdomain-find &quot;pencere.local&quot;</span>
 </pre>

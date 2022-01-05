@@ -13,11 +13,11 @@
 </dd>
 </dl>
 <p><strong>Kurulum Oncesi Hazirlik:</strong></p>
-<pre class="code bash"><a name="rest_code_be49731c5bf145c9a256781147932cb9-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
+<pre class="code bash"><a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-1" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
+<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-2" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
+<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-3" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
+<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-4" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
+<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-5" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
 </pre><p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
 <blockquote>
 <ol class="arabic simple">
@@ -27,39 +27,39 @@
 </ol>
 </blockquote>
 <p><em>Hostname:</em></p>
-<pre class="code bash"><a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
+<pre class="code bash"><a id="rest_code_8e65a148cb904375a918b265de68badd-1" name="rest_code_8e65a148cb904375a918b265de68badd-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
 </pre><p><em>/etc/hosts:</em></p>
-<pre class="code bash"><a name="rest_code_15c38659790447f8a288f092a83e8996-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
-<a name="rest_code_15c38659790447f8a288f092a83e8996-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
+<pre class="code bash"><a id="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-1" name="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
+<a id="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-2" name="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
 </pre><p><em>Sistem update:</em></p>
-<pre class="code bash"><a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"></a><span class="c1"># yum update -y</span>
+<pre class="code bash"><a id="rest_code_ed15c32af4cc405b9848d20aae2b3af9-1" name="rest_code_ed15c32af4cc405b9848d20aae2b3af9-1"></a><span class="c1"># yum update -y</span>
 </pre><p><strong>Kurulum:</strong></p>
 <ul class="simple">
 <li><p>ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
+<pre class="code bash"><a id="rest_code_52c9edb869d54a03a5f1f40527214d85-1" name="rest_code_52c9edb869d54a03a5f1f40527214d85-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
 </pre><ul class="simple">
 <li><p>ipa-client kurulumu;</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_1910355d47d14b69883d616125586182-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
+<pre class="code bash"><a id="rest_code_a4826f6fbd0742e69580afa1ebb94fb8-1" name="rest_code_a4826f6fbd0742e69580afa1ebb94fb8-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
 </pre><p><strong>IPA Client ve Kerberos Ticket Testi:</strong></p>
 <ul class="simple">
 <li><p>FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_1389b757d7f3440295bd446966ad571c-1"></a><span class="c1"># getent passwd admin</span>
-<a name="rest_code_1389b757d7f3440295bd446966ad571c-2"></a><span class="c1"># getent group admins</span>
+<pre class="code bash"><a id="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-1" name="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-1"></a><span class="c1"># getent passwd admin</span>
+<a id="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-2" name="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-2"></a><span class="c1"># getent group admins</span>
 </pre><ul class="simple">
 <li><p>Kerberos'tan ticket alimi;</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"></a><span class="c1"># kinit admin</span>
+<pre class="code bash"><a id="rest_code_30e8bc7ecfd04540b59045b6374ec6d5-1" name="rest_code_30e8bc7ecfd04540b59045b6374ec6d5-1"></a><span class="c1"># kinit admin</span>
 </pre><ul class="simple">
 <li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"></a><span class="c1"># klist</span>
+<pre class="code bash"><a id="rest_code_2703686c04fd4119bf9ad6ca29484ee1-1" name="rest_code_2703686c04fd4119bf9ad6ca29484ee1-1"></a><span class="c1"># klist</span>
 </pre><ul class="simple">
 <li><p>Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;</p></li>
 </ul>
 <p><em>/etc/resolv.conf:</em></p>
-<pre class="code bash"><a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"></a>search piesso.local
-<a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"></a>nameserver <span class="m">172</span>.16.183.128
+<pre class="code bash"><a id="rest_code_61feca41f66441b2a80dd294a4254dae-1" name="rest_code_61feca41f66441b2a80dd294a4254dae-1"></a>search piesso.local
+<a id="rest_code_61feca41f66441b2a80dd294a4254dae-2" name="rest_code_61feca41f66441b2a80dd294a4254dae-2"></a>nameserver <span class="m">172</span>.16.183.128
 </pre>

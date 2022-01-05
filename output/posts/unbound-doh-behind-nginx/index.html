@@ -102,12 +102,12 @@ bg-dark
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <p>Unbound DoH is waiting HTTP/2 requests. But Nginx proxy module doesn't support HTTP/2 on the upstream connections.
 So you can use grpc proxy:</p>
-<pre class="code bash"><a id="rest_code_49f9804c174a476e87844e3a889156ae-1" name="rest_code_49f9804c174a476e87844e3a889156ae-1"></a>location /dns-query <span class="o">{</span>
-<a id="rest_code_49f9804c174a476e87844e3a889156ae-2" name="rest_code_49f9804c174a476e87844e3a889156ae-2"></a>     grpc_pass grpc://unbound-host<span class="p">;</span>
-<a id="rest_code_49f9804c174a476e87844e3a889156ae-3" name="rest_code_49f9804c174a476e87844e3a889156ae-3"></a><span class="o">}</span>
+<pre class="code bash"><a id="rest_code_3725f65e84f543308aa576bb83b55dd0-1" name="rest_code_3725f65e84f543308aa576bb83b55dd0-1"></a>location /dns-query <span class="o">{</span>
+<a id="rest_code_3725f65e84f543308aa576bb83b55dd0-2" name="rest_code_3725f65e84f543308aa576bb83b55dd0-2"></a>     grpc_pass grpc://unbound-host<span class="p">;</span>
+<a id="rest_code_3725f65e84f543308aa576bb83b55dd0-3" name="rest_code_3725f65e84f543308aa576bb83b55dd0-3"></a><span class="o">}</span>
 </pre>
 <p>and disable TLS for DNS-over-HTTP downstream service in unbound.conf:</p>
-<pre class="code bash"><a id="rest_code_6f59d48dcdfa4afe876a7ad311202c6a-1" name="rest_code_6f59d48dcdfa4afe876a7ad311202c6a-1"></a>http-notls-downstream: yes
+<pre class="code bash"><a id="rest_code_dfa0fae5f22347ac8b13592f98b0dd1e-1" name="rest_code_dfa0fae5f22347ac8b13592f98b0dd1e-1"></a>http-notls-downstream: yes
 </pre>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
