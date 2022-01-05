@@ -102,10 +102,9 @@ bg-dark
     <img alt="/images/nginx_logo.png" src="../../images/nginx_logo.png"><p>Bir websitesinin olmazsa olmaz unsurlardan biri performansli sekilde calismasidir. Performans ise birden fazla etkene bagli olabilir. Bu etkenler yazilan kodun kalitesinden tutun da websitenin yayinlandigi altyapiya kadar bagli olabilir. Fakat son kullanici sizin mukemmel kod kalitenize ya da sarsilmaz altyapiniza bakmaksizin kendine onune gelen performansdan memnun kalacaktir. Ayni zamanda dunyanin en iyi kodlarina yazarak cok iyi bir altyapi ile websitenizi yayina surseniz dahi kullaniciya giden iletisim surecleri belirlidir.</p>
 <p>Bu yazida daha iyi bir performans ve hizli bir websitesi icin nginx uzerinde <em>"content cache"</em> hakkinda biraz bilgi vermeye calisacam. <em>"Content Cache"</em> kullanici ile proxy cache sunucusu arasinda saglanir. Asagidaki topolojiden  inceleyebiliriz:</p>
 <img alt="/images/nginx_reverse_proxy.jpg" src="../../images/nginx_reverse_proxy.jpg"><p>Yukarda topolojide goruldugu gibi 'Client I' kullanicisi, reverse proxy sunucusu arkasindaki origin sunuculara ulasmaksizin website uzerindeki iceriklere reverse proxy uzerinden ulasir. Origin sunuculardan hic bir icerik istenmez.</p>
-<div class="section" id="konfigurasyon">
-<h2>Konfigurasyon:</h2>
+<section id="konfigurasyon"><h2>Konfigurasyon:</h2>
 <p>Content cache islemi nginx uzerinde basit olarak <em>"proxy_cache_path"</em> ve <em>"proxy_cache"</em> konfigurasyonlari ile ayarlanabilir. Ilk olarak "/etc/nginx/nginx.conf" dosyasi icinde "http{}" arasina "proxy_cache_path" konfigurasyonunu girelim.</p>
-<pre class="code text"><a name="rest_code_a13e168b12494d3cbb32b5b00beb9101-1"></a>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
+<pre class="code text"><a id="rest_code_fae11942977449f5a5e86e7d8743f421-1" name="rest_code_fae11942977449f5a5e86e7d8743f421-1"></a>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
 </pre>
 <p>Yazdigimiz konfigurasyonu inceleyelim:</p>
 <dl class="simple">
@@ -114,8 +113,8 @@ bg-dark
 <p>cache icin kullanilacak dizin. Eger bu dizin olusturulmamissa olusturun ve nginx kullanicisina yazma hakkini  verdiginize emin olun.</p>
 </dd>
 </dl>
-<pre class="code bash"><a name="rest_code_ef04abf403e04057b8c456825da2216a-1"></a><span class="c1"># mkdir -p /var/cache/nginx</span>
-<a name="rest_code_ef04abf403e04057b8c456825da2216a-2"></a><span class="c1"># chown nginx:nginx /var/cache/nginx</span>
+<pre class="code bash"><a id="rest_code_3d4791d1e70949a4b648049a05e8c686-1" name="rest_code_3d4791d1e70949a4b648049a05e8c686-1"></a><span class="c1"># mkdir -p /var/cache/nginx</span>
+<a id="rest_code_3d4791d1e70949a4b648049a05e8c686-2" name="rest_code_3d4791d1e70949a4b648049a05e8c686-2"></a><span class="c1"># chown nginx:nginx /var/cache/nginx</span>
 </pre>
 <dl class="simple">
 <dt>levels=1:2</dt>
@@ -142,19 +141,19 @@ bg-dark
 <p>"proxy_cache_path" ile ilgili kismimiz bu kadar. Artik herhangi bir upstream sitemiz ile ilgili ayarlamalarimizi yapalim.
 Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" dosyasi icinde, ayrisik konfigurasyon kullaniyorsaniz ornek olarak "/etc/nginx/conf.d/upstream01.conf" icinde "location / {}" arasinda ayarlamaniz gerekmektedir.</p>
 <p>Ornek olarak:</p>
-<pre class="code text"><a name="rest_code_d9a6707894114c948a4b3aea8597e40a-1"></a>location / {
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-2"></a>     proxy_cache cache;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-3"></a>     proxy_cache_valid  200 302  60m;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-4"></a>     proxy_cache_valid  404      1m;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-5"></a>     proxy_cache_revalidate on;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-6"></a>     proxy_cache_min_uses 3;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-7"></a>     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-8"></a>     proxy_cache_background_update on;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-9"></a>     proxy_cache_lock on;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-10"></a>     add_header X-Proxy-Cache $upstream_cache_status;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-11"></a>     proxy_ignore_headers Set-Cookie;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-12"></a>     proxy_pass http://upstream01;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-13"></a>}
+<pre class="code text"><a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-1" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-1"></a>location / {
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-2" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-2"></a>     proxy_cache cache;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-3" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-3"></a>     proxy_cache_valid  200 302  60m;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-4" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-4"></a>     proxy_cache_valid  404      1m;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-5" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-5"></a>     proxy_cache_revalidate on;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-6" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-6"></a>     proxy_cache_min_uses 3;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-7" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-7"></a>     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-8" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-8"></a>     proxy_cache_background_update on;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-9" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-9"></a>     proxy_cache_lock on;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-10" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-10"></a>     add_header X-Proxy-Cache $upstream_cache_status;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-11" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-11"></a>     proxy_ignore_headers Set-Cookie;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-12" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-12"></a>     proxy_pass http://upstream01;
+<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-13" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-13"></a>}
 </pre>
 <p>Yukarda yazdigimiz konfigurasyona kisaca goz atalim.</p>
 <dl class="simple">
@@ -198,16 +197,13 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 <dd>
 <p>'Set-Cookie' headerinin cachelenmemesini belirttik.</p>
 </dd>
-</dl>
-</div>
-<div class="section" id="test">
-<h2>Test:</h2>
+</dl></section><section id="test"><h2>Test:</h2>
 <p>Yukardaki gibi konfigurasyonlari girip nginx web sunucunuzu reload/restart ettikten sonra Proxy Cache'in calisip calismadigini test edelim.</p>
-<pre class="code bash"><a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-1"></a>$ curl -I http://www.example.com
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-2"></a>  HTTP/1.1 <span class="m">200</span> OK
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-3"></a>  Server: nginx
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-4"></a>  ...
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-5"></a>  X-Proxy-Cache: HIT
+<pre class="code bash"><a id="rest_code_aaf4a784963743dea62614b57aa7715e-1" name="rest_code_aaf4a784963743dea62614b57aa7715e-1"></a>$ curl -I http://www.example.com
+<a id="rest_code_aaf4a784963743dea62614b57aa7715e-2" name="rest_code_aaf4a784963743dea62614b57aa7715e-2"></a>  HTTP/1.1 <span class="m">200</span> OK
+<a id="rest_code_aaf4a784963743dea62614b57aa7715e-3" name="rest_code_aaf4a784963743dea62614b57aa7715e-3"></a>  Server: nginx
+<a id="rest_code_aaf4a784963743dea62614b57aa7715e-4" name="rest_code_aaf4a784963743dea62614b57aa7715e-4"></a>  ...
+<a id="rest_code_aaf4a784963743dea62614b57aa7715e-5" name="rest_code_aaf4a784963743dea62614b57aa7715e-5"></a>  X-Proxy-Cache: HIT
 </pre>
 <p>'X-Proxy-Cache' headeri, gonderilen istedigin gecerli oldugunu ve cevabin cache'den gonderildigi gosteriyor.</p>
 <p>Diger Cache status cevaplari:</p>
@@ -238,8 +234,8 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 </dd>
 </dl>
 <p>Sizde yapmis oldugunuz konfigurasyonu test ederek cache durumunuzu kontrol edebilirsiniz. Kolay gelsin :)</p>
+</section>
 </div>
-    </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/caching/" rel="tag">caching</a></li>
             <li><a class="tag p-category" href="../../categories/nginx/" rel="tag">nginx</a></li>

@@ -94,7 +94,7 @@ bg-dark
     <p>gentoo-zsh-completions plugin for oh-my-zsh. forked from gentoo-zsh-completions main repository,
 and modified for Oh-my-zsh.</p>
 <section id="installation"><h2>Installation:</h2>
-<pre class="code bash"><a id="rest_code_a3090c14c8bb4ddea0d5f100596000eb-1" name="rest_code_a3090c14c8bb4ddea0d5f100596000eb-1"></a>$ git clone https://github.com/mofm/gentoo-zsh-completions.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/gentoo-zsh-completions
+<pre class="code bash"><a id="rest_code_8d56716dda864d6ca71c9f716a4772a3-1" name="rest_code_8d56716dda864d6ca71c9f716a4772a3-1"></a>$ git clone https://github.com/mofm/gentoo-zsh-completions.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/gentoo-zsh-completions
 </pre>
 <p>To use it, add <em>'gentoo-zsh-completions'</em> to the plugins array in your zshrc file:</p>
 <pre class="literal-block">plugins=(... gentoo-zsh-completions)</pre>
@@ -122,13 +122,13 @@ and modified for Oh-my-zsh.</p>
 <ul class="simple">
 <li><p>First, clone this repository and change directory:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_73952a21b9514446857f72c1fd3ce17d-1" name="rest_code_73952a21b9514446857f72c1fd3ce17d-1"></a>git clone https://github.com/mofm/kernel-build.git
-<a id="rest_code_73952a21b9514446857f72c1fd3ce17d-2" name="rest_code_73952a21b9514446857f72c1fd3ce17d-2"></a><span class="nb">cd</span> kernel-build
+<pre class="code bash"><a id="rest_code_da861bbe6888432cab85d83fb0b6e9c7-1" name="rest_code_da861bbe6888432cab85d83fb0b6e9c7-1"></a>git clone https://github.com/mofm/kernel-build.git
+<a id="rest_code_da861bbe6888432cab85d83fb0b6e9c7-2" name="rest_code_da861bbe6888432cab85d83fb0b6e9c7-2"></a><span class="nb">cd</span> kernel-build
 </pre>
 <ul class="simple">
 <li><p>Change script permissons:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_d150617f15454d9fb31b3d1720b19125-1" name="rest_code_d150617f15454d9fb31b3d1720b19125-1"></a>chmod +x build-kernel.sh
+<pre class="code bash"><a id="rest_code_3c186eb92aee4db3a83dd0f04c997970-1" name="rest_code_3c186eb92aee4db3a83dd0f04c997970-1"></a>chmod +x build-kernel.sh
 </pre>
 <ul>
 <li>
@@ -140,12 +140,12 @@ and modified for Oh-my-zsh.</p>
 <ul class="simple">
 <li><p>Now you execute the script like so:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_f9453bce14f0439c9c39d8f4de803555-1" name="rest_code_f9453bce14f0439c9c39d8f4de803555-1"></a>./build-kernel.sh systemd-boot
+<pre class="code bash"><a id="rest_code_1afee234424540c9aa0a9e1fdfc77700-1" name="rest_code_1afee234424540c9aa0a9e1fdfc77700-1"></a>./build-kernel.sh systemd-boot
 </pre>
 <ul class="simple">
 <li><p>If you are using <strong>grub2</strong>:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_0fec5711286d49b297c66f4e382b72f4-1" name="rest_code_0fec5711286d49b297c66f4e382b72f4-1"></a>./build-kernel.sh grub2
+<pre class="code bash"><a id="rest_code_29fe183964444a57a8645b88cde625bb-1" name="rest_code_29fe183964444a57a8645b88cde625bb-1"></a>./build-kernel.sh grub2
 </pre>
 <aside class="admonition warning"><p class="admonition-title">Warning</p>
 <p><code class="docutils literal">This script only cleans the previous kernel!</code></p>
@@ -174,7 +174,7 @@ Also, The vim packages contains the demo channel server(demoserver.py). You can 
 <ul class="simple">
 <li><p>First, run the demo server in a terminal.</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_a5b075140da548f6ab02f122eab21038-1" name="rest_code_a5b075140da548f6ab02f122eab21038-1"></a>$ python /usr/share/vim/vim82/tools/demoserver.py
+<pre class="code bash"><a id="rest_code_d0e26dd484f649379f5961c2a3a8d6c8-1" name="rest_code_d0e26dd484f649379f5961c2a3a8d6c8-1"></a>$ python /usr/share/vim/vim82/tools/demoserver.py
 </pre>
 <ul>
 <li><p>And then, run Vim in another terminal.</p></li>
@@ -217,73 +217,73 @@ Also, The vim packages contains the demo channel server(demoserver.py). You can 
 </div>
     </header><div class="e-content entry-content">
     <p>systemd-boot does not automatically regenerate entry configuration files like update-grup or grub-mkconfig. So you can use below script for Gentoo Linux.</p>
-<pre class="code bash"><a id="rest_code_981d23b06b7044b9ad01633fb3084381-1" name="rest_code_981d23b06b7044b9ad01633fb3084381-1"></a><span class="ch">#!/bin/bash</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-2" name="rest_code_981d23b06b7044b9ad01633fb3084381-2"></a><span class="c1">#</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-3" name="rest_code_981d23b06b7044b9ad01633fb3084381-3"></a><span class="c1"># This is a simple kernel hook to populate the systemd-boot entries</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-4" name="rest_code_981d23b06b7044b9ad01633fb3084381-4"></a><span class="c1"># whenever kernels are added or removed.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-5" name="rest_code_981d23b06b7044b9ad01633fb3084381-5"></a><span class="c1">#</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-6" name="rest_code_981d23b06b7044b9ad01633fb3084381-6"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-7" name="rest_code_981d23b06b7044b9ad01633fb3084381-7"></a><span class="c1"># The UUID of your disk.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-8" name="rest_code_981d23b06b7044b9ad01633fb3084381-8"></a><span class="c1"># Note: if using LVM, this should be the LVM partition.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-9" name="rest_code_981d23b06b7044b9ad01633fb3084381-9"></a><span class="nv">UUID</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-10" name="rest_code_981d23b06b7044b9ad01633fb3084381-10"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-11" name="rest_code_981d23b06b7044b9ad01633fb3084381-11"></a><span class="c1"># Intel microcode file name</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-12" name="rest_code_981d23b06b7044b9ad01633fb3084381-12"></a><span class="nv">MCODE</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-13" name="rest_code_981d23b06b7044b9ad01633fb3084381-13"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-14" name="rest_code_981d23b06b7044b9ad01633fb3084381-14"></a><span class="c1"># Any rootflags you wish to set. For example, mine are currently</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-15" name="rest_code_981d23b06b7044b9ad01633fb3084381-15"></a><span class="c1"># "subvol=@ quiet splash intel_pstate=enable".</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-16" name="rest_code_981d23b06b7044b9ad01633fb3084381-16"></a><span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-17" name="rest_code_981d23b06b7044b9ad01633fb3084381-17"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-18" name="rest_code_981d23b06b7044b9ad01633fb3084381-18"></a><span class="c1"># Our kernels.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-19" name="rest_code_981d23b06b7044b9ad01633fb3084381-19"></a><span class="nv">KERNELS</span><span class="o">=()</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-20" name="rest_code_981d23b06b7044b9ad01633fb3084381-20"></a><span class="nv">FIND</span><span class="o">=</span><span class="s2">"find /boot -maxdepth 1 -name 'vmlinuz-*' -type f -not -name '*.old' -print0 | sort -Vrz"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-21" name="rest_code_981d23b06b7044b9ad01633fb3084381-21"></a><span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 -d <span class="s1">$'\0'</span> LINE<span class="p">;</span> <span class="k">do</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-22" name="rest_code_981d23b06b7044b9ad01633fb3084381-22"></a>        <span class="nv">KERNEL</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">"</span><span class="si">${</span><span class="nv">LINE</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-23" name="rest_code_981d23b06b7044b9ad01633fb3084381-23"></a>        <span class="nv">KERNELS</span><span class="o">+=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNEL</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-24" name="rest_code_981d23b06b7044b9ad01633fb3084381-24"></a><span class="k">done</span> <span class="m">3</span>&lt; &lt;<span class="o">(</span><span class="nb">eval</span> <span class="s2">"</span><span class="si">${</span><span class="nv">FIND</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-25" name="rest_code_981d23b06b7044b9ad01633fb3084381-25"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-26" name="rest_code_981d23b06b7044b9ad01633fb3084381-26"></a><span class="c1"># There has to be at least one kernel.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-27" name="rest_code_981d23b06b7044b9ad01633fb3084381-27"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-28" name="rest_code_981d23b06b7044b9ad01633fb3084381-28"></a>        <span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;31mNo kernels found.\e[0m"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-29" name="rest_code_981d23b06b7044b9ad01633fb3084381-29"></a>        <span class="nb">exit</span> <span class="m">1</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-30" name="rest_code_981d23b06b7044b9ad01633fb3084381-30"></a><span class="k">fi</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-31" name="rest_code_981d23b06b7044b9ad01633fb3084381-31"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-32" name="rest_code_981d23b06b7044b9ad01633fb3084381-32"></a><span class="c1"># Copy the latest kernel files to a consistent place so we can</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-33" name="rest_code_981d23b06b7044b9ad01633fb3084381-33"></a><span class="c1"># keep using the same loader configuration.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-34" name="rest_code_981d23b06b7044b9ad01633fb3084381-34"></a><span class="nv">LATEST</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">0</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-35" name="rest_code_981d23b06b7044b9ad01633fb3084381-35"></a><span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">LATEST</span><span class="si">}</span><span class="s2">\e[0m"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-36" name="rest_code_981d23b06b7044b9ad01633fb3084381-36"></a>cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo.conf</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-37" name="rest_code_981d23b06b7044b9ad01633fb3084381-37"></a><span class="s">title   Gentoo Linux</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-38" name="rest_code_981d23b06b7044b9ad01633fb3084381-38"></a><span class="s">linux   /vmlinuz-${LATEST}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-39" name="rest_code_981d23b06b7044b9ad01633fb3084381-39"></a><span class="s">initrd  /${MCODE}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-40" name="rest_code_981d23b06b7044b9ad01633fb3084381-40"></a><span class="s">initrd  /initramfs-${LATEST}.img</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-41" name="rest_code_981d23b06b7044b9ad01633fb3084381-41"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-42" name="rest_code_981d23b06b7044b9ad01633fb3084381-42"></a><span class="s">EOF</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-43" name="rest_code_981d23b06b7044b9ad01633fb3084381-43"></a><span class="c1">#done</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-44" name="rest_code_981d23b06b7044b9ad01633fb3084381-44"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-45" name="rest_code_981d23b06b7044b9ad01633fb3084381-45"></a><span class="c1"># Copy any legacy kernels over too, but maintain their version-</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-46" name="rest_code_981d23b06b7044b9ad01633fb3084381-46"></a><span class="c1"># based names to avoid collisions.</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-47" name="rest_code_981d23b06b7044b9ad01633fb3084381-47"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-48" name="rest_code_981d23b06b7044b9ad01633fb3084381-48"></a>        <span class="nv">LEGACY</span><span class="o">=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">1</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-49" name="rest_code_981d23b06b7044b9ad01633fb3084381-49"></a>        <span class="k">for</span> VERSION <span class="k">in</span> <span class="s2">"</span><span class="si">${</span><span class="nv">LEGACY</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-50" name="rest_code_981d23b06b7044b9ad01633fb3084381-50"></a>            <span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">\e[0m"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-51" name="rest_code_981d23b06b7044b9ad01633fb3084381-51"></a>            cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo-${VERSION}.conf</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-52" name="rest_code_981d23b06b7044b9ad01633fb3084381-52"></a><span class="s">title   Gentoo Linux ${VERSION}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-53" name="rest_code_981d23b06b7044b9ad01633fb3084381-53"></a><span class="s">linux   /vmlinuz-${VERSION}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-54" name="rest_code_981d23b06b7044b9ad01633fb3084381-54"></a><span class="s">initrd  /${MCODE}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-55" name="rest_code_981d23b06b7044b9ad01633fb3084381-55"></a><span class="s">initrd  /initramfs-${VERSION}.img</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-56" name="rest_code_981d23b06b7044b9ad01633fb3084381-56"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-57" name="rest_code_981d23b06b7044b9ad01633fb3084381-57"></a><span class="s">EOF</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-58" name="rest_code_981d23b06b7044b9ad01633fb3084381-58"></a>        <span class="k">done</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-59" name="rest_code_981d23b06b7044b9ad01633fb3084381-59"></a><span class="k">fi</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-60" name="rest_code_981d23b06b7044b9ad01633fb3084381-60"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-61" name="rest_code_981d23b06b7044b9ad01633fb3084381-61"></a><span class="nb">printf</span> <span class="s2">"\n"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-62" name="rest_code_981d23b06b7044b9ad01633fb3084381-62"></a><span class="nb">printf</span> <span class="s2">"Updating systemd-boot firmware \n"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-63" name="rest_code_981d23b06b7044b9ad01633fb3084381-63"></a>bootctl update
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-64" name="rest_code_981d23b06b7044b9ad01633fb3084381-64"></a>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-65" name="rest_code_981d23b06b7044b9ad01633fb3084381-65"></a><span class="c1"># Success!</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-66" name="rest_code_981d23b06b7044b9ad01633fb3084381-66"></a><span class="nb">echo</span> -e <span class="s2">"\e[2m---\e[0m"</span>
-<a id="rest_code_981d23b06b7044b9ad01633fb3084381-67" name="rest_code_981d23b06b7044b9ad01633fb3084381-67"></a><span class="nb">exit</span> <span class="m">0</span>
+<pre class="code bash"><a id="rest_code_520901e4be27435b8302d3ea85d55088-1" name="rest_code_520901e4be27435b8302d3ea85d55088-1"></a><span class="ch">#!/bin/bash</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-2" name="rest_code_520901e4be27435b8302d3ea85d55088-2"></a><span class="c1">#</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-3" name="rest_code_520901e4be27435b8302d3ea85d55088-3"></a><span class="c1"># This is a simple kernel hook to populate the systemd-boot entries</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-4" name="rest_code_520901e4be27435b8302d3ea85d55088-4"></a><span class="c1"># whenever kernels are added or removed.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-5" name="rest_code_520901e4be27435b8302d3ea85d55088-5"></a><span class="c1">#</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-6" name="rest_code_520901e4be27435b8302d3ea85d55088-6"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-7" name="rest_code_520901e4be27435b8302d3ea85d55088-7"></a><span class="c1"># The UUID of your disk.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-8" name="rest_code_520901e4be27435b8302d3ea85d55088-8"></a><span class="c1"># Note: if using LVM, this should be the LVM partition.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-9" name="rest_code_520901e4be27435b8302d3ea85d55088-9"></a><span class="nv">UUID</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-10" name="rest_code_520901e4be27435b8302d3ea85d55088-10"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-11" name="rest_code_520901e4be27435b8302d3ea85d55088-11"></a><span class="c1"># Intel microcode file name</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-12" name="rest_code_520901e4be27435b8302d3ea85d55088-12"></a><span class="nv">MCODE</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-13" name="rest_code_520901e4be27435b8302d3ea85d55088-13"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-14" name="rest_code_520901e4be27435b8302d3ea85d55088-14"></a><span class="c1"># Any rootflags you wish to set. For example, mine are currently</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-15" name="rest_code_520901e4be27435b8302d3ea85d55088-15"></a><span class="c1"># "subvol=@ quiet splash intel_pstate=enable".</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-16" name="rest_code_520901e4be27435b8302d3ea85d55088-16"></a><span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-17" name="rest_code_520901e4be27435b8302d3ea85d55088-17"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-18" name="rest_code_520901e4be27435b8302d3ea85d55088-18"></a><span class="c1"># Our kernels.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-19" name="rest_code_520901e4be27435b8302d3ea85d55088-19"></a><span class="nv">KERNELS</span><span class="o">=()</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-20" name="rest_code_520901e4be27435b8302d3ea85d55088-20"></a><span class="nv">FIND</span><span class="o">=</span><span class="s2">"find /boot -maxdepth 1 -name 'vmlinuz-*' -type f -not -name '*.old' -print0 | sort -Vrz"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-21" name="rest_code_520901e4be27435b8302d3ea85d55088-21"></a><span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 -d <span class="s1">$'\0'</span> LINE<span class="p">;</span> <span class="k">do</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-22" name="rest_code_520901e4be27435b8302d3ea85d55088-22"></a>        <span class="nv">KERNEL</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">"</span><span class="si">${</span><span class="nv">LINE</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-23" name="rest_code_520901e4be27435b8302d3ea85d55088-23"></a>        <span class="nv">KERNELS</span><span class="o">+=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNEL</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-24" name="rest_code_520901e4be27435b8302d3ea85d55088-24"></a><span class="k">done</span> <span class="m">3</span>&lt; &lt;<span class="o">(</span><span class="nb">eval</span> <span class="s2">"</span><span class="si">${</span><span class="nv">FIND</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-25" name="rest_code_520901e4be27435b8302d3ea85d55088-25"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-26" name="rest_code_520901e4be27435b8302d3ea85d55088-26"></a><span class="c1"># There has to be at least one kernel.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-27" name="rest_code_520901e4be27435b8302d3ea85d55088-27"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-28" name="rest_code_520901e4be27435b8302d3ea85d55088-28"></a>        <span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;31mNo kernels found.\e[0m"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-29" name="rest_code_520901e4be27435b8302d3ea85d55088-29"></a>        <span class="nb">exit</span> <span class="m">1</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-30" name="rest_code_520901e4be27435b8302d3ea85d55088-30"></a><span class="k">fi</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-31" name="rest_code_520901e4be27435b8302d3ea85d55088-31"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-32" name="rest_code_520901e4be27435b8302d3ea85d55088-32"></a><span class="c1"># Copy the latest kernel files to a consistent place so we can</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-33" name="rest_code_520901e4be27435b8302d3ea85d55088-33"></a><span class="c1"># keep using the same loader configuration.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-34" name="rest_code_520901e4be27435b8302d3ea85d55088-34"></a><span class="nv">LATEST</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">0</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-35" name="rest_code_520901e4be27435b8302d3ea85d55088-35"></a><span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">LATEST</span><span class="si">}</span><span class="s2">\e[0m"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-36" name="rest_code_520901e4be27435b8302d3ea85d55088-36"></a>cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo.conf</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-37" name="rest_code_520901e4be27435b8302d3ea85d55088-37"></a><span class="s">title   Gentoo Linux</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-38" name="rest_code_520901e4be27435b8302d3ea85d55088-38"></a><span class="s">linux   /vmlinuz-${LATEST}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-39" name="rest_code_520901e4be27435b8302d3ea85d55088-39"></a><span class="s">initrd  /${MCODE}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-40" name="rest_code_520901e4be27435b8302d3ea85d55088-40"></a><span class="s">initrd  /initramfs-${LATEST}.img</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-41" name="rest_code_520901e4be27435b8302d3ea85d55088-41"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-42" name="rest_code_520901e4be27435b8302d3ea85d55088-42"></a><span class="s">EOF</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-43" name="rest_code_520901e4be27435b8302d3ea85d55088-43"></a><span class="c1">#done</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-44" name="rest_code_520901e4be27435b8302d3ea85d55088-44"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-45" name="rest_code_520901e4be27435b8302d3ea85d55088-45"></a><span class="c1"># Copy any legacy kernels over too, but maintain their version-</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-46" name="rest_code_520901e4be27435b8302d3ea85d55088-46"></a><span class="c1"># based names to avoid collisions.</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-47" name="rest_code_520901e4be27435b8302d3ea85d55088-47"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-48" name="rest_code_520901e4be27435b8302d3ea85d55088-48"></a>        <span class="nv">LEGACY</span><span class="o">=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">1</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-49" name="rest_code_520901e4be27435b8302d3ea85d55088-49"></a>        <span class="k">for</span> VERSION <span class="k">in</span> <span class="s2">"</span><span class="si">${</span><span class="nv">LEGACY</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-50" name="rest_code_520901e4be27435b8302d3ea85d55088-50"></a>            <span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">\e[0m"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-51" name="rest_code_520901e4be27435b8302d3ea85d55088-51"></a>            cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo-${VERSION}.conf</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-52" name="rest_code_520901e4be27435b8302d3ea85d55088-52"></a><span class="s">title   Gentoo Linux ${VERSION}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-53" name="rest_code_520901e4be27435b8302d3ea85d55088-53"></a><span class="s">linux   /vmlinuz-${VERSION}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-54" name="rest_code_520901e4be27435b8302d3ea85d55088-54"></a><span class="s">initrd  /${MCODE}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-55" name="rest_code_520901e4be27435b8302d3ea85d55088-55"></a><span class="s">initrd  /initramfs-${VERSION}.img</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-56" name="rest_code_520901e4be27435b8302d3ea85d55088-56"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-57" name="rest_code_520901e4be27435b8302d3ea85d55088-57"></a><span class="s">EOF</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-58" name="rest_code_520901e4be27435b8302d3ea85d55088-58"></a>        <span class="k">done</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-59" name="rest_code_520901e4be27435b8302d3ea85d55088-59"></a><span class="k">fi</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-60" name="rest_code_520901e4be27435b8302d3ea85d55088-60"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-61" name="rest_code_520901e4be27435b8302d3ea85d55088-61"></a><span class="nb">printf</span> <span class="s2">"\n"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-62" name="rest_code_520901e4be27435b8302d3ea85d55088-62"></a><span class="nb">printf</span> <span class="s2">"Updating systemd-boot firmware \n"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-63" name="rest_code_520901e4be27435b8302d3ea85d55088-63"></a>bootctl update
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-64" name="rest_code_520901e4be27435b8302d3ea85d55088-64"></a>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-65" name="rest_code_520901e4be27435b8302d3ea85d55088-65"></a><span class="c1"># Success!</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-66" name="rest_code_520901e4be27435b8302d3ea85d55088-66"></a><span class="nb">echo</span> -e <span class="s2">"\e[2m---\e[0m"</span>
+<a id="rest_code_520901e4be27435b8302d3ea85d55088-67" name="rest_code_520901e4be27435b8302d3ea85d55088-67"></a><span class="nb">exit</span> <span class="m">0</span>
 </pre>
 <p>This script forked from <a class="reference external" href="https://blobfolio.com/2018/replace-grub2-with-systemd-boot-on-ubuntu-18-04/">here</a>.</p>
     </div>
@@ -423,12 +423,12 @@ OK</p>
     </header><div class="e-content entry-content">
     <p>Unbound DoH is waiting HTTP/2 requests. But Nginx proxy module doesn't support HTTP/2 on the upstream connections.
 So you can use grpc proxy:</p>
-<pre class="code bash"><a id="rest_code_49f9804c174a476e87844e3a889156ae-1" name="rest_code_49f9804c174a476e87844e3a889156ae-1"></a>location /dns-query <span class="o">{</span>
-<a id="rest_code_49f9804c174a476e87844e3a889156ae-2" name="rest_code_49f9804c174a476e87844e3a889156ae-2"></a>     grpc_pass grpc://unbound-host<span class="p">;</span>
-<a id="rest_code_49f9804c174a476e87844e3a889156ae-3" name="rest_code_49f9804c174a476e87844e3a889156ae-3"></a><span class="o">}</span>
+<pre class="code bash"><a id="rest_code_3725f65e84f543308aa576bb83b55dd0-1" name="rest_code_3725f65e84f543308aa576bb83b55dd0-1"></a>location /dns-query <span class="o">{</span>
+<a id="rest_code_3725f65e84f543308aa576bb83b55dd0-2" name="rest_code_3725f65e84f543308aa576bb83b55dd0-2"></a>     grpc_pass grpc://unbound-host<span class="p">;</span>
+<a id="rest_code_3725f65e84f543308aa576bb83b55dd0-3" name="rest_code_3725f65e84f543308aa576bb83b55dd0-3"></a><span class="o">}</span>
 </pre>
 <p>and disable TLS for DNS-over-HTTP downstream service in unbound.conf:</p>
-<pre class="code bash"><a id="rest_code_6f59d48dcdfa4afe876a7ad311202c6a-1" name="rest_code_6f59d48dcdfa4afe876a7ad311202c6a-1"></a>http-notls-downstream: yes
+<pre class="code bash"><a id="rest_code_dfa0fae5f22347ac8b13592f98b0dd1e-1" name="rest_code_dfa0fae5f22347ac8b13592f98b0dd1e-1"></a>http-notls-downstream: yes
 </pre>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/free-updated-geoip-databases/" class="u-url">Free Updated GeoIP Databases</a></h1>
@@ -563,9 +563,10 @@ So you can use grpc proxy:</p>
 <ul>
 <li>Run following command to install BIND 9 on Ubuntu 20.04</li>
 </ul>
-<pre class="code literal-block">$ sudo apt update
+<pre class="code literal-block"><span></span><code>$ sudo apt update
 $ sudo apt install bind9 bind9utils bind9-dnsutils
-</pre>
+</code></pre>
+
 <h3>Configurations for recursive DNS resolver with RPZ(response policy zone)</h3>
 <ul>
 <li>To enable recursion service, edit <strong><em>/etc/bind/named.conf.options</em></strong> :</li>
@@ -697,120 +698,120 @@ $ sudo systemctl <span class="nb">enable</span> bind9
 </div>
     </header><div class="e-content entry-content">
     <p>Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;</p>
-<pre class="code bash"><a name="rest_code_1edb79fee71c4dabae9261e39936d02e-1"></a>$ curl -I http://cafe.example.com/coffee/
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-2"></a>
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-3"></a>HTTP/1.1 <span class="m">200</span> OK
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-4"></a>Date: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:47:21 GMT
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-5"></a>Content-Type: text/html
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-6"></a>Content-Length: <span class="m">87466</span>
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-7"></a>Connection: keep-alive
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-8"></a>Last-Modified: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">20</span>:48:36 GMT
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-9"></a>ETag: <span class="s2">"5fce9524-155aa"</span>
-<a name="rest_code_1edb79fee71c4dabae9261e39936d02e-10"></a>Accept-Ranges: bytes
+<pre class="code bash"><a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-1" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-1"></a>$ curl -I http://cafe.example.com/coffee/
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-2" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-2"></a>
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-3" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-3"></a>HTTP/1.1 <span class="m">200</span> OK
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-4" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-4"></a>Date: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:47:21 GMT
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-5" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-5"></a>Content-Type: text/html
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-6" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-6"></a>Content-Length: <span class="m">87466</span>
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-7" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-7"></a>Connection: keep-alive
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-8" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-8"></a>Last-Modified: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">20</span>:48:36 GMT
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-9" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-9"></a>ETag: <span class="s2">"5fce9524-155aa"</span>
+<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-10" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-10"></a>Accept-Ranges: bytes
 </pre>
 <p>Yukarida goruldugu "<a class="reference external" href="http://cafe.example.com/coffee/">http://cafe.example.com/coffee/</a>" adresine gonderdigimiz istek saglikli sekilde "200" kodunu cevap olarak donuyor.
 Birde "<a class="reference external" href="http://cafe.example.com/coffee">http://cafe.example.com/coffee</a>" seklinde istekte bulunarak test edelim:</p>
-<pre class="code bash"><a name="rest_code_c93acb8b8de847a284876db166b32ace-1"></a>$ curl -I http://cafe.example.com/coffee
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-2"></a>
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-3"></a>HTTP/1.1 <span class="m">301</span> Moved Permanently
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-4"></a>Date: Sun, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:52:48 GMT
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-5"></a>Content-Type: text/html
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-6"></a>Content-Length: <span class="m">169</span>
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-7"></a>Connection: keep-alive
-<a name="rest_code_c93acb8b8de847a284876db166b32ace-8"></a>Location: http://cafe.example.com:8080/coffee
+<pre class="code bash"><a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-1" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-1"></a>$ curl -I http://cafe.example.com/coffee
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-2" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-2"></a>
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-3" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-3"></a>HTTP/1.1 <span class="m">301</span> Moved Permanently
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-4" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-4"></a>Date: Sun, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:52:48 GMT
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-5" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-5"></a>Content-Type: text/html
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-6" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-6"></a>Content-Length: <span class="m">169</span>
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-7" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-7"></a>Connection: keep-alive
+<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-8" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-8"></a>Location: http://cafe.example.com:8080/coffee
 </pre>
 <p>Bu ornek ise goruldugu gibi "<a class="reference external" href="http://hostname:cointainer_port/paths">http://hostname:cointainer_port/paths</a>" seklinde container portunu da ekleyerek sayfayi yanlis sekilde redirect etmeye calisiyor ve sayfa ulasilamaz oluyor.
 Buradaki <strong>'8080'</strong> portu ingress'in arka tarafindaki nginx container'in yayin yapmakta olan portu.</p>
 <p>Sorunun sebebine gelince, bu sorunun ingress ile hic bir alakasi yok. Hem <strong>kubernetes/ingress-nginx</strong> hem de <strong>nginxinc/nginx-ingress</strong> ingress controller'larinda nginx konfigurasyonu uzerindeki <a class="reference external" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect">port_in_redirect</a> degeri default olarak 'off' olarak.
 Fakat arka tarafta calisan nginx container uzerindeki bu konfigurasyonu '<em>on</em>' yapilmissa bu durumla karsilasabilirsiniz. Bunu nginx.conf uzerinde '<em>port_in_redirect off;</em>' seklinde kapatarak yasanmasini engelleyebilirsiniz.</p>
 <p>Asagidaki sekilde nginx.conf'u configmap'e ekleyerek nginx pod'un bu configmap'i kullanmasini saglayarak deployment yapabilirsiniz.</p>
-<pre class="code yaml"><a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-5"></a><span class="nt">data</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-6"></a>  <span class="nt">nginx.conf</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-7"></a>    <span class="no">worker_processes  1;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-8"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-9"></a>    <span class="no">error_log  /var/log/nginx/error.log warn;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-10"></a>    <span class="no">pid        /tmp/nginx.pid;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-11"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-12"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-13"></a>    <span class="no">events {</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-14"></a>        <span class="no">worker_connections  1024;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-15"></a>    <span class="no">}</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-16"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-17"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-18"></a>    <span class="no">http {</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-19"></a>        <span class="no">proxy_temp_path /tmp/proxy_temp;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-20"></a>        <span class="no">client_body_temp_path /tmp/client_temp;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-21"></a>        <span class="no">fastcgi_temp_path /tmp/fastcgi_temp;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-22"></a>        <span class="no">uwsgi_temp_path /tmp/uwsgi_temp;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-23"></a>        <span class="no">scgi_temp_path /tmp/scgi_temp;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-24"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-25"></a>        <span class="no">include       /etc/nginx/mime.types;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-26"></a>        <span class="no">default_type  application/octet-stream;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-27"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-28"></a>        <span class="no">log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-29"></a>                          <span class="no">'$status $body_bytes_sent "$http_referer" '</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-30"></a>                          <span class="no">'"$http_user_agent" "$http_x_forwarded_for"';</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-31"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-32"></a>        <span class="no">access_log  /var/log/nginx/access.log  main;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-33"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-34"></a>        <span class="no">sendfile        on;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-35"></a>        <span class="no">#tcp_nopush     on;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-36"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-37"></a>        <span class="no">port_in_redirect off;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-38"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-39"></a>        <span class="no">keepalive_timeout  65;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-40"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-41"></a>        <span class="no">#gzip  on;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-42"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-43"></a>        <span class="no">include /etc/nginx/conf.d/*.conf;</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-44"></a>    <span class="no">}</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-45"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-46"></a><span class="nn">---</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-47"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-48"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-49"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-50"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-51"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-52"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-53"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-54"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-55"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-56"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-57"></a>  <span class="nt">template</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-58"></a>    <span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-59"></a>      <span class="nt">labels</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-60"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-61"></a>    <span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-62"></a>      <span class="nt">containers</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-63"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-64"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-65"></a>        <span class="nt">ports</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-66"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-67"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-68"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-69"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-70"></a>          <span class="nt">subPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.conf</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-71"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-72"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-73"></a><span class="nn">---</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-74"></a>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-75"></a><span class="nn">---</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-76"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-77"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-78"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-79"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee-svc</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-80"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-81"></a>  <span class="nt">ports</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-82"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-83"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-84"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-85"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-86"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-87"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<pre class="code yaml"><a id="rest_code_84a58170f48745289caafd4a6952e187-1" name="rest_code_84a58170f48745289caafd4a6952e187-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-2" name="rest_code_84a58170f48745289caafd4a6952e187-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-3" name="rest_code_84a58170f48745289caafd4a6952e187-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-4" name="rest_code_84a58170f48745289caafd4a6952e187-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-5" name="rest_code_84a58170f48745289caafd4a6952e187-5"></a><span class="nt">data</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-6" name="rest_code_84a58170f48745289caafd4a6952e187-6"></a>  <span class="nt">nginx.conf</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-7" name="rest_code_84a58170f48745289caafd4a6952e187-7"></a>    <span class="no">worker_processes  1;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-8" name="rest_code_84a58170f48745289caafd4a6952e187-8"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-9" name="rest_code_84a58170f48745289caafd4a6952e187-9"></a>    <span class="no">error_log  /var/log/nginx/error.log warn;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-10" name="rest_code_84a58170f48745289caafd4a6952e187-10"></a>    <span class="no">pid        /tmp/nginx.pid;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-11" name="rest_code_84a58170f48745289caafd4a6952e187-11"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-12" name="rest_code_84a58170f48745289caafd4a6952e187-12"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-13" name="rest_code_84a58170f48745289caafd4a6952e187-13"></a>    <span class="no">events {</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-14" name="rest_code_84a58170f48745289caafd4a6952e187-14"></a>        <span class="no">worker_connections  1024;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-15" name="rest_code_84a58170f48745289caafd4a6952e187-15"></a>    <span class="no">}</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-16" name="rest_code_84a58170f48745289caafd4a6952e187-16"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-17" name="rest_code_84a58170f48745289caafd4a6952e187-17"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-18" name="rest_code_84a58170f48745289caafd4a6952e187-18"></a>    <span class="no">http {</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-19" name="rest_code_84a58170f48745289caafd4a6952e187-19"></a>        <span class="no">proxy_temp_path /tmp/proxy_temp;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-20" name="rest_code_84a58170f48745289caafd4a6952e187-20"></a>        <span class="no">client_body_temp_path /tmp/client_temp;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-21" name="rest_code_84a58170f48745289caafd4a6952e187-21"></a>        <span class="no">fastcgi_temp_path /tmp/fastcgi_temp;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-22" name="rest_code_84a58170f48745289caafd4a6952e187-22"></a>        <span class="no">uwsgi_temp_path /tmp/uwsgi_temp;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-23" name="rest_code_84a58170f48745289caafd4a6952e187-23"></a>        <span class="no">scgi_temp_path /tmp/scgi_temp;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-24" name="rest_code_84a58170f48745289caafd4a6952e187-24"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-25" name="rest_code_84a58170f48745289caafd4a6952e187-25"></a>        <span class="no">include       /etc/nginx/mime.types;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-26" name="rest_code_84a58170f48745289caafd4a6952e187-26"></a>        <span class="no">default_type  application/octet-stream;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-27" name="rest_code_84a58170f48745289caafd4a6952e187-27"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-28" name="rest_code_84a58170f48745289caafd4a6952e187-28"></a>        <span class="no">log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-29" name="rest_code_84a58170f48745289caafd4a6952e187-29"></a>                          <span class="no">'$status $body_bytes_sent "$http_referer" '</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-30" name="rest_code_84a58170f48745289caafd4a6952e187-30"></a>                          <span class="no">'"$http_user_agent" "$http_x_forwarded_for"';</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-31" name="rest_code_84a58170f48745289caafd4a6952e187-31"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-32" name="rest_code_84a58170f48745289caafd4a6952e187-32"></a>        <span class="no">access_log  /var/log/nginx/access.log  main;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-33" name="rest_code_84a58170f48745289caafd4a6952e187-33"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-34" name="rest_code_84a58170f48745289caafd4a6952e187-34"></a>        <span class="no">sendfile        on;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-35" name="rest_code_84a58170f48745289caafd4a6952e187-35"></a>        <span class="no">#tcp_nopush     on;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-36" name="rest_code_84a58170f48745289caafd4a6952e187-36"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-37" name="rest_code_84a58170f48745289caafd4a6952e187-37"></a>        <span class="no">port_in_redirect off;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-38" name="rest_code_84a58170f48745289caafd4a6952e187-38"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-39" name="rest_code_84a58170f48745289caafd4a6952e187-39"></a>        <span class="no">keepalive_timeout  65;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-40" name="rest_code_84a58170f48745289caafd4a6952e187-40"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-41" name="rest_code_84a58170f48745289caafd4a6952e187-41"></a>        <span class="no">#gzip  on;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-42" name="rest_code_84a58170f48745289caafd4a6952e187-42"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-43" name="rest_code_84a58170f48745289caafd4a6952e187-43"></a>        <span class="no">include /etc/nginx/conf.d/*.conf;</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-44" name="rest_code_84a58170f48745289caafd4a6952e187-44"></a>    <span class="no">}</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-45" name="rest_code_84a58170f48745289caafd4a6952e187-45"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-46" name="rest_code_84a58170f48745289caafd4a6952e187-46"></a><span class="nn">---</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-47" name="rest_code_84a58170f48745289caafd4a6952e187-47"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-48" name="rest_code_84a58170f48745289caafd4a6952e187-48"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-49" name="rest_code_84a58170f48745289caafd4a6952e187-49"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-50" name="rest_code_84a58170f48745289caafd4a6952e187-50"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-51" name="rest_code_84a58170f48745289caafd4a6952e187-51"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-52" name="rest_code_84a58170f48745289caafd4a6952e187-52"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-53" name="rest_code_84a58170f48745289caafd4a6952e187-53"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-54" name="rest_code_84a58170f48745289caafd4a6952e187-54"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-55" name="rest_code_84a58170f48745289caafd4a6952e187-55"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-56" name="rest_code_84a58170f48745289caafd4a6952e187-56"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-57" name="rest_code_84a58170f48745289caafd4a6952e187-57"></a>  <span class="nt">template</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-58" name="rest_code_84a58170f48745289caafd4a6952e187-58"></a>    <span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-59" name="rest_code_84a58170f48745289caafd4a6952e187-59"></a>      <span class="nt">labels</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-60" name="rest_code_84a58170f48745289caafd4a6952e187-60"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-61" name="rest_code_84a58170f48745289caafd4a6952e187-61"></a>    <span class="nt">spec</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-62" name="rest_code_84a58170f48745289caafd4a6952e187-62"></a>      <span class="nt">containers</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-63" name="rest_code_84a58170f48745289caafd4a6952e187-63"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-64" name="rest_code_84a58170f48745289caafd4a6952e187-64"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-65" name="rest_code_84a58170f48745289caafd4a6952e187-65"></a>        <span class="nt">ports</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-66" name="rest_code_84a58170f48745289caafd4a6952e187-66"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-67" name="rest_code_84a58170f48745289caafd4a6952e187-67"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-68" name="rest_code_84a58170f48745289caafd4a6952e187-68"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-69" name="rest_code_84a58170f48745289caafd4a6952e187-69"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-70" name="rest_code_84a58170f48745289caafd4a6952e187-70"></a>          <span class="nt">subPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.conf</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-71" name="rest_code_84a58170f48745289caafd4a6952e187-71"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-72" name="rest_code_84a58170f48745289caafd4a6952e187-72"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-73" name="rest_code_84a58170f48745289caafd4a6952e187-73"></a><span class="nn">---</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-74" name="rest_code_84a58170f48745289caafd4a6952e187-74"></a>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-75" name="rest_code_84a58170f48745289caafd4a6952e187-75"></a><span class="nn">---</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-76" name="rest_code_84a58170f48745289caafd4a6952e187-76"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-77" name="rest_code_84a58170f48745289caafd4a6952e187-77"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-78" name="rest_code_84a58170f48745289caafd4a6952e187-78"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-79" name="rest_code_84a58170f48745289caafd4a6952e187-79"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee-svc</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-80" name="rest_code_84a58170f48745289caafd4a6952e187-80"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-81" name="rest_code_84a58170f48745289caafd4a6952e187-81"></a>  <span class="nt">ports</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-82" name="rest_code_84a58170f48745289caafd4a6952e187-82"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-83" name="rest_code_84a58170f48745289caafd4a6952e187-83"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-84" name="rest_code_84a58170f48745289caafd4a6952e187-84"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-85" name="rest_code_84a58170f48745289caafd4a6952e187-85"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-86" name="rest_code_84a58170f48745289caafd4a6952e187-86"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a id="rest_code_84a58170f48745289caafd4a6952e187-87" name="rest_code_84a58170f48745289caafd4a6952e187-87"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
 </pre>
     </div>
     </article>
