@@ -1,59 +1,702 @@
 <!DOCTYPE html>
-<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="Ignotum Per Ignotius">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>hardened .*(nt|log)s?</title>
-<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://blog.piesso.com/">
-<link rel="next" href="index-23.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&amp;family=Red+Hat+Display&amp;family=Roboto:wght@700&amp;display=swap" rel="stylesheet">
-<link rel="prefetch" href="posts/ingress-path-redirection-appends-port/" type="text/html">
+<link rel="icon" href="images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="images/website/android-chrome-192x192.png" sizes="192x192">
+<link rel="next" href="index-24.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/gentoo-zsh-completions-for-oh-my-zsh/" type="text/html">
 </head>
 <body>
-    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
-    
-    <section class="social"><ul>
-<li><a href="#" title="Home"><i class="fas fa-home"></i></a></li>
-            <li><a href="archive.html" title="Archives"><i class="fas fa-archive"></i></a></li>
-            <li><a href="categories/index.html" title="Tags"><i class="fas fa-tags"></i></a></li>
-            <li><a href="rss.xml" title="RSS"><i class="fas fa-rss"></i></a></li>
-            <li><a href="pages/about-me" title="About me"><i class="fa fa-user"></i></a></li>
-            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
-    
-    
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-        </ul></section><section class="page-content"><div class="content" rel="main">
-            
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href=".">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="#" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
 
     
 
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ingress-path-redirection-appends-port/" class="u-url">Ingress path redirection appends port</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/gentoo-zsh-completions-for-oh-my-zsh/" class="u-url">gentoo-zsh-completions for oh-my-zsh</a></h1>
         <div class="metadata">
-            <p class="dateline"><a href="posts/ingress-path-redirection-appends-port/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2020-12-08T02:29:14+03:00" title="2020-12-08 02:29">2020-12-08 02:29</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 mofm
             </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
+            <p class="dateline">
+            <a href="posts/gentoo-zsh-completions-for-oh-my-zsh/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-01-05T17:50:47+03:00" itemprop="datePublished" title="2022-01-05 17:50">2022-01-05 17:50</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/gentoo-zsh-completions-for-oh-my-zsh/#disqus_thread" data-disqus-identifier="cache/posts/gentoo-zsh-completions-for-oh-my-zsh.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>gentoo-zsh-completions plugin for oh-my-zsh. forked from gentoo-zsh-completions main repository,
+and modified for Oh-my-zsh.</p>
+<section id="installation"><h2>Installation:</h2>
+<pre class="code bash"><a id="rest_code_a3090c14c8bb4ddea0d5f100596000eb-1" name="rest_code_a3090c14c8bb4ddea0d5f100596000eb-1"></a>$ git clone https://github.com/mofm/gentoo-zsh-completions.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/gentoo-zsh-completions
+</pre>
+<p>To use it, add <em>'gentoo-zsh-completions'</em> to the plugins array in your zshrc file:</p>
+<pre class="literal-block">plugins=(... gentoo-zsh-completions)</pre>
+</section>
+</div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/gentoo-kernel-build-script/" class="u-url">Gentoo kernel build script</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/gentoo-kernel-build-script/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-28T01:48:49+03:00" itemprop="datePublished" title="2021-12-28 01:48">2021-12-28 01:48</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/gentoo-kernel-build-script/#disqus_thread" data-disqus-identifier="cache/posts/gentoo-kernel-build-script.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Automating the kernel compile, configuration copying, systemd-boot and grub2 configuration updating, old kernel cleaning script for Gentoo Linux.</p>
+<section id="usage"><h2>Usage:</h2>
+<ul class="simple">
+<li><p>First, clone this repository and change directory:</p></li>
+</ul>
+<pre class="code bash"><a id="rest_code_73952a21b9514446857f72c1fd3ce17d-1" name="rest_code_73952a21b9514446857f72c1fd3ce17d-1"></a>git clone https://github.com/mofm/kernel-build.git
+<a id="rest_code_73952a21b9514446857f72c1fd3ce17d-2" name="rest_code_73952a21b9514446857f72c1fd3ce17d-2"></a><span class="nb">cd</span> kernel-build
+</pre>
+<ul class="simple">
+<li><p>Change script permissons:</p></li>
+</ul>
+<pre class="code bash"><a id="rest_code_d150617f15454d9fb31b3d1720b19125-1" name="rest_code_d150617f15454d9fb31b3d1720b19125-1"></a>chmod +x build-kernel.sh
+</pre>
+<ul>
+<li>
+<p>If you are using systemd-boot you should first learn rootfs disk UUID or LVM partition and then add it to the script:</p>
+<pre class="literal-block">UUID="dfc588c0-edd4-8543-a3fe-d7d49bd8f141"</pre>
+</li>
+</ul>
+<p><strong>Optional:</strong> <em>You can add specific kernel parameters to ROOTFLAGS.</em></p>
+<ul class="simple">
+<li><p>Now you execute the script like so:</p></li>
+</ul>
+<pre class="code bash"><a id="rest_code_f9453bce14f0439c9c39d8f4de803555-1" name="rest_code_f9453bce14f0439c9c39d8f4de803555-1"></a>./build-kernel.sh systemd-boot
+</pre>
+<ul class="simple">
+<li><p>If you are using <strong>grub2</strong>:</p></li>
+</ul>
+<pre class="code bash"><a id="rest_code_0fec5711286d49b297c66f4e382b72f4-1" name="rest_code_0fec5711286d49b297c66f4e382b72f4-1"></a>./build-kernel.sh grub2
+</pre>
+<aside class="admonition warning"><p class="admonition-title">Warning</p>
+<p><code class="docutils literal">This script only cleans the previous kernel!</code></p>
+</aside></section>
+</div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/vim-tips-channel/" class="u-url">Vim Tips: Channel</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/vim-tips-channel/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-22T18:32:45+03:00" itemprop="datePublished" title="2021-12-22 18:32">2021-12-22 18:32</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/vim-tips-channel/#disqus_thread" data-disqus-identifier="cache/posts/vim-tips-channel.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Vim supported channels for inter-process communication and job channels communicate with other processes.
+Also, The vim packages contains the demo channel server(demoserver.py). You can find <strong>demoserver.py</strong> script in <em>"$VIMRUNTIME/tools/"</em>. <em>"$VIMRUNTIME"</em> path, may change according to your distro:</p>
+<p>My path, "/usr/share/vim/vim82/tools/demoserver.py" on Gentoo Linux.</p>
+<ul class="simple">
+<li><p>First, run the demo server in a terminal.</p></li>
+</ul>
+<pre class="code bash"><a id="rest_code_a5b075140da548f6ab02f122eab21038-1" name="rest_code_a5b075140da548f6ab02f122eab21038-1"></a>$ python /usr/share/vim/vim82/tools/demoserver.py
+</pre>
+<ul>
+<li><p>And then, run Vim in another terminal.</p></li>
+<li>
+<p>For detailed information, I am quoting from the script:</p>
+<pre class="literal-block"># Server that will accept connections from a Vim channel.
+# Run this server and then in Vim you can open the channel:
+#  :let handle = ch_open('localhost:8765')
+#
+# Then Vim can send requests to the server:
+#  :let response = ch_sendexpr(handle, 'hello!')
+#
+# And you can control Vim by typing a JSON message here, e.g.:
+#   ["ex","echo 'hi there'"]
+#
+# There is no prompt, just type a line and press Enter.
+# To exit cleanly type "quit&lt;Enter&gt;".
+#
+# See ":help channel-demo" in Vim.
+#
+# This requires Python 2.6 or later.</pre>
+</li>
+</ul>
+</div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/systemd-boot-update-script/" class="u-url">systemd-boot update script</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/systemd-boot-update-script/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-19T04:23:45+03:00" itemprop="datePublished" title="2021-12-19 04:23">2021-12-19 04:23</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/systemd-boot-update-script/#disqus_thread" data-disqus-identifier="cache/posts/systemd-boot-update-script.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>systemd-boot does not automatically regenerate entry configuration files like update-grup or grub-mkconfig. So you can use below script for Gentoo Linux.</p>
+<pre class="code bash"><a id="rest_code_981d23b06b7044b9ad01633fb3084381-1" name="rest_code_981d23b06b7044b9ad01633fb3084381-1"></a><span class="ch">#!/bin/bash</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-2" name="rest_code_981d23b06b7044b9ad01633fb3084381-2"></a><span class="c1">#</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-3" name="rest_code_981d23b06b7044b9ad01633fb3084381-3"></a><span class="c1"># This is a simple kernel hook to populate the systemd-boot entries</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-4" name="rest_code_981d23b06b7044b9ad01633fb3084381-4"></a><span class="c1"># whenever kernels are added or removed.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-5" name="rest_code_981d23b06b7044b9ad01633fb3084381-5"></a><span class="c1">#</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-6" name="rest_code_981d23b06b7044b9ad01633fb3084381-6"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-7" name="rest_code_981d23b06b7044b9ad01633fb3084381-7"></a><span class="c1"># The UUID of your disk.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-8" name="rest_code_981d23b06b7044b9ad01633fb3084381-8"></a><span class="c1"># Note: if using LVM, this should be the LVM partition.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-9" name="rest_code_981d23b06b7044b9ad01633fb3084381-9"></a><span class="nv">UUID</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-10" name="rest_code_981d23b06b7044b9ad01633fb3084381-10"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-11" name="rest_code_981d23b06b7044b9ad01633fb3084381-11"></a><span class="c1"># Intel microcode file name</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-12" name="rest_code_981d23b06b7044b9ad01633fb3084381-12"></a><span class="nv">MCODE</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-13" name="rest_code_981d23b06b7044b9ad01633fb3084381-13"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-14" name="rest_code_981d23b06b7044b9ad01633fb3084381-14"></a><span class="c1"># Any rootflags you wish to set. For example, mine are currently</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-15" name="rest_code_981d23b06b7044b9ad01633fb3084381-15"></a><span class="c1"># "subvol=@ quiet splash intel_pstate=enable".</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-16" name="rest_code_981d23b06b7044b9ad01633fb3084381-16"></a><span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">"CHANGEME"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-17" name="rest_code_981d23b06b7044b9ad01633fb3084381-17"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-18" name="rest_code_981d23b06b7044b9ad01633fb3084381-18"></a><span class="c1"># Our kernels.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-19" name="rest_code_981d23b06b7044b9ad01633fb3084381-19"></a><span class="nv">KERNELS</span><span class="o">=()</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-20" name="rest_code_981d23b06b7044b9ad01633fb3084381-20"></a><span class="nv">FIND</span><span class="o">=</span><span class="s2">"find /boot -maxdepth 1 -name 'vmlinuz-*' -type f -not -name '*.old' -print0 | sort -Vrz"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-21" name="rest_code_981d23b06b7044b9ad01633fb3084381-21"></a><span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 -d <span class="s1">$'\0'</span> LINE<span class="p">;</span> <span class="k">do</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-22" name="rest_code_981d23b06b7044b9ad01633fb3084381-22"></a>        <span class="nv">KERNEL</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">"</span><span class="si">${</span><span class="nv">LINE</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-23" name="rest_code_981d23b06b7044b9ad01633fb3084381-23"></a>        <span class="nv">KERNELS</span><span class="o">+=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNEL</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-24" name="rest_code_981d23b06b7044b9ad01633fb3084381-24"></a><span class="k">done</span> <span class="m">3</span>&lt; &lt;<span class="o">(</span><span class="nb">eval</span> <span class="s2">"</span><span class="si">${</span><span class="nv">FIND</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-25" name="rest_code_981d23b06b7044b9ad01633fb3084381-25"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-26" name="rest_code_981d23b06b7044b9ad01633fb3084381-26"></a><span class="c1"># There has to be at least one kernel.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-27" name="rest_code_981d23b06b7044b9ad01633fb3084381-27"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-28" name="rest_code_981d23b06b7044b9ad01633fb3084381-28"></a>        <span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;31mNo kernels found.\e[0m"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-29" name="rest_code_981d23b06b7044b9ad01633fb3084381-29"></a>        <span class="nb">exit</span> <span class="m">1</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-30" name="rest_code_981d23b06b7044b9ad01633fb3084381-30"></a><span class="k">fi</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-31" name="rest_code_981d23b06b7044b9ad01633fb3084381-31"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-32" name="rest_code_981d23b06b7044b9ad01633fb3084381-32"></a><span class="c1"># Copy the latest kernel files to a consistent place so we can</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-33" name="rest_code_981d23b06b7044b9ad01633fb3084381-33"></a><span class="c1"># keep using the same loader configuration.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-34" name="rest_code_981d23b06b7044b9ad01633fb3084381-34"></a><span class="nv">LATEST</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">0</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-35" name="rest_code_981d23b06b7044b9ad01633fb3084381-35"></a><span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">LATEST</span><span class="si">}</span><span class="s2">\e[0m"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-36" name="rest_code_981d23b06b7044b9ad01633fb3084381-36"></a>cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo.conf</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-37" name="rest_code_981d23b06b7044b9ad01633fb3084381-37"></a><span class="s">title   Gentoo Linux</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-38" name="rest_code_981d23b06b7044b9ad01633fb3084381-38"></a><span class="s">linux   /vmlinuz-${LATEST}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-39" name="rest_code_981d23b06b7044b9ad01633fb3084381-39"></a><span class="s">initrd  /${MCODE}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-40" name="rest_code_981d23b06b7044b9ad01633fb3084381-40"></a><span class="s">initrd  /initramfs-${LATEST}.img</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-41" name="rest_code_981d23b06b7044b9ad01633fb3084381-41"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-42" name="rest_code_981d23b06b7044b9ad01633fb3084381-42"></a><span class="s">EOF</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-43" name="rest_code_981d23b06b7044b9ad01633fb3084381-43"></a><span class="c1">#done</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-44" name="rest_code_981d23b06b7044b9ad01633fb3084381-44"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-45" name="rest_code_981d23b06b7044b9ad01633fb3084381-45"></a><span class="c1"># Copy any legacy kernels over too, but maintain their version-</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-46" name="rest_code_981d23b06b7044b9ad01633fb3084381-46"></a><span class="c1"># based names to avoid collisions.</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-47" name="rest_code_981d23b06b7044b9ad01633fb3084381-47"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-48" name="rest_code_981d23b06b7044b9ad01633fb3084381-48"></a>        <span class="nv">LEGACY</span><span class="o">=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">1</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-49" name="rest_code_981d23b06b7044b9ad01633fb3084381-49"></a>        <span class="k">for</span> VERSION <span class="k">in</span> <span class="s2">"</span><span class="si">${</span><span class="nv">LEGACY</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-50" name="rest_code_981d23b06b7044b9ad01633fb3084381-50"></a>            <span class="nb">echo</span> -e <span class="s2">"\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">\e[0m"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-51" name="rest_code_981d23b06b7044b9ad01633fb3084381-51"></a>            cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo-${VERSION}.conf</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-52" name="rest_code_981d23b06b7044b9ad01633fb3084381-52"></a><span class="s">title   Gentoo Linux ${VERSION}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-53" name="rest_code_981d23b06b7044b9ad01633fb3084381-53"></a><span class="s">linux   /vmlinuz-${VERSION}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-54" name="rest_code_981d23b06b7044b9ad01633fb3084381-54"></a><span class="s">initrd  /${MCODE}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-55" name="rest_code_981d23b06b7044b9ad01633fb3084381-55"></a><span class="s">initrd  /initramfs-${VERSION}.img</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-56" name="rest_code_981d23b06b7044b9ad01633fb3084381-56"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-57" name="rest_code_981d23b06b7044b9ad01633fb3084381-57"></a><span class="s">EOF</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-58" name="rest_code_981d23b06b7044b9ad01633fb3084381-58"></a>        <span class="k">done</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-59" name="rest_code_981d23b06b7044b9ad01633fb3084381-59"></a><span class="k">fi</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-60" name="rest_code_981d23b06b7044b9ad01633fb3084381-60"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-61" name="rest_code_981d23b06b7044b9ad01633fb3084381-61"></a><span class="nb">printf</span> <span class="s2">"\n"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-62" name="rest_code_981d23b06b7044b9ad01633fb3084381-62"></a><span class="nb">printf</span> <span class="s2">"Updating systemd-boot firmware \n"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-63" name="rest_code_981d23b06b7044b9ad01633fb3084381-63"></a>bootctl update
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-64" name="rest_code_981d23b06b7044b9ad01633fb3084381-64"></a>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-65" name="rest_code_981d23b06b7044b9ad01633fb3084381-65"></a><span class="c1"># Success!</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-66" name="rest_code_981d23b06b7044b9ad01633fb3084381-66"></a><span class="nb">echo</span> -e <span class="s2">"\e[2m---\e[0m"</span>
+<a id="rest_code_981d23b06b7044b9ad01633fb3084381-67" name="rest_code_981d23b06b7044b9ad01633fb3084381-67"></a><span class="nb">exit</span> <span class="m">0</span>
+</pre>
+<p>This script forked from <a class="reference external" href="https://blobfolio.com/2018/replace-grub2-with-systemd-boot-on-ubuntu-18-04/">here</a>.</p>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/basic-timezone-api/" class="u-url">Basic Timezone API</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/basic-timezone-api/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-18T02:16:01+03:00" itemprop="datePublished" title="2021-12-18 02:16">2021-12-18 02:16</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/basic-timezone-api/#disqus_thread" data-disqus-identifier="cache/posts/basic-timezone-api.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>timezone-api is lightweight Flask app with TimezoneFinder(L) python library and
+provides a simple interface. Your request the timezone information for specific
+latitude and longtitude pair.</p>
+<h3>Request Parameters</h3>
+<p>Parameters are separated using the ampersand(&amp;) character.</p>
+<ul>
+<li>
+<strong>lat</strong>: latitude (eg. lat=39.6034810) <em>(Required)</em>
+</li>
+<li>
+<strong>lng</strong>: longtitude (eg. lng=-119.6822510) <em>(Required)</em>
+</li>
+<li>
+<strong>timestamp</strong>: timestamp (eg. timestamp=1331161200) <em>(Required)</em>
+</li>
+</ul>
+<h4>Example Request</h4>
+<p><strong>Request:</strong></p>
+<p>API urls must follow this format:</p>
+<p><code>https://api.example.com/timezone/api?lng=-119.6822510&amp;lat=39.6034810&amp;timestamp=1331766000</code></p>
+<p><strong>Response:</strong></p>
+<p><code>{"dstoffset":3600.0,"rawoffset":-28800.0,"status":200,"tzname":"America/Los_Angeles"}</code></p>
+<pre class="code literal-block"><span></span><code><span class="o">-</span> <span class="nv">tzname</span>: <span class="nv">Timezone</span> <span class="nv">name</span>
+<span class="o">-</span> <span class="nv">dstoffset</span>: <span class="nv">the</span> <span class="nv">offset</span> <span class="k">for</span> <span class="nv">daylight</span><span class="o">-</span><span class="nv">savings</span> <span class="nv">time</span> <span class="nv">in</span> <span class="nv">seconds</span>.
+<span class="nv">This</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">zero</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">time</span> <span class="nv">zone</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">in</span> <span class="nv">Daylight</span> <span class="nv">Savings</span> <span class="nv">Time</span> <span class="nv">during</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">timestamp</span>.
+<span class="o">-</span> <span class="nv">rawoffset</span>: <span class="nv">the</span> <span class="nv">offset</span> <span class="nv">from</span> <span class="nv">UTC</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">seconds</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">given</span> <span class="nv">location</span>.
+<span class="nv">This</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">take</span> <span class="nv">into</span> <span class="nv">effect</span> <span class="nv">daylight</span> <span class="nv">savings</span>.
+<span class="o">-</span> <span class="nv">status</span>: <span class="nv">response</span> <span class="nv">code</span>
+    <span class="o">-</span> <span class="mi">200</span>: <span class="nv">the</span> <span class="nv">request</span> <span class="nv">was</span> <span class="nv">successful</span>
+    <span class="o">-</span> <span class="mi">400</span>: <span class="nv">missing</span> <span class="nv">parameter</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+    <span class="o">-</span> <span class="mi">422</span>: <span class="nv">out</span> <span class="nv">of</span> <span class="nv">bounds</span> <span class="nv">error</span>
+</code></pre>
+
+<h3>API Health</h3>
+<p>To check the API status or health</p>
+<p><strong>Request:</strong></p>
+<p><code>https://api.example.com/timezone/health/</code></p>
+<p><strong>Response:</strong>
+OK</p>
+<h3>API Info</h3>
+<p>For information about API</p>
+<p><strong>Request:</strong></p>
+<p><code>https://api.example.com/timezone/info/</code></p>
+<p><strong>Response:</strong></p>
+<p><code>{"debug":false,"running-since":1620688782.0930135,"version":"0.0.1"}</code></p>
+<pre class="code literal-block"><span></span><code>- debug: APP debug status
+- running-since: API start time
+- version: API version
+</code></pre>
+
+<h3>Installation</h3>
+<h4>I. Method: From Docker Hub</h4>
+<pre class="code literal-block">$ docker run -d -p <span class="m">8080</span>:8000 --name timezone-35 mofm/timezone-api
+</pre>
+<ul>
+<li>Test</li>
+</ul>
+<pre class="code literal-block">$ curl --request GET  <span class="s2">"http://127.0.0.1:8080/timezone/api/?lng=-119.6822510&amp;lat=39.6034810&amp;timestamp=1331766000"</span>
+</pre>
+<pre class="code literal-block"><span></span><code>{
+  "dstoffset": 3600.0,
+  "rawoffset": -28800.0,
+  "status": 200,
+  "tzname": "America/Los_Angeles"
+}
+</code></pre>
+
+<h4>II. Method: Build Docker image</h4>
+<ul>
+<li>Clone this repostory</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ git clone https://github.com/mofm/timezone-api.git
+</code></pre>
+
+<ul>
+<li>Build Docker image (slim image with Google Distroless)</li>
+</ul>
+<pre class="code literal-block"><span></span><code>docker build -t timezone-img .
+</code></pre>
+
+<ul>
+<li>Running Docker image</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ docker run -d -p <span class="m">8080</span>:8000 --name timezone-api ti
+</code></pre>
+
+<ul>
+<li>Test</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ curl --request GET  <span class="s2">"http://127.0.0.1:8080/timezone/api/?lng=-119.6822510&amp;lat=39.6034810&amp;timestamp=1331766000"</span>
+</code></pre>
+
+<pre class="code literal-block"><span></span><code>{
+  "dstoffset": 3600.0,
+  "rawoffset": -28800.0,
+  "status": 200,
+  "tzname": "America/Los_Angeles"
+}
+</code></pre>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/unbound-doh-behind-nginx/" class="u-url">Unbound DoH behind Nginx</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/unbound-doh-behind-nginx/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-18T01:53:49+03:00" itemprop="datePublished" title="2021-12-18 01:53">2021-12-18 01:53</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/unbound-doh-behind-nginx/#disqus_thread" data-disqus-identifier="cache/posts/unbound-doh-behind-nginx.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Unbound DoH is waiting HTTP/2 requests. But Nginx proxy module doesn't support HTTP/2 on the upstream connections.
+So you can use grpc proxy:</p>
+<pre class="code bash"><a id="rest_code_49f9804c174a476e87844e3a889156ae-1" name="rest_code_49f9804c174a476e87844e3a889156ae-1"></a>location /dns-query <span class="o">{</span>
+<a id="rest_code_49f9804c174a476e87844e3a889156ae-2" name="rest_code_49f9804c174a476e87844e3a889156ae-2"></a>     grpc_pass grpc://unbound-host<span class="p">;</span>
+<a id="rest_code_49f9804c174a476e87844e3a889156ae-3" name="rest_code_49f9804c174a476e87844e3a889156ae-3"></a><span class="o">}</span>
+</pre>
+<p>and disable TLS for DNS-over-HTTP downstream service in unbound.conf:</p>
+<pre class="code bash"><a id="rest_code_6f59d48dcdfa4afe876a7ad311202c6a-1" name="rest_code_6f59d48dcdfa4afe876a7ad311202c6a-1"></a>http-notls-downstream: yes
+</pre>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/free-updated-geoip-databases/" class="u-url">Free Updated GeoIP Databases</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/free-updated-geoip-databases/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-16T02:04:00+03:00" itemprop="datePublished" title="2021-12-16 02:04">2021-12-16 02:04</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/free-updated-geoip-databases/#disqus_thread" data-disqus-identifier="cache/posts/free-updated-geoip-databases.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>I found and use an up-to-date and free GeoIP databases from <a class="reference external" href="https://mailfud.org/geoip-legacy/">https://mailfud.org/geoip-legacy/</a> . There are 5 different GeoIP databases(<em>also IPv6</em>) :</p>
+<ul class="simple">
+<li><p>Country</p></li>
+<li><p>City</p></li>
+<li><p>ASN</p></li>
+<li><p>ISP</p></li>
+<li><p>Organization</p></li>
+</ul>
+<p>Also it has update script(<strong>geoip_update.sh</strong>). Thanks mailfud.org :)</p>
+<p>You can test City database from <a class="reference external" href="https://ip.piesso.com">here</a></p>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/urls-of-blacklists/" class="u-url">URLs of Blacklists</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/urls-of-blacklists/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-16T01:38:15+03:00" itemprop="datePublished" title="2021-12-16 01:38">2021-12-16 01:38</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/urls-of-blacklists/#disqus_thread" data-disqus-identifier="cache/posts/urls-of-blacklists.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Free, up-to-date and large blacklist databases for those who want to set up DNS firewall:</p>
+<table>
+<thead><tr>
+<th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>URL</strong></p></th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Energized Protection</p></td>
+<td><p><a class="reference external" href="https://block.energized.pro/">https://block.energized.pro/</a></p></td>
+</tr>
+<tr>
+<td><p>Abuse.ch</p></td>
+<td><p><a class="reference external" href="https://threatfox.abuse.ch/">https://threatfox.abuse.ch/</a></p></td>
+</tr>
+<tr>
+<td><p>Adaway</p></td>
+<td><p><a class="reference external" href="https://adaway.org/">https://adaway.org/</a></p></td>
+</tr>
+<tr>
+<td><p>Adguard List</p></td>
+<td><p><a class="reference external" href="https://justdomains.github.io/blocklists/#the-lists">https://justdomains.github.io/blocklists/#the-lists</a></p></td>
+</tr>
+<tr>
+<td><p>Blocklist.site</p></td>
+<td><p><a class="reference external" href="https://github.com/blocklistproject/Lists">https://github.com/blocklistproject/Lists</a></p></td>
+</tr>
+<tr>
+<td><p>EasyList</p></td>
+<td><p><a class="reference external" href="https://justdomains.github.io/blocklists/#the-lists">https://justdomains.github.io/blocklists/#the-lists</a></p></td>
+</tr>
+<tr>
+<td><p>Easyprivacy</p></td>
+<td><p><a class="reference external" href="https://justdomains.github.io/blocklists/#the-lists">https://justdomains.github.io/blocklists/#the-lists</a></p></td>
+</tr>
+<tr>
+<td><p>NoCoin List</p></td>
+<td><p><a class="reference external" href="https://justdomains.github.io/blocklists/#the-lists">https://justdomains.github.io/blocklists/#the-lists</a></p></td>
+</tr>
+<tr>
+<td><p>PornTop1M List</p></td>
+<td><p><a class="reference external" href="https://github.com/chadmayfield/my-pihole-blocklists">https://github.com/chadmayfield/my-pihole-blocklists</a></p></td>
+</tr>
+<tr>
+<td><p>Simple Ad List</p></td>
+<td><p><a class="reference external" href="https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt">https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt</a></p></td>
+</tr>
+<tr>
+<td><p>Simple Tracker List</p></td>
+<td><p><a class="reference external" href="https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt">https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt</a></p></td>
+</tr>
+<tr>
+<td><p>StevenBlack/hosts</p></td>
+<td><p><a class="reference external" href="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts">https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</a></p></td>
+</tr>
+<tr>
+<td><p>WindowsSpyBlocker</p></td>
+<td><p><a class="reference external" href="https://github.com/crazy-max/WindowsSpyBlocker">https://github.com/crazy-max/WindowsSpyBlocker</a></p></td>
+</tr>
+<tr>
+<td><p>YoYo List</p></td>
+<td><p><a class="reference external" href="https://pgl.yoyo.org/adservers/">https://pgl.yoyo.org/adservers/</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/block-ads-and-malware-via-bind9-rpz/" class="u-url">Block ads and malware via BIND9 RPZ</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/block-ads-and-malware-via-bind9-rpz/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-15T21:57:56+03:00" itemprop="datePublished" title="2021-12-15 21:57">2021-12-15 21:57</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="posts/block-ads-and-malware-via-bind9-rpz/#disqus_thread" data-disqus-identifier="cache/posts/block-ads-and-malware-via-bind9-rpz.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <h3>Installation on Ubuntu 20.04 LTS</h3>
+<ul>
+<li>Run following command to install BIND 9 on Ubuntu 20.04</li>
+</ul>
+<pre class="code literal-block">$ sudo apt update
+$ sudo apt install bind9 bind9utils bind9-dnsutils
+</pre>
+<h3>Configurations for recursive DNS resolver with RPZ(response policy zone)</h3>
+<ul>
+<li>To enable recursion service, edit <strong><em>/etc/bind/named.conf.options</em></strong> :</li>
+</ul>
+<pre class="code literal-block"><span></span><code>    <span class="o">//</span> <span class="nv">hide</span> <span class="nv">version</span> <span class="nv">number</span> <span class="nv">from</span> <span class="nv">clients</span> <span class="k">for</span> <span class="nv">security</span> <span class="nv">reasons</span>.
+    <span class="nv">version</span> <span class="s2">"</span><span class="s">not currently available</span><span class="s2">"</span><span class="c1">;</span>
+
+    <span class="o">//</span> <span class="nv">optional</span> <span class="o">-</span> <span class="nv">BIND</span> <span class="nv">default</span> <span class="nv">behavior</span> <span class="nv">is</span> <span class="nv">recursion</span>
+    <span class="nv">recursion</span> <span class="nv">yes</span><span class="c1">;</span>
+
+    <span class="o">//</span> <span class="nv">provide</span> <span class="nv">recursion</span> <span class="nv">service</span> <span class="nv">to</span> <span class="nv">trusted</span> <span class="nv">clients</span> <span class="nv">only</span>
+    <span class="nv">allow</span><span class="o">-</span><span class="nv">recursion</span> { <span class="mi">127</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">1</span><span class="c1">; 192.168.0.0/24; 10.10.10.0/24; };</span>
+
+    <span class="o">//</span> <span class="nv">disallow</span> <span class="nv">zone</span> <span class="nv">transfer</span>
+    <span class="nv">allow</span><span class="o">-</span><span class="nv">transfer</span> { <span class="nv">none</span><span class="c1">; };</span>
+
+    <span class="o">//</span> <span class="nv">enable</span> <span class="nv">the</span> <span class="nv">query</span> <span class="nv">log</span>
+    <span class="nv">querylog</span> <span class="nv">yes</span><span class="c1">;</span>
+
+    <span class="o">//</span><span class="nv">enable</span> <span class="nv">response</span> <span class="nv">policy</span> <span class="nv">zone</span>.
+    <span class="nv">response</span><span class="o">-</span><span class="nv">policy</span> {
+        <span class="nv">zone</span> <span class="s2">"</span><span class="s">blocked.local</span><span class="s2">"</span><span class="c1">;</span>
+    }<span class="c1">;</span>
+</code></pre>
+
+<ul>
+<li>Add RPZ zone in <strong><em>/etc/bind/named.conf.local</em></strong> :</li>
+</ul>
+<pre class="code literal-block"><span></span><code>    zone "blocked.local" {
+        type master;
+        file "/etc/bind/db.blocked.local";
+        allow-query { localhost; };
+        allow-transfer { localhost; };
+    };
+</code></pre>
+
+<ul>
+<li>add following lines in <strong><em>/etc/bind/named.conf</em></strong> to use separate log file for RPZ(recommended):</li>
+</ul>
+<pre class="code literal-block"><span></span><code>    <span class="n">logging</span> <span class="p">{</span>
+        <span class="n">channel</span> <span class="n">blockedlog</span> <span class="p">{</span>
+            <span class="n">file</span> <span class="s2">"/var/log/named/blocked-zone.log"</span> <span class="n">versions</span> <span class="n">unlimited</span> <span class="n">size</span> <span class="mi">100</span><span class="n">m</span><span class="p">;</span>
+            <span class="nb">print</span><span class="o">-</span><span class="n">time</span> <span class="n">yes</span><span class="p">;</span>
+            <span class="nb">print</span><span class="o">-</span><span class="n">category</span> <span class="n">yes</span><span class="p">;</span>
+            <span class="nb">print</span><span class="o">-</span><span class="n">severity</span> <span class="n">yes</span><span class="p">;</span>
+            <span class="n">severity</span> <span class="n">info</span><span class="p">;</span>
+        <span class="p">};</span>
+        <span class="n">category</span> <span class="n">rpz</span> <span class="p">{</span> <span class="n">blockedlog</span><span class="p">;</span> <span class="p">};</span>
+    <span class="p">};</span>
+</code></pre>
+
+<ul>
+<li>If <strong><em>/var/log/named/</em></strong> directory doesn't exist, create it and make bind as the owner:</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ sudo mkdir /var/log/named/
+$ sudo chown bind:bind /var/log/named/ -R
+</code></pre>
+
+<h3>Creating Zone File</h3>
+<ul>
+<li>first, clone this repository:</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ git clone https://github.com/mofm/blocked-zone.git
+</code></pre>
+
+<ul>
+<li>
+<p>If there is domain(s) you want to block, you can add it to the blacklist file.</p>
+</li>
+<li>
+<p>execute the blocked-zone.sh script(this script downloads StevenBlack host file and then creates RPZ zone file):</p>
+</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ sudo bash blocked-zone.sh
+</code></pre>
+
+<h3>Check configurations and service:</h3>
+<pre class="code literal-block"><span></span><code>$ sudo named-checkconf
+$ sudo named-checkzone rpz /etc/bind/db.blocked.local
+</code></pre>
+
+<p>If no problem, restart and enable bind9 service;</p>
+<pre class="code literal-block"><span></span><code>$ sudo systemctl restart bind9
+$ sudo systemctl <span class="nb">enable</span> bind9
+</code></pre>
+
+<h3>Test:</h3>
+<ul>
+<li>You can run the dig command on the BIND server to see if RPZ is working:</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ dig A adskeeper.com @127.0.0.1
+</code></pre>
+
+<ul>
+<li>You can also check '/var/log/named/blocked-zone.log' for query log:</li>
+</ul>
+<pre class="code literal-block"><span></span><code>$ sudo tail /var/log/named/blocked-zone.log
+</code></pre>
+
+<ul>
+<li>READY, you can add this BIND9 host IP address to your host(s).</li>
+</ul>
+<h3>Optional</h3>
+<ul>
+<li>You can add cronjob for schedule update</li>
+<li>You can change the URL to StevenBlack GitHub Hosts in <strong><em>blocked-zone.sh</em></strong>
+</li>
+<li>You can download and use auto-generated RPZ zone files from <a href="https://scripttiger.github.io/alts/">https://scripttiger.github.io/alts/</a>
+</li>
+<li>Also you can download and use abuse.ch RPZ zone file from <a href="https://urlhaus.abuse.ch/downloads/rpz/">https://urlhaus.abuse.ch/downloads/rpz/</a>
+</li>
+</ul>
+</div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ingress-path-redirection-appends-port/" class="u-url">Ingress path redirection appends port</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                mofm
+            </span></p>
+            <p class="dateline">
+            <a href="posts/ingress-path-redirection-appends-port/" rel="bookmark">
+            <time class="published dt-published" datetime="2020-12-08T02:29:14+03:00" itemprop="datePublished" title="2020-12-08 02:29">2020-12-08 02:29</time></a>
+            </p>
+                <p class="commentline">
+    
     <a href="posts/ingress-path-redirection-appends-port/#disqus_thread" data-disqus-identifier="cache/posts/ingress-path-redirection-appends-port.html">Comments</a>
 
 
         </p>
 </div>
     </header><div class="e-content entry-content">
-    <div>
-<p>Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;</p>
+    <p>Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;</p>
 <pre class="code bash"><a name="rest_code_1edb79fee71c4dabae9261e39936d02e-1"></a>$ curl -I http://cafe.example.com/coffee/
 <a name="rest_code_1edb79fee71c4dabae9261e39936d02e-2"></a>
 <a name="rest_code_1edb79fee71c4dabae9261e39936d02e-3"></a>HTTP/1.1 <span class="m">200</span> OK
@@ -169,945 +812,29 @@ Fakat arka tarafta calisan nginx container uzerindeki bu konfigurasyonu '<em>on<
 <a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-86"></a>  <span class="nt">selector</span><span class="p">:</span>
 <a name="rest_code_e62f03e73f8344e0b8eea3bdd8fe5976-87"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
 </pre>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/kubernetes-static-website-git/" class="u-url">Kubernetes, Static Website, Git</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/kubernetes-static-website-git/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2020-12-05T18:12:03+03:00" title="2020-12-05 18:12">2020-12-05 18:12</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/kubernetes-static-website-git/#disqus_thread" data-disqus-identifier="cache/posts/kubernetes-static-website-git.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Uzun bir aradan sonra Kubernetes ile ilgili bir konu ile yazilara basliyoruz. Bu yazida Kubernetes nedir? Ne degildir? gibi Kubernetes 101'den bahsetmek yerine bir senaryo ile ilgili sizlere fikir vermek istedim. Hemen kisaca senaryodan bahsedelim:</p>
-<div class="section" id="senaryo">
-<h2>Senaryo:</h2>
-<p>Gunumuzde insanlar blog yazilarini yayinlamak icin static websites generator'lardan(nikola, jekyll, hugo vb.) birini kullanmaya yoneliyor. Daha onceden siklikla Wordpress kullanilirken artik bu sekilde bir cozum kullanimin farkli sebepleri olabilir. Bunu simdilik irdelemeyecegim.
-Bu senaryomuzda yukarda bahsettigimiz sekilde olusturdugunuz static websitenizi <em>"Kubernetes uzerine git ile nasil otomatik update edebiliriz?"</em> cozumu hakkinda fikir verecegim.
-Senaryo semasinin ayrintilari asagidaki gibidir:</p>
-<img alt="/images/k8s-web-git.png" src="images/k8s-web-git.png"><p>Senaryoyu biraz daha ayrintilandirmak gerekirse, en alt katmandan en uste dogru cikalim. Bu senaryo icin volume olarak node uzerindeki <a class="reference external" href="https://kubernetes.io/docs/concepts/storage/volumes/#local">Local</a> diski kullandim. Bu production icin uygun olmasa da test ortamini olusturmak ve iki container'in ayni volume'u kullanabilmesi icin bunu sectim.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Production ortaminda kesinlikle local disk kullanmayin! Siz production ortamlariniz icin herhangi bir <em>Clustered File System</em> kullanabilirsiniz.</p>
-</div>
-<div class="section" id="persistentvolume-ve-persistentvolumeclaim-olusturulmasi">
-<h3>PersistentVolume ve PersistentVolumeClaim Olusturulmasi:</h3>
-<p>Burada bir noktaya deginmek gerekirse olusturacagimiz bu volume'u nginx container'i icin sadece readonly mount ederken git-sync icin ise hem read hem de write olacak sekilde mount edecegiz. git-sync belirledigimiz git reposunu buraya sync edecektir. Bu yuzden hem read hem write yetkisi gerekirken, nginx sadece sayfalari yayinlayacagi icin read yetkisi yeterlidir.</p>
-<p><strong>PersistentVolume:</strong></p>
-<pre class="code yaml"><a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-pv-01</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-6"></a>  <span class="nt">capacity</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-7"></a>    <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-8"></a>  <span class="nt">accessModes</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-9"></a>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-10"></a>  <span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Delete</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-11"></a>  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-storage</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-12"></a>  <span class="nt">local</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-13"></a>    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/mnt/disk1/vol1</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-14"></a>  <span class="nt">nodeAffinity</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-15"></a>    <span class="nt">required</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-16"></a>      <span class="nt">nodeSelectorTerms</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-17"></a>      <span class="p p-Indicator">-</span> <span class="nt">matchExpressions</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-18"></a>        <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/hostname</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-19"></a>          <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">In</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-20"></a>          <span class="nt">values</span><span class="p">:</span>
-<a name="rest_code_4d3a1d6da41a48bd9bb003db23f560b3-21"></a>          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node3</span>
-</pre>
-<p>Yukardaki sekilde sadece <em>node3</em> hostname'li node uzerindeki '/mnt/disk1/vol1/' uzerinde 1GB buyuklugunde persistentVolume olusturduk. Yukarida da belirttigim gibi kesinlikle production ortaminda local disk kullanmayin!</p>
-<pre class="code bash"><a name="rest_code_8010fe3d51ce40fbbfaa837bfbea50fc-1"></a>$ kubectl apply -f pv.yaml
-</pre>
-<p>persistentVolume olusturtuktan sonra persistentVolumeClaim olusturalim.( "pv ve pvc nedir?" merak ediyorsaniz <a class="reference external" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">buradan</a> )</p>
-<p><strong>PersistentVolumeClaim:</strong></p>
-<pre class="code yaml"><a name="rest_code_0a794df069734d118aafecb65868b9b3-1"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-2"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-claim-01</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-6"></a>  <span class="nt">accessModes</span><span class="p">:</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-7"></a>  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-8"></a>  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-local-storage</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-9"></a>  <span class="nt">resources</span><span class="p">:</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-10"></a>    <span class="nt">requests</span><span class="p">:</span>
-<a name="rest_code_0a794df069734d118aafecb65868b9b3-11"></a>      <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-</pre>
-<pre class="code bash"><a name="rest_code_e43ab8f65a91415188f503e032bb84fd-1"></a>$ kubectl apply -f pvc.yaml
-</pre>
-<p>Volume olusturdugumuza gore artik yayinlayacagimiz static websitesi icin deployment asamasina gecebiliriz.</p>
-</div>
-<div class="section" id="deployment">
-<h3>Deployment:</h3>
-<p>Asagidaki sekilde deployment olusturalim:</p>
-<pre class="code yaml"><a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-6"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-7"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-8"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-9"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-10"></a>  <span class="nt">template</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-11"></a>    <span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-12"></a>      <span class="nt">labels</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-13"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-14"></a>    <span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-15"></a>      <span class="nt">containers</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-16"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">git-sync</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-17"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">k8s.gcr.io/git-sync/git-sync:v3.2.0</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-18"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-19"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-20"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/git</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-21"></a>        <span class="nt">env</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-22"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_REPO</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-23"></a>          <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/user_name/blog.example.com.git</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-24"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_DEST</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-25"></a>          <span class="nt">value</span><span class="p">:</span> <span class="s">"blog"</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-26"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GIT_SYNC_WAIT</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-27"></a>          <span class="nt">value</span><span class="p">:</span> <span class="s">"10"</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-28"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-29"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-30"></a>        <span class="nt">ports</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-31"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-32"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-33"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-34"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/nginx/html</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-35"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-36"></a>      <span class="nt">volumes</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-37"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www-persistent-storage</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-38"></a>        <span class="nt">persistentVolumeClaim</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-39"></a>          <span class="nt">claimName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-claim-01</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-40"></a>      <span class="nt">nodeSelector</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-41"></a>        <span class="nt">kubernetes.io/hostname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">node3</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-42"></a>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-43"></a><span class="nn">---</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-44"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-45"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-46"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-47"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-svc</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-48"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-49"></a>  <span class="nt">ports</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-50"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-51"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-52"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-53"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-54"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a name="rest_code_abc2c532c7ca447985bbeb53b7138b6c-55"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog</span>
-</pre>
-<p>git-sync environment degerlerinden GIT_SYNC_REPO yerine git reponuzu ve GIT_SYNC_DEST degerini isteginize gore degistirebilirsiniz.</p>
-<pre class="code bash"><a name="rest_code_65bc2669cba34119bac20d02e68ddd97-1"></a>$ kubectl apply -f deployment.yaml
-</pre>
-<p>Deployment olusturulup tamamlandiktan sonra websitemizi yayinlamak icin ingress olusturabiliriz.</p>
-<pre class="code yaml"><a name="rest_code_07d25846c04645d79f44089bd76155de-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1beta1</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ingress</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-ingress</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-5"></a><span class="nt">spec</span><span class="p">:</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-6"></a>        <span class="c1">#  ingressClassName: nginx # use only with k8s version &gt;= 1.18.0</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-7"></a>  <span class="nt">rules</span><span class="p">:</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-8"></a>  <span class="p p-Indicator">-</span> <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog.example.com</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-9"></a>    <span class="nt">http</span><span class="p">:</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-10"></a>      <span class="nt">paths</span><span class="p">:</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-11"></a>      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/blog</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-12"></a>        <span class="nt">backend</span><span class="p">:</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-13"></a>          <span class="nt">serviceName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blog-svc</span>
-<a name="rest_code_07d25846c04645d79f44089bd76155de-14"></a>          <span class="nt">servicePort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-</pre>
-<pre class="code bash"><a name="rest_code_45685fe9ebce466890922eb719d16631-1"></a>$ kubectl apply -f ingress.yaml
-</pre>
-<p>ingress tanimlamamiz da yapildigina gore <em>http://blog.example.com/blog</em> adresinden websitemize ulasabiliriz. Artik git uzerine sayfalarinizi push'ladiktan sonra sayfaniz otomatik guncellenecektir. Umarim size fikir vermistir.</p>
-</div>
-</div>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/openldap-schema-for-postfix/" class="u-url">OpenLDAP Schema for Postfix</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/openldap-schema-for-postfix/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2018-03-31T20:43:33+03:00" title="2018-03-31 20:43">2018-03-31 20:43</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/openldap-schema-for-postfix/#disqus_thread" data-disqus-identifier="cache/posts/openldap-schema-for-postfix.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>If you configure postfix-dovecot with OpenLDAP, you will need specific LDAP's attributes. So I wrote a schema.</p>
-<dl class="simple">
-<dt>postfix-new.schema:</dt>
-<dd><ul class="simple">
-<li><p>4 Attributes ( mailacceptinggeneralid, maildrop, mailEnabled, mailQuota )</p></li>
-<li><p>1 ObjectClass ( postfixUser )</p></li>
-</ul></dd>
-</dl>
-<script src="https://gist.github.com/4eff37b5c0275416393344b687171848.js"></script><noscript>
-<pre class="literal-block">olcattributetypes: {0}(1.3.6.1.4.1.4203.666.1.200 NAME 'mailacceptinggeneralid' 
-    DESC 'Postfix mail local address alias attribute' 
-    EQUALITY caseIgnoreMatch 
-    SUBSTR caseIgnoreSubstringsMatch 
-    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024})
-    
-olcattributetypes: {1}(1.3.6.1.4.1.4203.666.1.201 NAME 'maildrop' 
-    DESC 'Postfix mail final destination attribute' 
-    EQUALITY caseIgnoreMatch 
-    SUBSTR caseIgnoreSubstringsMatch 
-    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024})
-    
-olcattributetypes: {2}(1.3.6.1.4.1.4203.666.1.202 NAME 'mailEnabled' 
-    DESC 'TRUE to enable, FALSE to disable account' 
-    EQUALITY booleanMatch 
-    SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE)
-    
-olcattributetypes: {3}(1.3.6.1.4.1.4203.666.1.203 NAME 'mailQuota' 
-    DESC 'Mail quota limit in kilobytes' 
-    EQUALITY caseExactIA5Match 
-    SYNTAX 1.3.6.1.4.1.1466.115.121.1.26)
-    
-olcobjectclasses: {0}(1.3.6.1.4.1.4203.666.1.100 NAME 'postfixUser' 
-    DESC 'Postfix mail user class' 
-    SUP top AUXILIARY
-    MUST (maildrop)
-    MAY(mailacceptinggeneralid $ mailEnabled $ mailQuota))
-</pre>
-</noscript>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/libvirt-ve-openvswitch/" class="u-url">Libvirt ve OpenvSwitch</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/libvirt-ve-openvswitch/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2018-01-15T00:13:52+03:00" title="2018-01-15 00:13">2018-01-15 00:13</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/libvirt-ve-openvswitch/#disqus_thread" data-disqus-identifier="cache/posts/libvirt-ve-openvswitch.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Bu yazimda libvirt ile openvswitch entegrasyonu hakkinda giris seviyesinde adim atacagiz. Kurulum ve entegrasyona gecmeden
-once bu iki yazilim nedir, ne degildir onlari taniyalim.</p>
-<p><strong>Libvirt</strong> <a class="footnote-reference brackets" href="posts/libvirt-ve-openvswitch/#id3" id="id1">1</a> , Redhat tarafindan 2005'ten bu yana gelistirilmeye devam eden sanallastirma ortamlari icin daemon, API ve
-yonetim aracidir.</p>
-<img alt="/images/libvirt_hypervisors.png" src="images/libvirt_hypervisors.png"><p>Libvirt bilinen bir cok hypervisor'u desteklemektedir. Iste bunlardan bazilari:</p>
-<ul class="simple">
-<li><p>KVM</p></li>
-<li><p>LXC</p></li>
-<li><p>OpenVZ</p></li>
-<li><p>Xen</p></li>
-<li><p>User-mode Linux (UML)</p></li>
-<li><p>Virtualbox</p></li>
-<li><p>VMware ESX</p></li>
-<li><p>VMware Workstation</p></li>
-<li><p>Hyper-V</p></li>
-<li><p>PowerVM</p></li>
-<li><p>Parallels Workstation</p></li>
-<li><p>Bhyve</p></li>
-</ul>
-<p><strong>OpenvSwitch</strong> <a class="footnote-reference brackets" href="posts/libvirt-ve-openvswitch/#id4" id="id2">2</a> , kisaca sanal multilayer network switchtir. OpenvSwitch, bir SDN switch olarak hypervisor uzerindeki sanal makineleri
-fiziksel olarak ayri bulunan network switchler ile entegre calisarak yonetebilir.</p>
-<img alt="/images/Distributed_Open_vSwitch_instance.png" src="images/Distributed_Open_vSwitch_instance.png"><p>Birden fazla protokolu desteklemektedir:</p>
-<ul class="simple">
-<li><p>NetFlow</p></li>
-<li><p>sFlow</p></li>
-<li><p>SPAN</p></li>
-<li><p>RSPAN</p></li>
-<li><p>CLI</p></li>
-<li><p>LACP</p></li>
-<li><p>802.1ag</p></li>
-</ul>
-<div class="section" id="kurulum">
-<h2>Kurulum:</h2>
-<p>Paket yoneticiniz ile libvirt ve openvswitch kurulumunu yapalim. Siz kendi dagitiminiza ve paket yoneticinize gore kurulumu yapabilirsiniz.
-Gentoo uzerinde, libvirt icin gerekli "USE FLAG"lari aktif edip kurulumunu yapalim.Binary dagitimlar icin buna gerek yoktur. Siz direk paket yoneticiniz ile kurulumu yapin.</p>
-<p>/etc/portage/package.use/libvirt:</p>
-<pre class="literal-block">app-emulation/libvirt macvtap vepa qemu virt-network</pre>
-<p>Simdi kurulumu yapabiliriz.</p>
-<pre class="code bash"><a name="rest_code_233e814fd59049d6bc8709f91c52d60e-1"></a><span class="c1"># emerge -av libvirt</span>
-</pre>
-<p>OpenvSwitch kurulumunu yapalim.</p>
-<pre class="code bash"><a name="rest_code_280c897323ec40489e2938c04a8e15e7-1"></a><span class="c1"># emerge -av openvswitch</span>
-</pre>
-<p>Sistem baslangici icin bu servisleri enable edelim.</p>
-<pre class="code bash"><a name="rest_code_190780bdf81940b4aaaca45332b7af49-1"></a><span class="c1"># rc-update add ovsdb-server default</span>
-<a name="rest_code_190780bdf81940b4aaaca45332b7af49-2"></a><span class="c1"># rc-update add ovs-vswitchd default</span>
-<a name="rest_code_190780bdf81940b4aaaca45332b7af49-3"></a><span class="c1"># rc-update add libvirtd default</span>
-<a name="rest_code_190780bdf81940b4aaaca45332b7af49-4"></a><span class="c1"># rc-update add libvirt-guests default</span>
-</pre>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>openvswitch ve kvm kernel modullerinin yuklendiginden emin olunuz. Kernel uzerinde aktif etmek icin <a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU_with_Open_vSwitch_network">openvswitch</a> , <a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU">qemu</a>.</p>
-</div>
-<p>Sistem acilisinda bu modullerin yuklenmesi icin</p>
-<p>/etc/conf.d/modules:</p>
-<pre class="literal-block">modules_4="openvswitch kvm kvm_intel tun"</pre>
-<p>Servisleri baslatalim.</p>
-<pre class="code bash"><a name="rest_code_c806b4546a5149f58d217bbe04934684-1"></a><span class="c1"># /etc/init.d/ovsdb-server start</span>
-<a name="rest_code_c806b4546a5149f58d217bbe04934684-2"></a><span class="c1"># /etc/init.d/ovs-vswitchd start</span>
-<a name="rest_code_c806b4546a5149f58d217bbe04934684-3"></a><span class="c1"># /etc/init.d/libvirtd start</span>
-<a name="rest_code_c806b4546a5149f58d217bbe04934684-4"></a><span class="c1"># /etc/init.d/libvirt-guests start</span>
-</pre>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="posts/libvirt-ve-openvswitch/#id1">1</a></span></dt>
-<dd>
-<p><a class="reference external" href="https://libvirt.org/">https://libvirt.org/</a></p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="posts/libvirt-ve-openvswitch/#id2">2</a></span></dt>
-<dd>
-<p><a class="reference external" href="http://openvswitch.org">http://openvswitch.org</a></p>
-</dd>
-</dl>
-</div>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ansible-gentoo-portage-update/" class="u-url">Ansible Gentoo-Portage Update</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/ansible-gentoo-portage-update/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2018-01-14T02:13:06+03:00" title="2018-01-14 02:13">2018-01-14 02:13</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/ansible-gentoo-portage-update/#disqus_thread" data-disqus-identifier="cache/posts/ansible-gentoo-portage-update.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Ansible Portage module <a class="footnote-reference brackets" href="posts/ansible-gentoo-portage-update/#id2" id="id1">1</a> ile Gentoo Linux sisteminizi guncelleyebilir ve upgrade edebilirsiniz. Asagidaki ornekte
-Ilk once buildfarm adini verdigimiz sunucu uzerinde compile edilip diger gentoo sunucularimiza binary paketleri
-elde edip guncellemelerini yapmaktadir.</p>
-<p>Yukarda bahsettigim sekilde bir buildfarm sunucusu yani paketlerin compile edilecegi sunucuda binary paketleri uretip
-diger sunuculara bu binary paketleri sunmak icin portage uzerinde "buildpkg" ozelligini aktif etmek gerekmektedir.</p>
-<p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
-<pre class="code bash"><a name="rest_code_795c8f8f26f34f34aa7f0f7da2102a0f-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"buildpkg"</span>
-</pre>
-<p>Diger Gentoo sunucularin buildfarm uzerindeki paketleri alabilmesi icin yayinlamasi gerekli. Bunun birden fazla sekilde
-kendinize cozum saglayabilirsiniz. FTP, FTPS, NFS, SSH, HTTP, HTTPS gibi. Biz kucuk bir web sunucusu kurup paketleri bu sekilde yayinlayalim.</p>
-<pre class="code bash"><a name="rest_code_4b872ded7c1c4053b3081e2910b18181-1"></a><span class="c1"># emerge -av www-servers/lighttpd</span>
-</pre>
-<p>lighttpd web sunucusunu kurduktan sonra olusturulan paketlerin buradan yayinlanmasini konfigure edelim."/etc/lighttpd/lighttpd.conf"
-dosyasinin sonuna asagidaki iki satiri ekleyin.</p>
-<p><code class="docutils literal">/etc/lighttpd/lighttpd.conf</code>:</p>
-<pre class="code bash"><a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-1"></a>server.modules +<span class="o">=</span> <span class="o">(</span> <span class="s2">"mod_alias"</span> <span class="o">)</span>
-<a name="rest_code_45900ecd8db54db6bc7bb68ee268750e-2"></a>alias.url <span class="o">=</span> <span class="o">(</span> <span class="s2">"/packages"</span> <span class="o">=</span>&gt; <span class="s2">"/usr/portage/packages/"</span> <span class="o">)</span>
-</pre>
-<p>Artik web sunucumuzu baslatabiliriz.</p>
-<pre class="code bash"><a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-1"></a><span class="c1"># rc-update add lighttpd default</span>
-<a name="rest_code_1081eb8361874b168cd72d856fe1bf4f-2"></a><span class="c1"># /etc/init.d/lighttpd start</span>
-</pre>
-<p>Buildfarm sunucumuz ile ayarlarimiz bu kadar. Artik diger sunucularimizi buildfarm sunucusu uzerinden binary paketleri
-almasi icin konfigure edebiliriz.</p>
-<p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
-<pre class="code bash"><a name="rest_code_52529292262144eb9bd51ca3df8aef1f-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"getbinpkg"</span>
-<a name="rest_code_52529292262144eb9bd51ca3df8aef1f-2"></a><span class="nv">PORTAGE_BINHOST</span><span class="o">=</span><span class="s2">"http://buildfarm.hostname/packages"</span>
-</pre>
-<p>Artik ansible ile sistemizi ilk once buildfarm ile derlenip binary paketler ile diger sunucularinizi guncelleyebilirsiniz.</p>
-<script src="https://gist.github.com/843654e91765dee16e64814bd3ba76af.js"></script><noscript>
-<pre class="literal-block">---
-- hosts: buildfarm
-  become: true
-  remote_user: jack
-  become_method: sudo
-
-  tasks:
-    - portage:
-         package: '@world'
-         newuse: yes
-         update: yes
-         deep: yes
-         sync: yes
-
-- hosts: webservers
-  become: true
-  remote_user: jack
-  become_method: sudo
-
-  tasks:
-    - portage:
-         package: '@world'
-         newuse: yes
-         update: yes
-         deep: yes
-         sync: yes</pre>
-</noscript>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="posts/ansible-gentoo-portage-update/#id1">1</a></span></dt>
-<dd>
-<p><a class="reference external" href="http://docs.ansible.com/ansible/latest/portage_module.html">http://docs.ansible.com/ansible/latest/portage_module.html</a></p>
-</dd>
-</dl>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ansible-ssh-keys-deployment/" class="u-url">Ansible SSH Keys Deployment</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/ansible-ssh-keys-deployment/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-12-10T21:25:32+03:00" title="2017-12-10 21:25">2017-12-10 21:25</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/ansible-ssh-keys-deployment/#disqus_thread" data-disqus-identifier="cache/posts/ansible-ssh-keys-deployment.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Ansible <strong>authorized_key</strong> modulu <em>'delegate_to'</em> ile sunuculara sshkey'leri deploy ederken bazi sshkey'lerin eklenmedigini gorebilirsiniz. Boyle bir sorun ile karsilasmamak icin asagidaki gibi bu module ihtiyac olmadan sshkey'leri ekleyebilirsiniz.</p>
-<script src="https://gist.github.com/9882c618cb85a2cdd158bb1fc7babb29.js"></script><noscript>
-<pre class="literal-block">- hosts: webservers
-  remote_user: jack
-
-  tasks:
-    - name: fetch all public keys 
-      shell: cat ~/.ssh/id_rsa.pub
-      register: ssh_keys
-      tags:
-        - ssh
-
-    - name: check ssh public keys
-      debug: msg="{{ ssh_keys.stdout }}"
-      tags:
-        - ssh
-
-    - name: deploy ssh keys
-      shell: echo {{ ssh_keys.stdout }} &gt;&gt; ~/.ssh/authorized_keys
-      delegate_to: "{{ item }}"
-      with_items:
-        - "{{groups['webservers']}}"
-      tags:
-        - ssh</pre>
-</noscript>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/nginx-reverse-proxy-cache/" class="u-url">Nginx Reverse Proxy Cache</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/nginx-reverse-proxy-cache/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-12-09T15:13:35+03:00" title="2017-12-09 15:13">2017-12-09 15:13</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/nginx-reverse-proxy-cache/#disqus_thread" data-disqus-identifier="cache/posts/nginx-reverse-proxy-cache.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<img alt="/images/nginx_logo.png" src="images/nginx_logo.png"><p>Bir websitesinin olmazsa olmaz unsurlardan biri performansli sekilde calismasidir. Performans ise birden fazla etkene bagli olabilir. Bu etkenler yazilan kodun kalitesinden tutun da websitenin yayinlandigi altyapiya kadar bagli olabilir. Fakat son kullanici sizin mukemmel kod kalitenize ya da sarsilmaz altyapiniza bakmaksizin kendine onune gelen performansdan memnun kalacaktir. Ayni zamanda dunyanin en iyi kodlarina yazarak cok iyi bir altyapi ile websitenizi yayina surseniz dahi kullaniciya giden iletisim surecleri belirlidir.</p>
-<p>Bu yazida daha iyi bir performans ve hizli bir websitesi icin nginx uzerinde <em>"content cache"</em> hakkinda biraz bilgi vermeye calisacam. <em>"Content Cache"</em> kullanici ile proxy cache sunucusu arasinda saglanir. Asagidaki topolojiden  inceleyebiliriz:</p>
-<img alt="/images/nginx_reverse_proxy.jpg" src="images/nginx_reverse_proxy.jpg"><p>Yukarda topolojide goruldugu gibi 'Client I' kullanicisi, reverse proxy sunucusu arkasindaki origin sunuculara ulasmaksizin website uzerindeki iceriklere reverse proxy uzerinden ulasir. Origin sunuculardan hic bir icerik istenmez.</p>
-<div class="section" id="konfigurasyon">
-<h2>Konfigurasyon:</h2>
-<p>Content cache islemi nginx uzerinde basit olarak <em>"proxy_cache_path"</em> ve <em>"proxy_cache"</em> konfigurasyonlari ile ayarlanabilir. Ilk olarak "/etc/nginx/nginx.conf" dosyasi icinde "http{}" arasina "proxy_cache_path" konfigurasyonunu girelim.</p>
-<pre class="code text"><a name="rest_code_a13e168b12494d3cbb32b5b00beb9101-1"></a>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
-</pre>
-<p>Yazdigimiz konfigurasyonu inceleyelim:</p>
-<dl class="simple">
-<dt>/var/cache/nginx</dt>
-<dd>
-<p>cache icin kullanilacak dizin. Eger bu dizin olusturulmamissa olusturun ve nginx kullanicisina yazma hakkini  verdiginize emin olun.</p>
-</dd>
-</dl>
-<pre class="code bash"><a name="rest_code_ef04abf403e04057b8c456825da2216a-1"></a><span class="c1"># mkdir -p /var/cache/nginx</span>
-<a name="rest_code_ef04abf403e04057b8c456825da2216a-2"></a><span class="c1"># chown nginx:nginx /var/cache/nginx</span>
-</pre>
-<dl class="simple">
-<dt>levels=1:2</dt>
-<dd>
-<p>Nginx yukarda olusturdugumuz dizin altinda two-level directory ile cachelenen tum icerikleri tek bir dizin altinda degilde two-level dizin altinda tutmasini istiyoruz. Eger levels konfigurasyonunu yapmazsaniz nginx tum icerikleri tek bir dizin altinda toplayacak ve buyuk boyutlu cachelenen iceriklerde dosyaya erisim hizlari azalacaktir.</p>
-</dd>
-<dt>keys_zone=cache:10m</dt>
-<dd>
-<p>Burada nginx cache key'ler icin shared memory zone olusturuyor. Cachelenen icerigi diske erisimi saglamadan direk olusturulan bu zone uzerinde okumasini sagliyor. "10m" ise cachelenecek olan keys buyuklugunu ayarliyoruz. 1 MB zone 8000 keys, 10MB zone 80000 keys icerebilir. Kendi cachelenecek sisteminize gore bu buyuklugu ayarlayabilirsiniz.</p>
-</dd>
-<dt>max_size=1g</dt>
-<dd>
-<p>Cachelenecek maksimum buyuklugu ifade eder.</p>
-</dd>
-<dt>inactive=60m</dt>
-<dd>
-<p>Cachelenmis bir icerige herhangi bir erisim olmuyorsa ne kadar sure sonra inactive olmasini ayarlar.</p>
-</dd>
-<dt>use_temp_path=off</dt>
-<dd>
-<p>Nginx yukarda bahsettigimiz '/var/cache/nginx' dizinine yazmadan once gecici olarak bir dizine yazmasini ya da ikinci bir dizine yazmayi kapatmayi ayarlar. Onerilen ikinci bir yazma olmamasi icin bu ayari her zaman "off" olarak ayarlamaniz.</p>
-</dd>
-</dl>
-<p>"proxy_cache_path" ile ilgili kismimiz bu kadar. Artik herhangi bir upstream sitemiz ile ilgili ayarlamalarimizi yapalim.
-Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" dosyasi icinde, ayrisik konfigurasyon kullaniyorsaniz ornek olarak "/etc/nginx/conf.d/upstream01.conf" icinde "location / {}" arasinda ayarlamaniz gerekmektedir.</p>
-<p>Ornek olarak:</p>
-<pre class="code text"><a name="rest_code_d9a6707894114c948a4b3aea8597e40a-1"></a>location / {
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-2"></a>     proxy_cache cache;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-3"></a>     proxy_cache_valid  200 302  60m;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-4"></a>     proxy_cache_valid  404      1m;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-5"></a>     proxy_cache_revalidate on;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-6"></a>     proxy_cache_min_uses 3;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-7"></a>     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-8"></a>     proxy_cache_background_update on;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-9"></a>     proxy_cache_lock on;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-10"></a>     add_header X-Proxy-Cache $upstream_cache_status;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-11"></a>     proxy_ignore_headers Set-Cookie;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-12"></a>     proxy_pass http://upstream01;
-<a name="rest_code_d9a6707894114c948a4b3aea8597e40a-13"></a>}
-</pre>
-<p>Yukarda yazdigimiz konfigurasyona kisaca goz atalim.</p>
-<dl class="simple">
-<dt>proxy_cache cache;</dt>
-<dd>
-<p>proxy_cache_path konfigurasyonunda olusturdugumuz shared memory zone adini belirttik.</p>
-</dd>
-<dt>proxy_cache_valid 200 302 60m;</dt>
-<dd>
-<p>HTTP cevap kodu 200 ile 302 donen sayfalarin cache suresi 60 dakika olmasini belirttik.Kendi sisteminize gore konfigure edebilirsiniz.</p>
-</dd>
-<dt>proxy_cache_valid 404 1m;</dt>
-<dd>
-<p>404 cevabi donen sayfalarin cache surelerini 1 dakika olarak ayarladik. Kendi sisteminize gore konfigure edebilirsiniz.</p>
-</dd>
-<dt>proxy_cache_revalidate on;</dt>
-<dd>
-<p>Nginx, origin sunuculardan GET istegi gondererek icerekleri yeniler. Nginx 'If-Modified-Since' ve 'Last-Modified' cache control headerlari ekleyerek, cache kontrolunu yapar.Bir kullanici guncellenmis bir icerige istek yaparsa nginx sadece guncellenen icerigin cacheni yenileyerek performans ve band genisligininden tasarruf saglar.</p>
-</dd>
-<dt>proxy_cache_min_uses 3;</dt>
-<dd>
-<p>Nginx, bir icerigin cachelenmesi icin minimum istek sayisini belirtemeniz halinde icerigi cacheleyecektir. Default olarak 1 olan istegi ben 3 yaptim. Kendi isteginize ve sisteminize gore konfigure edebilirsiniz.</p>
-</dd>
-<dt>proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;</dt>
-<dd>
-<p>Eger origin sunuculari down olursa ya da hata verirse cachelenmis icerigi kullanicilari sunar.</p>
-</dd>
-<dt>proxy_cache_background_update on;</dt>
-<dd>
-<p>Yukardaki 'stale' konfigurayonunda belirttigimiz hata aninda cachelenmis icerigi yayinlamasi icin iceriklerin backgrounddan guncellenmesi direktifini verir.</p>
-</dd>
-<dt>proxy_cache_lock on;</dt>
-<dd>
-<p>Eger birden fazla kullanici ayni anda cachelenmemis bir icerige istek yollarsa sadece bir tanesinin istegi origin servera gonderilerek cachelenmesi saglanir.Diger istek ya da istekler icerik cachelenme islemi bitine kadar bekletilir.</p>
-</dd>
-<dt>add_header X-Proxy-Cache $upstream_cache_status;</dt>
-<dd>
-<p>HTTP header'i icine 'X-Proxy-Cache' headerini ekler. Bu basligi eklemek daha sonra proxy cache isleminin calisip calismadigini kontrol etmek icin kullanabilirsiniz.</p>
-</dd>
-<dt>proxy_ignore_headers Set-Cookie;</dt>
-<dd>
-<p>'Set-Cookie' headerinin cachelenmemesini belirttik.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="test">
-<h2>Test:</h2>
-<p>Yukardaki gibi konfigurasyonlari girip nginx web sunucunuzu reload/restart ettikten sonra Proxy Cache'in calisip calismadigini test edelim.</p>
-<pre class="code bash"><a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-1"></a>$ curl -I http://www.example.com
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-2"></a>  HTTP/1.1 <span class="m">200</span> OK
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-3"></a>  Server: nginx
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-4"></a>  ...
-<a name="rest_code_7c234fcd51b34f4c9a6cc908ea1b2787-5"></a>  X-Proxy-Cache: HIT
-</pre>
-<p>'X-Proxy-Cache' headeri, gonderilen istedigin gecerli oldugunu ve cevabin cache'den gonderildigi gosteriyor.</p>
-<p>Diger Cache status cevaplari:</p>
-<dl class="simple">
-<dt>MISS:</dt>
-<dd>
-<p>Gonderilen istedigin gecersiz oldugunu ve cache icinde istek gonderilen sayfanin olmadigini belirtir. Cevap origin sunucudan kullaniciya gonderilmistir.</p>
-</dd>
-<dt>BYPASS:</dt>
-<dd>
-<p>Gonderilen icerik direk olarak origin sunuculardan kullaniciya gonderilmistir.</p>
-</dd>
-<dt>EXPIRED:</dt>
-<dd>
-<p>Icerik cache uzerinde suresi dolmus ve origin sunucu uzerinden gonderilmis.</p>
-</dd>
-<dt>STALE:</dt>
-<dd>
-<p>Origin sunucular cevap vermedigini ve icerigin cache uzerinden verildigini belirtir.</p>
-</dd>
-<dt>UPDATING:</dt>
-<dd>
-<p>Icerigin stale durumda oldugunu ve bir onceki istek ile guncellemede oldugunu belirtir.</p>
-</dd>
-<dt>REVALIDATED:</dt>
-<dd>
-<p>Daha once yukarida(proxy_cache konfigurasyonu kisminda) acikladigim gibi revalidated isleminde oldugunu belirtir.</p>
-</dd>
-</dl>
-<p>Sizde yapmis oldugunuz konfigurasyonu test ederek cache durumunuzu kontrol edebilirsiniz. Kolay gelsin :)</p>
-</div>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/locust-load-testing-tool/" class="u-url">Locust: Load Testing Tool</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/locust-load-testing-tool/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-12-04T00:37:28+03:00" title="2017-12-04 00:37">2017-12-04 00:37</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/locust-load-testing-tool/#disqus_thread" data-disqus-identifier="cache/posts/locust-load-testing-tool.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p><em>Locust</em>, kullanimi diger uygulamalara gore kolay distributed load testing aracidir. Websitenizi ya da diger sistemlerinizi kullanici sayilarini simule ederek yazdiginiz kodlari ya da sistemlerinizi load testing yaparak kontrol etmenize olanak saglar.</p>
-<p><strong>Locust'un ozellikleri:</strong></p>
-<ul class="simple">
-<li><p>Kolay test senaryosu yazma. Diger araclara gore daha sade ve kolay syntax ile yazabilme. Python'a asina olanlar icin yabancilik cekmeyecekleri sekilde python kod.</p></li>
-<li><p>Distributed load testing. Tekil ya da coklu makinelerle load testing yapabilme. Ister kullandiginiz bir bilgisayarla isterse 20 makine ile test yapabilme imkani.</p></li>
-<li><p>Webarayuzu. Locust HTML+JS ile size realtime test sonuclarini webarayuzunden izleyebilme imkani sagliyor.</p></li>
-<li><p>Her turlu sistemi test edebilirsiniz. Sadece websitelerini degil ldap,smtp gibi servis verdiginiz her turlu sistemleri biraz python biliyorsaniz client kod vs yazayarak test edebilirsiniz.</p></li>
-<li><p>Apache JMeter gibi java bagimliliginiz kalmadan bu testlerinizi yapabilirsiniz.( JMeter uzerinde SSL sertifikaniz 4096 bit gibi yuksek sifrelenmis ise javanin en yuksek 2048 bit desteklemesi yuzunden basarili olamayabilirsiniz. )</p></li>
-</ul>
-<p><strong>Kurulumu</strong></p>
-<p>Locust, Python 2.7, 3.3, 3.4, 3.5,3.6. versiyonlarini desteklemektedir. Sistemizdeki 'pip' kurulu oldugundan emin olun. Bir cok modern sistemlerde halihazirda kurulu olarak zaten geliyor.</p>
-<pre class="code bash"><a name="rest_code_ac9f8eb68bb942b58cbcf73f0e130aca-1"></a><span class="c1"># pip install locustio</span>
-</pre>
-<p>Eger sadece kendi kullaniciniz icin kuracaksaniz;</p>
-<pre class="code bash"><a name="rest_code_c2f26513e85a45338e282e21eda7d3bc-1"></a>$ pip install --user locustio
-</pre>
-<p>Ardindan '~/.local/bin/' dizinini "PATH'inize ekleyin. GNU/Linux dagitiminiza ya da sisteminize gore '.bashrc' ya da 'bash_profile' dosyaniza eklemeniz gerekir.</p>
-<pre class="code bash"><a name="rest_code_9ae1cec3776846188b18a247948b4ea8-1"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin
-</pre>
-<p>Kurulum adimlari bu kadar.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Son olarak not dusmek gerekir. Eger load testing yaparken yuksek sayida kullanici ile senaryo gerceklestirecekseniz sistemiz ve load-testing yapan kullaniciniz icin file-limit degerlerini yukseltmeniz gerekebilir.</p>
-</div>
-<p>Ilk olarak sistemiz uzerinden file-limit degerini ogrenip yukseltmek icin;</p>
-<pre class="code bash"><a name="rest_code_e1228d893e464035934603071241c433-1"></a><span class="c1"># cat /proc/sys/fs/file-max</span>
-<a name="rest_code_e1228d893e464035934603071241c433-2"></a><span class="m">75000</span>
-</pre>
-<p>Yukarda goruldugu gibi sistem uzerinde file-limit degeri '75000'. Bu degeri ornek olarak '750000' yukseltmek icin;</p>
-<pre class="code bash"><a name="rest_code_29429d4bbe9841c9ac4518f2b880bbad-1"></a><span class="c1"># sysctl -w fs.file-max=750000</span>
-</pre>
-<p>Sistem uzerinde kalici olarak degistirmek icin, "/etc/sysctl.conf" dosyasina asagidaki satiri ekleyin.</p>
-<pre class="code bash"><a name="rest_code_4ed49813ab024aa09872fd8d151e33dc-1"></a>fs.file-max <span class="o">=</span> <span class="m">750000</span>
-</pre>
-<p>Aktif etmek icin;</p>
-<pre class="code bash"><a name="rest_code_aa1e20cd0d8e4483b8e9cd8da391b8c2-1"></a><span class="c1"># sysctl -p</span>
-</pre>
-<p>Bu limit degerlerini sisteme giris yaptiginiz ya da test yapacaginiz kullanici icin yukseltmek icin '/etc/security/limits.conf' dosyaniza asagidaki gibi degerleri ekleyin;</p>
-<pre class="code bash"><a name="rest_code_372509ef58454bc784dbacf04fb701eb-1"></a><span class="c1">## hard limit</span>
-<a name="rest_code_372509ef58454bc784dbacf04fb701eb-2"></a>kullanici1        hard nofile <span class="m">10000</span>
-<a name="rest_code_372509ef58454bc784dbacf04fb701eb-3"></a><span class="c1">## soft limit</span>
-<a name="rest_code_372509ef58454bc784dbacf04fb701eb-4"></a>kullanici1        soft nofile <span class="m">5000</span>
-</pre>
-<p>Yaptiginiz degisikligin aktif olmasi icin cikis yapip tekrar giris yapmaniz gereklidir.</p>
-<p><strong>Senaryo olusturma</strong></p>
-<p>Locust icin cesitli senaryolar yazabilirsiniz. Iki basit ornek verelim.</p>
-<p><em>Ornek 1:</em> Websitenizin anasayfasini ve hakkimda sayfalarini test etmek icin load-testing senaryosu yazalim.</p>
-<pre class="code python"><a name="rest_code_03b106badf2d4f4f941526fb5822d530-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span><span class="p">,</span> <span class="n">task</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-2"></a>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-3"></a><span class="k">class</span> <span class="nc">MyTaskSet</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-4"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-5"></a>     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-6"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-7"></a>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-8"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-9"></a>     <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-10"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/hakkinda/"</span><span class="p">)</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-11"></a>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-12"></a><span class="k">class</span> <span class="nc">MyLocust</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-13"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">MyTaskSet</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-14"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
-<a name="rest_code_03b106badf2d4f4f941526fb5822d530-15"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">15000</span>
-</pre>
-<p>'min_wait' ve 'max_wait' degerleri simule eden kullanicilarin bu sureler arasinda istek yapmasini gosterir.</p>
-<p><em>Ornek 2:</em> Websitenizin login sayfasina kullanici ile giris yapip, anasayfasini ve profile sayfasini test senaryosu yazalim.</p>
-<pre class="code python"><a name="rest_code_21b81d96c0384ca592dc569fa435bffd-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-2"></a>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-3"></a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-4"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/login"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"ellen_key"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span><span class="s2">"education"</span><span class="p">})</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-5"></a>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-6"></a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-7"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-8"></a>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-9"></a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-10"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/profile"</span><span class="p">)</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-11"></a>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-12"></a><span class="k">class</span> <span class="nc">UserBehavior</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-13"></a>     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-14"></a>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-15"></a>     <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-16"></a>             <span class="n">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-17"></a>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-18"></a><span class="k">class</span> <span class="nc">WebsiteUser</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-19"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">UserBehavior</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-20"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
-<a name="rest_code_21b81d96c0384ca592dc569fa435bffd-21"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">9000</span>
-</pre>
-<p><strong>Load-Testing Yapmak</strong></p>
-<p>Locust ile yazdigimiz senaryolar ile load-testing yapmak icin;</p>
-<pre class="code bash"><a name="rest_code_a7f48c8f465b47068ac4260819ca996d-1"></a>$ locust --host<span class="o">=</span>http://example.com
-</pre>
-<p>ya da yazdigimiz senaryo dosyasinin yolunu belirterek;</p>
-<pre class="code bash"><a name="rest_code_21bf7dbb80914d3ab7d9ff5987e1b1e8-1"></a>$ locust -f locust_files/my_locust_file.py --host<span class="o">=</span>http://example.com
-</pre>
-<p>Test basladiktan sonra tarayiciniza 'localhost:8089' yazarak kullanicilari simule edip testinizi izleyebilirsiniz.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/freeipa-ve-active-directory-entegrasyonu/" class="u-url">FreeIPA ve Active Directory Entegrasyonu</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/freeipa-ve-active-directory-entegrasyonu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-22T17:20:37+03:00" title="2017-01-22 17:20">2017-01-22 17:20</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/freeipa-ve-active-directory-entegrasyonu/#disqus_thread" data-disqus-identifier="cache/posts/freeipa-ve-active-directory-entegrasyonu.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<dl class="simple">
-<dt><strong>Kurulum oncesi hazirlik:</strong></dt>
-<dd><ol class="arabic simple">
-<li><dl class="simple">
-<dt>FreeIPA Server 4.4.0-14 ( CentOS 7 )</dt>
-<dd><ul class="simple">
-<li><p>IPA Server IP Adresi: 172.16.183.128</p></li>
-<li><p>IPA Server Hostname: ipaserver.piesso.local</p></li>
-<li><p>IPA Domain: piesso.local</p></li>
-<li><p>IPA Netbios: PIESSO</p></li>
-<li><p>IPA Kerberos realm: PIESSO.LOCAL</p></li>
-</ul></dd>
-</dl></li>
-<li><dl class="simple">
-<dt>Windows Server 2012 R2</dt>
-<dd><ul class="simple">
-<li><p>Active Directory IP Adresi: 172.16.183.132</p></li>
-<li><p>Active Directory Hostname: ad.pencere.local</p></li>
-<li><p>Active Directory Domain: pencere.local</p></li>
-<li><p>Active Directory Netbios: PENCERE</p></li>
-</ul></dd>
-</dl></li>
-</ol></dd>
-</dl>
-<p>Windows Server 2012 R2 ve FreeIPA icin kerberos ticket vs gibi sorunlar yasanmamasi icin ntp ile zaman esitlemesi mutlaka baslatilmalidir. FreeIPA kurulumunda ontanimli olarak ntp client "time sync" islemini ntp pool'larindan alarak esitlemektedir. Fakat Windows Server 2012 R2 uzerinde de bunu yapmak icin manuel ntp pool sunucularini girip zaman servisini yeniden baslatilmasi gerekmektedir.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin "+3" oldugunu kontrol edin.</p>
-</div>
-<p><em>(Powershell uzerinde)</em></p>
-<pre class="code powershell"><a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
-<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="err">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="err">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
-<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="err">:</span><span class="n">yes</span>
-<a name="rest_code_f3d2b354fd304b17b71c1c73f76e12d0-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
-</pre>
-<p><strong>FreeIPA ve Active Directory Cross-Realm Trust:</strong></p>
-<ul class="simple">
-<li><p>Ilk olarak "ipa-adtrust-install" paketini repodan kuralim:</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_cd50fe50a08e409f9b681be3c944cfb7-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
-</pre>
-<ul class="simple">
-<li><p>IPA Server uzerinde cross-realm islemi icin:</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_84c304852399415fb7a7605880e45db7-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
-</pre>
-<p><strong>Firewall Konfigurasyonu:</strong></p>
-<p>Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.</p>
-<pre class="code console"><a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
-<a name="rest_code_2c06f3642f894df78d1fb1872b4ca1e1-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
-</pre>
-<p>Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:</p>
-<pre class="code bash"><a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-1"></a><span class="c1"># systemctl disable firewalld</span>
-<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-2"></a><span class="c1"># systemctl stop firewalld</span>
-<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-3"></a><span class="c1"># yum install -y iptables-services</span>
-<a name="rest_code_7936879dc97b4b9eaf5562145cfe6248-4"></a><span class="c1"># systemctl enable iptables</span>
-</pre>
-<p>"/etc/sysconfig/iptables" dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:</p>
-<pre class="code console"><a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-1"></a><span class="go">\*filter</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
-<a name="rest_code_d17d50d3dcd64d7cafcfb7fcbbb681d5-15"></a><span class="go">COMMIT</span>
-</pre>
-<p>Iptables servisini baslatabiliriz:</p>
-<pre class="code bash"><a name="rest_code_fb6326f0f2eb449697d4407f8cdf258b-1"></a><span class="c1"># systemctl start iptables</span>
-</pre>
-<p><strong>DNS Forward Zone:</strong></p>
-<p>Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.</p>
-<ul class="simple">
-<li><p>Windows Server 2012 R2 uzerinde:</p></li>
-</ul>
-<pre class="code powershell"><a name="rest_code_0bc6fb2df2394b21916b604a64f2aeee-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
-</pre>
-<ul class="simple">
-<li><p>FreeIPA Server uzerinde:</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_8e8c2f18f4c24eb7a9e5071049c3f6ff-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
-</pre>
-<ul class="simple">
-<li><p>Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:</p></li>
-</ul>
-<p><em>Windows Server 2012 R2 (PowerShell):</em></p>
-<pre class="code powershell"><a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
-<a name="rest_code_38a558c80c6245fd9f6e9f27a5f0ceaa-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
-</pre>
-<ul class="simple">
-<li><p>FreeIPA Server uzerinde:</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
-<a name="rest_code_219b8f76489942c79ef7e0fa9e9b08e6-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
-</pre>
-<p><strong>Cross-Realm Trust:</strong></p>
-<p>Freeipa ile Active Directory arasinda "Two-way trust" konfigurasyonu:</p>
-<pre class="code bash"><a name="rest_code_fb0605c4ecac40a5867a7a7712d84b87-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
-</pre>
-<p>"Two-way trust" baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:</p>
-<pre class="code bash"><a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-1"></a><span class="c1"># ipa trust-fetch-domains "pencere.local"</span>
-<a name="rest_code_b82b1fe4604a4283ba0a5b7b2c184b32-2"></a><span class="c1"># ipa trustdomain-find "pencere.local"</span>
-</pre>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ipa-client-kurulumu/" class="u-url">IPA Client Kurulumu</a></h1>
-        <div class="metadata">
-            <p class="dateline"><a href="posts/ipa-client-kurulumu/" rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2017-01-22T16:24:47+03:00" title="2017-01-22 16:24">2017-01-22 16:24</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
-                mofm
-            </span></p>
-                <p class="commentline"><i class="fa fa-comment"></i> 
-        
-    <a href="posts/ipa-client-kurulumu/#disqus_thread" data-disqus-identifier="cache/posts/ipa-client-kurulumu.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<dl>
-<dt><strong>Kullanilan yazilimlar:</strong></dt>
-<dd><ul>
-<li>
-<p>Centos Linux 7.2</p>
-<blockquote>
-<ul class="simple">
-<li><p>ipa-client</p></li>
-<li><p>ipa-admin-tools</p></li>
-</ul>
-</blockquote>
-</li>
-</ul></dd>
-</dl>
-<p><strong>Kurulum Oncesi Hazirlik:</strong></p>
-<pre class="code bash"><a name="rest_code_be49731c5bf145c9a256781147932cb9-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
-<a name="rest_code_be49731c5bf145c9a256781147932cb9-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
-</pre>
-<p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
-<blockquote>
-<ol class="arabic simple">
-<li><p>Hostname</p></li>
-<li><p>/etc/hosts</p></li>
-<li><p>Sistem update</p></li>
-</ol>
-</blockquote>
-<p><em>Hostname:</em></p>
-<pre class="code bash"><a name="rest_code_94663bcd848547f7a9aab73bdb4e94ce-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
-</pre>
-<p><em>/etc/hosts:</em></p>
-<pre class="code bash"><a name="rest_code_15c38659790447f8a288f092a83e8996-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
-<a name="rest_code_15c38659790447f8a288f092a83e8996-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
-</pre>
-<p><em>Sistem update:</em></p>
-<pre class="code bash"><a name="rest_code_e65d7f9a42004323afd7ab0388fa5de6-1"></a><span class="c1"># yum update -y</span>
-</pre>
-<p><strong>Kurulum:</strong></p>
-<ul class="simple">
-<li><p>ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_d2fff2febd684c368b187b6a85449d59-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
-</pre>
-<ul class="simple">
-<li><p>ipa-client kurulumu;</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_1910355d47d14b69883d616125586182-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
-</pre>
-<p><strong>IPA Client ve Kerberos Ticket Testi:</strong></p>
-<ul class="simple">
-<li><p>FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_1389b757d7f3440295bd446966ad571c-1"></a><span class="c1"># getent passwd admin</span>
-<a name="rest_code_1389b757d7f3440295bd446966ad571c-2"></a><span class="c1"># getent group admins</span>
-</pre>
-<ul class="simple">
-<li><p>Kerberos'tan ticket alimi;</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_c4ba9d9bfe3843eb9134120ba2279576-1"></a><span class="c1"># kinit admin</span>
-</pre>
-<ul class="simple">
-<li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
-</ul>
-<pre class="code bash"><a name="rest_code_20fe562a47b746658c7c233b8fdc5adc-1"></a><span class="c1"># klist</span>
-</pre>
-<ul class="simple">
-<li><p>Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;</p></li>
-</ul>
-<p><em>/etc/resolv.conf:</em></p>
-<pre class="code bash"><a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-1"></a>search piesso.local
-<a name="rest_code_cd590a0bd83644f581d86b76bb6475f6-2"></a>nameserver <span class="m">172</span>.16.183.128
-</pre>
-</div>
     </div>
     </article>
 </div>
 
-        <nav class="postindexpager"><ul class="pager">
-<li class="next">
-                <a href="index-23.html" rel="next">Older posts</a>
-            </li>
-        </ul></nav><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
-<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+        <ul class="pager postindexpager clearfix">
+<li class="next"><a href="index-24.html" rel="next">Older posts</a></li>
+        </ul>
+<script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
             
         </footer>
 </div>
-    </section><script src="assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
-    moment.locale("en");
-    fancydates(2, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates --><script>
+</div>
+
+
+        <script src="assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
     </script>
 </body>
 </html>

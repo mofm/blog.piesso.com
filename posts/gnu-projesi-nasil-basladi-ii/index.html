@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GNU Projesi Nasıl Başladı?-II | hardened .*(nt|log)s?</title>
-<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
 <link rel="canonical" href="https://blog.piesso.com/posts/gnu-projesi-nasil-basladi-ii/">
-<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&amp;family=Red+Hat+Display&amp;family=Roboto:wght@700&amp;display=swap" rel="stylesheet">
-<meta name="author" content="mofm">
+<link rel="icon" href="../../images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="../../images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="../../images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../../images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="../../images/website/android-chrome-192x192.png" sizes="192x192">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mofm">
 <link rel="prev" href="../icon-arama-motoru/" title="İcon Arama Motoru" type="text/html">
 <link rel="next" href="../arch-linux-sane-kurulumu/" title="Arch Linux Sane Kurulumu" type="text/html">
 <meta property="og:site_name" content="hardened .*(nt|log)s?">
@@ -25,43 +27,77 @@
 <meta property="article:published_time" content="2010-03-29T03:32:44+03:00">
 </head>
 <body>
-    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
-    
-    <section class="social"><ul>
-<li><a href="../../index.html" title="Home"><i class="fas fa-home"></i></a></li>
-            <li><a href="../../archive.html" title="Archives"><i class="fas fa-archive"></i></a></li>
-            <li><a href="../../categories/index.html" title="Tags"><i class="fas fa-tags"></i></a></li>
-            <li><a href="../../rss.xml" title="RSS"><i class="fas fa-rss"></i></a></li>
-            <li><a href="../../pages/about-me" title="About me"><i class="fa fa-user"></i></a></li>
-            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
-    
-    
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-        </ul></section><section class="page-content"><div class="content" rel="main">
-            
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../index.html" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GNU Projesi Nasıl Başladı?-II</a></h1>
 
         <div class="metadata">
-            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-03-29T03:32:44+03:00" itemprop="datePublished" title="2010-03-29 03:32">2010-03-29 03:32</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
                     mofm
             </span></p>
-                <p class="commentline"><i class="far fa-comment"></i>
-        
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2010-03-29T03:32:44+03:00" itemprop="datePublished" title="2010-03-29 03:32">2010-03-29 03:32</time></a>
+            </p>
+                <p class="commentline">
+    
     <a href="#disqus_thread" data-disqus-identifier="cache/posts/gnu-projesi-nasil-basladi-ii.html">Comments</a>
 
 
             
 
-            
-
-            
-
         </p>
 </div>
+        
+
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p></p>
+    <p></p>
 <h4>“Free Software”’deki “Free” Özgürlük Anlamındadır</h4>
 “Free Software” (İngilizce’de “Free” hem özgür hem de ücretsiz anlamlarına gelmektedir) ifadesi bazen yanlış anlaşılmaktadır, buradaki “free” ifadesinin
 ücretle bir ilgisi yoktur. Burada “free” ifadesi özgürlükle ilgilidir. Bu nedenle,burada özgür yazılımın tanımı: Aşağıdaki şartlar yerine getirildiğinde, sizin
@@ -76,29 +112,26 @@ dağıtma özgürlüğüne sahipseniz.
 •     Toplumun gelişmelerden faydalanmasını sağlamak için, programın
 değiştirilmiş sürümlerini dağıtma özgürlüğüne sahipseniz.
 “Özgür”, (Free) özgürlüğe atıf yaptığı ve fiyata atıf yapmadığı için, kopyaların ve özgür yazılımın satılması arasında bir çatışma yoktur. Gerçekte,kopyaları satma özgürlüğü çok önemlidir: CD-ROM’larda satılan özgür yazılım koleksiyonları, toplum için önemlidir ve bunların satılması, özgür yazılımın gelişimi için gerekli paranın toplanması için önemlidir. Bu nedenle,insanların bu kolleksiyonlara ekleyemediği bir program özgür yazılım değildir.
-“Özgür”ün (Free kelimesinin İngilizce’deki) anlam belirsizliğinden dolayı, insanlar uzun süre alternatif bir ifade arayışına girmiştir ancak hiç kimse uygun bir alternatif bulamamıştır. İngiliz Dili, başka herhangi bir dilden daha fazla sözcüğe ve nüansa sahiptir ancak özgürlükteki gibi “özgür” anlamına gelen basit, belirsizlikten uzak bir sözcüğü içermemektedir , “zincirsiz” anlamca en yakın gelen sözcüktür. “Özgür bırakılmış”, “özgürlük” ve “açık” yanlış bir anlama ya da başka bazı dezavantajlara sahiptir.
-</p>
+“Özgür”ün (Free kelimesinin İngilizce’deki) anlam belirsizliğinden dolayı, insanlar uzun süre alternatif bir ifade arayışına girmiştir ancak hiç kimse uygun bir alternatif bulamamıştır. İngiliz Dili, başka herhangi bir dilden daha fazla sözcüğe ve nüansa sahiptir ancak özgürlükteki gibi “özgür” anlamına gelen basit, belirsizlikten uzak bir sözcüğü içermemektedir , “zincirsiz” anlamca en yakın gelen sözcüktür. “Özgür bırakılmış”, “özgürlük” ve “açık” yanlış bir anlama ya da başka bazı dezavantajlara sahiptir.</p>
 <h4>GNU Yazılımı ve GNU Sistemi</h4>
-Bütün bir sistem geliştirmek çok büyük bir projedir. Sonuca ulaşmak için, her mümkün olduğunda, özgür yazılımın mevcut parçalarını uyarlamaya ve kullanmaya karar verdim. Örneğin, başlangıçta temel metin biçimlendirici olarak TeX’i kullanmaya karar verdim, GNU için başka bir pencere sistemi yazmak yerine X Window sistemini kullanmaya karar verdim.Bu karardan dolayı, GNU sistemi, tüm GNU yazılımının koleksiyonuyla aynı değildir. GNU sistemi, GNU yazılımı olmayan, kendi amaçları için diğer insanlar ve projeleri tarafından geliştirilen ancak özgür yazılım oldukları için kullanabildiğimiz programları içerir.
+<p>Bütün bir sistem geliştirmek çok büyük bir projedir. Sonuca ulaşmak için, her mümkün olduğunda, özgür yazılımın mevcut parçalarını uyarlamaya ve kullanmaya karar verdim. Örneğin, başlangıçta temel metin biçimlendirici olarak TeX’i kullanmaya karar verdim, GNU için başka bir pencere sistemi yazmak yerine X Window sistemini kullanmaya karar verdim.Bu karardan dolayı, GNU sistemi, tüm GNU yazılımının koleksiyonuyla aynı değildir. GNU sistemi, GNU yazılımı olmayan, kendi amaçları için diğer insanlar ve projeleri tarafından geliştirilen ancak özgür yazılım oldukları için kullanabildiğimiz programları içerir.</p>
 <h4>Projenin Başlatılması</h4>
-1984 yılının Ocak ayında MIT’deki görevimden ayrıldım ve GNU yazılımını geliştirmeye başladım. MIT’den ayrılmam gerekliydi, çünkü MIT’nin GNU’nun özgür yazılım olarak dağıtımını kısıtlamasını istemiyordum. Ekipte kalsaydım, MIT bu çalışmayı sahiplenebilirdi ve kendi dağıtım kurallarını dayatabilirdi ve hatta bu çalışmayı özel mülk yazılım paketine dönüştürebilirdi. Çalışmaların sonuçsuz kalmasını ve başarısız olmasını istemiyordum, amacım yeni bir yazılım paylaşım topluluğu oluşturmaktı.
-Bununla birlikte, o zamanlarda MIT YZ Laboratuvarı’nın başında bulunan Profesör Winston, beni, kibarca laboratuvarın olanaklarını kullanmaya devam etmem yönünde teşvik etti.
+<p>1984 yılının Ocak ayında MIT’deki görevimden ayrıldım ve GNU yazılımını geliştirmeye başladım. MIT’den ayrılmam gerekliydi, çünkü MIT’nin GNU’nun özgür yazılım olarak dağıtımını kısıtlamasını istemiyordum. Ekipte kalsaydım, MIT bu çalışmayı sahiplenebilirdi ve kendi dağıtım kurallarını dayatabilirdi ve hatta bu çalışmayı özel mülk yazılım paketine dönüştürebilirdi. Çalışmaların sonuçsuz kalmasını ve başarısız olmasını istemiyordum, amacım yeni bir yazılım paylaşım topluluğu oluşturmaktı.
+Bununla birlikte, o zamanlarda MIT YZ Laboratuvarı’nın başında bulunan Profesör Winston, beni, kibarca laboratuvarın olanaklarını kullanmaya devam etmem yönünde teşvik etti.</p>
 <h4>İlk Adımlar</h4>
-GNU Projesi’ne başlamadan kısa süre önce, VUCK olarak da bilinen Özgür Üniversite Derleyici Kiti’ni duymuştum. (Hollanda dilinde “özgür”e ilişkin kelime V harfi ile yazılmaktadır) Bu, C ve Pascal dahil olmak üzere çok sayıda dili kontrol etmek ve çok sayıdaki hedef makineyi desteklemek için tasarlanmış bir derleyiciydi. GNU’nun bunu kullanıp kullanamayacağını sormak için yazarına yazdım.Alaycı bir yanıt yazdı, üniversitenin özgür olduğunu ancak derleyicinin özgür olmadığını söyledi. Bu nedenle, GNU projesi için ilk programımın çok-dilli çok platformlu bir derleyici olmasına karar verdim.
+<p>GNU Projesi’ne başlamadan kısa süre önce, VUCK olarak da bilinen Özgür Üniversite Derleyici Kiti’ni duymuştum. (Hollanda dilinde “özgür”e ilişkin kelime V harfi ile yazılmaktadır) Bu, C ve Pascal dahil olmak üzere çok sayıda dili kontrol etmek ve çok sayıdaki hedef makineyi desteklemek için tasarlanmış bir derleyiciydi. GNU’nun bunu kullanıp kullanamayacağını sormak için yazarına yazdım.Alaycı bir yanıt yazdı, üniversitenin özgür olduğunu ancak derleyicinin özgür olmadığını söyledi. Bu nedenle, GNU projesi için ilk programımın çok-dilli çok platformlu bir derleyici olmasına karar verdim.
 Tüm derleyiciyi kendi kendime yazma ihtiyacımı önleme umuduyla, Pastel derleyicisine ilişkin kaynak kodu edindim, Pastel derleyicisi, Lawrence Livermore Laboratuarı’nda geliştirilmiş çok-platformlu bir derleyiciydi. Kendisinin de yazılmış olduğu, Pascal’ın sistem programlama dili olarak tasarlanmış genişletilmiş bir sürümünü destekliyordu. Bir C ön ucu [:front-end] ekledim ve Motorola 68000 bilgisayarına yüklemeye başladım. Derleyicinin megabaytlarca yığıt [:stack] alanına ihtiyaç duyduğunu ve mevcut 68000 Unix sisteminin yalnızca 64k’ya izin verdiğini fark ettiğimde bundan vazgeçtim.
-Daha sonra, Pastel derleyicisinin tüm giriş dosyasını bir sözdizim ağacına ayrıştırarak çalıştığını, tüm sözdizim ağacını bir “yönerge” zincirine dönüştürdüğünü ve daha sonra, herhangi bir depolama alanını boşaltmaksızın tüm çıkış dosyasını ürettiğini fark ettim. Bu noktada, yeni bir derleyici yazmam gerektiği sonucuna vardım. Bu yeni derleyici şimdi GCC olarak bilinmektedir; içinde Pastel derleyicisi kullanılmamaktadır ancak yazmış olduğum C ön ucunu uyarlamayı ve kullanmayı sağladım. Ancak bunu birkaç yıl sonra gerçekleştirdim; ilk olarak GNU Emacs üzerinde çalıştım.
+Daha sonra, Pastel derleyicisinin tüm giriş dosyasını bir sözdizim ağacına ayrıştırarak çalıştığını, tüm sözdizim ağacını bir “yönerge” zincirine dönüştürdüğünü ve daha sonra, herhangi bir depolama alanını boşaltmaksızın tüm çıkış dosyasını ürettiğini fark ettim. Bu noktada, yeni bir derleyici yazmam gerektiği sonucuna vardım. Bu yeni derleyici şimdi GCC olarak bilinmektedir; içinde Pastel derleyicisi kullanılmamaktadır ancak yazmış olduğum C ön ucunu uyarlamayı ve kullanmayı sağladım. Ancak bunu birkaç yıl sonra gerçekleştirdim; ilk olarak GNU Emacs üzerinde çalıştım.</p>
 <h4>GNU Emacs</h4>
-1984 yılının Eylül ayında GNU Emacs üzerinde çalışmaya başladım ve 1985 yılında, GNU Emacs kullanılabilir olmaya başladı. Bu, düzenleme işlemleri için Unix sistemlerini kullanmaya başlamamı olanaklı kıldı; vi ya da ed’i kullanmayı öğrenme konusunda bir ilgim yoktu, o zamana kadar düzenleme işlemlerimi diğer makineler üzerinde gerçekleştirmiştim.
+<p>1984 yılının Eylül ayında GNU Emacs üzerinde çalışmaya başladım ve 1985 yılında, GNU Emacs kullanılabilir olmaya başladı. Bu, düzenleme işlemleri için Unix sistemlerini kullanmaya başlamamı olanaklı kıldı; vi ya da ed’i kullanmayı öğrenme konusunda bir ilgim yoktu, o zamana kadar düzenleme işlemlerimi diğer makineler üzerinde gerçekleştirmiştim.</p>
 <p>Bu noktada insanlar, GNU Emacs’i kullanmayı istediler, bu durum da GNU Emacs’in nasıl dağıtılacağı sorusunu gündeme getirdi. Tabi ki, GNU Emacs’i,kullandığım MIT bilgisayarındaki ftp sunucusuna, anonim olarak erişilebilecek şekilde koydum. (Bu bilgisayar, başka bir deyişle, prep.ai.mit.edu, bu nedenle temel GNU ftp dağıtım bölgesi haline geldi; birkaç yıl sonra devreden çıkarıldıktan sonra, alan adını yeni sunucumuza yönlendirdik) Ancak, bu zaman zarfında, ilgili insanların birçoğu İnternette değildi ve ftp ile bir kopyasını alamadı. Bu nedenle, şu soru ortaya çıktı: Onlara ne diyecektim?
 Şöyle diyebilirdim: “Ağ üzerinde olan ve sizin için bir kopya alacak olan bir arkadaşınızı bulun”. Ya da orijinal PDP-10 Emacs’ta yaptığımı yapacaktım:
-“Bana bir bant ve SASE gönderin ve ben de size üzerinde Emacs olacak şekilde bunu size geri göndereyim”. Ama işsizdim ve özgür yazılımdan para kazanmanın yollarını arıyordum. Bu nedenle, $150 karşılığında isteyen herkese bir bant gönderebileceğimi anons ettim. Bu şekilde, özgür yazılım dağıtım işine başladım, böylece günümüzde Linux-tabanlı GNU sistemlerini dağıtan firmalar için öncü oldum.
-</p>
+“Bana bir bant ve SASE gönderin ve ben de size üzerinde Emacs olacak şekilde bunu size geri göndereyim”. Ama işsizdim ve özgür yazılımdan para kazanmanın yollarını arıyordum. Bu nedenle, $150 karşılığında isteyen herkese bir bant gönderebileceğimi anons ettim. Bu şekilde, özgür yazılım dağıtım işine başladım, böylece günümüzde Linux-tabanlı GNU sistemlerini dağıtan firmalar için öncü oldum.</p>
 <h4>Bir Program Her Kullanıcı İçin Özgür Müdür?</h4>
-Bir program yazarının elinden çıktığında özgür yazılımsa bu, programın kopyasına sahip herkes için mutlaka özgür yazılım olacağı anlamına gelmez.Örneğin, kamuya ait yazılım (telif hakkına sahip olmayan yazılım) özgür yazılımdır; ancak herkes bunun özel mülk değiştirilmiş bir sürümünü oluşturabilir. Benzer şekilde, birçok özgür program telif hakkına sahiptir ancak değiştirilmiş özel mülk sürümlere izin veren basit izin lisansları altında dağıtılmıştır.Bu problemin faydacı örneği, X Window Sistemi’dir. Bu sistem, MIT tarafından geliştirilmiş ve bir izin lisansıyla özgür yazılım olarak yayınlanmış olup,çeşitli bilgisayar firmaları tarafından benimsenmiştir. Bu firmalar, yalnızca ikili [:binary] biçimde özel mülk Unix sistemlerine X’i eklemiş ve aynı anlaşma ile kapsanmıştır. X’in bu kopyaları, bundan böyle Unix’in olduğundan daha fazla özgür yazılım değildir.
+<p>Bir program yazarının elinden çıktığında özgür yazılımsa bu, programın kopyasına sahip herkes için mutlaka özgür yazılım olacağı anlamına gelmez.Örneğin, kamuya ait yazılım (telif hakkına sahip olmayan yazılım) özgür yazılımdır; ancak herkes bunun özel mülk değiştirilmiş bir sürümünü oluşturabilir. Benzer şekilde, birçok özgür program telif hakkına sahiptir ancak değiştirilmiş özel mülk sürümlere izin veren basit izin lisansları altında dağıtılmıştır.Bu problemin faydacı örneği, X Window Sistemi’dir. Bu sistem, MIT tarafından geliştirilmiş ve bir izin lisansıyla özgür yazılım olarak yayınlanmış olup,çeşitli bilgisayar firmaları tarafından benimsenmiştir. Bu firmalar, yalnızca ikili [:binary] biçimde özel mülk Unix sistemlerine X’i eklemiş ve aynı anlaşma ile kapsanmıştır. X’in bu kopyaları, bundan böyle Unix’in olduğundan daha fazla özgür yazılım değildir.
 X Window Sistemi’nin geliştiricileri bunu bir problem olarak görmemişler , bu durumun meydana gelmesini beklemişlerdir. Hedefleri özgürlük değildi, yal-
-nızca “başarıydı” ve başarı “fazla sayıda kullanıcıya sahip olmak” olarak tanımlanmaktaydı. Kullanıcıların özgürlüğe sahip olup olmamaları umurlarında değildi, tek istedikleri çok sayıda kullanıcıya sahip olmaktı. Bu durum, “Bu program özgür mü?” sorusuna farklı yanıtlar veren iki farklı özgürlük derecesi hesaplama yönteminin olduğu bir paradoks durumuna neden olmaktadır. MIT sürümünün dağıtım terimleri cinsinden sağlanan özgürlük derecesini esas alarak değerlendirme yaptıysanız, X’in özgür yazılım olduğunu söyleyebilirsiniz. Ancak, X’in ortalama kullanıcısının özgürlüğünü ölçerseniz, o zaman özel mülk yazılım olduğunu söylemeniz gereklidir. Birçok X kullanıcısı, Unix sistemleriyle birlikte verilen özel mülk sürümleri kullanmaktadır, özgür sürümü kullanmamaktadır.
+nızca “başarıydı” ve başarı “fazla sayıda kullanıcıya sahip olmak” olarak tanımlanmaktaydı. Kullanıcıların özgürlüğe sahip olup olmamaları umurlarında değildi, tek istedikleri çok sayıda kullanıcıya sahip olmaktı. Bu durum, “Bu program özgür mü?” sorusuna farklı yanıtlar veren iki farklı özgürlük derecesi hesaplama yönteminin olduğu bir paradoks durumuna neden olmaktadır. MIT sürümünün dağıtım terimleri cinsinden sağlanan özgürlük derecesini esas alarak değerlendirme yaptıysanız, X’in özgür yazılım olduğunu söyleyebilirsiniz. Ancak, X’in ortalama kullanıcısının özgürlüğünü ölçerseniz, o zaman özel mülk yazılım olduğunu söylemeniz gereklidir. Birçok X kullanıcısı, Unix sistemleriyle birlikte verilen özel mülk sürümleri kullanmaktadır, özgür sürümü kullanmamaktadır.</p>
 <p><em>Bu yazı dizisi  “EMO” tarafından basılan Richard Stallman’ın “Özgür Yazılım,Özgür Toplum” kitabından alınmıştır. </em></p>
-</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
@@ -109,7 +142,7 @@ nızca “başarıydı” ve başarı “fazla sayıda kullanıcıya sahip olmak
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
-        
+    
         <div id="disqus_thread"></div>
         <script>
         var disqus_shortname ="blog-piesso-com",
@@ -129,21 +162,22 @@ nızca “başarıydı” ve başarı “fazla sayıda kullanıcıya sahip olmak
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
-<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
             
         </footer>
 </div>
-    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
-    moment.locale("en");
-    fancydates(2, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates --><script>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
     </script>
 </body>
 </html>

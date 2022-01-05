@@ -1,4 +1,3 @@
-Sitemap: https://blog.piesso.com/sitemapindex.xml
-
-User-Agent: *
-Host: blog.piesso.com
+User-agent: *
+Disallow: 
+Sitemap: https://blog.piesso.com/sitemap.xml

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gentoo ve Systemd | hardened .*(nt|log)s?</title>
-<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
 <link rel="canonical" href="https://blog.piesso.com/posts/gentoo-ve-systemd/">
-<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&amp;family=Red+Hat+Display&amp;family=Roboto:wght@700&amp;display=swap" rel="stylesheet">
-<meta name="author" content="mofm">
+<link rel="icon" href="../../images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="../../images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="../../images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../../images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="../../images/website/android-chrome-192x192.png" sizes="192x192">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mofm">
 <link rel="prev" href="../alcatel-lucent-switch-konsol-pin-siralamas/" title="Alcatel-Lucent Switch Konsol Pin Sıralaması" type="text/html">
 <link rel="next" href="../linux-yaz-kampi-2014/" title="Linux Yaz Kampi 2014" type="text/html">
 <meta property="og:site_name" content="hardened .*(nt|log)s?">
@@ -26,59 +28,84 @@
 <meta property="article:tag" content="gezegen">
 </head>
 <body>
-    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
-    
-    <section class="social"><ul>
-<li><a href="../../index.html" title="Home"><i class="fas fa-home"></i></a></li>
-            <li><a href="../../archive.html" title="Archives"><i class="fas fa-archive"></i></a></li>
-            <li><a href="../../categories/index.html" title="Tags"><i class="fas fa-tags"></i></a></li>
-            <li><a href="../../rss.xml" title="RSS"><i class="fas fa-rss"></i></a></li>
-            <li><a href="../../pages/about-me" title="About me"><i class="fa fa-user"></i></a></li>
-            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
-    
-    
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-        </ul></section><section class="page-content"><div class="content" rel="main">
-            
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../index.html" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Gentoo ve Systemd</a></h1>
 
         <div class="metadata">
-            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2013-10-22T09:24:38+03:00" itemprop="datePublished" title="2013-10-22 09:24">2013-10-22 09:24</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
                     mofm
             </span></p>
-                <p class="commentline"><i class="far fa-comment"></i>
-        
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2013-10-22T09:24:38+03:00" itemprop="datePublished" title="2013-10-22 09:24">2013-10-22 09:24</time></a>
+            </p>
+                <p class="commentline">
+    
     <a href="#disqus_thread" data-disqus-identifier="cache/posts/gentoo-ve-systemd.html">Comments</a>
 
 
             
 
-            
-
-            
-    </p>
-<div class="tags">
-<h3 class="metadata-title">
-<i class="fa fa-tags"></i> Tags:</h3>
-        <ul itemprop="keywords" class="tags-ul">
-<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
-            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
-        </ul>
+        </p>
 </div>
+        
 
-        </div>
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p></p>
+    <p></p>
 <p>Systemd büyük bir hızla ,öncelikle güncel linux dağıtımlarında yerini almaya başladı.Systemd linux çekirdeği için geliştirilen ve klasik init sistemlerinin(openrc vs.) yerine geçecek olan daha hızlı ve kararlı bir sistem yönetim daemonu.</p>
 <p><img class="  " alt="systemd pstree çıktısı" src="https://raw.githubusercontent.com/hut/minirc/master/screenshot.png" width="368" height="277"> systemd pstree çıktısı</p>
 <p><img class=" " alt="init pstree çıktısı" src="https://cdn-images-1.medium.com/max/582/1*-QPL92V3VJo6BuGRJ6qJ-w.png" width="357" height="251"> init pstree çıktısı
- 
-</p>
+ </p>
 <p>Yukardaki ekran görüntüleri örneklerinde de gördüğünüz gibi systemd 'nin sistem üzerindeki ilk daemon(ve proses) olduğu ve userspace üzerinde çalışacak olan tüm prosesler klasik init sistemlerinde olduğu gibi systemd'nin alt proseslerini oluşturmaktadir.Systemd'nin yapısını biraz daha iyi anlamak için aşağıdaki şema yardımcı olacaktır.
 </p>
-<img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri
+<p><img class=" " alt="Systemd Bileşenleri" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Systemd_components.svg" width="432" height="243"> Systemd Bileşenleri</p>
 <p>Binary Linux Dağıtımlarında eğer systemd'ye geçilmişse ayrıca birşey yapmanıza gerek yok.Fakat Gentoo Linux dağıtımında şu an stage 3'te öntanımlı gelmediği için kendiniz yardımcı araçlarla geçebilirsiniz.(ki gentoo geliştiricileri bunun için birçok şeyi hazırlamış bulunmakta.)</p>
 <p>Kısa adımlarla systemd'ye geçişten bahsedebilirim:</p>
 <ol>
@@ -107,104 +134,97 @@
 [14]  hardened/linux/amd64/no-multilib/selinux
 [15]  hardened/linux/amd64/x32
 [16]  hardened/linux/uclibc/amd64
-Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.
-</p>
+Beşinci seçenekte olan <i>"default/linux/amd64/13.0/desktop/gnome/systemd"</i> profili ile değiştirelim.</p>
 <pre># eselect profile set 5</pre>
- 
 <ol>
-<li>Bu adımda <i>"systemd"</i>yi yükleyelim.
+<li>Bu adımda <i>"systemd"</i>yi yükleyelim.</li>
+</ol>
 <pre># emerge --ask systemd</pre>
-</li>
-<li>
-<p>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
-</p>
-<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
-şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.
-<pre># emerge -NuDa world</pre>
-Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.
-</li>
-<li>
-<p>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</p>
+<ol>
+<li>Profilimizi değiştirdiğimiz için sistemi güncellemeden önce <i>"sys-apps/dbus"</i> uygulamasının <i>"systemd" <b>USE FLAG</b>'ını deaktif(</i>
 </li>
 </ol>
-<p>( /boot/grub/menu.lst )
-</p>
+<pre>/etc/portage/package.use dosyasınıza "sys-apps/dbus -systemd"</pre>
+<p>şeklindeki satırı ekleyin.) edin ve daha sonra sistemi güncelleyin.</p>
+<pre># emerge -NuDa world</pre>
+<p>Sistemimize bu şekilde gerekli systemd desteğini vererek <b>"systemd"</b> ile açılmasına hazır hale getirdik.</p>
+<ol>
+<li>Yeniden başlatmadan önce sistemin systemd ile başlaması için ön yükleyicinizin kernel satırına(grub için) aşağıdaki gibi ekleyin:</li>
+</ol>
+<p>( /boot/grub/menu.lst )</p>
 <pre>kernel /vmlinuz-3.7.10-r1 root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
-Grub 2 için;
-<p>( /boot/grub/grub.cfg )
-</p>
+<p>Grub 2 için;</p>
+<p>( /boot/grub/grub.cfg )</p>
 <pre>linux /vmlinuz-3.7.10-r1 root=UUID=21312312-12312312-1231121 init=/usr/lib/systemd/systemd</pre>
-UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
-"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;
+<p>UEFI kullanan sistemler için 1.adımda kernel derlemeden önce "kernel konfigürasyon menüsü"nde
+"<b>Processor type and features</b>" -&gt; "<b>Built-in kernel command line</b>" içine aşağıdaki gibi ekleyebilirsiniz;</p>
 <pre>root=/dev/sda2 init=/usr/lib/systemd/systemd</pre>
-6.Sistemi yeniden başlatın.
+<p>6.Sistemi yeniden başlatın.</p>
 <p>7.Sistem yeniden başladıktan sonra eski(Openrc vs.) init sistemi üzerinde tanımladığımız hostname,locale ayarları artık systemd üzerinde geçerli olmayacaktır.</p>
-<p>Systemd hostname ayarlamak için;
-</p>
+<p>Systemd hostname ayarlamak için;</p>
 <pre># hostnamectl set-hostname benimpc</pre>
-Systemd klavye ayarları için;
+<p>Systemd klavye ayarları için;</p>
 <pre># localectl set-keymap trq</pre>
-X11 için;
+<p>X11 için;</p>
 <pre># localectl set-x11-keymap tr</pre>
-Sistem locale ayarı için;
+<p>Sistem locale ayarı için;</p>
 <pre># localectl set-locale LANG=en_US.UTF-8</pre>
-Türkçe için;
+<p>Türkçe için;</p>
 <pre># localectl set-locale LANG=tr_TR.UTF-8</pre>
-8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.
-<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;
-</p>
+<p>8.Yukardaki adımda sistem için gerekli tanımlamaları yaptık.Fakat herhangi bir grafik arabirimi kullanıyorsanız,bu açılmayacaktır.Systemd üzerinde de diğer init sistemlerinde olduğu gibi gerekli olan servisleri sistem açılışına ekleyebilir,servisleri çalıştırabilir,durumunu öğrenebilir ve bir servisi durdurabiliriz.</p>
+<p>Systemd üzerinde sistem açılışında aktif olan servis ya da  hizmetleri ve bunların durumlarını görmek için;</p>
 <pre># systemctl</pre>
-Aktif ve deaktif tüm servislerin durumunu görmek için;
+<p>Aktif ve deaktif tüm servislerin durumunu görmek için;</p>
 <pre># systemctl list-unit-files</pre>
-Herhangi bir servisi sistem açılışına eklemek için;
+<p>Herhangi bir servisi sistem açılışına eklemek için;</p>
 <pre># systemd enable vixie-cron.service</pre>
-Herhangi bir servisi çalıştırmak için;
+<p>Herhangi bir servisi çalıştırmak için;</p>
 <pre># systemctl start syslog-ng.service</pre>
-<b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.
-<p>Herhangi bir servisin durumunu görmek için;
-</p>
+<p><b>NOT:</b> systemd herhangi bir syslog yazılımına ihtiyaç duymamaktadır.Systemd üzerinde journal log bilgilerini tutmaktadır.</p>
+<p>Herhangi bir servisin durumunu görmek için;</p>
 <pre># systemctl status NetworkManager.service</pre>
-Herhangi bir servisi durdurmak için;
+<p>Herhangi bir servisi durdurmak için;</p>
 <pre># systemctl stop upower.service</pre>
-Herhangi bir servisi yeniden başlatmak için;
+<p>Herhangi bir servisi yeniden başlatmak için;</p>
 <pre># systemctl restart dhcpcd.service</pre>
-<b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;
+<p><b>NOT:</b> Gerekli olan servisleri sistem açılışında aktif etmeyi ihmal etmeyin.Grafik arabirimini sistem açılışında başlaması için örnek olarak "xdm"i sistem açılışında aktif etmek için;</p>
 <pre># systemctl enable xdm.service</pre>
-Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;
-<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,
-</p>
+<p>Burada dikkat edilecek nokta openrc'den systemd'ye geçişte <i>"/etc/conf.d/xdm"</i> içerisinde yapmış olduğumuz herhangi bir <i>"display manager"</i> ayarımız geçersiz olacaktır.Geçerli olan <i>"display manager"</i>i xdm'nin açılışta çalıştırması istiyorsanız;</p>
+<p><i>"/usr/lib/systemd/system/xdm.service"</i> dosyası içindeki ,</p>
 <pre>[Service]
 ExecStart=/usr/bin/xdm -nodaemon</pre>
---&gt; satırını;
-<p>(GDM için)
-</p>
+<p>--&gt; satırını;</p>
+<p>(GDM için)</p>
 <pre>[Service]
 ExecStart=/usr/bin/gdm</pre>
----&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.
+<p>---&gt; şeklinde değiştirin.Bu şekilde sistem açılışında <b>"gdm"</b>yi aktifleştirebiliyoruz.</p>
 <ol>
 <li>Değinebileceğim diğer bir nokta ise açılışta otomatik yüklenmesi istediğiniz modüller ve network ayarları.</li>
 </ol>
 <p>Sistem açılışında otomatik yüklenmesi istediğiniz modül ya da  modülleri <b>"/etc/modules-load.d"</b> dizini içerisine isterseniz ayrı ayrı,istediğiniz sekilde isimlendirdiğiniz dosyaların içerisine ilk satıra ve ya tek bir dosya içerisinde her modül tek satırda olacak şekilde yazabilirsiniz.Örnek:</p>
-<p>( /etc/modules-load.d/modullerim.conf )
-</p>
+<p>( /etc/modules-load.d/modullerim.conf )</p>
 <pre>bridge
-<p>tun</p></pre>
+
+tun</pre>
 <pre>şeklinde ekleyebilirsiniz.
-<p>Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</p></pre>
+
+Network Ayarları kısmında ise ,kablolu ve otomatik ip alan bir networkte bulunuyorsanız, açılışta dhcpcd servisini aktif etmeniz yeterli.</pre>
 <pre># systemctl enable dhcpcd.service</pre>
-Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;
+<p>Eğer network-manager kullanıyorsanız , sistem açılışında aktif etmek için;</p>
 <pre># systemctl enable NetworkManager.service</pre>
-Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;
-<p>( /etc/systemd/system/mynetwork.service )
-</p>
+<p>Ya da farklı bir network modelinde çalışıp kendiniz oluşturmak için kolayca systemd servis dosyası yazabiliriz."/etc/systemd/system" dizini içerisine kendi istediğimiz modelde bir script yazarak açılışta aktif edebiliriz.Örnek olarak;</p>
+<p>( /etc/systemd/system/mynetwork.service )</p>
 <pre>[Unit]
 Description=network ayarlarim
 After=network.target
-<p>[Service]
+
+[Service]
 Type=oneshot
-RemainAfterExit=yes</p>
-<p>EnvironmentFile=/etc/conf.d/bridge.conf</p>
-<p>ExecStart=/bin/ifconfig eth0 up
+RemainAfterExit=yes
+
+EnvironmentFile=/etc/conf.d/bridge.conf
+
+ExecStart=/bin/ifconfig eth0 up
 ExecStart=/bin/ifconfig eth1 up
 ExecStart=/usr/bin/tunctl -b -u rico -t tap0
 ExecStart=/bin/ifconfig tap0 up promisc
@@ -212,8 +232,9 @@ ExecStart=/sbin/brctl addbr br0
 ExecStart=/sbin/brctl addif br0 eth0
 ExecStart=/sbin/brctl addif br0 eth1
 ExecStart=/sbin/brctl addif br0 tap0
-ExecStart=/sbin/dhcpcd br0</p>
-<p>ExecStop=/usr/bin/killall dhcpcd
+ExecStart=/sbin/dhcpcd br0
+
+ExecStop=/usr/bin/killall dhcpcd
 ExecStop=/bin/ifconfig eth0 down
 ExecStop=/bin/ifconfig eth1 down
 ExecStop=/bin/ifconfig tap0 down
@@ -222,12 +243,17 @@ ExecStop=/usr/bin/tunctl -d tap0
 ExecStop=/sbin/brctl delif br0 eth0
 ExecStop=/sbin/brctl delif br0 eth1
 ExecStop=/bin/ifconfig br0 down
-ExexStop=/sbin/brctl delbr br0</p>
-<p>[Install]
-WantedBy=multi-user.target</p></pre>
-Systemd ile iyi keyifler :)</div>
+ExexStop=/sbin/brctl delbr br0
+
+[Install]
+WantedBy=multi-user.target</pre>
+<p>Systemd ile iyi keyifler :)</p>
     </div>
-    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/genel/" rel="tag">Genel</a></li>
+            <li><a class="tag p-category" href="../../categories/gezegen/" rel="tag">gezegen</a></li>
+        </ul>
+<ul class="pager hidden-print">
 <li class="previous">
                 <a href="../alcatel-lucent-switch-konsol-pin-siralamas/" rel="prev" title="Alcatel-Lucent Switch Konsol Pin Sıralaması">Previous post</a>
             </li>
@@ -236,7 +262,7 @@ Systemd ile iyi keyifler :)</div>
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
-        
+    
         <div id="disqus_thread"></div>
         <script>
         var disqus_shortname ="blog-piesso-com",
@@ -256,21 +282,22 @@ Systemd ile iyi keyifler :)</div>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
-<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
             
         </footer>
 </div>
-    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
-    moment.locale("en");
-    fancydates(2, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates --><script>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
     </script>
 </body>
 </html>

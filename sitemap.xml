@@ -7,1202 +7,1250 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://blog.piesso.com/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2009/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2010/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2011/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2012/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2013/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2014/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2017/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2018/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/2020/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T15:39:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/2021/</loc>
+  <lastmod>2021-12-15T19:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/2022/</loc>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/archive.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2021-12-16T13:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/active-directory/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/ansible/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/caching/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/centos/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/draft/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/freeipa/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/genel/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/gentoo/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/gezegen/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/git/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/ingress/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/ipa-client/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/ipa/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/kubernetes/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/kvm/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/libvirt/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/loadtesting/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/locust/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/nginx/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/openldap/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/openvswitch/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/portage/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/postfix/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/qemu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/reverse-proxy/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/schema/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/ssh/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/static-websites/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/tools/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-1.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-10.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-11.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-12.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-13.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-14.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-15.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-16.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-17.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-18.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-19.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-2.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-20.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-21.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-22.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-23.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/index-24.html</loc>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-3.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-4.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-5.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-6.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-7.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-8.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-9.html</loc>
-  <lastmod>2020-12-17T12:12:00Z</lastmod>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/pages/about-me/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-06T14:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/1070/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/1164/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/1184/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/1265/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/15-turkiyede-internet-konferansinda-linux-seminerleri/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/886/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/acta-tehdidi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/adsl-modeminizdeki-linuxu-kesfedin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/alcatel-lucent-switch-konsol-pin-siralamas/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/android-ile-usb-baglanti/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ansible-gentoo-portage-update/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ansible-ssh-keys-deployment/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/apache-webserverda-mod_rewrite-modulunu-aktif-etmekdebian-ve-turevleri-icin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/arch-linux-sane-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/avatar/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/basic-timezone-api/</loc>
+  <lastmod>2021-12-17T23:16:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/basit-hesap-makinesi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/bilgisayarda-windows-vergisine-mahkeme-dur-dedi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/bir-komutla-modeminizi-yeniden-baslatin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/bir-websitenin-hostunda-bulunan-diger-siteleri-bulma/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/block-ads-and-malware-via-bind9-rpz/</loc>
+  <lastmod>2021-12-15T19:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/break-i/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/brute-force-saldirilarini-iptables-ile-engelleyin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/cekilis-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/cekilis/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/centos-5-5-mongodb/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/centos-7-uzerine-freeipa-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/cevirici-i/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/cevirici-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/civilization-of-ottoman/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/coyote-linux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/crossover-linuxlinuxteki-windows/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/crunchbang-linuxlite-ubuntu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/debian-6-0-squeeze-yayinlandi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/debian-lenny-den-squeeze-yukseltme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/debian-openvz-web-panel/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/debian-squeeze-nagios-monitoring/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/debian-squeeze-uzerine-virtualbox-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ders-notu-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/deviantartda-ubuntu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/devil-linux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dhcp-snooping-enterasys/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dinamik-ipmizi-statik-ipye-cevirmedyndns-debian-updater/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dns-bilgilerini-kopyalamak/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dns-sunucunuzda-recursive-query-leri-durdurun/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dns-sunucunuzun-versiyonunu-gizleyin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/donanim-bilgisi-toplamak/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dongu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/dunyanin-enleri-testi-kodlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/elite-proxy/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/embdemid-gnulinux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/embdemid-linux-english/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/en-hizli-penguen-gentoo-linux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/enterasys-admin-password-reset-i/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/enterasys-dhcp-relay-agent/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/enterasys-firmware-yukseltme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/enterasys-n-ve-x-serisi-konsol-baglantisi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/enterasys-yedek-almak/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/epel-ve-rpmforge-depolarini-ekleyin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/etkinliklerden-haberdar-olun/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/excelden-mysqle/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/failed-to-load-module/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/firefox-ipv6/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/for-dongusu-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/for-dongusu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/free-updated-geoip-databases/</loc>
+  <lastmod>2021-12-15T23:26:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/freeipa-ve-active-directory-entegrasyonu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/freetalk-konsol-tabanli-jabber-client/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-hardened-selinux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-ipv4-ve-native-ipv6/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-ipv6-tunelleme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/gentoo-kernel-build-script/</loc>
+  <lastmod>2021-12-27T23:03:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-l2tp-ipsec-psk-vpn-client/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-linux-livedvd-12-0/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-mail-list/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-ve-systemd/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentoo-wiki/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/gentoo-zsh-completions-for-oh-my-zsh/</loc>
+  <lastmod>2022-01-05T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gentooda-gcc-upgrade/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/get-cwd/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-chess/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-gpl-version-3-ingilizce/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-gpl-versiyon-3-turkce/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-grafik-calismalari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-linux-eskisi-gibi-degil/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-nedirlinux-ile-gnu-arasindaki-iliski/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-projeleri-listesi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-projesi-nasil-basladi-i/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnu-projesi-nasil-basladi-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/gnuart/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/google-feedfetcher/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/google-reader-ozgur-alternatif-newsblur/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/google-serverlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/google-servislerine-konsoldan-ulasin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/hatay-kirikhan-linux-egitimi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/herhangi-bir-tarayici-ile-en-iyi-sekilde-goruntulenir/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/icon-arama-motoru/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ilk-program/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/inatla-paranizi-isteyin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ingress-path-redirection-appends-port/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-08T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/internet-haftasi-aktif-katilim-cagrisi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/internet-karariyor/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/internette-sansure-karsi-ortak-platform-toplantisi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/internetten-debian-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ip-numarasi-ve-rdns-look-up/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ipa-client-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/iptables-generator/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/kagittan-htmle-donusturun/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/kampin-ardindan/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/kernelinizi-ozgurlestirin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/kirikhan-myo-linux-sinavi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/konsolda-birim-cevirme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/konsolda-hesap-yapmak/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/kubernetes-static-website-git/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T15:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/kullanicilari-ve-surecleri-kontrol-etme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/label-generator/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/len-fonksiyonu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/libvirt-ve-openvswitch/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/lintube/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-aile-agaci/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-complete-command-reference-ekitap/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-ders-notu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-icin-heroes-of-might-and-magic-3/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-icin-sid-meiers-alpha-centauri/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-icin-soldier-of-fortune/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-ile-aginizda-dosyalarinizi-paylasin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-ip-komutlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-kullanici-yonetimi-denetimi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-server-hacks-ebook/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-sistem-yonetimi-kampi-2011/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-uzerine-americas-army-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-ve-ozgurluk-twitterda/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linux-yaz-kampi-2014/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/linuxa-adini-kim-verdi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/locust-load-testing-tool/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/logo-arama-motorlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/loto-cekilis-programi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/loto-programi-i/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/mku-ozgur-yazilim-ve-linux-eposta-listesi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/nagios-png-to-gd2/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/nexenta-os/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/nginx-reverse-proxy-cache/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/opendns-dinamik-ip-updater/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/openldap-schema-for-postfix/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2021-12-16T13:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/openofficeden-libreofficee-ozgurluge-ucus/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/opensolaris-emu10k1x-driver/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/opensolaris-nvidia-driver/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/opensolaris-ucretsiz-cd/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/opensolariste-ext2ext3-bolumlerini-baglama/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/os-list-modulu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/os-name-modulu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ozgur-olmayan-paketler/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ozgur-yazilim-dizini/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ozgur-yazilim-gunu-2011/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ozgur-yazilim-lisanslari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ozgur-yazilim-ve-linux-gunleri-2010/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ozgurlesen-universite/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pardus-2009-1-beta/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pardus-2009-1-cdleri-evinize-geliyor/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pardus-2009-1-rc-cikti/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pardus-2009-1/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pardus-2011-cok-yakinda/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pardus-kurumsal-2/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/parola-korumali-grub/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pazarlikmuzayede-programi-kodlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pc-magazine-linux-solutions-ekitap/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/php-ile-server-durum-gostergesi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/postfixe-zirh-giydirin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pspye-ubuntu-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pspye-uclinux-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/python-ile-alarm-programi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/python-ile-googleda-arama/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/python-ile-mysql-uygulamasi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/python-logolu-duvar-kagiti/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/python-ogrenmek-isteyenler-icin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/python-password-generator/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/pythonda-turkce-karakter-cozumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/qmail-toaster-dkim-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/qmail-toaster-kaldirmak-icin-script/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/range/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/raw_input/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/richard-stallmandan-ozgur-bir-kitap/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/scientific-linux-yansi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/selinux-a-giris/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/site-durum-programi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sitenize-linux-haberleri-ekleyin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/slax-kendi-linuxunuzu-yaratin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sony-den-uzak-durun/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sonyden-uzak-durun-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sources-list-generator/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sozluk-i/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sozluk-ile-hava-durumu-programi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/squid-uzerinde-ident-tanimlama/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/statik-ipyi-degistirmek/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sunfire-t2000/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sunucu-guvenligi-dizin-izinlerini-tarayin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sunucu-guvenligissh-ile-root-girisini-kapatin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sunucu-kimligi-maskeleme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sunucudan-google-apps-email-ile-mail-gondermek/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/sysadmin-gunu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/systemd-boot-update-script/</loc>
+  <lastmod>2021-12-19T01:35:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/tam-ozgur-linux-dagitimlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/test-icin-bash-ortami/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/test-icin-buyuk-dosyalar-olusturmak/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/tinycore-linux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/tivibu-ttnet-ve-rekabet-kurulu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/toata-dragostea-mea-pentru-diavola/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/tribal-trouble/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/troy-dawson-ile-roportaj/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ttnet/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/turkiyedeki-linux-kullanicilari-icin-ozgur-sosyal-ag-tuxweet/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ubuntu-icin-manga-ubunchu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ubuntu-satanic-edition/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ucretsiz-linux-e-kitap/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/ucretsiz-ve-yasal-muzik-jamendo/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/unbound-doh-behind-nginx/</loc>
+  <lastmod>2021-12-17T23:07:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/universitelerde-ozgur-yazilim-kullanim-rehberi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/unix-hakkinda-daha-detali-bilgi-icin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/unix-nedir/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/uptime-suresini-ogrenme-ve-engelleme/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/urls-of-blacklists/</loc>
+  <lastmod>2021-12-15T22:40:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/usb-flash-diskten-linux-kurulumu/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/vim-tips-channel/</loc>
+  <lastmod>2021-12-22T15:58:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/virtualhostlar-icin-webalizer/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/whatweb-ve-wordpress-surumu-saklama/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/why-linux-is-better/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/windows-8-bu-aldatmacayi-satin-almayin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/windowsun-7-gunahi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/wolfenstein-enemy-territory-kurmak/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/wordpressde-kalici-baglanti-permalink/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/wordpresste-yazilardaki-tarihi-kaldirma/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/x-authentication-warning/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yasam-saniyesi-hesaplama-programi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yasam-saniyesi-hesaplama-programinin-kodlari/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yazicinizi-agdaki-bilgisayarlara-acin/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yeni-kamusal-mal-ozgur-ve-akk-yazilim-e-kitap/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yeni-kamusal-malozgur-ve-akk-yazilim/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yeni-yil-2010/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yeni-yil-2011/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yeni-yil-2012/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yoper-linux/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/yumurta-zamanlayici/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/zar-istatistik-programi-ii/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/zar-istatistik-programi/</loc>
-  <lastmod>2020-12-17T12:09:00Z</lastmod>
+  <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
 </urlset>

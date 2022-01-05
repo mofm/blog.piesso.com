@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux ile ağınızda dosyalarınızı paylaşın | hardened .*(nt|log)s?</title>
-<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
 <link rel="canonical" href="https://blog.piesso.com/posts/linux-ile-aginizda-dosyalarinizi-paylasin/">
-<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&amp;family=Red+Hat+Display&amp;family=Roboto:wght@700&amp;display=swap" rel="stylesheet">
-<meta name="author" content="mofm">
+<link rel="icon" href="../../images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="../../images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="../../images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../../images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="../../images/website/android-chrome-192x192.png" sizes="192x192">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mofm">
 <link rel="prev" href="../google-servislerine-konsoldan-ulasin/" title="Google Servislerine Konsoldan Ulaşın" type="text/html">
 <link rel="next" href="../yazicinizi-agdaki-bilgisayarlara-acin/" title="Yazıcınızı ağdaki bilgisayarlara açın" type="text/html">
 <meta property="og:site_name" content="hardened .*(nt|log)s?">
@@ -24,62 +26,94 @@
 <meta property="article:published_time" content="2010-10-19T15:07:37+03:00">
 </head>
 <body>
-    <a href="#page-content" class="sr-only sr-only-focusable">Skip to main content</a>
-    
-    <section class="social"><ul>
-<li><a href="../../index.html" title="Home"><i class="fas fa-home"></i></a></li>
-            <li><a href="../../archive.html" title="Archives"><i class="fas fa-archive"></i></a></li>
-            <li><a href="../../categories/index.html" title="Tags"><i class="fas fa-tags"></i></a></li>
-            <li><a href="../../rss.xml" title="RSS"><i class="fas fa-rss"></i></a></li>
-            <li><a href="../../pages/about-me" title="About me"><i class="fa fa-user"></i></a></li>
-            <li><a href="https://github.com/mofm" title="My Github"><i class="fab fa-github"></i></a></li>
-    
-    
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-        </ul></section><section class="page-content"><div class="content" rel="main">
-            
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../index.html" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Linux ile ağınızda dosyalarınızı paylaşın</a></h1>
 
         <div class="metadata">
-            <p class="dateline"><a href="." rel="bookmark"><i class="fa fa-clock"></i> <time class="published dt-published" datetime="2010-10-19T15:07:37+03:00" itemprop="datePublished" title="2010-10-19 15:07">2010-10-19 15:07</time></a></p>
-            <p class="byline author vcard"> <i class="fa fa-user"></i> <span class="byline-name fn" itemprop="author">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
                     mofm
             </span></p>
-                <p class="commentline"><i class="far fa-comment"></i>
-        
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2010-10-19T15:07:37+03:00" itemprop="datePublished" title="2010-10-19 15:07">2010-10-19 15:07</time></a>
+            </p>
+                <p class="commentline">
+    
     <a href="#disqus_thread" data-disqus-identifier="cache/posts/linux-ile-aginizda-dosyalarinizi-paylasin.html">Comments</a>
 
 
             
 
-            
-
-            
-
         </p>
 </div>
+        
+
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p></p>
+    <p></p>
 <img class="alignright" title="Gentoo" src="http://www.uz-freiburg.com/gentoo-logo.png" alt="" width="89" height="91">Birden fazla bilgisayarınızın olduğu evinizde,küçük işletmenizde dosyalarınızı,dizinlerinizi ya da disklerinizi paylaşmak isteyebilirsiniz.Herhangi bir linux dağıtımı ile bunu birkaç adımda ve  kısa sürede gerçekleştirebilirsiniz.Bu yazıda NFS server olarak Gentoo Linux dağıtımını,NFS Client olarak Ubuntu Linux dağıtımı olarak anlatacağım.
-<p>1- İlk olarak "NFS Server"ı Gentoo kurulu sistemimize kuralım.
-</p>
+<p>1- İlk olarak "NFS Server"ı Gentoo kurulu sistemimize kuralım.</p>
 <blockquote><tt># emerge -av nfs-utils</tt></blockquote>
-2- "NFS Server" kuruldu.Şimdi paylaşacağımız dizinleri <em>/etc/exports</em> dosyasına yazalım.Siz kendiniz farklı dizinleri paylaşabilirsiniz.
+<p>2- "NFS Server" kuruldu.Şimdi paylaşacağımız dizinleri <em>/etc/exports</em> dosyasına yazalım.Siz kendiniz farklı dizinleri paylaşabilirsiniz.</p>
 <blockquote><tt>/home/kullanici/paylasilan_dizin 192.168.1.3(async,rw,no_subtree_check)</tt></blockquote>
-Yukardaki örnekte "/home/kullanici/paylasilan_dizin" yolundaki "paylasilan_dizin" adlı klasörü "192.168.1.3" ip adresindeki bilgisayar ile paylaşıma açtık.Sizin paylaşacağınız dizin farklı yolda ve bu klasörü paylaşacağınız adres farklı olabilir.Mesela paylaşacağınız dizini ağdaki tüm bilgisayarlara açabilirsiniz.Bunun içinse örnek olarak "192.168.<em>.</em>" şeklinde ya da ip adresi yerine " * " kullanabilirsiniz.
-Dikkat edilecek bir nokta ise yukardaki paylaştığımız dizine ağdaki diğer bilgisayar için yazma ve okuma yetkisi verdik.Eğer sadece okuma yetkisi vermek isterseniz aşağıdaki gibi yapabilirsiniz.
+<p>Yukardaki örnekte "/home/kullanici/paylasilan_dizin" yolundaki "paylasilan_dizin" adlı klasörü "192.168.1.3" ip adresindeki bilgisayar ile paylaşıma açtık.Sizin paylaşacağınız dizin farklı yolda ve bu klasörü paylaşacağınız adres farklı olabilir.Mesela paylaşacağınız dizini ağdaki tüm bilgisayarlara açabilirsiniz.Bunun içinse örnek olarak "192.168.<em>.</em>" şeklinde ya da ip adresi yerine " * " kullanabilirsiniz.
+Dikkat edilecek bir nokta ise yukardaki paylaştığımız dizine ağdaki diğer bilgisayar için yazma ve okuma yetkisi verdik.Eğer sadece okuma yetkisi vermek isterseniz aşağıdaki gibi yapabilirsiniz.</p>
 <blockquote><tt>/home/kullanici/paylasilan_dizin 192.168.1.3(ro,async)</tt></blockquote>
-<em>/etc/exports</em> dosyasına yukardaki istediğiniz ayarlardan birini yazarak,kaydedip çıkabilirsiniz.
-<p>3- NFS Serverı başlatın ve sistem başlangıçına ekleyin.Aşağıdaki adımlarda dağıtıma göre değişebilir.
-</p>
+<p><em>/etc/exports</em> dosyasına yukardaki istediğiniz ayarlardan birini yazarak,kaydedip çıkabilirsiniz.</p>
+<p>3- NFS Serverı başlatın ve sistem başlangıçına ekleyin.Aşağıdaki adımlarda dağıtıma göre değişebilir.</p>
 <blockquote><tt># /etc/init.d/nfs start </tt></blockquote>
 <blockquote><tt>#rc-update add nfs default </tt></blockquote>
-4- Şimdi Ubuntu sistemimize NFS Client kuralım ve paylaşılan dizini sistemimize ekleyelim.
+<p>4- Şimdi Ubuntu sistemimize NFS Client kuralım ve paylaşılan dizini sistemimize ekleyelim.</p>
 <blockquote><tt># apt-get install portmap nfs-common</tt></blockquote>
-NFS Client kurulumu bittikten sonra <em>/etc/fstab</em> dosyasına ağdaki paylaşılan dizini ekleyelim.Aşağıdaki örnek sizin paylaşacağınız dizine ve NFS Server'ın ip adresine göre değişiklik gösterebilir.
+<p>NFS Client kurulumu bittikten sonra <em>/etc/fstab</em> dosyasına ağdaki paylaşılan dizini ekleyelim.Aşağıdaki örnek sizin paylaşacağınız dizine ve NFS Server'ın ip adresine göre değişiklik gösterebilir.</p>
 <blockquote><tt>192.168.1.2:/home/kullanici/paylasilan_dizin      /home/ubuntu_kullanicisi/paylasilan_dizin       nfs     defaults 0 0</tt></blockquote>
-Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/paylasilan_dizin" yolundaki dizini 192.168.1.3 adresinde bulunan NFS Client istemcisi tarafından "/home/ubuntu_kullanici/paylasilan_dizin" yoluna her açılışta otomatik bağlayacaktır.</div>
+<p>Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/paylasilan_dizin" yolundaki dizini 192.168.1.3 adresinde bulunan NFS Client istemcisi tarafından "/home/ubuntu_kullanici/paylasilan_dizin" yoluna her açılışta otomatik bağlayacaktır.</p>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
@@ -90,7 +124,7 @@ Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/p
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
-        
+    
         <div id="disqus_thread"></div>
         <script>
         var disqus_shortname ="blog-piesso-com",
@@ -110,21 +144,22 @@ Bu adımlardan sonra 192.168.1.2 adresinde bulunan NFS Server "/home/kullanici/p
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><footer id="footer"><p>Contents © 2020         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
-<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p>
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
             
         </footer>
 </div>
-    </section><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
-    moment.locale("en");
-    fancydates(2, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates --><script>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
     </script>
 </body>
 </html>

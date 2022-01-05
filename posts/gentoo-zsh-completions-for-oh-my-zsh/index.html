@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gentoo-zsh-completions for oh-my-zsh | hardened .*(nt|log)s?</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="canonical" href="https://blog.piesso.com/posts/gentoo-zsh-completions-for-oh-my-zsh/">
+<link rel="icon" href="../../images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="../../images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="../../images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../../images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="../../images/website/android-chrome-192x192.png" sizes="192x192">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../gentoo-kernel-build-script/" title="Gentoo kernel build script" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="gentoo-zsh-completions for oh-my-zsh">
+<meta property="og:url" content="https://blog.piesso.com/posts/gentoo-zsh-completions-for-oh-my-zsh/">
+<meta property="og:description" content="gentoo-zsh-completions plugin for oh-my-zsh. forked from gentoo-zsh-completions main repository,
+and modified for Oh-my-zsh.
+
+Installation:
+$ git clone https://github.com/mofm/gentoo-zsh-completions.g">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-01-05T17:50:47+03:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../index.html" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">gentoo-zsh-completions for oh-my-zsh</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    mofm
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-01-05T17:50:47+03:00" itemprop="datePublished" title="2022-01-05 17:50">2022-01-05 17:50</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/gentoo-zsh-completions-for-oh-my-zsh.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>gentoo-zsh-completions plugin for oh-my-zsh. forked from gentoo-zsh-completions main repository,
+and modified for Oh-my-zsh.</p>
+<section id="installation"><h2>Installation:</h2>
+<pre class="code bash"><a id="rest_code_a3090c14c8bb4ddea0d5f100596000eb-1" name="rest_code_a3090c14c8bb4ddea0d5f100596000eb-1"></a>$ git clone https://github.com/mofm/gentoo-zsh-completions.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/gentoo-zsh-completions
+</pre>
+<p>To use it, add <em>'gentoo-zsh-completions'</em> to the plugins array in your zshrc file:</p>
+<pre class="literal-block">plugins=(... gentoo-zsh-completions)</pre>
+</section>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../gentoo-kernel-build-script/" rel="prev" title="Gentoo kernel build script">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blog-piesso-com",
+            disqus_url="https://blog.piesso.com/posts/gentoo-zsh-completions-for-oh-my-zsh/",
+        disqus_title="gentoo-zsh-completions for oh-my-zsh",
+        disqus_identifier="cache/posts/gentoo-zsh-completions-for-oh-my-zsh.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="blog-piesso-com";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
