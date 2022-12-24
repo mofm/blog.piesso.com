@@ -1,0 +1,178 @@
+<h1>Introduction</h1>
+<p>This is a simple bookmark manager for the web. It keeps your favorites books, articles, songs or whatever else you come across while browsing and allows you to search them.</p>
+<p>The project is written with django 4.1 and Python 3.9. </p>
+<p><a href="https://github.com/mofm/bohca">Github repo</a></p>
+<h3>Features</h3>
+<ul>
+<li>Simple and intuitive interface</li>
+<li>Bootstrap 4 (static files included)</li>
+<li>Procfile for deployment</li>
+<li>SQLite database by default</li>
+<li>Search by title, description, links and tags</li>
+<li>Separate settings for development and production(environment variables)</li>
+<li>Add, edit and delete bookmarks, tags and categories</li>
+<li>Backup bookmarks to CSV</li>
+<li>Restore bookmarks from CSV</li>
+<li>Export bookmarks to HTML (Firefox and Chrome compatible - <em>tested</em>)</li>
+<li>Custom admin interface, with search and filters (view, edit, delete all bookmarks, tags and categories)</li>
+</ul>
+<h3>Roadmap</h3>
+<ul>
+<li><del>Backup and restore bookmarks</del></li>
+<li><del>Export bookmarks for browsers</del></li>
+<li>Browser extension (Chrome, Firefox, Safari)</li>
+</ul>
+<h3>Installation</h3>
+<ul>
+<li>Create a virtual environment and activate it</li>
+</ul>
+<pre class="code literal-block">python3 -m venv bohca-venv
+<span class="nb">source</span> bohca-venv/bin/activate
+</pre>
+<ul>
+<li>Clone the repository</li>
+</ul>
+<pre class="code literal-block">git clone https://github.com/mofm/bohca.git
+</pre>
+<ul>
+<li>Install the requirements</li>
+</ul>
+<pre class="code literal-block">pip install -r requirements.txt
+</pre>
+<ul>
+<li>Freeze requirements</li>
+</ul>
+<pre class="code literal-block">pip freeze &gt; requirements.txt
+</pre>
+<ul>
+<li>Create environment files</li>
+</ul>
+<pre class="code literal-block">mkdir .env
+touch .env/development.env
+touch .env/production.env
+</pre>
+<ul>
+<li>Add the following variables to 'development.env' file</li>
+</ul>
+<p>For production environment, use environment variables from 'production.env' file</p>
+<pre class="code literal-block"><span class="nv">DEBUG</span><span class="o">=</span><span class="s2">&quot;True&quot;</span>
+<span class="nv">SECRET_KEY</span><span class="o">=</span>your_secret_key
+<span class="nv">ALLOWED_HOSTS</span><span class="o">=</span> <span class="s2">&quot;127.0.0.1, localhost&quot;</span>
+</pre>
+<ul>
+<li>Run the migrations</li>
+</ul>
+<pre class="code literal-block">python manage.py makemigrations
+python manage.py migrate --run-syncdb
+</pre>
+<ul>
+<li>Create a superuser</li>
+</ul>
+<pre class="code literal-block">python manage.py createsuperuser
+</pre>
+<ul>
+<li>Collect static files</li>
+</ul>
+<pre class="code literal-block">python manage.py collectstatic
+</pre>
+<ul>
+<li>You can test out the application by running the following command:</li>
+</ul>
+<pre class="code literal-block">python manage.py runserver <span class="m">0</span>.0.0.0:8000
+</pre>
+<ul>
+<li>Open your browser and go to http://localhost:8000</li>
+</ul>
+<h3>Deployment</h3>
+<ul>
+<li>Install gunicorn</li>
+</ul>
+<pre class="code literal-block">pip install gunicorn
+</pre>
+<ul>
+<li>Create gunicorn systemd service files for production environment</li>
+</ul>
+<pre class="code literal-block">sudo vi  /etc/systemd/system/gunicorn.service
+</pre>
+<ul>
+<li>Add the following content to the 'gunicorn.service' file</li>
+</ul>
+<pre class="code literal-block"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>gunicorn daemon
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="nv">User</span><span class="o">=</span>user
+<span class="nv">Group</span><span class="o">=</span>user
+<span class="nv">EnvironmentFile</span><span class="o">=</span>/path/to/bohca_venv/bohca/.env/production.env
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/path/to/bohca_venv/bohca
+<span class="nv">ExecStart</span><span class="o">=</span>/path/to/bohca_venv/bin/gunicorn --workers <span class="m">3</span> --bind <span class="m">0</span>.0.0.0:8000 bohca.wsgi:application
+<span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -s HUP <span class="nv">$MAINPID</span>
+<span class="nv">KillMode</span><span class="o">=</span>mixed
+<span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre>
+<ul>
+<li>Start the gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl start gunicorn
+</pre>
+<ul>
+<li>Enable the gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl <span class="nb">enable</span> gunicorn
+</pre>
+<ul>
+<li>Check the status of the gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl status gunicorn
+</pre>
+<ul>
+<li>Create nginx configuration file for production environment</li>
+</ul>
+<pre class="code literal-block">sudo vi /etc/nginx/sites-available/bohca
+</pre>
+<ul>
+<li>Add the following content to the bohca file</li>
+</ul>
+<pre class="code literal-block">server <span class="o">{</span>
+    listen <span class="m">80</span><span class="p">;</span>
+    server_name your_domain_name<span class="p">;</span>
+
+    <span class="nv">location</span> <span class="o">=</span> /favicon.ico <span class="o">{</span> access_log off<span class="p">;</span> log_not_found off<span class="p">;</span> <span class="o">}</span>
+    location /static/ <span class="o">{</span>
+        root /path/to/bohca_venv/bohca/staticfiles<span class="p">;</span>
+    <span class="o">}</span>
+
+    location / <span class="o">{</span>
+        include proxy_params<span class="p">;</span>
+        <span class="c1"># proxy_pass gunicorn_socket or http://;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre>
+<ul>
+<li>Enable the bohca configuration file</li>
+</ul>
+<pre class="code literal-block">sudo ln -s /etc/nginx/sites-available/bohca /etc/nginx/sites-enabled
+</pre>
+<ul>
+<li>Test the nginx configuration file</li>
+</ul>
+<pre class="code literal-block">sudo nginx -t
+</pre>
+<ul>
+<li>Restart the nginx service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl restart nginx
+</pre>
+<ul>
+<li>Check the status of the nginx service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl status nginx
+</pre>
+<h3>License</h3>
+<p>GNU General Public License v3.0</p>

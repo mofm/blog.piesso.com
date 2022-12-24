@@ -1,114 +1,114 @@
 <p>Ingress bazi URL isteklerine container port'u ile redirect etmeye calistigi gibi bir sorunla karsilasabilirsiniz. Ornek olarak biraz daha acmak gerekirse;</p>
-<pre class="code bash"><a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-1" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-1"></a>$ curl -I http://cafe.example.com/coffee/
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-2" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-2"></a>
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-3" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-3"></a>HTTP/1.1 <span class="m">200</span> OK
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-4" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-4"></a>Date: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:47:21 GMT
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-5" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-5"></a>Content-Type: text/html
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-6" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-6"></a>Content-Length: <span class="m">87466</span>
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-7" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-7"></a>Connection: keep-alive
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-8" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-8"></a>Last-Modified: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">20</span>:48:36 GMT
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-9" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-9"></a>ETag: <span class="s2">&quot;5fce9524-155aa&quot;</span>
-<a id="rest_code_4b140f0ff5e74829b8433c84e1af66ae-10" name="rest_code_4b140f0ff5e74829b8433c84e1af66ae-10"></a>Accept-Ranges: bytes
+<pre class="code bash"><a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-1" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-1"></a>$ curl -I http://cafe.example.com/coffee/
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-2" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-2"></a>
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-3" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-3"></a>HTTP/1.1 <span class="m">200</span> OK
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-4" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-4"></a>Date: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:47:21 GMT
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-5" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-5"></a>Content-Type: text/html
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-6" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-6"></a>Content-Length: <span class="m">87466</span>
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-7" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-7"></a>Connection: keep-alive
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-8" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-8"></a>Last-Modified: Mon, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">20</span>:48:36 GMT
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-9" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-9"></a>ETag: <span class="s2">&quot;5fce9524-155aa&quot;</span>
+<a id="rest_code_b1977335892e4a1ba9ea1edc324abca4-10" name="rest_code_b1977335892e4a1ba9ea1edc324abca4-10"></a>Accept-Ranges: bytes
 </pre><p>Yukarida goruldugu &quot;<a class="reference external" href="http://cafe.example.com/coffee/">http://cafe.example.com/coffee/</a>&quot; adresine gonderdigimiz istek saglikli sekilde &quot;200&quot; kodunu cevap olarak donuyor.
 Birde &quot;<a class="reference external" href="http://cafe.example.com/coffee">http://cafe.example.com/coffee</a>&quot; seklinde istekte bulunarak test edelim:</p>
-<pre class="code bash"><a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-1" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-1"></a>$ curl -I http://cafe.example.com/coffee
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-2" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-2"></a>
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-3" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-3"></a>HTTP/1.1 <span class="m">301</span> Moved Permanently
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-4" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-4"></a>Date: Sun, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:52:48 GMT
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-5" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-5"></a>Content-Type: text/html
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-6" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-6"></a>Content-Length: <span class="m">169</span>
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-7" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-7"></a>Connection: keep-alive
-<a id="rest_code_1769d3a6719f483bb4f769b9ca892c3d-8" name="rest_code_1769d3a6719f483bb4f769b9ca892c3d-8"></a>Location: http://cafe.example.com:8080/coffee
+<pre class="code bash"><a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-1" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-1"></a>$ curl -I http://cafe.example.com/coffee
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-2" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-2"></a>
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-3" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-3"></a>HTTP/1.1 <span class="m">301</span> Moved Permanently
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-4" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-4"></a>Date: Sun, <span class="m">07</span> Dec <span class="m">2020</span> <span class="m">23</span>:52:48 GMT
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-5" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-5"></a>Content-Type: text/html
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-6" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-6"></a>Content-Length: <span class="m">169</span>
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-7" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-7"></a>Connection: keep-alive
+<a id="rest_code_4fefecea1e154ec19a38aa67070dfbc6-8" name="rest_code_4fefecea1e154ec19a38aa67070dfbc6-8"></a>Location: http://cafe.example.com:8080/coffee
 </pre><p>Bu ornek ise goruldugu gibi &quot;<a class="reference external" href="http://hostname:cointainer_port/paths">http://hostname:cointainer_port/paths</a>&quot; seklinde container portunu da ekleyerek sayfayi yanlis sekilde redirect etmeye calisiyor ve sayfa ulasilamaz oluyor.
 Buradaki <strong>'8080'</strong> portu ingress'in arka tarafindaki nginx container'in yayin yapmakta olan portu.</p>
 <p>Sorunun sebebine gelince, bu sorunun ingress ile hic bir alakasi yok. Hem <strong>kubernetes/ingress-nginx</strong> hem de <strong>nginxinc/nginx-ingress</strong> ingress controller'larinda nginx konfigurasyonu uzerindeki <a class="reference external" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect">port_in_redirect</a> degeri default olarak 'off' olarak.
 Fakat arka tarafta calisan nginx container uzerindeki bu konfigurasyonu '<em>on</em>' yapilmissa bu durumla karsilasabilirsiniz. Bunu nginx.conf uzerinde '<em>port_in_redirect off;</em>' seklinde kapatarak yasanmasini engelleyebilirsiniz.</p>
 <p>Asagidaki sekilde nginx.conf'u configmap'e ekleyerek nginx pod'un bu configmap'i kullanmasini saglayarak deployment yapabilirsiniz.</p>
-<pre class="code yaml"><a id="rest_code_84a58170f48745289caafd4a6952e187-1" name="rest_code_84a58170f48745289caafd4a6952e187-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-2" name="rest_code_84a58170f48745289caafd4a6952e187-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-3" name="rest_code_84a58170f48745289caafd4a6952e187-3"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-4" name="rest_code_84a58170f48745289caafd4a6952e187-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-5" name="rest_code_84a58170f48745289caafd4a6952e187-5"></a><span class="nt">data</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-6" name="rest_code_84a58170f48745289caafd4a6952e187-6"></a>  <span class="nt">nginx.conf</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-7" name="rest_code_84a58170f48745289caafd4a6952e187-7"></a>    <span class="no">worker_processes  1;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-8" name="rest_code_84a58170f48745289caafd4a6952e187-8"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-9" name="rest_code_84a58170f48745289caafd4a6952e187-9"></a>    <span class="no">error_log  /var/log/nginx/error.log warn;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-10" name="rest_code_84a58170f48745289caafd4a6952e187-10"></a>    <span class="no">pid        /tmp/nginx.pid;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-11" name="rest_code_84a58170f48745289caafd4a6952e187-11"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-12" name="rest_code_84a58170f48745289caafd4a6952e187-12"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-13" name="rest_code_84a58170f48745289caafd4a6952e187-13"></a>    <span class="no">events {</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-14" name="rest_code_84a58170f48745289caafd4a6952e187-14"></a>        <span class="no">worker_connections  1024;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-15" name="rest_code_84a58170f48745289caafd4a6952e187-15"></a>    <span class="no">}</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-16" name="rest_code_84a58170f48745289caafd4a6952e187-16"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-17" name="rest_code_84a58170f48745289caafd4a6952e187-17"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-18" name="rest_code_84a58170f48745289caafd4a6952e187-18"></a>    <span class="no">http {</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-19" name="rest_code_84a58170f48745289caafd4a6952e187-19"></a>        <span class="no">proxy_temp_path /tmp/proxy_temp;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-20" name="rest_code_84a58170f48745289caafd4a6952e187-20"></a>        <span class="no">client_body_temp_path /tmp/client_temp;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-21" name="rest_code_84a58170f48745289caafd4a6952e187-21"></a>        <span class="no">fastcgi_temp_path /tmp/fastcgi_temp;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-22" name="rest_code_84a58170f48745289caafd4a6952e187-22"></a>        <span class="no">uwsgi_temp_path /tmp/uwsgi_temp;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-23" name="rest_code_84a58170f48745289caafd4a6952e187-23"></a>        <span class="no">scgi_temp_path /tmp/scgi_temp;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-24" name="rest_code_84a58170f48745289caafd4a6952e187-24"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-25" name="rest_code_84a58170f48745289caafd4a6952e187-25"></a>        <span class="no">include       /etc/nginx/mime.types;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-26" name="rest_code_84a58170f48745289caafd4a6952e187-26"></a>        <span class="no">default_type  application/octet-stream;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-27" name="rest_code_84a58170f48745289caafd4a6952e187-27"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-28" name="rest_code_84a58170f48745289caafd4a6952e187-28"></a>        <span class="no">log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-29" name="rest_code_84a58170f48745289caafd4a6952e187-29"></a>                          <span class="no">&#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-30" name="rest_code_84a58170f48745289caafd4a6952e187-30"></a>                          <span class="no">&#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-31" name="rest_code_84a58170f48745289caafd4a6952e187-31"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-32" name="rest_code_84a58170f48745289caafd4a6952e187-32"></a>        <span class="no">access_log  /var/log/nginx/access.log  main;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-33" name="rest_code_84a58170f48745289caafd4a6952e187-33"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-34" name="rest_code_84a58170f48745289caafd4a6952e187-34"></a>        <span class="no">sendfile        on;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-35" name="rest_code_84a58170f48745289caafd4a6952e187-35"></a>        <span class="no">#tcp_nopush     on;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-36" name="rest_code_84a58170f48745289caafd4a6952e187-36"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-37" name="rest_code_84a58170f48745289caafd4a6952e187-37"></a>        <span class="no">port_in_redirect off;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-38" name="rest_code_84a58170f48745289caafd4a6952e187-38"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-39" name="rest_code_84a58170f48745289caafd4a6952e187-39"></a>        <span class="no">keepalive_timeout  65;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-40" name="rest_code_84a58170f48745289caafd4a6952e187-40"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-41" name="rest_code_84a58170f48745289caafd4a6952e187-41"></a>        <span class="no">#gzip  on;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-42" name="rest_code_84a58170f48745289caafd4a6952e187-42"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-43" name="rest_code_84a58170f48745289caafd4a6952e187-43"></a>        <span class="no">include /etc/nginx/conf.d/*.conf;</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-44" name="rest_code_84a58170f48745289caafd4a6952e187-44"></a>    <span class="no">}</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-45" name="rest_code_84a58170f48745289caafd4a6952e187-45"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-46" name="rest_code_84a58170f48745289caafd4a6952e187-46"></a><span class="nn">---</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-47" name="rest_code_84a58170f48745289caafd4a6952e187-47"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-48" name="rest_code_84a58170f48745289caafd4a6952e187-48"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-49" name="rest_code_84a58170f48745289caafd4a6952e187-49"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-50" name="rest_code_84a58170f48745289caafd4a6952e187-50"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-51" name="rest_code_84a58170f48745289caafd4a6952e187-51"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-52" name="rest_code_84a58170f48745289caafd4a6952e187-52"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-53" name="rest_code_84a58170f48745289caafd4a6952e187-53"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-54" name="rest_code_84a58170f48745289caafd4a6952e187-54"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-55" name="rest_code_84a58170f48745289caafd4a6952e187-55"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-56" name="rest_code_84a58170f48745289caafd4a6952e187-56"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-57" name="rest_code_84a58170f48745289caafd4a6952e187-57"></a>  <span class="nt">template</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-58" name="rest_code_84a58170f48745289caafd4a6952e187-58"></a>    <span class="nt">metadata</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-59" name="rest_code_84a58170f48745289caafd4a6952e187-59"></a>      <span class="nt">labels</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-60" name="rest_code_84a58170f48745289caafd4a6952e187-60"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-61" name="rest_code_84a58170f48745289caafd4a6952e187-61"></a>    <span class="nt">spec</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-62" name="rest_code_84a58170f48745289caafd4a6952e187-62"></a>      <span class="nt">containers</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-63" name="rest_code_84a58170f48745289caafd4a6952e187-63"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-64" name="rest_code_84a58170f48745289caafd4a6952e187-64"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-65" name="rest_code_84a58170f48745289caafd4a6952e187-65"></a>        <span class="nt">ports</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-66" name="rest_code_84a58170f48745289caafd4a6952e187-66"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-67" name="rest_code_84a58170f48745289caafd4a6952e187-67"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-68" name="rest_code_84a58170f48745289caafd4a6952e187-68"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-69" name="rest_code_84a58170f48745289caafd4a6952e187-69"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-70" name="rest_code_84a58170f48745289caafd4a6952e187-70"></a>          <span class="nt">subPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.conf</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-71" name="rest_code_84a58170f48745289caafd4a6952e187-71"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-72" name="rest_code_84a58170f48745289caafd4a6952e187-72"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-73" name="rest_code_84a58170f48745289caafd4a6952e187-73"></a><span class="nn">---</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-74" name="rest_code_84a58170f48745289caafd4a6952e187-74"></a>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-75" name="rest_code_84a58170f48745289caafd4a6952e187-75"></a><span class="nn">---</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-76" name="rest_code_84a58170f48745289caafd4a6952e187-76"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-77" name="rest_code_84a58170f48745289caafd4a6952e187-77"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-78" name="rest_code_84a58170f48745289caafd4a6952e187-78"></a><span class="nt">metadata</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-79" name="rest_code_84a58170f48745289caafd4a6952e187-79"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee-svc</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-80" name="rest_code_84a58170f48745289caafd4a6952e187-80"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-81" name="rest_code_84a58170f48745289caafd4a6952e187-81"></a>  <span class="nt">ports</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-82" name="rest_code_84a58170f48745289caafd4a6952e187-82"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-83" name="rest_code_84a58170f48745289caafd4a6952e187-83"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-84" name="rest_code_84a58170f48745289caafd4a6952e187-84"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-85" name="rest_code_84a58170f48745289caafd4a6952e187-85"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-86" name="rest_code_84a58170f48745289caafd4a6952e187-86"></a>  <span class="nt">selector</span><span class="p">:</span>
-<a id="rest_code_84a58170f48745289caafd4a6952e187-87" name="rest_code_84a58170f48745289caafd4a6952e187-87"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<pre class="code yaml"><a id="rest_code_934010e236964d818277db20518f878c-1" name="rest_code_934010e236964d818277db20518f878c-1"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="rest_code_934010e236964d818277db20518f878c-2" name="rest_code_934010e236964d818277db20518f878c-2"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<a id="rest_code_934010e236964d818277db20518f878c-3" name="rest_code_934010e236964d818277db20518f878c-3"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-4" name="rest_code_934010e236964d818277db20518f878c-4"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
+<a id="rest_code_934010e236964d818277db20518f878c-5" name="rest_code_934010e236964d818277db20518f878c-5"></a><span class="nt">data</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-6" name="rest_code_934010e236964d818277db20518f878c-6"></a>  <span class="nt">nginx.conf</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a id="rest_code_934010e236964d818277db20518f878c-7" name="rest_code_934010e236964d818277db20518f878c-7"></a>    <span class="no">worker_processes  1;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-8" name="rest_code_934010e236964d818277db20518f878c-8"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-9" name="rest_code_934010e236964d818277db20518f878c-9"></a>    <span class="no">error_log  /var/log/nginx/error.log warn;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-10" name="rest_code_934010e236964d818277db20518f878c-10"></a>    <span class="no">pid        /tmp/nginx.pid;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-11" name="rest_code_934010e236964d818277db20518f878c-11"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-12" name="rest_code_934010e236964d818277db20518f878c-12"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-13" name="rest_code_934010e236964d818277db20518f878c-13"></a>    <span class="no">events {</span>
+<a id="rest_code_934010e236964d818277db20518f878c-14" name="rest_code_934010e236964d818277db20518f878c-14"></a>        <span class="no">worker_connections  1024;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-15" name="rest_code_934010e236964d818277db20518f878c-15"></a>    <span class="no">}</span>
+<a id="rest_code_934010e236964d818277db20518f878c-16" name="rest_code_934010e236964d818277db20518f878c-16"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-17" name="rest_code_934010e236964d818277db20518f878c-17"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-18" name="rest_code_934010e236964d818277db20518f878c-18"></a>    <span class="no">http {</span>
+<a id="rest_code_934010e236964d818277db20518f878c-19" name="rest_code_934010e236964d818277db20518f878c-19"></a>        <span class="no">proxy_temp_path /tmp/proxy_temp;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-20" name="rest_code_934010e236964d818277db20518f878c-20"></a>        <span class="no">client_body_temp_path /tmp/client_temp;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-21" name="rest_code_934010e236964d818277db20518f878c-21"></a>        <span class="no">fastcgi_temp_path /tmp/fastcgi_temp;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-22" name="rest_code_934010e236964d818277db20518f878c-22"></a>        <span class="no">uwsgi_temp_path /tmp/uwsgi_temp;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-23" name="rest_code_934010e236964d818277db20518f878c-23"></a>        <span class="no">scgi_temp_path /tmp/scgi_temp;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-24" name="rest_code_934010e236964d818277db20518f878c-24"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-25" name="rest_code_934010e236964d818277db20518f878c-25"></a>        <span class="no">include       /etc/nginx/mime.types;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-26" name="rest_code_934010e236964d818277db20518f878c-26"></a>        <span class="no">default_type  application/octet-stream;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-27" name="rest_code_934010e236964d818277db20518f878c-27"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-28" name="rest_code_934010e236964d818277db20518f878c-28"></a>        <span class="no">log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-29" name="rest_code_934010e236964d818277db20518f878c-29"></a>                          <span class="no">&#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-30" name="rest_code_934010e236964d818277db20518f878c-30"></a>                          <span class="no">&#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-31" name="rest_code_934010e236964d818277db20518f878c-31"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-32" name="rest_code_934010e236964d818277db20518f878c-32"></a>        <span class="no">access_log  /var/log/nginx/access.log  main;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-33" name="rest_code_934010e236964d818277db20518f878c-33"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-34" name="rest_code_934010e236964d818277db20518f878c-34"></a>        <span class="no">sendfile        on;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-35" name="rest_code_934010e236964d818277db20518f878c-35"></a>        <span class="no">#tcp_nopush     on;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-36" name="rest_code_934010e236964d818277db20518f878c-36"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-37" name="rest_code_934010e236964d818277db20518f878c-37"></a>        <span class="no">port_in_redirect off;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-38" name="rest_code_934010e236964d818277db20518f878c-38"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-39" name="rest_code_934010e236964d818277db20518f878c-39"></a>        <span class="no">keepalive_timeout  65;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-40" name="rest_code_934010e236964d818277db20518f878c-40"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-41" name="rest_code_934010e236964d818277db20518f878c-41"></a>        <span class="no">#gzip  on;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-42" name="rest_code_934010e236964d818277db20518f878c-42"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-43" name="rest_code_934010e236964d818277db20518f878c-43"></a>        <span class="no">include /etc/nginx/conf.d/*.conf;</span>
+<a id="rest_code_934010e236964d818277db20518f878c-44" name="rest_code_934010e236964d818277db20518f878c-44"></a>    <span class="no">}</span>
+<a id="rest_code_934010e236964d818277db20518f878c-45" name="rest_code_934010e236964d818277db20518f878c-45"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-46" name="rest_code_934010e236964d818277db20518f878c-46"></a><span class="nn">---</span>
+<a id="rest_code_934010e236964d818277db20518f878c-47" name="rest_code_934010e236964d818277db20518f878c-47"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-48" name="rest_code_934010e236964d818277db20518f878c-48"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<a id="rest_code_934010e236964d818277db20518f878c-49" name="rest_code_934010e236964d818277db20518f878c-49"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<a id="rest_code_934010e236964d818277db20518f878c-50" name="rest_code_934010e236964d818277db20518f878c-50"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-51" name="rest_code_934010e236964d818277db20518f878c-51"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a id="rest_code_934010e236964d818277db20518f878c-52" name="rest_code_934010e236964d818277db20518f878c-52"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-53" name="rest_code_934010e236964d818277db20518f878c-53"></a>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="rest_code_934010e236964d818277db20518f878c-54" name="rest_code_934010e236964d818277db20518f878c-54"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-55" name="rest_code_934010e236964d818277db20518f878c-55"></a>    <span class="nt">matchLabels</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-56" name="rest_code_934010e236964d818277db20518f878c-56"></a>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a id="rest_code_934010e236964d818277db20518f878c-57" name="rest_code_934010e236964d818277db20518f878c-57"></a>  <span class="nt">template</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-58" name="rest_code_934010e236964d818277db20518f878c-58"></a>    <span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-59" name="rest_code_934010e236964d818277db20518f878c-59"></a>      <span class="nt">labels</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-60" name="rest_code_934010e236964d818277db20518f878c-60"></a>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
+<a id="rest_code_934010e236964d818277db20518f878c-61" name="rest_code_934010e236964d818277db20518f878c-61"></a>    <span class="nt">spec</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-62" name="rest_code_934010e236964d818277db20518f878c-62"></a>      <span class="nt">containers</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-63" name="rest_code_934010e236964d818277db20518f878c-63"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
+<a id="rest_code_934010e236964d818277db20518f878c-64" name="rest_code_934010e236964d818277db20518f878c-64"></a>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxinc/nginx-unprivileged</span>
+<a id="rest_code_934010e236964d818277db20518f878c-65" name="rest_code_934010e236964d818277db20518f878c-65"></a>        <span class="nt">ports</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-66" name="rest_code_934010e236964d818277db20518f878c-66"></a>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a id="rest_code_934010e236964d818277db20518f878c-67" name="rest_code_934010e236964d818277db20518f878c-67"></a>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-68" name="rest_code_934010e236964d818277db20518f878c-68"></a>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-conf</span>
+<a id="rest_code_934010e236964d818277db20518f878c-69" name="rest_code_934010e236964d818277db20518f878c-69"></a>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
+<a id="rest_code_934010e236964d818277db20518f878c-70" name="rest_code_934010e236964d818277db20518f878c-70"></a>          <span class="nt">subPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.conf</span>
+<a id="rest_code_934010e236964d818277db20518f878c-71" name="rest_code_934010e236964d818277db20518f878c-71"></a>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="rest_code_934010e236964d818277db20518f878c-72" name="rest_code_934010e236964d818277db20518f878c-72"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-73" name="rest_code_934010e236964d818277db20518f878c-73"></a><span class="nn">---</span>
+<a id="rest_code_934010e236964d818277db20518f878c-74" name="rest_code_934010e236964d818277db20518f878c-74"></a>
+<a id="rest_code_934010e236964d818277db20518f878c-75" name="rest_code_934010e236964d818277db20518f878c-75"></a><span class="nn">---</span>
+<a id="rest_code_934010e236964d818277db20518f878c-76" name="rest_code_934010e236964d818277db20518f878c-76"></a><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="rest_code_934010e236964d818277db20518f878c-77" name="rest_code_934010e236964d818277db20518f878c-77"></a><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<a id="rest_code_934010e236964d818277db20518f878c-78" name="rest_code_934010e236964d818277db20518f878c-78"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-79" name="rest_code_934010e236964d818277db20518f878c-79"></a>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee-svc</span>
+<a id="rest_code_934010e236964d818277db20518f878c-80" name="rest_code_934010e236964d818277db20518f878c-80"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-81" name="rest_code_934010e236964d818277db20518f878c-81"></a>  <span class="nt">ports</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-82" name="rest_code_934010e236964d818277db20518f878c-82"></a>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="rest_code_934010e236964d818277db20518f878c-83" name="rest_code_934010e236964d818277db20518f878c-83"></a>    <span class="nt">targetPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<a id="rest_code_934010e236964d818277db20518f878c-84" name="rest_code_934010e236964d818277db20518f878c-84"></a>    <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<a id="rest_code_934010e236964d818277db20518f878c-85" name="rest_code_934010e236964d818277db20518f878c-85"></a>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+<a id="rest_code_934010e236964d818277db20518f878c-86" name="rest_code_934010e236964d818277db20518f878c-86"></a>  <span class="nt">selector</span><span class="p">:</span>
+<a id="rest_code_934010e236964d818277db20518f878c-87" name="rest_code_934010e236964d818277db20518f878c-87"></a>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coffee</span>
 </pre>

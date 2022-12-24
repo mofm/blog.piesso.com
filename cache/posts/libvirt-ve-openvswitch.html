@@ -38,14 +38,14 @@ Gentoo uzerinde, libvirt icin gerekli &quot;USE FLAG&quot;lari aktif edip kurulu
 <p>/etc/portage/package.use/libvirt:</p>
 <pre class="literal-block">app-emulation/libvirt macvtap vepa qemu virt-network</pre>
 <p>Simdi kurulumu yapabiliriz.</p>
-<pre class="code bash"><a id="rest_code_e5e55d391d8f4fd3a996ae5920084394-1" name="rest_code_e5e55d391d8f4fd3a996ae5920084394-1"></a><span class="c1"># emerge -av libvirt</span>
+<pre class="code bash"><a id="rest_code_2865eb07d47e4f8692e2acf2db07bd4c-1" name="rest_code_2865eb07d47e4f8692e2acf2db07bd4c-1"></a><span class="c1"># emerge -av libvirt</span>
 </pre><p>OpenvSwitch kurulumunu yapalim.</p>
-<pre class="code bash"><a id="rest_code_a5a80f671d0a4e3385bb5d88a739da04-1" name="rest_code_a5a80f671d0a4e3385bb5d88a739da04-1"></a><span class="c1"># emerge -av openvswitch</span>
+<pre class="code bash"><a id="rest_code_9059d30b0ca74a6f9590d28e9334cc0f-1" name="rest_code_9059d30b0ca74a6f9590d28e9334cc0f-1"></a><span class="c1"># emerge -av openvswitch</span>
 </pre><p>Sistem baslangici icin bu servisleri enable edelim.</p>
-<pre class="code bash"><a id="rest_code_a553d782bd484d23aa0ecaff54c6959b-1" name="rest_code_a553d782bd484d23aa0ecaff54c6959b-1"></a><span class="c1"># rc-update add ovsdb-server default</span>
-<a id="rest_code_a553d782bd484d23aa0ecaff54c6959b-2" name="rest_code_a553d782bd484d23aa0ecaff54c6959b-2"></a><span class="c1"># rc-update add ovs-vswitchd default</span>
-<a id="rest_code_a553d782bd484d23aa0ecaff54c6959b-3" name="rest_code_a553d782bd484d23aa0ecaff54c6959b-3"></a><span class="c1"># rc-update add libvirtd default</span>
-<a id="rest_code_a553d782bd484d23aa0ecaff54c6959b-4" name="rest_code_a553d782bd484d23aa0ecaff54c6959b-4"></a><span class="c1"># rc-update add libvirt-guests default</span>
+<pre class="code bash"><a id="rest_code_67cad5c8011e4cf8a24fca452348ac0f-1" name="rest_code_67cad5c8011e4cf8a24fca452348ac0f-1"></a><span class="c1"># rc-update add ovsdb-server default</span>
+<a id="rest_code_67cad5c8011e4cf8a24fca452348ac0f-2" name="rest_code_67cad5c8011e4cf8a24fca452348ac0f-2"></a><span class="c1"># rc-update add ovs-vswitchd default</span>
+<a id="rest_code_67cad5c8011e4cf8a24fca452348ac0f-3" name="rest_code_67cad5c8011e4cf8a24fca452348ac0f-3"></a><span class="c1"># rc-update add libvirtd default</span>
+<a id="rest_code_67cad5c8011e4cf8a24fca452348ac0f-4" name="rest_code_67cad5c8011e4cf8a24fca452348ac0f-4"></a><span class="c1"># rc-update add libvirt-guests default</span>
 </pre><aside class="admonition note">
 <p class="admonition-title">Note</p>
 <p>openvswitch ve kvm kernel modullerinin yuklendiginden emin olunuz. Kernel uzerinde aktif etmek icin <a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU_with_Open_vSwitch_network">openvswitch</a> , <a class="reference external" href="https://wiki.gentoo.org/wiki/QEMU">qemu</a>.</p>
@@ -54,10 +54,10 @@ Gentoo uzerinde, libvirt icin gerekli &quot;USE FLAG&quot;lari aktif edip kurulu
 <p>/etc/conf.d/modules:</p>
 <pre class="literal-block">modules_4=&quot;openvswitch kvm kvm_intel tun&quot;</pre>
 <p>Servisleri baslatalim.</p>
-<pre class="code bash"><a id="rest_code_7dd9431cb88a42898acc18ca83041c65-1" name="rest_code_7dd9431cb88a42898acc18ca83041c65-1"></a><span class="c1"># /etc/init.d/ovsdb-server start</span>
-<a id="rest_code_7dd9431cb88a42898acc18ca83041c65-2" name="rest_code_7dd9431cb88a42898acc18ca83041c65-2"></a><span class="c1"># /etc/init.d/ovs-vswitchd start</span>
-<a id="rest_code_7dd9431cb88a42898acc18ca83041c65-3" name="rest_code_7dd9431cb88a42898acc18ca83041c65-3"></a><span class="c1"># /etc/init.d/libvirtd start</span>
-<a id="rest_code_7dd9431cb88a42898acc18ca83041c65-4" name="rest_code_7dd9431cb88a42898acc18ca83041c65-4"></a><span class="c1"># /etc/init.d/libvirt-guests start</span>
+<pre class="code bash"><a id="rest_code_e29d60f0c67349729bcdce6e92e01770-1" name="rest_code_e29d60f0c67349729bcdce6e92e01770-1"></a><span class="c1"># /etc/init.d/ovsdb-server start</span>
+<a id="rest_code_e29d60f0c67349729bcdce6e92e01770-2" name="rest_code_e29d60f0c67349729bcdce6e92e01770-2"></a><span class="c1"># /etc/init.d/ovs-vswitchd start</span>
+<a id="rest_code_e29d60f0c67349729bcdce6e92e01770-3" name="rest_code_e29d60f0c67349729bcdce6e92e01770-3"></a><span class="c1"># /etc/init.d/libvirtd start</span>
+<a id="rest_code_e29d60f0c67349729bcdce6e92e01770-4" name="rest_code_e29d60f0c67349729bcdce6e92e01770-4"></a><span class="c1"># /etc/init.d/libvirt-guests start</span>
 </pre><aside class="footnote brackets" id="footnote-1" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-1">1</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://libvirt.org/">https://libvirt.org/</a></p>

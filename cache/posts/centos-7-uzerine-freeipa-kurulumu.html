@@ -29,78 +29,78 @@
 <li><p>Sistem update</p></li>
 </ol>
 <p><em>1. Hostname:</em></p>
-<pre class="code bash"><a id="rest_code_d84b9987d6b94ff1a2e0579b1776a1fb-1" name="rest_code_d84b9987d6b94ff1a2e0579b1776a1fb-1"></a><span class="c1"># hostnamectl set-hostname ipa.piesso.local</span>
+<pre class="code bash"><a id="rest_code_9f3636835989442fb2f8df8ab2b4afe4-1" name="rest_code_9f3636835989442fb2f8df8ab2b4afe4-1"></a><span class="c1"># hostnamectl set-hostname ipa.piesso.local</span>
 </pre><p><em>2. /etc/hosts:</em></p>
-<pre class="code bash"><a id="rest_code_0c244238384a4a5d87d58d04508b1704-1" name="rest_code_0c244238384a4a5d87d58d04508b1704-1"></a><span class="m">172</span>.16.183.128 ipa.piesso.local ipa
+<pre class="code bash"><a id="rest_code_5b72143ba51d49d6a5869f1371a6d8e2-1" name="rest_code_5b72143ba51d49d6a5869f1371a6d8e2-1"></a><span class="m">172</span>.16.183.128 ipa.piesso.local ipa
 </pre><p><em>3. Statik IP:</em></p>
 <p>Ornek statik ip konfigurasyonu &quot;/etc/sysconfig/network-scripts/ifcfg-xxxx&quot;</p>
-<pre class="code bash"><a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-1" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-1"></a><span class="nv">ONBOOT</span><span class="o">=</span> yes
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-2" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-2"></a><span class="nv">BOOTPROTO</span><span class="o">=</span> none
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-3" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-3"></a><span class="nv">IPADDR</span><span class="o">=</span> <span class="m">172</span>.16.183.128
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-4" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-4"></a><span class="nv">PREFIX</span><span class="o">=</span> <span class="m">24</span>
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-5" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-5"></a><span class="nv">GATEWAY</span><span class="o">=</span> <span class="m">172</span>.16.183.2
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-6" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-6"></a><span class="nv">DNS1</span><span class="o">=</span> <span class="m">8</span>.8.8.8
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-7" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-7"></a><span class="nv">DNS2</span><span class="o">=</span> <span class="m">8</span>.8.4.4
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-8" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-8"></a><span class="nv">DEFROUTE</span><span class="o">=</span> yes
+<pre class="code bash"><a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-1" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-1"></a><span class="nv">ONBOOT</span><span class="o">=</span> yes
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-2" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-2"></a><span class="nv">BOOTPROTO</span><span class="o">=</span> none
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-3" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-3"></a><span class="nv">IPADDR</span><span class="o">=</span> <span class="m">172</span>.16.183.128
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-4" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-4"></a><span class="nv">PREFIX</span><span class="o">=</span> <span class="m">24</span>
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-5" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-5"></a><span class="nv">GATEWAY</span><span class="o">=</span> <span class="m">172</span>.16.183.2
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-6" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-6"></a><span class="nv">DNS1</span><span class="o">=</span> <span class="m">8</span>.8.8.8
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-7" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-7"></a><span class="nv">DNS2</span><span class="o">=</span> <span class="m">8</span>.8.4.4
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-8" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-8"></a><span class="nv">DEFROUTE</span><span class="o">=</span> yes
 </pre><p><em>4. Sistem update:</em></p>
-<pre class="code bash"><a id="rest_code_8b08cab7a2f14a3fb8d2bc4c33d09b79-1" name="rest_code_8b08cab7a2f14a3fb8d2bc4c33d09b79-1"></a><span class="c1"># yum update -y</span>
+<pre class="code bash"><a id="rest_code_e4e7a53f013647039a74f3e4013a7cce-1" name="rest_code_e4e7a53f013647039a74f3e4013a7cce-1"></a><span class="c1"># yum update -y</span>
 </pre><p><strong>Kurulum:</strong></p>
 <ul class="simple">
 <li><p>ipa-server, integrated dns, ad trust  ve ldap back-end plugin yazilimlarinin repodan kurulmasi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_a3efad5dcf844e46ade3ebe5b48a2cbb-1" name="rest_code_a3efad5dcf844e46ade3ebe5b48a2cbb-1"></a><span class="c1"># yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad</span>
+<pre class="code bash"><a id="rest_code_4dad298c1d4d4596966fa5567af4e471-1" name="rest_code_4dad298c1d4d4596966fa5567af4e471-1"></a><span class="c1"># yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad</span>
 </pre><ul class="simple">
 <li><p>ipa-server kurulumu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_44b24e07436647b3a6832c2cab340188-1" name="rest_code_44b24e07436647b3a6832c2cab340188-1"></a><span class="c1"># ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U</span>
+<pre class="code bash"><a id="rest_code_7eea1f14bf724c44b9a109e04099d835-1" name="rest_code_7eea1f14bf724c44b9a109e04099d835-1"></a><span class="c1"># ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U</span>
 </pre><ul class="simple">
 <li><p>ipa-server kurulumu asagidaki sekilde basari ile biterse firewalld daemonuna gerekli port izinlerinin verilmesi;</p></li>
 </ul>
-<pre class="code console"><a id="rest_code_0c85d718d4764c42ac383e23ea664b57-1" name="rest_code_0c85d718d4764c42ac383e23ea664b57-1"></a><span class="go">Restarting the web server</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-2" name="rest_code_0c85d718d4764c42ac383e23ea664b57-2"></a><span class="go">==============================================================================</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-3" name="rest_code_0c85d718d4764c42ac383e23ea664b57-3"></a><span class="go">Setup complete</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-4" name="rest_code_0c85d718d4764c42ac383e23ea664b57-4"></a>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-5" name="rest_code_0c85d718d4764c42ac383e23ea664b57-5"></a><span class="go">Next steps:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-6" name="rest_code_0c85d718d4764c42ac383e23ea664b57-6"></a><span class="go">      1. You must make sure these network ports are open:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-7" name="rest_code_0c85d718d4764c42ac383e23ea664b57-7"></a><span class="go">                 TCP Ports:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-8" name="rest_code_0c85d718d4764c42ac383e23ea664b57-8"></a><span class="go">                   * 80, 443: HTTP/HTTPS</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-9" name="rest_code_0c85d718d4764c42ac383e23ea664b57-9"></a><span class="go">                   * 389, 636: LDAP/LDAPS</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-10" name="rest_code_0c85d718d4764c42ac383e23ea664b57-10"></a><span class="go">                   * 88, 464: kerberos</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-11" name="rest_code_0c85d718d4764c42ac383e23ea664b57-11"></a><span class="go">                   * 53: bind</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-12" name="rest_code_0c85d718d4764c42ac383e23ea664b57-12"></a><span class="go">                 UDP Ports:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-13" name="rest_code_0c85d718d4764c42ac383e23ea664b57-13"></a><span class="go">                   * 88, 464: kerberos</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-14" name="rest_code_0c85d718d4764c42ac383e23ea664b57-14"></a><span class="go">                   * 53: bind</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-15" name="rest_code_0c85d718d4764c42ac383e23ea664b57-15"></a><span class="go">                   * 123: ntp</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-16" name="rest_code_0c85d718d4764c42ac383e23ea664b57-16"></a><span class="go">      2. You can now obtain a kerberos ticket using the command: &#39;kinit admin&#39;</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-17" name="rest_code_0c85d718d4764c42ac383e23ea664b57-17"></a><span class="go">         This ticket will allow you to use the IPA tools (e.g., ipa user-add)</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-18" name="rest_code_0c85d718d4764c42ac383e23ea664b57-18"></a><span class="go">         and the web user interface.</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-19" name="rest_code_0c85d718d4764c42ac383e23ea664b57-19"></a>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-20" name="rest_code_0c85d718d4764c42ac383e23ea664b57-20"></a><span class="go">Be sure to back up the CA certificate stored in /root/cacert.p12</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-21" name="rest_code_0c85d718d4764c42ac383e23ea664b57-21"></a><span class="go">This file is required to create replicas. The password for this</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-22" name="rest_code_0c85d718d4764c42ac383e23ea664b57-22"></a><span class="go">file is the Directory Manager password</span>
-</pre><pre class="code bash"><a id="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-1" name="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-1"></a><span class="c1"># firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}</span>
-<a id="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-2" name="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-2"></a><span class="c1"># firewall-cmd --reload</span>
+<pre class="code console"><a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-1" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-1"></a><span class="go">Restarting the web server</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-2" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-2"></a><span class="go">==============================================================================</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-3" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-3"></a><span class="go">Setup complete</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-4" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-4"></a>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-5" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-5"></a><span class="go">Next steps:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-6" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-6"></a><span class="go">      1. You must make sure these network ports are open:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-7" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-7"></a><span class="go">                 TCP Ports:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-8" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-8"></a><span class="go">                   * 80, 443: HTTP/HTTPS</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-9" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-9"></a><span class="go">                   * 389, 636: LDAP/LDAPS</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-10" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-10"></a><span class="go">                   * 88, 464: kerberos</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-11" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-11"></a><span class="go">                   * 53: bind</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-12" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-12"></a><span class="go">                 UDP Ports:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-13" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-13"></a><span class="go">                   * 88, 464: kerberos</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-14" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-14"></a><span class="go">                   * 53: bind</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-15" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-15"></a><span class="go">                   * 123: ntp</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-16" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-16"></a><span class="go">      2. You can now obtain a kerberos ticket using the command: &#39;kinit admin&#39;</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-17" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-17"></a><span class="go">         This ticket will allow you to use the IPA tools (e.g., ipa user-add)</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-18" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-18"></a><span class="go">         and the web user interface.</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-19" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-19"></a>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-20" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-20"></a><span class="go">Be sure to back up the CA certificate stored in /root/cacert.p12</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-21" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-21"></a><span class="go">This file is required to create replicas. The password for this</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-22" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-22"></a><span class="go">file is the Directory Manager password</span>
+</pre><pre class="code bash"><a id="rest_code_0bf5d3f5b69c41178162db944a88f07c-1" name="rest_code_0bf5d3f5b69c41178162db944a88f07c-1"></a><span class="c1"># firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}</span>
+<a id="rest_code_0bf5d3f5b69c41178162db944a88f07c-2" name="rest_code_0bf5d3f5b69c41178162db944a88f07c-2"></a><span class="c1"># firewall-cmd --reload</span>
 </pre><ul class="simple">
 <li><p>Firewall kurallarinin kontrol edilmesi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_6f4eea79e79545a599df042ffdf68824-1" name="rest_code_6f4eea79e79545a599df042ffdf68824-1"></a><span class="c1"># firewall-cmd --list-services</span>
+<pre class="code bash"><a id="rest_code_87b6505875ba4f478d09ea7b02f6c53a-1" name="rest_code_87b6505875ba4f478d09ea7b02f6c53a-1"></a><span class="c1"># firewall-cmd --list-services</span>
 </pre><p><strong>IPA Server ve Kerberos Ticket Testi:</strong></p>
 <ul class="simple">
 <li><p>Kerberos'tan ticket alimi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_33a7dc5559bd4a38b93d39ab3db9fd68-1" name="rest_code_33a7dc5559bd4a38b93d39ab3db9fd68-1"></a><span class="c1"># kinit admin</span>
+<pre class="code bash"><a id="rest_code_beb140f7ff0f40e7921f6174bf7682ac-1" name="rest_code_beb140f7ff0f40e7921f6174bf7682ac-1"></a><span class="c1"># kinit admin</span>
 </pre><ul class="simple">
 <li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_9b8efe5234ad45f1810b92631d95f5f0-1" name="rest_code_9b8efe5234ad45f1810b92631d95f5f0-1"></a><span class="c1"># klist</span>
+<pre class="code bash"><a id="rest_code_3dcf9ccbe951497abf550fcb20751a76-1" name="rest_code_3dcf9ccbe951497abf550fcb20751a76-1"></a><span class="c1"># klist</span>
 </pre><ul class="simple">
 <li><p>ipa-server servislerinin kontrolu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_8e7418a618d847b98ab59ffc3a1b3424-1" name="rest_code_8e7418a618d847b98ab59ffc3a1b3424-1"></a><span class="c1"># ipactl status</span>
+<pre class="code bash"><a id="rest_code_2d01c0b16f8b4f6ca2c7ec8e22591f52-1" name="rest_code_2d01c0b16f8b4f6ca2c7ec8e22591f52-1"></a><span class="c1"># ipactl status</span>
 </pre><ul class="simple">
 <li><p>Hersey saglam gorunuyorsa sunucu dnslerini local adrese donusturulmesi;</p></li>
 </ul>
 <p><em>/etc/resolv.conf:</em></p>
-<pre class="code bash"><a id="rest_code_586ca090263a4a37b6f62a75721330ef-1" name="rest_code_586ca090263a4a37b6f62a75721330ef-1"></a>search piesso.local
-<a id="rest_code_586ca090263a4a37b6f62a75721330ef-2" name="rest_code_586ca090263a4a37b6f62a75721330ef-2"></a>nameserver <span class="m">127</span>.0.0.1
+<pre class="code bash"><a id="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-1" name="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-1"></a>search piesso.local
+<a id="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-2" name="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-2"></a>nameserver <span class="m">127</span>.0.0.1
 </pre>

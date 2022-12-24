@@ -110,86 +110,86 @@ bg-dark
 </ul>
 <p><strong>Kurulumu</strong></p>
 <p>Locust, Python 2.7, 3.3, 3.4, 3.5,3.6. versiyonlarini desteklemektedir. Sistemizdeki 'pip' kurulu oldugundan emin olun. Bir cok modern sistemlerde halihazirda kurulu olarak zaten geliyor.</p>
-<pre class="code bash"><a id="rest_code_22fd90d12b8d49db966f7851d8a3fcd5-1" name="rest_code_22fd90d12b8d49db966f7851d8a3fcd5-1"></a><span class="c1"># pip install locustio</span>
+<pre class="code bash"><a id="rest_code_00b31ebbdfc44ab581eb19f854faf3f8-1" name="rest_code_00b31ebbdfc44ab581eb19f854faf3f8-1"></a><span class="c1"># pip install locustio</span>
 </pre>
 <p>Eger sadece kendi kullaniciniz icin kuracaksaniz;</p>
-<pre class="code bash"><a id="rest_code_d9e8b8cee9ce4c78a9567bdc4d066835-1" name="rest_code_d9e8b8cee9ce4c78a9567bdc4d066835-1"></a>$ pip install --user locustio
+<pre class="code bash"><a id="rest_code_f6e65be0038a404793e3b82aeea4b396-1" name="rest_code_f6e65be0038a404793e3b82aeea4b396-1"></a>$ pip install --user locustio
 </pre>
 <p>Ardindan '~/.local/bin/' dizinini "PATH'inize ekleyin. GNU/Linux dagitiminiza ya da sisteminize gore '.bashrc' ya da 'bash_profile' dosyaniza eklemeniz gerekir.</p>
-<pre class="code bash"><a id="rest_code_17cc1ddb3c694d8aa88d5fa5dc27d3fe-1" name="rest_code_17cc1ddb3c694d8aa88d5fa5dc27d3fe-1"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin
+<pre class="code bash"><a id="rest_code_dfda4dc38c444facaa8735c1859fb9bb-1" name="rest_code_dfda4dc38c444facaa8735c1859fb9bb-1"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin
 </pre>
 <p>Kurulum adimlari bu kadar.</p>
 <aside class="admonition note"><p class="admonition-title">Note</p>
 <p>Son olarak not dusmek gerekir. Eger load testing yaparken yuksek sayida kullanici ile senaryo gerceklestirecekseniz sistemiz ve load-testing yapan kullaniciniz icin file-limit degerlerini yukseltmeniz gerekebilir.</p>
 </aside><p>Ilk olarak sistemiz uzerinden file-limit degerini ogrenip yukseltmek icin;</p>
-<pre class="code bash"><a id="rest_code_be85b6ea0740463daa02fead05a9718d-1" name="rest_code_be85b6ea0740463daa02fead05a9718d-1"></a><span class="c1"># cat /proc/sys/fs/file-max</span>
-<a id="rest_code_be85b6ea0740463daa02fead05a9718d-2" name="rest_code_be85b6ea0740463daa02fead05a9718d-2"></a><span class="m">75000</span>
+<pre class="code bash"><a id="rest_code_7715725ea8d6481099a3cf8140f9dec3-1" name="rest_code_7715725ea8d6481099a3cf8140f9dec3-1"></a><span class="c1"># cat /proc/sys/fs/file-max</span>
+<a id="rest_code_7715725ea8d6481099a3cf8140f9dec3-2" name="rest_code_7715725ea8d6481099a3cf8140f9dec3-2"></a><span class="m">75000</span>
 </pre>
 <p>Yukarda goruldugu gibi sistem uzerinde file-limit degeri '75000'. Bu degeri ornek olarak '750000' yukseltmek icin;</p>
-<pre class="code bash"><a id="rest_code_f70431ea68ee4409affa187db2042628-1" name="rest_code_f70431ea68ee4409affa187db2042628-1"></a><span class="c1"># sysctl -w fs.file-max=750000</span>
+<pre class="code bash"><a id="rest_code_8989d1fae3a64895a7097b6c1eb83967-1" name="rest_code_8989d1fae3a64895a7097b6c1eb83967-1"></a><span class="c1"># sysctl -w fs.file-max=750000</span>
 </pre>
 <p>Sistem uzerinde kalici olarak degistirmek icin, "/etc/sysctl.conf" dosyasina asagidaki satiri ekleyin.</p>
-<pre class="code bash"><a id="rest_code_dc4ec701faf74c27a93aebf736114321-1" name="rest_code_dc4ec701faf74c27a93aebf736114321-1"></a>fs.file-max <span class="o">=</span> <span class="m">750000</span>
+<pre class="code bash"><a id="rest_code_0333a214d82442fe9fe96a169614c41d-1" name="rest_code_0333a214d82442fe9fe96a169614c41d-1"></a>fs.file-max <span class="o">=</span> <span class="m">750000</span>
 </pre>
 <p>Aktif etmek icin;</p>
-<pre class="code bash"><a id="rest_code_462e471ba60246f58bc0c9e14dec3a55-1" name="rest_code_462e471ba60246f58bc0c9e14dec3a55-1"></a><span class="c1"># sysctl -p</span>
+<pre class="code bash"><a id="rest_code_752fcea0b0004e96a195600f05de06ce-1" name="rest_code_752fcea0b0004e96a195600f05de06ce-1"></a><span class="c1"># sysctl -p</span>
 </pre>
 <p>Bu limit degerlerini sisteme giris yaptiginiz ya da test yapacaginiz kullanici icin yukseltmek icin '/etc/security/limits.conf' dosyaniza asagidaki gibi degerleri ekleyin;</p>
-<pre class="code bash"><a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-1" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-1"></a><span class="c1">## hard limit</span>
-<a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-2" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-2"></a>kullanici1        hard nofile <span class="m">10000</span>
-<a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-3" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-3"></a><span class="c1">## soft limit</span>
-<a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-4" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-4"></a>kullanici1        soft nofile <span class="m">5000</span>
+<pre class="code bash"><a id="rest_code_361802236d7d494ba1701d470f6228f3-1" name="rest_code_361802236d7d494ba1701d470f6228f3-1"></a><span class="c1">## hard limit</span>
+<a id="rest_code_361802236d7d494ba1701d470f6228f3-2" name="rest_code_361802236d7d494ba1701d470f6228f3-2"></a>kullanici1        hard nofile <span class="m">10000</span>
+<a id="rest_code_361802236d7d494ba1701d470f6228f3-3" name="rest_code_361802236d7d494ba1701d470f6228f3-3"></a><span class="c1">## soft limit</span>
+<a id="rest_code_361802236d7d494ba1701d470f6228f3-4" name="rest_code_361802236d7d494ba1701d470f6228f3-4"></a>kullanici1        soft nofile <span class="m">5000</span>
 </pre>
 <p>Yaptiginiz degisikligin aktif olmasi icin cikis yapip tekrar giris yapmaniz gereklidir.</p>
 <p><strong>Senaryo olusturma</strong></p>
 <p>Locust icin cesitli senaryolar yazabilirsiniz. Iki basit ornek verelim.</p>
 <p><em>Ornek 1:</em> Websitenizin anasayfasini ve hakkimda sayfalarini test etmek icin load-testing senaryosu yazalim.</p>
-<pre class="code python"><a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-1" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span><span class="p">,</span> <span class="n">task</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-2" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-2"></a>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-3" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-3"></a><span class="k">class</span> <span class="nc">MyTaskSet</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-4" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-4"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-5" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-5"></a>     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-6" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-6"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-7" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-7"></a>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-8" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-8"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-9" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-9"></a>     <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-10" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-10"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/hakkinda/"</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-11" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-11"></a>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-12" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-12"></a><span class="k">class</span> <span class="nc">MyLocust</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-13" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-13"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">MyTaskSet</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-14" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-14"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-15" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-15"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">15000</span>
+<pre class="code python"><a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-1" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span><span class="p">,</span> <span class="n">task</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-2" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-2"></a>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-3" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-3"></a><span class="k">class</span> <span class="nc">MyTaskSet</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-4" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-4"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-5" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-5"></a>     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-6" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-6"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-7" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-7"></a>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-8" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-8"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-9" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-9"></a>     <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-10" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-10"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/hakkinda/"</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-11" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-11"></a>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-12" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-12"></a><span class="k">class</span> <span class="nc">MyLocust</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-13" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-13"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">MyTaskSet</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-14" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-14"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-15" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-15"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">15000</span>
 </pre>
 <p>'min_wait' ve 'max_wait' degerleri simule eden kullanicilarin bu sureler arasinda istek yapmasini gosterir.</p>
 <p><em>Ornek 2:</em> Websitenizin login sayfasina kullanici ile giris yapip, anasayfasini ve profile sayfasini test senaryosu yazalim.</p>
-<pre class="code python"><a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-1" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-2" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-2"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-3" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-3"></a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-4" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-4"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/login"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"ellen_key"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span><span class="s2">"education"</span><span class="p">})</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-5" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-5"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-6" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-6"></a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-7" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-7"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-8" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-8"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-9" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-9"></a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-10" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-10"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/profile"</span><span class="p">)</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-11" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-11"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-12" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-12"></a><span class="k">class</span> <span class="nc">UserBehavior</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-13" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-13"></a>     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-14" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-14"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-15" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-15"></a>     <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-16" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-16"></a>             <span class="n">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-17" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-17"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-18" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-18"></a><span class="k">class</span> <span class="nc">WebsiteUser</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-19" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-19"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">UserBehavior</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-20" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-20"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-21" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-21"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">9000</span>
+<pre class="code python"><a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-1" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-2" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-2"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-3" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-3"></a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-4" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-4"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/login"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"ellen_key"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span><span class="s2">"education"</span><span class="p">})</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-5" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-5"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-6" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-6"></a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-7" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-7"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-8" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-8"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-9" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-9"></a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-10" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-10"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/profile"</span><span class="p">)</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-11" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-11"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-12" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-12"></a><span class="k">class</span> <span class="nc">UserBehavior</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-13" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-13"></a>     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-14" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-14"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-15" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-15"></a>     <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-16" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-16"></a>             <span class="n">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-17" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-17"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-18" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-18"></a><span class="k">class</span> <span class="nc">WebsiteUser</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-19" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-19"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">UserBehavior</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-20" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-20"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-21" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-21"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">9000</span>
 </pre>
 <p><strong>Load-Testing Yapmak</strong></p>
 <p>Locust ile yazdigimiz senaryolar ile load-testing yapmak icin;</p>
-<pre class="code bash"><a id="rest_code_7dd7eade1e66489c939346862540cdda-1" name="rest_code_7dd7eade1e66489c939346862540cdda-1"></a>$ locust --host<span class="o">=</span>http://example.com
+<pre class="code bash"><a id="rest_code_006578e439144befbe1fb7d7e167db3b-1" name="rest_code_006578e439144befbe1fb7d7e167db3b-1"></a>$ locust --host<span class="o">=</span>http://example.com
 </pre>
 <p>ya da yazdigimiz senaryo dosyasinin yolunu belirterek;</p>
-<pre class="code bash"><a id="rest_code_5971e89cb72142b8987a38fd0ccd2169-1" name="rest_code_5971e89cb72142b8987a38fd0ccd2169-1"></a>$ locust -f locust_files/my_locust_file.py --host<span class="o">=</span>http://example.com
+<pre class="code bash"><a id="rest_code_8751eaad68484511bd7ec0ede883750e-1" name="rest_code_8751eaad68484511bd7ec0ede883750e-1"></a>$ locust -f locust_files/my_locust_file.py --host<span class="o">=</span>http://example.com
 </pre>
 <p>Test basladiktan sonra tarayiciniza 'localhost:8089' yazarak kullanicilari simule edip testinizi izleyebilirsiniz.</p>
     </div>

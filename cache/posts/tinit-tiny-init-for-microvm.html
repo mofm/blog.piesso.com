@@ -1,0 +1,30 @@
+<p>tinit, a tiny but valid init for microvm</p>
+<p><a href="https://github.com/mofm/tinit">Github repo</a></p>
+<h2>What is tinit?</h2>
+<p>tinit, basic and tiny init for microvm, it's a valid init, but it's not a full init, it's just a simple init, it's not a replacement for systemd, it's just a simple init for microvm.</p>
+<ul>
+<li>It mounts required filesystems.</li>
+<li>It configures the network.</li>
+<li>It configures the hostname.</li>
+<li>It runs the user specified command.</li>
+</ul>
+<h2>Compile from source</h2>
+<ul>
+<li>You need to install the following packages:</li>
+<li><code>make</code></li>
+<li><code>gcc</code></li>
+<li>
+<p><code>git</code></p>
+</li>
+<li>
+<p>Clone the repository:</p>
+</li>
+</ul>
+<pre class="code literal-block">git clone https://github.com/mofm/tinit.git
+</pre>
+<ul>
+<li>You can edit the <code>Makefile</code> to change the installation directory or CFLAGS or etc.</li>
+<li>Compile:</li>
+</ul>
+<pre class="code literal-block">make
+</pre>

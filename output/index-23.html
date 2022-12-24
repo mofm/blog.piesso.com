@@ -140,7 +140,7 @@ bg-dark
 <img alt="/images/nginx_reverse_proxy.jpg" src="images/nginx_reverse_proxy.jpg"><p>Yukarda topolojide goruldugu gibi 'Client I' kullanicisi, reverse proxy sunucusu arkasindaki origin sunuculara ulasmaksizin website uzerindeki iceriklere reverse proxy uzerinden ulasir. Origin sunuculardan hic bir icerik istenmez.</p>
 <section id="konfigurasyon"><h2>Konfigurasyon:</h2>
 <p>Content cache islemi nginx uzerinde basit olarak <em>"proxy_cache_path"</em> ve <em>"proxy_cache"</em> konfigurasyonlari ile ayarlanabilir. Ilk olarak "/etc/nginx/nginx.conf" dosyasi icinde "http{}" arasina "proxy_cache_path" konfigurasyonunu girelim.</p>
-<pre class="code text"><a id="rest_code_fae11942977449f5a5e86e7d8743f421-1" name="rest_code_fae11942977449f5a5e86e7d8743f421-1"></a>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
+<pre class="code text"><a id="rest_code_d7d35703919343c7ae398557d79972f6-1" name="rest_code_d7d35703919343c7ae398557d79972f6-1"></a>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:10m max_size=1g inactive=60m use_temp_path=off;
 </pre>
 <p>Yazdigimiz konfigurasyonu inceleyelim:</p>
 <dl class="simple">
@@ -149,8 +149,8 @@ bg-dark
 <p>cache icin kullanilacak dizin. Eger bu dizin olusturulmamissa olusturun ve nginx kullanicisina yazma hakkini  verdiginize emin olun.</p>
 </dd>
 </dl>
-<pre class="code bash"><a id="rest_code_3d4791d1e70949a4b648049a05e8c686-1" name="rest_code_3d4791d1e70949a4b648049a05e8c686-1"></a><span class="c1"># mkdir -p /var/cache/nginx</span>
-<a id="rest_code_3d4791d1e70949a4b648049a05e8c686-2" name="rest_code_3d4791d1e70949a4b648049a05e8c686-2"></a><span class="c1"># chown nginx:nginx /var/cache/nginx</span>
+<pre class="code bash"><a id="rest_code_e3114ac10d024992aa33b4d7bb5db6e2-1" name="rest_code_e3114ac10d024992aa33b4d7bb5db6e2-1"></a><span class="c1"># mkdir -p /var/cache/nginx</span>
+<a id="rest_code_e3114ac10d024992aa33b4d7bb5db6e2-2" name="rest_code_e3114ac10d024992aa33b4d7bb5db6e2-2"></a><span class="c1"># chown nginx:nginx /var/cache/nginx</span>
 </pre>
 <dl class="simple">
 <dt>levels=1:2</dt>
@@ -177,19 +177,19 @@ bg-dark
 <p>"proxy_cache_path" ile ilgili kismimiz bu kadar. Artik herhangi bir upstream sitemiz ile ilgili ayarlamalarimizi yapalim.
 Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" dosyasi icinde, ayrisik konfigurasyon kullaniyorsaniz ornek olarak "/etc/nginx/conf.d/upstream01.conf" icinde "location / {}" arasinda ayarlamaniz gerekmektedir.</p>
 <p>Ornek olarak:</p>
-<pre class="code text"><a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-1" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-1"></a>location / {
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-2" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-2"></a>     proxy_cache cache;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-3" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-3"></a>     proxy_cache_valid  200 302  60m;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-4" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-4"></a>     proxy_cache_valid  404      1m;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-5" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-5"></a>     proxy_cache_revalidate on;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-6" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-6"></a>     proxy_cache_min_uses 3;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-7" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-7"></a>     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-8" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-8"></a>     proxy_cache_background_update on;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-9" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-9"></a>     proxy_cache_lock on;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-10" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-10"></a>     add_header X-Proxy-Cache $upstream_cache_status;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-11" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-11"></a>     proxy_ignore_headers Set-Cookie;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-12" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-12"></a>     proxy_pass http://upstream01;
-<a id="rest_code_efd4ff9168b34a50a8e17cd655815ef7-13" name="rest_code_efd4ff9168b34a50a8e17cd655815ef7-13"></a>}
+<pre class="code text"><a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-1" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-1"></a>location / {
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-2" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-2"></a>     proxy_cache cache;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-3" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-3"></a>     proxy_cache_valid  200 302  60m;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-4" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-4"></a>     proxy_cache_valid  404      1m;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-5" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-5"></a>     proxy_cache_revalidate on;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-6" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-6"></a>     proxy_cache_min_uses 3;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-7" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-7"></a>     proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-8" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-8"></a>     proxy_cache_background_update on;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-9" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-9"></a>     proxy_cache_lock on;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-10" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-10"></a>     add_header X-Proxy-Cache $upstream_cache_status;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-11" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-11"></a>     proxy_ignore_headers Set-Cookie;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-12" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-12"></a>     proxy_pass http://upstream01;
+<a id="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-13" name="rest_code_a44d5a9c3bf44fd4b9b1e3ee84e8349c-13"></a>}
 </pre>
 <p>Yukarda yazdigimiz konfigurasyona kisaca goz atalim.</p>
 <dl class="simple">
@@ -235,11 +235,11 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 </dd>
 </dl></section><section id="test"><h2>Test:</h2>
 <p>Yukardaki gibi konfigurasyonlari girip nginx web sunucunuzu reload/restart ettikten sonra Proxy Cache'in calisip calismadigini test edelim.</p>
-<pre class="code bash"><a id="rest_code_aaf4a784963743dea62614b57aa7715e-1" name="rest_code_aaf4a784963743dea62614b57aa7715e-1"></a>$ curl -I http://www.example.com
-<a id="rest_code_aaf4a784963743dea62614b57aa7715e-2" name="rest_code_aaf4a784963743dea62614b57aa7715e-2"></a>  HTTP/1.1 <span class="m">200</span> OK
-<a id="rest_code_aaf4a784963743dea62614b57aa7715e-3" name="rest_code_aaf4a784963743dea62614b57aa7715e-3"></a>  Server: nginx
-<a id="rest_code_aaf4a784963743dea62614b57aa7715e-4" name="rest_code_aaf4a784963743dea62614b57aa7715e-4"></a>  ...
-<a id="rest_code_aaf4a784963743dea62614b57aa7715e-5" name="rest_code_aaf4a784963743dea62614b57aa7715e-5"></a>  X-Proxy-Cache: HIT
+<pre class="code bash"><a id="rest_code_69db716964804b268c8ec27b1235bf8a-1" name="rest_code_69db716964804b268c8ec27b1235bf8a-1"></a>$ curl -I http://www.example.com
+<a id="rest_code_69db716964804b268c8ec27b1235bf8a-2" name="rest_code_69db716964804b268c8ec27b1235bf8a-2"></a>  HTTP/1.1 <span class="m">200</span> OK
+<a id="rest_code_69db716964804b268c8ec27b1235bf8a-3" name="rest_code_69db716964804b268c8ec27b1235bf8a-3"></a>  Server: nginx
+<a id="rest_code_69db716964804b268c8ec27b1235bf8a-4" name="rest_code_69db716964804b268c8ec27b1235bf8a-4"></a>  ...
+<a id="rest_code_69db716964804b268c8ec27b1235bf8a-5" name="rest_code_69db716964804b268c8ec27b1235bf8a-5"></a>  X-Proxy-Cache: HIT
 </pre>
 <p>'X-Proxy-Cache' headeri, gonderilen istedigin gecerli oldugunu ve cevabin cache'den gonderildigi gosteriyor.</p>
 <p>Diger Cache status cevaplari:</p>
@@ -300,86 +300,86 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 </ul>
 <p><strong>Kurulumu</strong></p>
 <p>Locust, Python 2.7, 3.3, 3.4, 3.5,3.6. versiyonlarini desteklemektedir. Sistemizdeki 'pip' kurulu oldugundan emin olun. Bir cok modern sistemlerde halihazirda kurulu olarak zaten geliyor.</p>
-<pre class="code bash"><a id="rest_code_22fd90d12b8d49db966f7851d8a3fcd5-1" name="rest_code_22fd90d12b8d49db966f7851d8a3fcd5-1"></a><span class="c1"># pip install locustio</span>
+<pre class="code bash"><a id="rest_code_00b31ebbdfc44ab581eb19f854faf3f8-1" name="rest_code_00b31ebbdfc44ab581eb19f854faf3f8-1"></a><span class="c1"># pip install locustio</span>
 </pre>
 <p>Eger sadece kendi kullaniciniz icin kuracaksaniz;</p>
-<pre class="code bash"><a id="rest_code_d9e8b8cee9ce4c78a9567bdc4d066835-1" name="rest_code_d9e8b8cee9ce4c78a9567bdc4d066835-1"></a>$ pip install --user locustio
+<pre class="code bash"><a id="rest_code_f6e65be0038a404793e3b82aeea4b396-1" name="rest_code_f6e65be0038a404793e3b82aeea4b396-1"></a>$ pip install --user locustio
 </pre>
 <p>Ardindan '~/.local/bin/' dizinini "PATH'inize ekleyin. GNU/Linux dagitiminiza ya da sisteminize gore '.bashrc' ya da 'bash_profile' dosyaniza eklemeniz gerekir.</p>
-<pre class="code bash"><a id="rest_code_17cc1ddb3c694d8aa88d5fa5dc27d3fe-1" name="rest_code_17cc1ddb3c694d8aa88d5fa5dc27d3fe-1"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin
+<pre class="code bash"><a id="rest_code_dfda4dc38c444facaa8735c1859fb9bb-1" name="rest_code_dfda4dc38c444facaa8735c1859fb9bb-1"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin
 </pre>
 <p>Kurulum adimlari bu kadar.</p>
 <aside class="admonition note"><p class="admonition-title">Note</p>
 <p>Son olarak not dusmek gerekir. Eger load testing yaparken yuksek sayida kullanici ile senaryo gerceklestirecekseniz sistemiz ve load-testing yapan kullaniciniz icin file-limit degerlerini yukseltmeniz gerekebilir.</p>
 </aside><p>Ilk olarak sistemiz uzerinden file-limit degerini ogrenip yukseltmek icin;</p>
-<pre class="code bash"><a id="rest_code_be85b6ea0740463daa02fead05a9718d-1" name="rest_code_be85b6ea0740463daa02fead05a9718d-1"></a><span class="c1"># cat /proc/sys/fs/file-max</span>
-<a id="rest_code_be85b6ea0740463daa02fead05a9718d-2" name="rest_code_be85b6ea0740463daa02fead05a9718d-2"></a><span class="m">75000</span>
+<pre class="code bash"><a id="rest_code_7715725ea8d6481099a3cf8140f9dec3-1" name="rest_code_7715725ea8d6481099a3cf8140f9dec3-1"></a><span class="c1"># cat /proc/sys/fs/file-max</span>
+<a id="rest_code_7715725ea8d6481099a3cf8140f9dec3-2" name="rest_code_7715725ea8d6481099a3cf8140f9dec3-2"></a><span class="m">75000</span>
 </pre>
 <p>Yukarda goruldugu gibi sistem uzerinde file-limit degeri '75000'. Bu degeri ornek olarak '750000' yukseltmek icin;</p>
-<pre class="code bash"><a id="rest_code_f70431ea68ee4409affa187db2042628-1" name="rest_code_f70431ea68ee4409affa187db2042628-1"></a><span class="c1"># sysctl -w fs.file-max=750000</span>
+<pre class="code bash"><a id="rest_code_8989d1fae3a64895a7097b6c1eb83967-1" name="rest_code_8989d1fae3a64895a7097b6c1eb83967-1"></a><span class="c1"># sysctl -w fs.file-max=750000</span>
 </pre>
 <p>Sistem uzerinde kalici olarak degistirmek icin, "/etc/sysctl.conf" dosyasina asagidaki satiri ekleyin.</p>
-<pre class="code bash"><a id="rest_code_dc4ec701faf74c27a93aebf736114321-1" name="rest_code_dc4ec701faf74c27a93aebf736114321-1"></a>fs.file-max <span class="o">=</span> <span class="m">750000</span>
+<pre class="code bash"><a id="rest_code_0333a214d82442fe9fe96a169614c41d-1" name="rest_code_0333a214d82442fe9fe96a169614c41d-1"></a>fs.file-max <span class="o">=</span> <span class="m">750000</span>
 </pre>
 <p>Aktif etmek icin;</p>
-<pre class="code bash"><a id="rest_code_462e471ba60246f58bc0c9e14dec3a55-1" name="rest_code_462e471ba60246f58bc0c9e14dec3a55-1"></a><span class="c1"># sysctl -p</span>
+<pre class="code bash"><a id="rest_code_752fcea0b0004e96a195600f05de06ce-1" name="rest_code_752fcea0b0004e96a195600f05de06ce-1"></a><span class="c1"># sysctl -p</span>
 </pre>
 <p>Bu limit degerlerini sisteme giris yaptiginiz ya da test yapacaginiz kullanici icin yukseltmek icin '/etc/security/limits.conf' dosyaniza asagidaki gibi degerleri ekleyin;</p>
-<pre class="code bash"><a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-1" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-1"></a><span class="c1">## hard limit</span>
-<a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-2" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-2"></a>kullanici1        hard nofile <span class="m">10000</span>
-<a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-3" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-3"></a><span class="c1">## soft limit</span>
-<a id="rest_code_74497dc970264929bcc8ccb5fdf72cfa-4" name="rest_code_74497dc970264929bcc8ccb5fdf72cfa-4"></a>kullanici1        soft nofile <span class="m">5000</span>
+<pre class="code bash"><a id="rest_code_361802236d7d494ba1701d470f6228f3-1" name="rest_code_361802236d7d494ba1701d470f6228f3-1"></a><span class="c1">## hard limit</span>
+<a id="rest_code_361802236d7d494ba1701d470f6228f3-2" name="rest_code_361802236d7d494ba1701d470f6228f3-2"></a>kullanici1        hard nofile <span class="m">10000</span>
+<a id="rest_code_361802236d7d494ba1701d470f6228f3-3" name="rest_code_361802236d7d494ba1701d470f6228f3-3"></a><span class="c1">## soft limit</span>
+<a id="rest_code_361802236d7d494ba1701d470f6228f3-4" name="rest_code_361802236d7d494ba1701d470f6228f3-4"></a>kullanici1        soft nofile <span class="m">5000</span>
 </pre>
 <p>Yaptiginiz degisikligin aktif olmasi icin cikis yapip tekrar giris yapmaniz gereklidir.</p>
 <p><strong>Senaryo olusturma</strong></p>
 <p>Locust icin cesitli senaryolar yazabilirsiniz. Iki basit ornek verelim.</p>
 <p><em>Ornek 1:</em> Websitenizin anasayfasini ve hakkimda sayfalarini test etmek icin load-testing senaryosu yazalim.</p>
-<pre class="code python"><a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-1" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span><span class="p">,</span> <span class="n">task</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-2" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-2"></a>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-3" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-3"></a><span class="k">class</span> <span class="nc">MyTaskSet</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-4" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-4"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-5" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-5"></a>     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-6" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-6"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-7" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-7"></a>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-8" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-8"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-9" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-9"></a>     <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-10" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-10"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/hakkinda/"</span><span class="p">)</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-11" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-11"></a>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-12" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-12"></a><span class="k">class</span> <span class="nc">MyLocust</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-13" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-13"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">MyTaskSet</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-14" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-14"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
-<a id="rest_code_39700696e2c44b6c8f926ec920fc5b19-15" name="rest_code_39700696e2c44b6c8f926ec920fc5b19-15"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">15000</span>
+<pre class="code python"><a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-1" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span><span class="p">,</span> <span class="n">task</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-2" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-2"></a>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-3" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-3"></a><span class="k">class</span> <span class="nc">MyTaskSet</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-4" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-4"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-5" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-5"></a>     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-6" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-6"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-7" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-7"></a>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-8" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-8"></a>     <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-9" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-9"></a>     <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-10" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-10"></a>             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/hakkinda/"</span><span class="p">)</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-11" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-11"></a>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-12" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-12"></a><span class="k">class</span> <span class="nc">MyLocust</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-13" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-13"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">MyTaskSet</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-14" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-14"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
+<a id="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-15" name="rest_code_66140efcd58f4bec9ab1c2a19b5542dd-15"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">15000</span>
 </pre>
 <p>'min_wait' ve 'max_wait' degerleri simule eden kullanicilarin bu sureler arasinda istek yapmasini gosterir.</p>
 <p><em>Ornek 2:</em> Websitenizin login sayfasina kullanici ile giris yapip, anasayfasini ve profile sayfasini test senaryosu yazalim.</p>
-<pre class="code python"><a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-1" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-2" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-2"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-3" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-3"></a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-4" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-4"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/login"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"ellen_key"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span><span class="s2">"education"</span><span class="p">})</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-5" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-5"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-6" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-6"></a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-7" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-7"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-8" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-8"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-9" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-9"></a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-10" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-10"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/profile"</span><span class="p">)</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-11" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-11"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-12" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-12"></a><span class="k">class</span> <span class="nc">UserBehavior</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-13" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-13"></a>     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-14" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-14"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-15" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-15"></a>     <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-16" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-16"></a>             <span class="n">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-17" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-17"></a>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-18" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-18"></a><span class="k">class</span> <span class="nc">WebsiteUser</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-19" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-19"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">UserBehavior</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-20" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-20"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
-<a id="rest_code_cafa60f1e59942e7b2905c67d12a95db-21" name="rest_code_cafa60f1e59942e7b2905c67d12a95db-21"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">9000</span>
+<pre class="code python"><a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-1" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpLocust</span><span class="p">,</span> <span class="n">TaskSet</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-2" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-2"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-3" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-3"></a><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-4" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-4"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/login"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span><span class="s2">"ellen_key"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span><span class="s2">"education"</span><span class="p">})</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-5" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-5"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-6" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-6"></a><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-7" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-7"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-8" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-8"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-9" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-9"></a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-10" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-10"></a>     <span class="n">l</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/profile"</span><span class="p">)</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-11" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-11"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-12" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-12"></a><span class="k">class</span> <span class="nc">UserBehavior</span><span class="p">(</span><span class="n">TaskSet</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-13" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-13"></a>     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-14" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-14"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-15" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-15"></a>     <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-16" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-16"></a>             <span class="n">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-17" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-17"></a>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-18" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-18"></a><span class="k">class</span> <span class="nc">WebsiteUser</span><span class="p">(</span><span class="n">HttpLocust</span><span class="p">):</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-19" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-19"></a>     <span class="n">task_set</span> <span class="o">=</span> <span class="n">UserBehavior</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-20" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-20"></a>     <span class="n">min_wait</span> <span class="o">=</span> <span class="mi">5000</span>
+<a id="rest_code_96a915a1b56b43a59fdab84826f05dd7-21" name="rest_code_96a915a1b56b43a59fdab84826f05dd7-21"></a>     <span class="n">max_wait</span> <span class="o">=</span> <span class="mi">9000</span>
 </pre>
 <p><strong>Load-Testing Yapmak</strong></p>
 <p>Locust ile yazdigimiz senaryolar ile load-testing yapmak icin;</p>
-<pre class="code bash"><a id="rest_code_7dd7eade1e66489c939346862540cdda-1" name="rest_code_7dd7eade1e66489c939346862540cdda-1"></a>$ locust --host<span class="o">=</span>http://example.com
+<pre class="code bash"><a id="rest_code_006578e439144befbe1fb7d7e167db3b-1" name="rest_code_006578e439144befbe1fb7d7e167db3b-1"></a>$ locust --host<span class="o">=</span>http://example.com
 </pre>
 <p>ya da yazdigimiz senaryo dosyasinin yolunu belirterek;</p>
-<pre class="code bash"><a id="rest_code_5971e89cb72142b8987a38fd0ccd2169-1" name="rest_code_5971e89cb72142b8987a38fd0ccd2169-1"></a>$ locust -f locust_files/my_locust_file.py --host<span class="o">=</span>http://example.com
+<pre class="code bash"><a id="rest_code_8751eaad68484511bd7ec0ede883750e-1" name="rest_code_8751eaad68484511bd7ec0ede883750e-1"></a>$ locust -f locust_files/my_locust_file.py --host<span class="o">=</span>http://example.com
 </pre>
 <p>Test basladiktan sonra tarayiciniza 'localhost:8089' yazarak kullanicilari simule edip testinizi izleyebilirsiniz.</p>
     </div>
@@ -428,88 +428,88 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 <aside class="admonition warning"><p class="admonition-title">Warning</p>
 <p>2016 Bakanlar Kurulu karari ile yaz saati uygulamasi sona erdigi icin zaman diliminin "+3" oldugunu kontrol edin.</p>
 </aside><p><em>(Powershell uzerinde)</em></p>
-<pre class="code powershell"><a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-1" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
-<a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-2" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="p">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="p">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
-<a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-3" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="p">:</span><span class="n">yes</span>
-<a id="rest_code_7afcf7e70e0f4749b5fdc95b55091219-4" name="rest_code_7afcf7e70e0f4749b5fdc95b55091219-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
+<pre class="code powershell"><a id="rest_code_2d45dcb79a5949998137e4bc0b9f9041-1" name="rest_code_2d45dcb79a5949998137e4bc0b9f9041-1"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="n">stop</span> <span class="n">w32time</span>
+<a id="rest_code_2d45dcb79a5949998137e4bc0b9f9041-2" name="rest_code_2d45dcb79a5949998137e4bc0b9f9041-2"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">syncfromflags</span><span class="p">:</span><span class="n">manual</span> <span class="p">/</span><span class="n">manualpeerlist</span><span class="p">:</span><span class="n">0</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">1</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="p">,</span> <span class="n">2</span><span class="p">.</span><span class="n">centos</span><span class="p">.</span><span class="n">pool</span><span class="p">.</span><span class="n">ntp</span><span class="p">.</span><span class="n">org</span><span class="err">”</span>
+<a id="rest_code_2d45dcb79a5949998137e4bc0b9f9041-3" name="rest_code_2d45dcb79a5949998137e4bc0b9f9041-3"></a><span class="p">&gt;</span> <span class="n">w32tm</span> <span class="p">/</span><span class="n">config</span> <span class="p">/</span><span class="n">reliable</span><span class="p">:</span><span class="n">yes</span>
+<a id="rest_code_2d45dcb79a5949998137e4bc0b9f9041-4" name="rest_code_2d45dcb79a5949998137e4bc0b9f9041-4"></a><span class="p">&gt;</span> <span class="n">net</span> <span class="nb">start </span><span class="n">w32time</span>
 </pre>
 <p><strong>FreeIPA ve Active Directory Cross-Realm Trust:</strong></p>
 <ul class="simple">
 <li><p>Ilk olarak "ipa-adtrust-install" paketini repodan kuralim:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_f64302c937ad4238a2b9d786c795492a-1" name="rest_code_f64302c937ad4238a2b9d786c795492a-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
+<pre class="code bash"><a id="rest_code_10d6c20b60f1406c9b00cfa03356c4f2-1" name="rest_code_10d6c20b60f1406c9b00cfa03356c4f2-1"></a><span class="c1"># yum install ipa-adtrust-install</span>
 </pre>
 <ul class="simple">
 <li><p>IPA Server uzerinde cross-realm islemi icin:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_949e2ffa089d4e16b28a67ea92477537-1" name="rest_code_949e2ffa089d4e16b28a67ea92477537-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
+<pre class="code bash"><a id="rest_code_e7e4908ad10c43d78a6254cf41bc20a9-1" name="rest_code_e7e4908ad10c43d78a6254cf41bc20a9-1"></a><span class="c1"># ipa-adtrust-install --netbios-name=PIESSO -a password</span>
 </pre>
 <p><strong>Firewall Konfigurasyonu:</strong></p>
 <p>Windows Server uzerinde firewall uzerindeki kurallar otomatik olarak ekleniyor. Fakat IPA Server uzerinde asagidaki portlarin acik olmasi gerekmektedir.</p>
-<pre class="code console"><a id="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-1" name="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
-<a id="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-2" name="rest_code_c602bfe566ba4f0994f1d5dd56c41cf2-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
+<pre class="code console"><a id="rest_code_ca4fd15f37ef483193de7ce7b83f71f9-1" name="rest_code_ca4fd15f37ef483193de7ce7b83f71f9-1"></a><span class="go">TCP ports: 80, 88, 443, 389, 636, 88, 464, 53, 135, 138, 139, 445, 1024-1300</span>
+<a id="rest_code_ca4fd15f37ef483193de7ce7b83f71f9-2" name="rest_code_ca4fd15f37ef483193de7ce7b83f71f9-2"></a><span class="go">UDP ports: 88, 464, 53, 123, 138, 139, 389, 445</span>
 </pre>
 <p>Centos 7 ile birlikte gelen firewall manager firewalld spesifik servisleri acmak icin halen yetersiz oldugu icin bunu disabled edip yerine klasik iptables'i aktif edelim:</p>
-<pre class="code bash"><a id="rest_code_bd8340030b2748229584ec664d0ad881-1" name="rest_code_bd8340030b2748229584ec664d0ad881-1"></a><span class="c1"># systemctl disable firewalld</span>
-<a id="rest_code_bd8340030b2748229584ec664d0ad881-2" name="rest_code_bd8340030b2748229584ec664d0ad881-2"></a><span class="c1"># systemctl stop firewalld</span>
-<a id="rest_code_bd8340030b2748229584ec664d0ad881-3" name="rest_code_bd8340030b2748229584ec664d0ad881-3"></a><span class="c1"># yum install -y iptables-services</span>
-<a id="rest_code_bd8340030b2748229584ec664d0ad881-4" name="rest_code_bd8340030b2748229584ec664d0ad881-4"></a><span class="c1"># systemctl enable iptables</span>
+<pre class="code bash"><a id="rest_code_09137a5b69e644038506824643e609ef-1" name="rest_code_09137a5b69e644038506824643e609ef-1"></a><span class="c1"># systemctl disable firewalld</span>
+<a id="rest_code_09137a5b69e644038506824643e609ef-2" name="rest_code_09137a5b69e644038506824643e609ef-2"></a><span class="c1"># systemctl stop firewalld</span>
+<a id="rest_code_09137a5b69e644038506824643e609ef-3" name="rest_code_09137a5b69e644038506824643e609ef-3"></a><span class="c1"># yum install -y iptables-services</span>
+<a id="rest_code_09137a5b69e644038506824643e609ef-4" name="rest_code_09137a5b69e644038506824643e609ef-4"></a><span class="c1"># systemctl enable iptables</span>
 </pre>
 <p>"/etc/sysconfig/iptables" dosyasina gerekli olan portlari acmak icin kurallarimizi girelim:</p>
-<pre class="code console"><a id="rest_code_317d88750e3d4b26988d64711564cc55-1" name="rest_code_317d88750e3d4b26988d64711564cc55-1"></a><span class="go">\*filter</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-2" name="rest_code_317d88750e3d4b26988d64711564cc55-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-3" name="rest_code_317d88750e3d4b26988d64711564cc55-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-4" name="rest_code_317d88750e3d4b26988d64711564cc55-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-5" name="rest_code_317d88750e3d4b26988d64711564cc55-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-6" name="rest_code_317d88750e3d4b26988d64711564cc55-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-7" name="rest_code_317d88750e3d4b26988d64711564cc55-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-8" name="rest_code_317d88750e3d4b26988d64711564cc55-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-9" name="rest_code_317d88750e3d4b26988d64711564cc55-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-10" name="rest_code_317d88750e3d4b26988d64711564cc55-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-11" name="rest_code_317d88750e3d4b26988d64711564cc55-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-12" name="rest_code_317d88750e3d4b26988d64711564cc55-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-13" name="rest_code_317d88750e3d4b26988d64711564cc55-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-14" name="rest_code_317d88750e3d4b26988d64711564cc55-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
-<a id="rest_code_317d88750e3d4b26988d64711564cc55-15" name="rest_code_317d88750e3d4b26988d64711564cc55-15"></a><span class="go">COMMIT</span>
+<pre class="code console"><a id="rest_code_b738619dd251438886259a039134d69e-1" name="rest_code_b738619dd251438886259a039134d69e-1"></a><span class="go">\*filter</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-2" name="rest_code_b738619dd251438886259a039134d69e-2"></a><span class="go">:INPUT ACCEPT [0:0]</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-3" name="rest_code_b738619dd251438886259a039134d69e-3"></a><span class="go">:FORWARD ACCEPT [0:0]</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-4" name="rest_code_b738619dd251438886259a039134d69e-4"></a><span class="go">:OUTPUT ACCEPT [0:0]</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-5" name="rest_code_b738619dd251438886259a039134d69e-5"></a><span class="go">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-6" name="rest_code_b738619dd251438886259a039134d69e-6"></a><span class="go">-A INPUT -p icmp -j ACCEPT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-7" name="rest_code_b738619dd251438886259a039134d69e-7"></a><span class="go">-A INPUT -i lo -j ACCEPT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-8" name="rest_code_b738619dd251438886259a039134d69e-8"></a><span class="go">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-9" name="rest_code_b738619dd251438886259a039134d69e-9"></a><span class="go">-A INPUT -s ad_ip_address -p tcp -m multiport --dports 389,636 -m state --state NEW,ESTABLISHED -j REJECT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-10" name="rest_code_b738619dd251438886259a039134d69e-10"></a><span class="go">-A INPUT -p tcp -m multiport --dports 80,88,443,389,636,88,464,53,138,139,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-11" name="rest_code_b738619dd251438886259a039134d69e-11"></a><span class="go">-A INPUT -p udp -m multiport --dports 88,464,53,123,138,139,389,445 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-12" name="rest_code_b738619dd251438886259a039134d69e-12"></a><span class="go">-A INPUT -p udp -j REJECT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-13" name="rest_code_b738619dd251438886259a039134d69e-13"></a><span class="go">-A INPUT -p tcp -j REJECT</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-14" name="rest_code_b738619dd251438886259a039134d69e-14"></a><span class="go">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span>
+<a id="rest_code_b738619dd251438886259a039134d69e-15" name="rest_code_b738619dd251438886259a039134d69e-15"></a><span class="go">COMMIT</span>
 </pre>
 <p>Iptables servisini baslatabiliriz:</p>
-<pre class="code bash"><a id="rest_code_871b4cfe247a410ba109c0f2efa02e51-1" name="rest_code_871b4cfe247a410ba109c0f2efa02e51-1"></a><span class="c1"># systemctl start iptables</span>
+<pre class="code bash"><a id="rest_code_ec17237505ee4b7b9fb0ab7702e985a4-1" name="rest_code_ec17237505ee4b7b9fb0ab7702e985a4-1"></a><span class="c1"># systemctl start iptables</span>
 </pre>
 <p><strong>DNS Forward Zone:</strong></p>
 <p>Active Directory ve FreeIPA'yi inbound ve outbound trust olarak isaretlemeden DNS Forward Zone'lari ekleyelim.</p>
 <ul class="simple">
 <li><p>Windows Server 2012 R2 uzerinde:</p></li>
 </ul>
-<pre class="code powershell"><a id="rest_code_9a984f55d7044824b0923967727c0f5b-1" name="rest_code_9a984f55d7044824b0923967727c0f5b-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
+<pre class="code powershell"><a id="rest_code_c25bc3c6ff4441bbac2c254e377f7937-1" name="rest_code_c25bc3c6ff4441bbac2c254e377f7937-1"></a><span class="p">&gt;</span> <span class="n">dnscmd</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="p">/</span><span class="n">ZoneAdd</span> <span class="n">piesso</span><span class="p">.</span><span class="n">local</span> <span class="p">/</span><span class="n">Forwarder</span> <span class="n">172</span><span class="p">.</span><span class="n">16</span><span class="p">.</span><span class="n">183</span><span class="p">.</span><span class="n">128</span>
 </pre>
 <ul class="simple">
 <li><p>FreeIPA Server uzerinde:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_fe67551074da4b5fa054b30fcbbe5e6b-1" name="rest_code_fe67551074da4b5fa054b30fcbbe5e6b-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
+<pre class="code bash"><a id="rest_code_15c699c6438c4fbc96eb8a3c243b1349-1" name="rest_code_15c699c6438c4fbc96eb8a3c243b1349-1"></a><span class="c1"># ipa dnsforwardzone-add pencere.local --forwarder=172.16.183.132 --forward-policy=only</span>
 </pre>
 <ul class="simple">
 <li><p>Forwarder DNS zone'larin dogru sekilde eklenip eklenmedigi iki tarafta da kontrol edelim:</p></li>
 </ul>
 <p><em>Windows Server 2012 R2 (PowerShell):</em></p>
-<pre class="code powershell"><a id="rest_code_3a9ebbaf58564539ab71991e1c643894-1" name="rest_code_3a9ebbaf58564539ab71991e1c643894-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
-<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-2" name="rest_code_3a9ebbaf58564539ab71991e1c643894-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
-<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-3" name="rest_code_3a9ebbaf58564539ab71991e1c643894-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
-<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-4" name="rest_code_3a9ebbaf58564539ab71991e1c643894-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
-<a id="rest_code_3a9ebbaf58564539ab71991e1c643894-5" name="rest_code_3a9ebbaf58564539ab71991e1c643894-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
+<pre class="code powershell"><a id="rest_code_713148add927413997859f926cb90d9d-1" name="rest_code_713148add927413997859f926cb90d9d-1"></a><span class="p">&gt;</span> <span class="n">nslookup</span>
+<a id="rest_code_713148add927413997859f926cb90d9d-2" name="rest_code_713148add927413997859f926cb90d9d-2"></a><span class="p">&gt;</span> <span class="nb">set </span><span class="n">type</span><span class="p">=</span><span class="n">srv</span>
+<a id="rest_code_713148add927413997859f926cb90d9d-3" name="rest_code_713148add927413997859f926cb90d9d-3"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ad_domain</span>
+<a id="rest_code_713148add927413997859f926cb90d9d-4" name="rest_code_713148add927413997859f926cb90d9d-4"></a><span class="p">&gt;</span> <span class="n">_ldap</span><span class="p">.</span><span class="n">_tcp</span><span class="p">.</span><span class="n">ipa_domain</span>
+<a id="rest_code_713148add927413997859f926cb90d9d-5" name="rest_code_713148add927413997859f926cb90d9d-5"></a><span class="p">&gt;</span> <span class="n">quit</span>
 </pre>
 <ul class="simple">
 <li><p>FreeIPA Server uzerinde:</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_3396a6965fa84cc2895936ee19357dfd-1" name="rest_code_3396a6965fa84cc2895936ee19357dfd-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
-<a id="rest_code_3396a6965fa84cc2895936ee19357dfd-2" name="rest_code_3396a6965fa84cc2895936ee19357dfd-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
+<pre class="code bash"><a id="rest_code_439a826be98c48e3a30ae5af80030e16-1" name="rest_code_439a826be98c48e3a30ae5af80030e16-1"></a><span class="c1"># dig SRV _ldap._tcp.ipa_domain</span>
+<a id="rest_code_439a826be98c48e3a30ae5af80030e16-2" name="rest_code_439a826be98c48e3a30ae5af80030e16-2"></a><span class="c1"># dig SRV _ldap._tcp.ad_domain</span>
 </pre>
 <p><strong>Cross-Realm Trust:</strong></p>
 <p>Freeipa ile Active Directory arasinda "Two-way trust" konfigurasyonu:</p>
-<pre class="code bash"><a id="rest_code_cf00f9fc9fd844c7bc2a8a2d86cd8b83-1" name="rest_code_cf00f9fc9fd844c7bc2a8a2d86cd8b83-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
+<pre class="code bash"><a id="rest_code_07a36f3273a049b0ac54f6bf71f8ff16-1" name="rest_code_07a36f3273a049b0ac54f6bf71f8ff16-1"></a><span class="c1"># ipa trust-add --type=ad pencere.local --admin Administrator --password --two-way=true</span>
 </pre>
 <p>"Two-way trust" baglantisinin basarili sekilde kurulup kurulmadigini kontrol edelim:</p>
-<pre class="code bash"><a id="rest_code_e03bf3571de540a7a7fc031959f04829-1" name="rest_code_e03bf3571de540a7a7fc031959f04829-1"></a><span class="c1"># ipa trust-fetch-domains "pencere.local"</span>
-<a id="rest_code_e03bf3571de540a7a7fc031959f04829-2" name="rest_code_e03bf3571de540a7a7fc031959f04829-2"></a><span class="c1"># ipa trustdomain-find "pencere.local"</span>
+<pre class="code bash"><a id="rest_code_bd0568f33cf64699babed21788aea7eb-1" name="rest_code_bd0568f33cf64699babed21788aea7eb-1"></a><span class="c1"># ipa trust-fetch-domains "pencere.local"</span>
+<a id="rest_code_bd0568f33cf64699babed21788aea7eb-2" name="rest_code_bd0568f33cf64699babed21788aea7eb-2"></a><span class="c1"># ipa trustdomain-find "pencere.local"</span>
 </pre>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/ipa-client-kurulumu/" class="u-url">IPA Client Kurulumu</a></h1>
@@ -544,11 +544,11 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 </ul></dd>
 </dl>
 <p><strong>Kurulum Oncesi Hazirlik:</strong></p>
-<pre class="code bash"><a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-1" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
-<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-2" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
-<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-3" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
-<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-4" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
-<a id="rest_code_8c1b4bc6aed643f1a863163cbcedf578-5" name="rest_code_8c1b4bc6aed643f1a863163cbcedf578-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
+<pre class="code bash"><a id="rest_code_acf1121df68e47c7b2dd7204925cbd92-1" name="rest_code_acf1121df68e47c7b2dd7204925cbd92-1"></a><span class="nv">FQDN</span> <span class="o">=</span> ipaclient.piesso.local
+<a id="rest_code_acf1121df68e47c7b2dd7204925cbd92-2" name="rest_code_acf1121df68e47c7b2dd7204925cbd92-2"></a><span class="nv">IP</span> <span class="o">=</span> <span class="m">172</span>.16.183.135/24
+<a id="rest_code_acf1121df68e47c7b2dd7204925cbd92-3" name="rest_code_acf1121df68e47c7b2dd7204925cbd92-3"></a>IPA <span class="nv">Server</span> <span class="o">=</span> ipa.piesso.local
+<a id="rest_code_acf1121df68e47c7b2dd7204925cbd92-4" name="rest_code_acf1121df68e47c7b2dd7204925cbd92-4"></a>IPA <span class="nv">DOMAIN</span> <span class="o">=</span> piesso.local
+<a id="rest_code_acf1121df68e47c7b2dd7204925cbd92-5" name="rest_code_acf1121df68e47c7b2dd7204925cbd92-5"></a>IPA <span class="nv">NETBIOS</span> <span class="o">=</span> PIESSO
 </pre>
 <p>Kuruluma  baslamadan once kontrol edilmesi gerekenler;</p>
 <blockquote>
@@ -559,49 +559,49 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 </ol>
 </blockquote>
 <p><em>Hostname:</em></p>
-<pre class="code bash"><a id="rest_code_8e65a148cb904375a918b265de68badd-1" name="rest_code_8e65a148cb904375a918b265de68badd-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
+<pre class="code bash"><a id="rest_code_30edbf475c724dd18e028005186e24bc-1" name="rest_code_30edbf475c724dd18e028005186e24bc-1"></a><span class="c1"># hostnamectl set-hostname ipaclient.piesso.local</span>
 </pre>
 <p><em>/etc/hosts:</em></p>
-<pre class="code bash"><a id="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-1" name="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
-<a id="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-2" name="rest_code_d6f2c68fa150425cb4d1e1cd4254d27a-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
+<pre class="code bash"><a id="rest_code_2c80ce645fec4392816d17a56123d4f6-1" name="rest_code_2c80ce645fec4392816d17a56123d4f6-1"></a><span class="m">172</span>.16.183.135 ipaclient.piesso.local ipaclient
+<a id="rest_code_2c80ce645fec4392816d17a56123d4f6-2" name="rest_code_2c80ce645fec4392816d17a56123d4f6-2"></a><span class="m">172</span>.16.183.128 ipa.piesso.local
 </pre>
 <p><em>Sistem update:</em></p>
-<pre class="code bash"><a id="rest_code_ed15c32af4cc405b9848d20aae2b3af9-1" name="rest_code_ed15c32af4cc405b9848d20aae2b3af9-1"></a><span class="c1"># yum update -y</span>
+<pre class="code bash"><a id="rest_code_7cbfdf1c534f49f6a2e406f18b5a34a5-1" name="rest_code_7cbfdf1c534f49f6a2e406f18b5a34a5-1"></a><span class="c1"># yum update -y</span>
 </pre>
 <p><strong>Kurulum:</strong></p>
 <ul class="simple">
 <li><p>ipa-client ve ipa-admintools yazilimlarinin repodan kurulmasi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_52c9edb869d54a03a5f1f40527214d85-1" name="rest_code_52c9edb869d54a03a5f1f40527214d85-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
+<pre class="code bash"><a id="rest_code_ae6b581dd20c41c3b0a2fe8be82d3821-1" name="rest_code_ae6b581dd20c41c3b0a2fe8be82d3821-1"></a><span class="c1"># yum install ipa-client ipa-admintools</span>
 </pre>
 <ul class="simple">
 <li><p>ipa-client kurulumu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_a4826f6fbd0742e69580afa1ebb94fb8-1" name="rest_code_a4826f6fbd0742e69580afa1ebb94fb8-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
+<pre class="code bash"><a id="rest_code_30572ab2b2f94c8b86fec57f317dfbbb-1" name="rest_code_30572ab2b2f94c8b86fec57f317dfbbb-1"></a><span class="c1"># ipa-client-install --domain PIESSO.LOCAL --server ipa.piesso.local --realm PIESSO -p host/ipa.piesso.local --enable-dns-updates --force-ntpd</span>
 </pre>
 <p><strong>IPA Client ve Kerberos Ticket Testi:</strong></p>
 <ul class="simple">
 <li><p>FreeIpa sunucusundaki admin kullanicisi ve parolasi ile giris yapin;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-1" name="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-1"></a><span class="c1"># getent passwd admin</span>
-<a id="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-2" name="rest_code_b3a9d7eef8fe4e45ba5a29a966b530db-2"></a><span class="c1"># getent group admins</span>
+<pre class="code bash"><a id="rest_code_558fc7093e96447dad19a16d805d8969-1" name="rest_code_558fc7093e96447dad19a16d805d8969-1"></a><span class="c1"># getent passwd admin</span>
+<a id="rest_code_558fc7093e96447dad19a16d805d8969-2" name="rest_code_558fc7093e96447dad19a16d805d8969-2"></a><span class="c1"># getent group admins</span>
 </pre>
 <ul class="simple">
 <li><p>Kerberos'tan ticket alimi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_30e8bc7ecfd04540b59045b6374ec6d5-1" name="rest_code_30e8bc7ecfd04540b59045b6374ec6d5-1"></a><span class="c1"># kinit admin</span>
+<pre class="code bash"><a id="rest_code_b0cb8f160d0d470c8e37fa4f392f2e4d-1" name="rest_code_b0cb8f160d0d470c8e37fa4f392f2e4d-1"></a><span class="c1"># kinit admin</span>
 </pre>
 <ul class="simple">
 <li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_2703686c04fd4119bf9ad6ca29484ee1-1" name="rest_code_2703686c04fd4119bf9ad6ca29484ee1-1"></a><span class="c1"># klist</span>
+<pre class="code bash"><a id="rest_code_1326cf5741fb4cc6bb15e0842a16f385-1" name="rest_code_1326cf5741fb4cc6bb15e0842a16f385-1"></a><span class="c1"># klist</span>
 </pre>
 <ul class="simple">
 <li><p>Hersey saglam gorunuyorsa client dns'lerini FreeIPA Server adresine donusturulmesi;</p></li>
 </ul>
 <p><em>/etc/resolv.conf:</em></p>
-<pre class="code bash"><a id="rest_code_61feca41f66441b2a80dd294a4254dae-1" name="rest_code_61feca41f66441b2a80dd294a4254dae-1"></a>search piesso.local
-<a id="rest_code_61feca41f66441b2a80dd294a4254dae-2" name="rest_code_61feca41f66441b2a80dd294a4254dae-2"></a>nameserver <span class="m">172</span>.16.183.128
+<pre class="code bash"><a id="rest_code_4519c02ed25b4549b24d3f3a2614994b-1" name="rest_code_4519c02ed25b4549b24d3f3a2614994b-1"></a>search piesso.local
+<a id="rest_code_4519c02ed25b4549b24d3f3a2614994b-2" name="rest_code_4519c02ed25b4549b24d3f3a2614994b-2"></a>nameserver <span class="m">172</span>.16.183.128
 </pre>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/centos-7-uzerine-freeipa-kurulumu/" class="u-url">Centos 7 uzerine FreeIPA Kurulumu</a></h1>
@@ -660,92 +660,92 @@ Asagidaki konfigurasyonlari tekil dosya kullaniyorsaniz "/etc/nginx/nginx.conf" 
 <li><p>Sistem update</p></li>
 </ol>
 <p><em>1. Hostname:</em></p>
-<pre class="code bash"><a id="rest_code_d84b9987d6b94ff1a2e0579b1776a1fb-1" name="rest_code_d84b9987d6b94ff1a2e0579b1776a1fb-1"></a><span class="c1"># hostnamectl set-hostname ipa.piesso.local</span>
+<pre class="code bash"><a id="rest_code_9f3636835989442fb2f8df8ab2b4afe4-1" name="rest_code_9f3636835989442fb2f8df8ab2b4afe4-1"></a><span class="c1"># hostnamectl set-hostname ipa.piesso.local</span>
 </pre>
 <p><em>2. /etc/hosts:</em></p>
-<pre class="code bash"><a id="rest_code_0c244238384a4a5d87d58d04508b1704-1" name="rest_code_0c244238384a4a5d87d58d04508b1704-1"></a><span class="m">172</span>.16.183.128 ipa.piesso.local ipa
+<pre class="code bash"><a id="rest_code_5b72143ba51d49d6a5869f1371a6d8e2-1" name="rest_code_5b72143ba51d49d6a5869f1371a6d8e2-1"></a><span class="m">172</span>.16.183.128 ipa.piesso.local ipa
 </pre>
 <p><em>3. Statik IP:</em></p>
 <p>Ornek statik ip konfigurasyonu "/etc/sysconfig/network-scripts/ifcfg-xxxx"</p>
-<pre class="code bash"><a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-1" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-1"></a><span class="nv">ONBOOT</span><span class="o">=</span> yes
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-2" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-2"></a><span class="nv">BOOTPROTO</span><span class="o">=</span> none
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-3" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-3"></a><span class="nv">IPADDR</span><span class="o">=</span> <span class="m">172</span>.16.183.128
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-4" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-4"></a><span class="nv">PREFIX</span><span class="o">=</span> <span class="m">24</span>
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-5" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-5"></a><span class="nv">GATEWAY</span><span class="o">=</span> <span class="m">172</span>.16.183.2
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-6" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-6"></a><span class="nv">DNS1</span><span class="o">=</span> <span class="m">8</span>.8.8.8
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-7" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-7"></a><span class="nv">DNS2</span><span class="o">=</span> <span class="m">8</span>.8.4.4
-<a id="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-8" name="rest_code_cd9a3e9e7dec42e2bde1e988e3cb027b-8"></a><span class="nv">DEFROUTE</span><span class="o">=</span> yes
+<pre class="code bash"><a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-1" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-1"></a><span class="nv">ONBOOT</span><span class="o">=</span> yes
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-2" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-2"></a><span class="nv">BOOTPROTO</span><span class="o">=</span> none
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-3" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-3"></a><span class="nv">IPADDR</span><span class="o">=</span> <span class="m">172</span>.16.183.128
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-4" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-4"></a><span class="nv">PREFIX</span><span class="o">=</span> <span class="m">24</span>
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-5" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-5"></a><span class="nv">GATEWAY</span><span class="o">=</span> <span class="m">172</span>.16.183.2
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-6" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-6"></a><span class="nv">DNS1</span><span class="o">=</span> <span class="m">8</span>.8.8.8
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-7" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-7"></a><span class="nv">DNS2</span><span class="o">=</span> <span class="m">8</span>.8.4.4
+<a id="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-8" name="rest_code_bcd6ce9a071447ba831a6d43e2a27fea-8"></a><span class="nv">DEFROUTE</span><span class="o">=</span> yes
 </pre>
 <p><em>4. Sistem update:</em></p>
-<pre class="code bash"><a id="rest_code_8b08cab7a2f14a3fb8d2bc4c33d09b79-1" name="rest_code_8b08cab7a2f14a3fb8d2bc4c33d09b79-1"></a><span class="c1"># yum update -y</span>
+<pre class="code bash"><a id="rest_code_e4e7a53f013647039a74f3e4013a7cce-1" name="rest_code_e4e7a53f013647039a74f3e4013a7cce-1"></a><span class="c1"># yum update -y</span>
 </pre>
 <p><strong>Kurulum:</strong></p>
 <ul class="simple">
 <li><p>ipa-server, integrated dns, ad trust  ve ldap back-end plugin yazilimlarinin repodan kurulmasi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_a3efad5dcf844e46ade3ebe5b48a2cbb-1" name="rest_code_a3efad5dcf844e46ade3ebe5b48a2cbb-1"></a><span class="c1"># yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad</span>
+<pre class="code bash"><a id="rest_code_4dad298c1d4d4596966fa5567af4e471-1" name="rest_code_4dad298c1d4d4596966fa5567af4e471-1"></a><span class="c1"># yum install ipa-server ipa-server-dns bind-dyndb-ldap ipa-server-trust-ad</span>
 </pre>
 <ul class="simple">
 <li><p>ipa-server kurulumu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_44b24e07436647b3a6832c2cab340188-1" name="rest_code_44b24e07436647b3a6832c2cab340188-1"></a><span class="c1"># ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U</span>
+<pre class="code bash"><a id="rest_code_7eea1f14bf724c44b9a109e04099d835-1" name="rest_code_7eea1f14bf724c44b9a109e04099d835-1"></a><span class="c1"># ipa-server-install -a IpaAdminpassword -p IpaManagerpassword --domain=piesso.local --realm=piesso.local --setup-dns --no-forwarders -U</span>
 </pre>
 <ul class="simple">
 <li><p>ipa-server kurulumu asagidaki sekilde basari ile biterse firewalld daemonuna gerekli port izinlerinin verilmesi;</p></li>
 </ul>
-<pre class="code console"><a id="rest_code_0c85d718d4764c42ac383e23ea664b57-1" name="rest_code_0c85d718d4764c42ac383e23ea664b57-1"></a><span class="go">Restarting the web server</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-2" name="rest_code_0c85d718d4764c42ac383e23ea664b57-2"></a><span class="go">==============================================================================</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-3" name="rest_code_0c85d718d4764c42ac383e23ea664b57-3"></a><span class="go">Setup complete</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-4" name="rest_code_0c85d718d4764c42ac383e23ea664b57-4"></a>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-5" name="rest_code_0c85d718d4764c42ac383e23ea664b57-5"></a><span class="go">Next steps:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-6" name="rest_code_0c85d718d4764c42ac383e23ea664b57-6"></a><span class="go">      1. You must make sure these network ports are open:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-7" name="rest_code_0c85d718d4764c42ac383e23ea664b57-7"></a><span class="go">                 TCP Ports:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-8" name="rest_code_0c85d718d4764c42ac383e23ea664b57-8"></a><span class="go">                   * 80, 443: HTTP/HTTPS</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-9" name="rest_code_0c85d718d4764c42ac383e23ea664b57-9"></a><span class="go">                   * 389, 636: LDAP/LDAPS</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-10" name="rest_code_0c85d718d4764c42ac383e23ea664b57-10"></a><span class="go">                   * 88, 464: kerberos</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-11" name="rest_code_0c85d718d4764c42ac383e23ea664b57-11"></a><span class="go">                   * 53: bind</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-12" name="rest_code_0c85d718d4764c42ac383e23ea664b57-12"></a><span class="go">                 UDP Ports:</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-13" name="rest_code_0c85d718d4764c42ac383e23ea664b57-13"></a><span class="go">                   * 88, 464: kerberos</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-14" name="rest_code_0c85d718d4764c42ac383e23ea664b57-14"></a><span class="go">                   * 53: bind</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-15" name="rest_code_0c85d718d4764c42ac383e23ea664b57-15"></a><span class="go">                   * 123: ntp</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-16" name="rest_code_0c85d718d4764c42ac383e23ea664b57-16"></a><span class="go">      2. You can now obtain a kerberos ticket using the command: 'kinit admin'</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-17" name="rest_code_0c85d718d4764c42ac383e23ea664b57-17"></a><span class="go">         This ticket will allow you to use the IPA tools (e.g., ipa user-add)</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-18" name="rest_code_0c85d718d4764c42ac383e23ea664b57-18"></a><span class="go">         and the web user interface.</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-19" name="rest_code_0c85d718d4764c42ac383e23ea664b57-19"></a>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-20" name="rest_code_0c85d718d4764c42ac383e23ea664b57-20"></a><span class="go">Be sure to back up the CA certificate stored in /root/cacert.p12</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-21" name="rest_code_0c85d718d4764c42ac383e23ea664b57-21"></a><span class="go">This file is required to create replicas. The password for this</span>
-<a id="rest_code_0c85d718d4764c42ac383e23ea664b57-22" name="rest_code_0c85d718d4764c42ac383e23ea664b57-22"></a><span class="go">file is the Directory Manager password</span>
+<pre class="code console"><a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-1" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-1"></a><span class="go">Restarting the web server</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-2" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-2"></a><span class="go">==============================================================================</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-3" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-3"></a><span class="go">Setup complete</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-4" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-4"></a>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-5" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-5"></a><span class="go">Next steps:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-6" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-6"></a><span class="go">      1. You must make sure these network ports are open:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-7" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-7"></a><span class="go">                 TCP Ports:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-8" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-8"></a><span class="go">                   * 80, 443: HTTP/HTTPS</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-9" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-9"></a><span class="go">                   * 389, 636: LDAP/LDAPS</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-10" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-10"></a><span class="go">                   * 88, 464: kerberos</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-11" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-11"></a><span class="go">                   * 53: bind</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-12" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-12"></a><span class="go">                 UDP Ports:</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-13" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-13"></a><span class="go">                   * 88, 464: kerberos</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-14" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-14"></a><span class="go">                   * 53: bind</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-15" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-15"></a><span class="go">                   * 123: ntp</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-16" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-16"></a><span class="go">      2. You can now obtain a kerberos ticket using the command: 'kinit admin'</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-17" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-17"></a><span class="go">         This ticket will allow you to use the IPA tools (e.g., ipa user-add)</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-18" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-18"></a><span class="go">         and the web user interface.</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-19" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-19"></a>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-20" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-20"></a><span class="go">Be sure to back up the CA certificate stored in /root/cacert.p12</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-21" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-21"></a><span class="go">This file is required to create replicas. The password for this</span>
+<a id="rest_code_2ffdd1896fee414196417e3a91eb5b09-22" name="rest_code_2ffdd1896fee414196417e3a91eb5b09-22"></a><span class="go">file is the Directory Manager password</span>
 </pre>
-<pre class="code bash"><a id="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-1" name="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-1"></a><span class="c1"># firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}</span>
-<a id="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-2" name="rest_code_b1c8895fa6b04f6bb7c58acacff916bb-2"></a><span class="c1"># firewall-cmd --reload</span>
+<pre class="code bash"><a id="rest_code_0bf5d3f5b69c41178162db944a88f07c-1" name="rest_code_0bf5d3f5b69c41178162db944a88f07c-1"></a><span class="c1"># firewall-cmd --permanent --add-service={http,https,ldap,ldaps,kerberos,dns,kpasswd,ntp}</span>
+<a id="rest_code_0bf5d3f5b69c41178162db944a88f07c-2" name="rest_code_0bf5d3f5b69c41178162db944a88f07c-2"></a><span class="c1"># firewall-cmd --reload</span>
 </pre>
 <ul class="simple">
 <li><p>Firewall kurallarinin kontrol edilmesi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_6f4eea79e79545a599df042ffdf68824-1" name="rest_code_6f4eea79e79545a599df042ffdf68824-1"></a><span class="c1"># firewall-cmd --list-services</span>
+<pre class="code bash"><a id="rest_code_87b6505875ba4f478d09ea7b02f6c53a-1" name="rest_code_87b6505875ba4f478d09ea7b02f6c53a-1"></a><span class="c1"># firewall-cmd --list-services</span>
 </pre>
 <p><strong>IPA Server ve Kerberos Ticket Testi:</strong></p>
 <ul class="simple">
 <li><p>Kerberos'tan ticket alimi;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_33a7dc5559bd4a38b93d39ab3db9fd68-1" name="rest_code_33a7dc5559bd4a38b93d39ab3db9fd68-1"></a><span class="c1"># kinit admin</span>
+<pre class="code bash"><a id="rest_code_beb140f7ff0f40e7921f6174bf7682ac-1" name="rest_code_beb140f7ff0f40e7921f6174bf7682ac-1"></a><span class="c1"># kinit admin</span>
 </pre>
 <ul class="simple">
 <li><p>Ticketin basarili alinip alinmadigi kontrolu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_9b8efe5234ad45f1810b92631d95f5f0-1" name="rest_code_9b8efe5234ad45f1810b92631d95f5f0-1"></a><span class="c1"># klist</span>
+<pre class="code bash"><a id="rest_code_3dcf9ccbe951497abf550fcb20751a76-1" name="rest_code_3dcf9ccbe951497abf550fcb20751a76-1"></a><span class="c1"># klist</span>
 </pre>
 <ul class="simple">
 <li><p>ipa-server servislerinin kontrolu;</p></li>
 </ul>
-<pre class="code bash"><a id="rest_code_8e7418a618d847b98ab59ffc3a1b3424-1" name="rest_code_8e7418a618d847b98ab59ffc3a1b3424-1"></a><span class="c1"># ipactl status</span>
+<pre class="code bash"><a id="rest_code_2d01c0b16f8b4f6ca2c7ec8e22591f52-1" name="rest_code_2d01c0b16f8b4f6ca2c7ec8e22591f52-1"></a><span class="c1"># ipactl status</span>
 </pre>
 <ul class="simple">
 <li><p>Hersey saglam gorunuyorsa sunucu dnslerini local adrese donusturulmesi;</p></li>
 </ul>
 <p><em>/etc/resolv.conf:</em></p>
-<pre class="code bash"><a id="rest_code_586ca090263a4a37b6f62a75721330ef-1" name="rest_code_586ca090263a4a37b6f62a75721330ef-1"></a>search piesso.local
-<a id="rest_code_586ca090263a4a37b6f62a75721330ef-2" name="rest_code_586ca090263a4a37b6f62a75721330ef-2"></a>nameserver <span class="m">127</span>.0.0.1
+<pre class="code bash"><a id="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-1" name="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-1"></a>search piesso.local
+<a id="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-2" name="rest_code_56a6a2db1c8d4820a7bbfec0508166ea-2"></a>nameserver <span class="m">127</span>.0.0.1
 </pre>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/linux-yaz-kampi-2014/" class="u-url">Linux Yaz Kampi 2014</a></h1>

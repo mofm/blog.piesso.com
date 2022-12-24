@@ -1,0 +1,71 @@
+<p>meta-econ, OpenEmbedded/Yocto layer for minimal systemd-nspawn containers. (E-Con Linux Distribution)</p>
+<p><a href="https://github.com/mofm/meta-econ">Github repo</a></p>
+<h1>e-Con Linux Distribution</h1>
+<p>e-Con Linux is an embedded Linux Distribution optimized for systemd-nspawn containers. It is built on OpenEmbedded. This distribution is focus on minimal and slim container image.</p>
+<p>There are two different core image:</p>
+<ul>
+<li>e-Con Tiny Core Image</li>
+<li>e-Con Core Image</li>
+</ul>
+<h2>e-Con Tiny Core Image</h2>
+<p>e-Con Tiny Core Image is really so tiny. It's built with musl and busybox. It works successfully with systemd-nspawn. Tested!
+<em>(Recommended)</em></p>
+<p>e-Con Tiny Core Image packages:</p>
+<pre class="code literal-block">base-files
+busybox
+busybox-inittab
+init-ifupdown
+libattr1
+musl
+netbase
+os-release
+packagegroup-core-boot
+shadow-base
+shadow-securetty
+util-linux-sulogin
+</pre>
+<p>compressed rootfs size: ~660 KB :)
+uncompressed rootfs size: ~1.2 MB</p>
+<h2>e-Con Core Image</h2>
+<p>e-Con Core Image size is larger than e-Con Tiny Core. It is built with glibc and systemd. Natively, actually systemd-nspawn only supports systemd. So it is built with systemd.</p>
+<p>e-Con Core Image packages:</p>
+<pre class="code literal-block"><span class="n">base</span><span class="o">-</span><span class="n">files</span>
+<span class="n">busybox</span>
+<span class="n">dbus</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">dbus</span><span class="o">-</span><span class="n">common</span>
+<span class="n">dbus</span><span class="o">-</span><span class="n">tools</span>
+<span class="n">kmod</span>
+<span class="n">libacl1</span>
+<span class="n">libattr1</span>
+<span class="n">libblkid1</span>
+<span class="n">libc6</span>
+<span class="n">libcap</span>
+<span class="n">libcrypt2</span>
+<span class="n">libdbus</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span>
+<span class="n">libexpat1</span>
+<span class="n">libkmod2</span>
+<span class="n">liblzma5</span>
+<span class="n">libmount1</span>
+<span class="n">libnss</span><span class="o">-</span><span class="n">myhostname2</span>
+<span class="n">libsystemd0</span>
+<span class="n">libz1</span>
+<span class="n">netbase</span>
+<span class="n">os</span><span class="o">-</span><span class="n">release</span>
+<span class="n">packagegroup</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="n">boot</span>
+<span class="n">shadow</span><span class="o">-</span><span class="n">base</span>
+<span class="n">shadow</span><span class="o">-</span><span class="n">securetty</span>
+<span class="n">systemd</span>
+<span class="n">systemd</span><span class="o">-</span><span class="n">compat</span><span class="o">-</span><span class="n">units</span>
+<span class="n">systemd</span><span class="o">-</span><span class="n">serialgetty</span>
+<span class="n">systemd</span><span class="o">-</span><span class="n">udev</span><span class="o">-</span><span class="n">rules</span>
+<span class="n">systemd</span><span class="o">-</span><span class="n">vconsole</span><span class="o">-</span><span class="n">setup</span>
+<span class="n">udev</span>
+<span class="n">util</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">agetty</span>
+<span class="n">util</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">fsck</span>
+<span class="n">util</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">mount</span>
+<span class="n">util</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">sulogin</span>
+<span class="n">util</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">umount</span>
+<span class="n">volatile</span><span class="o">-</span><span class="n">binds</span>
+</pre>
+<p>But even so its compressed rootfs size: 4.9 MB
+uncompressed size: ~17MB</p>

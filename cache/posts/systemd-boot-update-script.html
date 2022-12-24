@@ -1,69 +1,69 @@
 <p>systemd-boot does not automatically regenerate entry configuration files like update-grup or grub-mkconfig. So you can use below script for Gentoo Linux.</p>
-<pre class="code bash"><a id="rest_code_520901e4be27435b8302d3ea85d55088-1" name="rest_code_520901e4be27435b8302d3ea85d55088-1"></a><span class="ch">#!/bin/bash</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-2" name="rest_code_520901e4be27435b8302d3ea85d55088-2"></a><span class="c1">#</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-3" name="rest_code_520901e4be27435b8302d3ea85d55088-3"></a><span class="c1"># This is a simple kernel hook to populate the systemd-boot entries</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-4" name="rest_code_520901e4be27435b8302d3ea85d55088-4"></a><span class="c1"># whenever kernels are added or removed.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-5" name="rest_code_520901e4be27435b8302d3ea85d55088-5"></a><span class="c1">#</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-6" name="rest_code_520901e4be27435b8302d3ea85d55088-6"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-7" name="rest_code_520901e4be27435b8302d3ea85d55088-7"></a><span class="c1"># The UUID of your disk.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-8" name="rest_code_520901e4be27435b8302d3ea85d55088-8"></a><span class="c1"># Note: if using LVM, this should be the LVM partition.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-9" name="rest_code_520901e4be27435b8302d3ea85d55088-9"></a><span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;CHANGEME&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-10" name="rest_code_520901e4be27435b8302d3ea85d55088-10"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-11" name="rest_code_520901e4be27435b8302d3ea85d55088-11"></a><span class="c1"># Intel microcode file name</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-12" name="rest_code_520901e4be27435b8302d3ea85d55088-12"></a><span class="nv">MCODE</span><span class="o">=</span><span class="s2">&quot;CHANGEME&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-13" name="rest_code_520901e4be27435b8302d3ea85d55088-13"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-14" name="rest_code_520901e4be27435b8302d3ea85d55088-14"></a><span class="c1"># Any rootflags you wish to set. For example, mine are currently</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-15" name="rest_code_520901e4be27435b8302d3ea85d55088-15"></a><span class="c1"># &quot;subvol=@ quiet splash intel_pstate=enable&quot;.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-16" name="rest_code_520901e4be27435b8302d3ea85d55088-16"></a><span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">&quot;CHANGEME&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-17" name="rest_code_520901e4be27435b8302d3ea85d55088-17"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-18" name="rest_code_520901e4be27435b8302d3ea85d55088-18"></a><span class="c1"># Our kernels.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-19" name="rest_code_520901e4be27435b8302d3ea85d55088-19"></a><span class="nv">KERNELS</span><span class="o">=()</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-20" name="rest_code_520901e4be27435b8302d3ea85d55088-20"></a><span class="nv">FIND</span><span class="o">=</span><span class="s2">&quot;find /boot -maxdepth 1 -name &#39;vmlinuz-*&#39; -type f -not -name &#39;*.old&#39; -print0 | sort -Vrz&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-21" name="rest_code_520901e4be27435b8302d3ea85d55088-21"></a><span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 -d <span class="s1">$&#39;\0&#39;</span> LINE<span class="p">;</span> <span class="k">do</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-22" name="rest_code_520901e4be27435b8302d3ea85d55088-22"></a>        <span class="nv">KERNEL</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-23" name="rest_code_520901e4be27435b8302d3ea85d55088-23"></a>        <span class="nv">KERNELS</span><span class="o">+=(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">KERNEL</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-24" name="rest_code_520901e4be27435b8302d3ea85d55088-24"></a><span class="k">done</span> <span class="m">3</span>&lt; &lt;<span class="o">(</span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">FIND</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-25" name="rest_code_520901e4be27435b8302d3ea85d55088-25"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-26" name="rest_code_520901e4be27435b8302d3ea85d55088-26"></a><span class="c1"># There has to be at least one kernel.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-27" name="rest_code_520901e4be27435b8302d3ea85d55088-27"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-28" name="rest_code_520901e4be27435b8302d3ea85d55088-28"></a>        <span class="nb">echo</span> -e <span class="s2">&quot;\e[2msystemd-boot\e[0m \e[1;31mNo kernels found.\e[0m&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-29" name="rest_code_520901e4be27435b8302d3ea85d55088-29"></a>        <span class="nb">exit</span> <span class="m">1</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-30" name="rest_code_520901e4be27435b8302d3ea85d55088-30"></a><span class="k">fi</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-31" name="rest_code_520901e4be27435b8302d3ea85d55088-31"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-32" name="rest_code_520901e4be27435b8302d3ea85d55088-32"></a><span class="c1"># Copy the latest kernel files to a consistent place so we can</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-33" name="rest_code_520901e4be27435b8302d3ea85d55088-33"></a><span class="c1"># keep using the same loader configuration.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-34" name="rest_code_520901e4be27435b8302d3ea85d55088-34"></a><span class="nv">LATEST</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">0</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-35" name="rest_code_520901e4be27435b8302d3ea85d55088-35"></a><span class="nb">echo</span> -e <span class="s2">&quot;\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">LATEST</span><span class="si">}</span><span class="s2">\e[0m&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-36" name="rest_code_520901e4be27435b8302d3ea85d55088-36"></a>cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo.conf</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-37" name="rest_code_520901e4be27435b8302d3ea85d55088-37"></a><span class="s">title   Gentoo Linux</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-38" name="rest_code_520901e4be27435b8302d3ea85d55088-38"></a><span class="s">linux   /vmlinuz-${LATEST}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-39" name="rest_code_520901e4be27435b8302d3ea85d55088-39"></a><span class="s">initrd  /${MCODE}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-40" name="rest_code_520901e4be27435b8302d3ea85d55088-40"></a><span class="s">initrd  /initramfs-${LATEST}.img</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-41" name="rest_code_520901e4be27435b8302d3ea85d55088-41"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-42" name="rest_code_520901e4be27435b8302d3ea85d55088-42"></a><span class="s">EOF</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-43" name="rest_code_520901e4be27435b8302d3ea85d55088-43"></a><span class="c1">#done</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-44" name="rest_code_520901e4be27435b8302d3ea85d55088-44"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-45" name="rest_code_520901e4be27435b8302d3ea85d55088-45"></a><span class="c1"># Copy any legacy kernels over too, but maintain their version-</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-46" name="rest_code_520901e4be27435b8302d3ea85d55088-46"></a><span class="c1"># based names to avoid collisions.</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-47" name="rest_code_520901e4be27435b8302d3ea85d55088-47"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-48" name="rest_code_520901e4be27435b8302d3ea85d55088-48"></a>        <span class="nv">LEGACY</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-49" name="rest_code_520901e4be27435b8302d3ea85d55088-49"></a>        <span class="k">for</span> VERSION <span class="k">in</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">LEGACY</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">do</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-50" name="rest_code_520901e4be27435b8302d3ea85d55088-50"></a>            <span class="nb">echo</span> -e <span class="s2">&quot;\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">\e[0m&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-51" name="rest_code_520901e4be27435b8302d3ea85d55088-51"></a>            cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo-${VERSION}.conf</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-52" name="rest_code_520901e4be27435b8302d3ea85d55088-52"></a><span class="s">title   Gentoo Linux ${VERSION}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-53" name="rest_code_520901e4be27435b8302d3ea85d55088-53"></a><span class="s">linux   /vmlinuz-${VERSION}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-54" name="rest_code_520901e4be27435b8302d3ea85d55088-54"></a><span class="s">initrd  /${MCODE}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-55" name="rest_code_520901e4be27435b8302d3ea85d55088-55"></a><span class="s">initrd  /initramfs-${VERSION}.img</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-56" name="rest_code_520901e4be27435b8302d3ea85d55088-56"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-57" name="rest_code_520901e4be27435b8302d3ea85d55088-57"></a><span class="s">EOF</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-58" name="rest_code_520901e4be27435b8302d3ea85d55088-58"></a>        <span class="k">done</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-59" name="rest_code_520901e4be27435b8302d3ea85d55088-59"></a><span class="k">fi</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-60" name="rest_code_520901e4be27435b8302d3ea85d55088-60"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-61" name="rest_code_520901e4be27435b8302d3ea85d55088-61"></a><span class="nb">printf</span> <span class="s2">&quot;\n&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-62" name="rest_code_520901e4be27435b8302d3ea85d55088-62"></a><span class="nb">printf</span> <span class="s2">&quot;Updating systemd-boot firmware \n&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-63" name="rest_code_520901e4be27435b8302d3ea85d55088-63"></a>bootctl update
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-64" name="rest_code_520901e4be27435b8302d3ea85d55088-64"></a>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-65" name="rest_code_520901e4be27435b8302d3ea85d55088-65"></a><span class="c1"># Success!</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-66" name="rest_code_520901e4be27435b8302d3ea85d55088-66"></a><span class="nb">echo</span> -e <span class="s2">&quot;\e[2m---\e[0m&quot;</span>
-<a id="rest_code_520901e4be27435b8302d3ea85d55088-67" name="rest_code_520901e4be27435b8302d3ea85d55088-67"></a><span class="nb">exit</span> <span class="m">0</span>
+<pre class="code bash"><a id="rest_code_5757f4bb32b142f0a070d48366723c03-1" name="rest_code_5757f4bb32b142f0a070d48366723c03-1"></a><span class="ch">#!/bin/bash</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-2" name="rest_code_5757f4bb32b142f0a070d48366723c03-2"></a><span class="c1">#</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-3" name="rest_code_5757f4bb32b142f0a070d48366723c03-3"></a><span class="c1"># This is a simple kernel hook to populate the systemd-boot entries</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-4" name="rest_code_5757f4bb32b142f0a070d48366723c03-4"></a><span class="c1"># whenever kernels are added or removed.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-5" name="rest_code_5757f4bb32b142f0a070d48366723c03-5"></a><span class="c1">#</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-6" name="rest_code_5757f4bb32b142f0a070d48366723c03-6"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-7" name="rest_code_5757f4bb32b142f0a070d48366723c03-7"></a><span class="c1"># The UUID of your disk.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-8" name="rest_code_5757f4bb32b142f0a070d48366723c03-8"></a><span class="c1"># Note: if using LVM, this should be the LVM partition.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-9" name="rest_code_5757f4bb32b142f0a070d48366723c03-9"></a><span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;CHANGEME&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-10" name="rest_code_5757f4bb32b142f0a070d48366723c03-10"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-11" name="rest_code_5757f4bb32b142f0a070d48366723c03-11"></a><span class="c1"># Intel microcode file name</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-12" name="rest_code_5757f4bb32b142f0a070d48366723c03-12"></a><span class="nv">MCODE</span><span class="o">=</span><span class="s2">&quot;CHANGEME&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-13" name="rest_code_5757f4bb32b142f0a070d48366723c03-13"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-14" name="rest_code_5757f4bb32b142f0a070d48366723c03-14"></a><span class="c1"># Any rootflags you wish to set. For example, mine are currently</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-15" name="rest_code_5757f4bb32b142f0a070d48366723c03-15"></a><span class="c1"># &quot;subvol=@ quiet splash intel_pstate=enable&quot;.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-16" name="rest_code_5757f4bb32b142f0a070d48366723c03-16"></a><span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">&quot;CHANGEME&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-17" name="rest_code_5757f4bb32b142f0a070d48366723c03-17"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-18" name="rest_code_5757f4bb32b142f0a070d48366723c03-18"></a><span class="c1"># Our kernels.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-19" name="rest_code_5757f4bb32b142f0a070d48366723c03-19"></a><span class="nv">KERNELS</span><span class="o">=()</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-20" name="rest_code_5757f4bb32b142f0a070d48366723c03-20"></a><span class="nv">FIND</span><span class="o">=</span><span class="s2">&quot;find /boot -maxdepth 1 -name &#39;vmlinuz-*&#39; -type f -not -name &#39;*.old&#39; -print0 | sort -Vrz&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-21" name="rest_code_5757f4bb32b142f0a070d48366723c03-21"></a><span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 -d <span class="s1">$&#39;\0&#39;</span> LINE<span class="p">;</span> <span class="k">do</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-22" name="rest_code_5757f4bb32b142f0a070d48366723c03-22"></a>        <span class="nv">KERNEL</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-23" name="rest_code_5757f4bb32b142f0a070d48366723c03-23"></a>        <span class="nv">KERNELS</span><span class="o">+=(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">KERNEL</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-24" name="rest_code_5757f4bb32b142f0a070d48366723c03-24"></a><span class="k">done</span> <span class="m">3</span>&lt; &lt;<span class="o">(</span><span class="nb">eval</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">FIND</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-25" name="rest_code_5757f4bb32b142f0a070d48366723c03-25"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-26" name="rest_code_5757f4bb32b142f0a070d48366723c03-26"></a><span class="c1"># There has to be at least one kernel.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-27" name="rest_code_5757f4bb32b142f0a070d48366723c03-27"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-28" name="rest_code_5757f4bb32b142f0a070d48366723c03-28"></a>        <span class="nb">echo</span> -e <span class="s2">&quot;\e[2msystemd-boot\e[0m \e[1;31mNo kernels found.\e[0m&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-29" name="rest_code_5757f4bb32b142f0a070d48366723c03-29"></a>        <span class="nb">exit</span> <span class="m">1</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-30" name="rest_code_5757f4bb32b142f0a070d48366723c03-30"></a><span class="k">fi</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-31" name="rest_code_5757f4bb32b142f0a070d48366723c03-31"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-32" name="rest_code_5757f4bb32b142f0a070d48366723c03-32"></a><span class="c1"># Copy the latest kernel files to a consistent place so we can</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-33" name="rest_code_5757f4bb32b142f0a070d48366723c03-33"></a><span class="c1"># keep using the same loader configuration.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-34" name="rest_code_5757f4bb32b142f0a070d48366723c03-34"></a><span class="nv">LATEST</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">0</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-35" name="rest_code_5757f4bb32b142f0a070d48366723c03-35"></a><span class="nb">echo</span> -e <span class="s2">&quot;\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">LATEST</span><span class="si">}</span><span class="s2">\e[0m&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-36" name="rest_code_5757f4bb32b142f0a070d48366723c03-36"></a>cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo.conf</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-37" name="rest_code_5757f4bb32b142f0a070d48366723c03-37"></a><span class="s">title   Gentoo Linux</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-38" name="rest_code_5757f4bb32b142f0a070d48366723c03-38"></a><span class="s">linux   /vmlinuz-${LATEST}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-39" name="rest_code_5757f4bb32b142f0a070d48366723c03-39"></a><span class="s">initrd  /${MCODE}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-40" name="rest_code_5757f4bb32b142f0a070d48366723c03-40"></a><span class="s">initrd  /initramfs-${LATEST}.img</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-41" name="rest_code_5757f4bb32b142f0a070d48366723c03-41"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-42" name="rest_code_5757f4bb32b142f0a070d48366723c03-42"></a><span class="s">EOF</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-43" name="rest_code_5757f4bb32b142f0a070d48366723c03-43"></a><span class="c1">#done</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-44" name="rest_code_5757f4bb32b142f0a070d48366723c03-44"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-45" name="rest_code_5757f4bb32b142f0a070d48366723c03-45"></a><span class="c1"># Copy any legacy kernels over too, but maintain their version-</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-46" name="rest_code_5757f4bb32b142f0a070d48366723c03-46"></a><span class="c1"># based names to avoid collisions.</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-47" name="rest_code_5757f4bb32b142f0a070d48366723c03-47"></a><span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">KERNELS</span><span class="p">[@]</span><span class="si">}</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-48" name="rest_code_5757f4bb32b142f0a070d48366723c03-48"></a>        <span class="nv">LEGACY</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">KERNELS</span><span class="p">[@]:</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-49" name="rest_code_5757f4bb32b142f0a070d48366723c03-49"></a>        <span class="k">for</span> VERSION <span class="k">in</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">LEGACY</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">do</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-50" name="rest_code_5757f4bb32b142f0a070d48366723c03-50"></a>            <span class="nb">echo</span> -e <span class="s2">&quot;\e[2msystemd-boot\e[0m \e[1;32m</span><span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span><span class="s2">\e[0m&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-51" name="rest_code_5757f4bb32b142f0a070d48366723c03-51"></a>            cat <span class="s">&lt;&lt; EOF &gt; /boot/loader/entries/gentoo-${VERSION}.conf</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-52" name="rest_code_5757f4bb32b142f0a070d48366723c03-52"></a><span class="s">title   Gentoo Linux ${VERSION}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-53" name="rest_code_5757f4bb32b142f0a070d48366723c03-53"></a><span class="s">linux   /vmlinuz-${VERSION}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-54" name="rest_code_5757f4bb32b142f0a070d48366723c03-54"></a><span class="s">initrd  /${MCODE}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-55" name="rest_code_5757f4bb32b142f0a070d48366723c03-55"></a><span class="s">initrd  /initramfs-${VERSION}.img</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-56" name="rest_code_5757f4bb32b142f0a070d48366723c03-56"></a><span class="s">options root=UUID=${UUID} rw ${ROOTFLAGS}</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-57" name="rest_code_5757f4bb32b142f0a070d48366723c03-57"></a><span class="s">EOF</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-58" name="rest_code_5757f4bb32b142f0a070d48366723c03-58"></a>        <span class="k">done</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-59" name="rest_code_5757f4bb32b142f0a070d48366723c03-59"></a><span class="k">fi</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-60" name="rest_code_5757f4bb32b142f0a070d48366723c03-60"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-61" name="rest_code_5757f4bb32b142f0a070d48366723c03-61"></a><span class="nb">printf</span> <span class="s2">&quot;\n&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-62" name="rest_code_5757f4bb32b142f0a070d48366723c03-62"></a><span class="nb">printf</span> <span class="s2">&quot;Updating systemd-boot firmware \n&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-63" name="rest_code_5757f4bb32b142f0a070d48366723c03-63"></a>bootctl update
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-64" name="rest_code_5757f4bb32b142f0a070d48366723c03-64"></a>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-65" name="rest_code_5757f4bb32b142f0a070d48366723c03-65"></a><span class="c1"># Success!</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-66" name="rest_code_5757f4bb32b142f0a070d48366723c03-66"></a><span class="nb">echo</span> -e <span class="s2">&quot;\e[2m---\e[0m&quot;</span>
+<a id="rest_code_5757f4bb32b142f0a070d48366723c03-67" name="rest_code_5757f4bb32b142f0a070d48366723c03-67"></a><span class="nb">exit</span> <span class="m">0</span>
 </pre><p>This script forked from <a class="reference external" href="https://blobfolio.com/2018/replace-grub2-with-systemd-boot-on-ubuntu-18-04/">here</a>.</p>

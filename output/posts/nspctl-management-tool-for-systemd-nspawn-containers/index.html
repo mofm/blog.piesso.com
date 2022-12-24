@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nspctl for systemd-nspawn containers | hardened .*(nt|log)s?</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="canonical" href="https://blog.piesso.com/posts/nspctl-management-tool-for-systemd-nspawn-containers/">
+<link rel="icon" href="../../images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="../../images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="../../images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../../images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="../../images/website/android-chrome-192x192.png" sizes="192x192">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../bohca-yet-another-bookmanager/" title="bohca - yet another bookmanager" type="text/html">
+<link rel="next" href="../meta-econ-openembeddedyocto-layer/" title="meta-econ - openembedded/yocto layer" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="nspctl for systemd-nspawn containers">
+<meta property="og:url" content="https://blog.piesso.com/posts/nspctl-management-tool-for-systemd-nspawn-containers/">
+<meta property="og:description" content="nspctl, management tool for systemd-nspawn containers.
+Github repo
+
+Why nspctl?
+There are different tools for systemd-nspawn containers. You can use native tools ('machinectl' command) to manage for c">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-12-24T23:04:28+03:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../index.html" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">nspctl for systemd-nspawn containers</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    mofm
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-12-24T23:04:28+03:00" itemprop="datePublished" title="2022-12-24 23:04">2022-12-24 23:04</time></a>
+            </p>
+                <p class="commentline">
+    
+        <a href="#utterances-thread">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>nspctl, management tool for systemd-nspawn containers.</p>
+<p><a class="reference external" href="https://github.com/mofm/nspctl">Github repo</a></p>
+<section id="why-nspctl"><h2>Why nspctl?</h2>
+<p>There are different tools for systemd-nspawn containers. You can use native tools ('machinectl' command) to manage for containers.
+But systemd-nspawn, machinectl or other tools do not support non-systemd containers.
+(non-systemd containers: containers with another init system from systemd. Such as systemv, openrc, upstart, busybox init, etc.)</p>
+<p>nspctl supports containers with any init system. nspctl provides almost all of the features that machinectl provides.</p>
+<p><strong>Currently implemented features are:</strong></p>
+<ul class="simple">
+<li>
+<p>Lists</p>
+<ul>
+<li><p>running containers</p></li>
+<li><p>stopped containers</p></li>
+<li><p>all containers</p></li>
+</ul>
+</li>
+<li><p>Containers info</p></li>
+<li><p>Containers status</p></li>
+<li><p>Start the container</p></li>
+<li><p>Stop the container</p></li>
+<li><p>Reboot the container</p></li>
+<li><p>Remove the container</p></li>
+<li><p>Enable the container (the container to be launched at boot)</p></li>
+<li><p>Disable the container at startup</p></li>
+<li><p>Copy files from host in to a container</p></li>
+<li><p>Login the container shell</p></li>
+<li><p>Pull and register containers(raw, tar and docker images)</p></li>
+<li><p>Bootstrap <strong>Debian</strong> container ("jessie" and newer are supported)</p></li>
+<li><p>Bootstrap <strong>Ubuntu</strong> container ("xenial" and newer are supported)</p></li>
+<li><p>Bootstrap <strong>Arch Linux</strong> container</p></li>
+<li><p>Bootstrap <strong>Alpine Linux</strong> container("v3.13" and newer are supported)</p></li>
+<li><p>Remove hidden VM or container images</p></li>
+<li><p>Remove all VM and container images</p></li>
+<li><p>Run a new command in a running container (non-interactive shell)</p></li>
+<li><p>Renames a container or VM image</p></li>
+<li><p>import raw, tar and directory container images</p></li>
+</ul></section><section id="installation"><h2>Installation</h2>
+<section id="requirements"><h3>Requirements:</h3>
+<ul class="simple">
+<li><p>Python &gt;=3.8</p></li>
+</ul></section><section id="dependencies"><h3>Dependencies:</h3>
+<ul class="simple">
+<li><p>systemd-container package</p></li>
+</ul>
+<p>For Debian and Ubuntu:</p>
+<pre class="code text"><a id="rest_code_d145ef8e8621468bb3a11d62b9c9517d-1" name="rest_code_d145ef8e8621468bb3a11d62b9c9517d-1"></a>$ apt-get install systemd-container
+</pre>
+<p>For Centos, Fedora or Redhat Based Distributions:</p>
+<pre class="code text"><a id="rest_code_3509790b145b4b499f36f98870fbda9a-1" name="rest_code_3509790b145b4b499f36f98870fbda9a-1"></a>$ yum install systemd-container
+</pre>
+<p>or</p>
+<pre class="code text"><a id="rest_code_94a561a531344ff8a2e43c0e3947f1d5-1" name="rest_code_94a561a531344ff8a2e43c0e3947f1d5-1"></a>$ dnf install systemd-container
+</pre>
+<aside class="admonition note"><p class="admonition-title">Note</p>
+<p>Gentoo with systemd and Arch Linux users don't need to install any packages.</p>
+</aside></section><section id="install"><h3>Install:</h3>
+<p><strong>From Github:</strong></p>
+<ul class="simple">
+<li><p>Clone this repository:</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_c6f9fa0b7ecf44a68b845bec0d308e68-1" name="rest_code_c6f9fa0b7ecf44a68b845bec0d308e68-1"></a>$ git clone https://github.com/mofm/nspctl
+</pre>
+<ul class="simple">
+<li><p>and install via pip:</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_2a811e6a6df54cf79e6cd83d6dd8ef0a-1" name="rest_code_2a811e6a6df54cf79e6cd83d6dd8ef0a-1"></a>$ pip install nspctl/
+</pre>
+<p>If you would like to install for your user:</p>
+<pre class="code text"><a id="rest_code_25c948c7e5bf40908ce5a2fe641dad19-1" name="rest_code_25c948c7e5bf40908ce5a2fe641dad19-1"></a>$ pip install --user nspctl/
+</pre>
+<p>and you need to add '.local/bin' directory to your path</p>
+<pre class="code text"><a id="rest_code_e975af2a847349dfa395e4fb92685304-1" name="rest_code_e975af2a847349dfa395e4fb92685304-1"></a>$ export PATH="~/.local/bin/:$PATH"
+</pre></section></section><section id="usage"><h2>Usage:</h2>
+<p><strong>Synopsis:</strong></p>
+<pre class="code text"><a id="rest_code_7e57a7edfda643cebfc7a5dc2606c8b8-1" name="rest_code_7e57a7edfda643cebfc7a5dc2606c8b8-1"></a>nspctl [ arguments ] [ options ] [ container name | URL | distribution ] [ ... ]
+</pre>
+<section id="commands"><h3>Commands:</h3>
+<ul class="simple">
+<li><p><em>list</em> : List currently running (online) containers.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_806b9b84a233495295a8f53321bbe4b1-1" name="rest_code_806b9b84a233495295a8f53321bbe4b1-1"></a>$ nspctl list
+</pre>
+<ul class="simple">
+<li><p><em>list-stopped</em> : List stopped containers.( shortopts: 'lss')</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_ae49f15aa83a4db492f8a94c000fdaf8-1" name="rest_code_ae49f15aa83a4db492f8a94c000fdaf8-1"></a>$ nspctl list-stopped
+<a id="rest_code_ae49f15aa83a4db492f8a94c000fdaf8-2" name="rest_code_ae49f15aa83a4db492f8a94c000fdaf8-2"></a>$ nspctl lss
+</pre>
+<ul class="simple">
+<li><p><em>list-running</em> : List currently running containers.(alias: 'list', shortopt: 'lsr')</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_3a21273c50354e46b64db2c9002cf687-1" name="rest_code_3a21273c50354e46b64db2c9002cf687-1"></a>$ nspctl list-running
+<a id="rest_code_3a21273c50354e46b64db2c9002cf687-2" name="rest_code_3a21273c50354e46b64db2c9002cf687-2"></a>$ nspctl lsr
+</pre>
+<ul class="simple">
+<li><p><em>list-all</em> : List all containers.(shortopt: 'lsa')</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_e12535d676ff4adda8000b9a3cccdb0e-1" name="rest_code_e12535d676ff4adda8000b9a3cccdb0e-1"></a>$ nspctl list-all
+<a id="rest_code_e12535d676ff4adda8000b9a3cccdb0e-2" name="rest_code_e12535d676ff4adda8000b9a3cccdb0e-2"></a>$ nspctl lsa
+</pre>
+<ul class="simple">
+<li><p><em>info NAME</em> : Show properties of container.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_4b6d514c336b4aafb508f8665a3aad58-1" name="rest_code_4b6d514c336b4aafb508f8665a3aad58-1"></a>$ nspctl info ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>start NAME</em> : Start a container as system service.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_3482fc77cb7d4445a5317e25e7bfb409-1" name="rest_code_3482fc77cb7d4445a5317e25e7bfb409-1"></a>$ nspctl start ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>reboot NAME</em> : Reboot a container.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_713ecb5a9b3444e0820fcf1ca9d0e9af-1" name="rest_code_713ecb5a9b3444e0820fcf1ca9d0e9af-1"></a>$ nspctl reboot ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>stop NAME</em> : Stop a container. Shutdown cleanly.(alias: 'poweroff')</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_25c7168e7c894bf398f898b8a5735cb1-1" name="rest_code_25c7168e7c894bf398f898b8a5735cb1-1"></a>$ nspctl stop ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>terminate NAME</em> : Immediately terminates container without cleanly shutting it down.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_3edc4b7ee4794ba9b45b7fa7bd758bc6-1" name="rest_code_3edc4b7ee4794ba9b45b7fa7bd758bc6-1"></a>$ nspctl terminate ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>poweroff NAME</em> : Poweroff a container. Shutdown cleanly.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_9ce502ff46be4648b4a7629a5d5c9ecc-1" name="rest_code_9ce502ff46be4648b4a7629a5d5c9ecc-1"></a>$ nspctl poweroff ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>enable NAME</em> : Enable a container as a system service at system boot.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_cc0e34116ba94b04b869ecd5330f5078-1" name="rest_code_cc0e34116ba94b04b869ecd5330f5078-1"></a>$ nspctl enable ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>disable NAME</em> : Disable a container as a system service at system boot.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_e1af7575620b40c2bbc60c6616eb6be6-1" name="rest_code_e1af7575620b40c2bbc60c6616eb6be6-1"></a>$ nspctl disable ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>remove NAME</em> : Remove a container completely.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_bedda7d4a77d494faaff7e18a987898f-1" name="rest_code_bedda7d4a77d494faaff7e18a987898f-1"></a>$ nspctl remove ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>shell NAME</em> : Open an interactive shell session in a container.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_768dde8099eb482b866aca710ad7a542-1" name="rest_code_768dde8099eb482b866aca710ad7a542-1"></a>$ nspctl shell ubuntu-20.04
+</pre>
+<ul class="simple">
+<li><p><em>copy-to NAME SOURCE DESTINATION</em> : Copies files from the host system into a running container.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_bc15ef76a8f14e129679c537f2bf12e4-1" name="rest_code_bc15ef76a8f14e129679c537f2bf12e4-1"></a>$ nspctl copy-to ubuntu-20.04 /home/hostuser/magicfile /home/containeruser/
+</pre>
+<ul class="simple">
+<li><p><em>clean</em> : Remove hidden VM or container images. This command removes all hidden machine images from /var/lib/machines/.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_48d428104dd545b9bc7fff4efb2225ce-1" name="rest_code_48d428104dd545b9bc7fff4efb2225ce-1"></a>$ nspctl clean
+</pre>
+<ul class="simple">
+<li><p><em>clean-all</em> : Remove all VM or container images. This command removes all machine images from /var/lib/machines/.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_26d55a00de6f4b53a1277d2215c39840-1" name="rest_code_26d55a00de6f4b53a1277d2215c39840-1"></a>$ nspctl clean-all
+</pre>
+<ul class="simple">
+<li><p><em>exec NAME 'COMMAND'</em> : Runs a new command in a running container.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_2529c89bff2448c791a9c216e13ad4b0-1" name="rest_code_2529c89bff2448c791a9c216e13ad4b0-1"></a>$ nspctl exec ubuntu-20.04 'cat /etc/os-release'
+</pre>
+<ul class="simple">
+<li><p><em>rename NAME NEWNAME</em> : Renames a container or VM image.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_35b00f7c7dd64762b11447afd7beb4d2-1" name="rest_code_35b00f7c7dd64762b11447afd7beb4d2-1"></a>$ nspctl rename ubuntu-20.04 ubuntu-newimage
+</pre>
+<ul class="simple">
+<li><p><em>usage</em> : nspctl usage page</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_e8888edf963b4bf396f904392af4575d-1" name="rest_code_e8888edf963b4bf396f904392af4575d-1"></a>$ nspctl usage
+</pre>
+<ul class="simple">
+<li><p><em>--help</em> : display help page and exit</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_95d0ba96ce8d41969cd51cd07632c0d2-1" name="rest_code_95d0ba96ce8d41969cd51cd07632c0d2-1"></a>$ nspctl --help or -h
+</pre></section><section id="container-operations"><h3>Container Operations:</h3>
+<ul class="simple">
+<li><p><em>pull-tar URL NAME</em> : Downloads a .tar container image from the specified URL.(tar, tar.gz, tar.xz, tar.bz2)</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_dd295c95e463405eba55851f97cc8bd5-1" name="rest_code_dd295c95e463405eba55851f97cc8bd5-1"></a>$ nspctl pull-tar https://github.com/mofm/meta-econ/releases/download/v0.3.0-r2/econ-tiny-nginx-20220123-qemux86-64.tar.xz econ-nginx
+</pre>
+<ul class="simple">
+<li><p><em>pull-raw URL NAME</em> : Downloads a .raw container from the specified URL.(qcow2 or compressed as gz, xz, bz2)</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_5cc39d451f184f6db8dbf0d899dbe106-1" name="rest_code_5cc39d451f184f6db8dbf0d899dbe106-1"></a>$ nspctl pull-raw https://download.fedoraproject.org/pub/fedora/linux/releases/35/Cloud/x86_64/images/Fedora-Cloud-Base-35-1.2.x86_64.raw.xz fedora-cloud-base-35
+</pre>
+<ul class="simple">
+<li><p><em>import-raw IMAGE NAME</em> : Execute a <code class="docutils literal">machinectl <span class="pre">import-raw</span></code> to import a .qcow2 or raw disk image.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_722c8d74db204e979c8de59eb0395cc1-1" name="rest_code_722c8d74db204e979c8de59eb0395cc1-1"></a>$ nspctl import-raw Fedora-Cloud-Base-35-1.2.x86_64.raw.xz fedora-cloud-base-35
+</pre>
+<ul class="simple">
+<li><p><em>import-tar IMAGE NAME</em> : Execute a <code class="docutils literal">machinectl <span class="pre">import-tar</span></code> to import a .tar container image.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_cfdc56a042774242a5e2eac2a8350a8b-1" name="rest_code_cfdc56a042774242a5e2eac2a8350a8b-1"></a>$ nspctl import-tar econ-tiny-nginx-20220123-qemux86-64.tar.xz econ-nginx
+</pre>
+<ul class="simple">
+<li><p><em>import-fs DIRECTORY NAME</em> : Execute a <code class="docutils literal">machinectl <span class="pre">import-fs</span></code> to import a directory image.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_4260614f1b4841fabffb1a9a29407955-1" name="rest_code_4260614f1b4841fabffb1a9a29407955-1"></a>$ nspctl import-fs econ-tiny-nginx-20220123 econ-httpd
+</pre>
+<ul class="simple">
+<li><p><em>bootstrap NAME DIST VERSION</em> : Bootstrap a container from package servers. Supported Distributions are Debian, Ubuntu, Arch Linux and Alpine Linux.</p></li>
+</ul>
+<pre class="code text"><a id="rest_code_f2086fdcb5324663b2b104caf548b9dd-1" name="rest_code_f2086fdcb5324663b2b104caf548b9dd-1"></a>$ nspctl bootstrap alpine-3.15 alpine latest-stable
+<a id="rest_code_f2086fdcb5324663b2b104caf548b9dd-2" name="rest_code_f2086fdcb5324663b2b104caf548b9dd-2"></a>$ nspctl bootstrap ubuntu-20.04 ubuntu focal
+<a id="rest_code_f2086fdcb5324663b2b104caf548b9dd-3" name="rest_code_f2086fdcb5324663b2b104caf548b9dd-3"></a>$ nspctl bootstrap debian-latest debian stable
+<a id="rest_code_f2086fdcb5324663b2b104caf548b9dd-4" name="rest_code_f2086fdcb5324663b2b104caf548b9dd-4"></a>$ nspctl bootstrap arch-test arch
+</pre></section></section>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../bohca-yet-another-bookmanager/" rel="prev" title="bohca - yet another bookmanager">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../meta-econ-openembeddedyocto-layer/" rel="next" title="meta-econ - openembedded/yocto layer">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div data-title="nspctl for systemd-nspawn containers" id="utterances-thread"></div>
+        <script src="https://utteranc.es/client.js" repo="mofm/blog.piesso.com" issue-term="title" label="Comments" theme="github-light" crossorigin="anonymous"></script></section></article><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

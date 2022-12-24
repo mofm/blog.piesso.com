@@ -1,0 +1,156 @@
+<h1>Introduction</h1>
+<p>The goal of this project is to create a simple, yet powerful, reader for RSS feeds. It reads RSS URLs in the feed.ini file and fetch the content of the feeds.</p>
+<p>The project is written with django 4.1 and Python 3. </p>
+<p><a href="https://github.com/mofm/feeder">Github repo</a></p>
+<h3>Features</h3>
+<ul>
+<li>Simple and intuitive interface</li>
+<li>Bootstrap 4 (static files included)</li>
+<li>Procfile for deployment</li>
+<li>SQLite database by default</li>
+<li>Separate settings for development and production(environment variables)</li>
+<li>Custom admin interface</li>
+<li>User authentication and Permissions for viewing and editing feeds</li>
+<li>Users add favorite feeds to their profile</li>
+</ul>
+<h2>Installation</h2>
+<ul>
+<li>Create a virtual environment and activate it</li>
+</ul>
+<pre class="code literal-block">python3 -m venv feeder-venv
+<span class="nb">source</span> feeder-venv/bin/activate
+</pre>
+<ul>
+<li>Clone the repository</li>
+</ul>
+<pre class="code literal-block">git clone https://github.com/mofm/feeder.git
+</pre>
+<ul>
+<li>Install dependencies</li>
+</ul>
+<pre class="code literal-block">pip install -r requirements.txt
+</pre>
+<ul>
+<li>Create environment files</li>
+</ul>
+<pre class="code literal-block">mkdir .env
+touch .env/development.env
+touch .env/production.env
+</pre>
+<ul>
+<li>Add environment variables for your development environment</li>
+</ul>
+<p>For production environment, use environment variables from production.env</p>
+<pre class="code literal-block"><span class="nv">SECRET_KEY</span><span class="o">=</span> <span class="o">(</span>generate a random string: create new secret key<span class="o">)</span>
+<span class="nv">DEBUG</span><span class="o">=</span>False
+<span class="nv">ALLOWED_HOSTS</span><span class="o">=</span><span class="m">127</span>.0.0.1 feeder.example.com
+</pre>
+<ul>
+<li>Initial database schema and migrate</li>
+</ul>
+<pre class="code literal-block">python manage.py makemigrations
+python manage.py migrate
+python manage.py migrate --run-syncdb
+</pre>
+<ul>
+<li>Create superuser</li>
+</ul>
+<pre class="code literal-block">python manage.py createsuperuser
+</pre>
+<ul>
+<li>Collect static files</li>
+</ul>
+<pre class="code literal-block">python manage.py collectstatic
+</pre>
+<ul>
+<li>You can test out the application by running the following command:</li>
+</ul>
+<pre class="code literal-block">python manage.py runserver <span class="m">0</span>.0.0.0:8000
+</pre>
+<h2>Deployment</h2>
+<ul>
+<li>Create gunicorn systemd service files for production environment</li>
+</ul>
+<pre class="code literal-block">sudo vi  /etc/systemd/system/gunicorn.service
+</pre>
+<pre class="code literal-block"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>gunicorn daemon
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="nv">User</span><span class="o">=</span>user
+<span class="nv">Group</span><span class="o">=</span>user
+<span class="nv">EnvironmentFile</span><span class="o">=</span>/path/to/feeder_venv/feeder/.env/production.env
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/path/to/feeder_venv/feeder
+<span class="nv">ExecStart</span><span class="o">=</span>/path/to/feeder_venv/bin/gunicorn --workers <span class="m">3</span> --bind <span class="m">0</span>.0.0.0:8000 feeder.wsgi:application
+<span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -s HUP <span class="nv">$MAINPID</span>
+<span class="nv">KillMode</span><span class="o">=</span>mixed
+<span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre>
+<ul>
+<li>Create schedule jobs systemd service file for production environment</li>
+</ul>
+<p><em>This is used to check RSS URLs from feed.ini file and fetch new feeds every 2 minutes</em></p>
+<pre class="code literal-block">sudo vi  /etc/systemd/system/schedule_jobs.service
+</pre>
+<pre class="code literal-block"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Feederjobs daemon
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>Simple
+<span class="nv">User</span><span class="o">=</span>user
+<span class="nv">Group</span><span class="o">=</span>user
+<span class="nv">EnvironmentFile</span><span class="o">=</span>/path/to/feeder_venv/feeder/.env/production.env
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/path/to/feeder_venv/feeder
+<span class="nv">ExecStart</span><span class="o">=</span>/path/to/feeder_venv/bin/python manage.py startjobs
+<span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -s HUP <span class="nv">$MAINPID</span>
+<span class="nv">KillMode</span><span class="o">=</span>mixed
+<span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre>
+<ul>
+<li>Start and enable gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl start gunicorn.service
+sudo systemctl <span class="nb">enable</span> gunicorn.service
+</pre>
+<ul>
+<li>
+<p>Login to admin interface and create new category(Example: Tech)</p>
+</li>
+<li>
+<p>Add new RSS URL to feed.ini file</p>
+</li>
+</ul>
+<pre class="code literal-block">vi  /path/to/feeder_venv/feeder/feed.ini
+</pre>
+<pre class="code literal-block"><span class="o">[</span>EFF<span class="o">]</span>
+<span class="nv">feed</span> <span class="o">=</span> https://www.eff.org/rss/updates.xml
+<span class="nv">link</span> <span class="o">=</span> https://www.eff.org
+<span class="nv">logo</span> <span class="o">=</span> https://www.eff.org/sites/all/themes/phoenix/images/logo-monogram.svg
+<span class="nv">category</span> <span class="o">=</span> Tech
+</pre>
+<ul>
+<li>Start and enable schedule jobs service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl start schedule_jobs.service
+sudo systemctl <span class="nb">enable</span> schedule_jobs.service
+</pre>
+<p>Finally, you can test out the application by browsing to http://localhost:8000/</p>
+<h2>Notes</h2>
+<ul>
+<li>This is personal project. So It may have missing features.</li>
+<li>You can create users and permissions for viewing and editing feeds via admin interface.(rssfeeder.view_feed)</li>
+<li>Homepage shows the feeds in the default category. If category key doesn't exist or empty value in feed.ini section, it shows the feeds in the default category.</li>
+<li>Four categories are Tech, Science, News and Videos hardcoded in the application 'url.py' file. But didn't create an object in categories for them. If you want to use them, you can create these categories in the admin interface.</li>
+<li>You can add new categories in the admin interface. Also, you can add navbar.html file in the templates directory to customize the application.</li>
+</ul>

@@ -1,0 +1,49 @@
+<p>mv-kernel, kernel configuration, build tool for micro virtual machine.</p>
+<p><a href="https://github.com/mofm/mv_kernel">Github repo</a></p>
+<h2>1. Quick Start</h2>
+<p>mv-kernel, fast way to build kernel for micro virtual machine.</p>
+<h3>1.1. Clone mv-kernel</h3>
+<pre class="code literal-block">$ git clone https://github.com/mofm/mv-kernel.git
+$ <span class="nb">cd</span> mv-kernel
+</pre>
+<h3>1.2. Build</h3>
+<p>Download kernel source code, and build kernel.</p>
+<pre class="code literal-block">$ make all
+</pre>
+<p>Finally, you can find the kernel image in <code>images</code> directory.</p>
+<h2>2. All target of Makefile</h2>
+<ul>
+<li>Only download and exract kernel source code.</li>
+</ul>
+<pre class="code literal-block">$ make download
+</pre>
+<ul>
+<li>Configure kernel.</li>
+</ul>
+<pre class="code literal-block">$ make config
+</pre>
+<ul>
+<li>Build kernel.</li>
+</ul>
+<pre class="code literal-block">$ make build
+</pre>
+<ul>
+<li>Download and extract kernel source code, configure kernel, build kernel. Execute all target.(download + config + build)</li>
+</ul>
+<pre class="code literal-block">$ make all
+</pre>
+<ul>
+<li>Clean kernel source code for reconfigure and rebuild.(soft clean)</li>
+</ul>
+<pre class="code literal-block">$ make clean
+</pre>
+<ul>
+<li>Clean all build files, kernel directory and kernel images.(hard clean)</li>
+</ul>
+<pre class="code literal-block">$ make clean-all
+</pre>
+<ul>
+<li>Help</li>
+</ul>
+<pre class="code literal-block">$ make <span class="nb">help</span>
+</pre>
