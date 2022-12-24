@@ -106,27 +106,27 @@ elde edip guncellemelerini yapmaktadir.</p>
 <p>Yukarda bahsettigim sekilde bir buildfarm sunucusu yani paketlerin compile edilecegi sunucuda binary paketleri uretip
 diger sunuculara bu binary paketleri sunmak icin portage uzerinde "buildpkg" ozelligini aktif etmek gerekmektedir.</p>
 <p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
-<pre class="code bash"><a id="rest_code_a8e88e1a64e544be88a0a4a25842860b-1" name="rest_code_a8e88e1a64e544be88a0a4a25842860b-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"buildpkg"</span>
+<pre class="code bash"><a id="rest_code_64dcfb81531d45b4b818e491f1cc0b7a-1" name="rest_code_64dcfb81531d45b4b818e491f1cc0b7a-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"buildpkg"</span>
 </pre>
 <p>Diger Gentoo sunucularin buildfarm uzerindeki paketleri alabilmesi icin yayinlamasi gerekli. Bunun birden fazla sekilde
 kendinize cozum saglayabilirsiniz. FTP, FTPS, NFS, SSH, HTTP, HTTPS gibi. Biz kucuk bir web sunucusu kurup paketleri bu sekilde yayinlayalim.</p>
-<pre class="code bash"><a id="rest_code_90323592c153423bbe1d7bc1e1b067bf-1" name="rest_code_90323592c153423bbe1d7bc1e1b067bf-1"></a><span class="c1"># emerge -av www-servers/lighttpd</span>
+<pre class="code bash"><a id="rest_code_708422cfbc9a4d6fb6514b9e34001460-1" name="rest_code_708422cfbc9a4d6fb6514b9e34001460-1"></a><span class="c1"># emerge -av www-servers/lighttpd</span>
 </pre>
 <p>lighttpd web sunucusunu kurduktan sonra olusturulan paketlerin buradan yayinlanmasini konfigure edelim."/etc/lighttpd/lighttpd.conf"
 dosyasinin sonuna asagidaki iki satiri ekleyin.</p>
 <p><code class="docutils literal">/etc/lighttpd/lighttpd.conf</code>:</p>
-<pre class="code bash"><a id="rest_code_0e11be848af54349bedfd956d8768eb3-1" name="rest_code_0e11be848af54349bedfd956d8768eb3-1"></a>server.modules +<span class="o">=</span> <span class="o">(</span> <span class="s2">"mod_alias"</span> <span class="o">)</span>
-<a id="rest_code_0e11be848af54349bedfd956d8768eb3-2" name="rest_code_0e11be848af54349bedfd956d8768eb3-2"></a>alias.url <span class="o">=</span> <span class="o">(</span> <span class="s2">"/packages"</span> <span class="o">=</span>&gt; <span class="s2">"/usr/portage/packages/"</span> <span class="o">)</span>
+<pre class="code bash"><a id="rest_code_101c51a80c3e437eb814fc7baf627f87-1" name="rest_code_101c51a80c3e437eb814fc7baf627f87-1"></a>server.modules +<span class="o">=</span> <span class="o">(</span> <span class="s2">"mod_alias"</span> <span class="o">)</span>
+<a id="rest_code_101c51a80c3e437eb814fc7baf627f87-2" name="rest_code_101c51a80c3e437eb814fc7baf627f87-2"></a>alias.url <span class="o">=</span> <span class="o">(</span> <span class="s2">"/packages"</span> <span class="o">=</span>&gt; <span class="s2">"/usr/portage/packages/"</span> <span class="o">)</span>
 </pre>
 <p>Artik web sunucumuzu baslatabiliriz.</p>
-<pre class="code bash"><a id="rest_code_38195d46a454435ab8d5f343c257e088-1" name="rest_code_38195d46a454435ab8d5f343c257e088-1"></a><span class="c1"># rc-update add lighttpd default</span>
-<a id="rest_code_38195d46a454435ab8d5f343c257e088-2" name="rest_code_38195d46a454435ab8d5f343c257e088-2"></a><span class="c1"># /etc/init.d/lighttpd start</span>
+<pre class="code bash"><a id="rest_code_ffd33fff4fcc43c8a9cf6511df17eda9-1" name="rest_code_ffd33fff4fcc43c8a9cf6511df17eda9-1"></a><span class="c1"># rc-update add lighttpd default</span>
+<a id="rest_code_ffd33fff4fcc43c8a9cf6511df17eda9-2" name="rest_code_ffd33fff4fcc43c8a9cf6511df17eda9-2"></a><span class="c1"># /etc/init.d/lighttpd start</span>
 </pre>
 <p>Buildfarm sunucumuz ile ayarlarimiz bu kadar. Artik diger sunucularimizi buildfarm sunucusu uzerinden binary paketleri
 almasi icin konfigure edebiliriz.</p>
 <p><code class="docutils literal">/etc/portage/make.conf</code>:</p>
-<pre class="code bash"><a id="rest_code_3b47fa11459f403981052dad05932a91-1" name="rest_code_3b47fa11459f403981052dad05932a91-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"getbinpkg"</span>
-<a id="rest_code_3b47fa11459f403981052dad05932a91-2" name="rest_code_3b47fa11459f403981052dad05932a91-2"></a><span class="nv">PORTAGE_BINHOST</span><span class="o">=</span><span class="s2">"http://buildfarm.hostname/packages"</span>
+<pre class="code bash"><a id="rest_code_e796edd5eb804957bbbdc159d78d40a3-1" name="rest_code_e796edd5eb804957bbbdc159d78d40a3-1"></a><span class="nv">FEATURES</span><span class="o">=</span><span class="s2">"getbinpkg"</span>
+<a id="rest_code_e796edd5eb804957bbbdc159d78d40a3-2" name="rest_code_e796edd5eb804957bbbdc159d78d40a3-2"></a><span class="nv">PORTAGE_BINHOST</span><span class="o">=</span><span class="s2">"http://buildfarm.hostname/packages"</span>
 </pre>
 <p>Artik ansible ile sistemizi ilk once buildfarm ile derlenip binary paketler ile diger sunucularinizi guncelleyebilirsiniz.</p>
 <script src="https://gist.github.com/843654e91765dee16e64814bd3ba76af.js"></script><noscript>

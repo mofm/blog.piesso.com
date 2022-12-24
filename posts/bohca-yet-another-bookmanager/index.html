@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bohca - yet another bookmanager | hardened .*(nt|log)s?</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="canonical" href="https://blog.piesso.com/posts/bohca-yet-another-bookmanager/">
+<link rel="icon" href="../../images/website/favicon.ico" sizes="16x16">
+<link rel="icon" href="../../images/website/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="../../images/website/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../images/website/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../../images/website/android-chrome-512x512.png" sizes="512x512">
+<link rel="icon" href="../../images/website/android-chrome-192x192.png" sizes="192x192">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mofm">
+<link rel="prev" href="../feeder-rss-feed-reader/" title="feeder - RSS feed reader" type="text/html">
+<link rel="next" href="../nspctl-management-tool-for-systemd-nspawn-containers/" title="nspctl for systemd-nspawn containers" type="text/html">
+<meta property="og:site_name" content="hardened .*(nt|log)s?">
+<meta property="og:title" content="bohca - yet another bookmanager">
+<meta property="og:url" content="https://blog.piesso.com/posts/bohca-yet-another-bookmanager/">
+<meta property="og:description" content="Introduction
+This is a simple bookmark manager for the web. It keeps your favorites books, articles, songs or whatever else you come across while browsing and allows you to search them.
+The project is">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-12-24T22:54:15+03:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../">
+
+            <span id="blog-title">hardened .*(nt|log)s?</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../index.html" class="nav-link">Home</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-me" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="https://github.com/mofm" class="nav-link">Github</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">bohca - yet another bookmanager</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    mofm
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-12-24T22:54:15+03:00" itemprop="datePublished" title="2022-12-24 22:54">2022-12-24 22:54</time></a>
+            </p>
+                <p class="commentline">
+    
+        <a href="#utterances-thread">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h2>Introduction</h2>
+<p>This is a simple bookmark manager for the web. It keeps your favorites books, articles, songs or whatever else you come across while browsing and allows you to search them.</p>
+<p>The project is written with django 4.1 and Python 3.9. </p>
+<p><a href="https://github.com/mofm/bohca">Github repo</a></p>
+<h4>Features</h4>
+<ul>
+<li>Simple and intuitive interface</li>
+<li>Bootstrap 4 (static files included)</li>
+<li>Procfile for deployment</li>
+<li>SQLite database by default</li>
+<li>Search by title, description, links and tags</li>
+<li>Separate settings for development and production(environment variables)</li>
+<li>Add, edit and delete bookmarks, tags and categories</li>
+<li>Backup bookmarks to CSV</li>
+<li>Restore bookmarks from CSV</li>
+<li>Export bookmarks to HTML (Firefox and Chrome compatible - <em>tested</em>)</li>
+<li>Custom admin interface, with search and filters (view, edit, delete all bookmarks, tags and categories)</li>
+</ul>
+<h4>Roadmap</h4>
+<ul>
+<li><del>Backup and restore bookmarks</del></li>
+<li><del>Export bookmarks for browsers</del></li>
+<li>Browser extension (Chrome, Firefox, Safari)</li>
+</ul>
+<h4>Installation</h4>
+<ul>
+<li>Create a virtual environment and activate it</li>
+</ul>
+<pre class="code literal-block">python3 -m venv bohca-venv
+<span class="nb">source</span> bohca-venv/bin/activate
+</pre>
+<ul>
+<li>Clone the repository</li>
+</ul>
+<pre class="code literal-block">git clone https://github.com/mofm/bohca.git
+</pre>
+<ul>
+<li>Install the requirements</li>
+</ul>
+<pre class="code literal-block">pip install -r requirements.txt
+</pre>
+<ul>
+<li>Freeze requirements</li>
+</ul>
+<pre class="code literal-block">pip freeze &gt; requirements.txt
+</pre>
+<ul>
+<li>Create environment files</li>
+</ul>
+<pre class="code literal-block">mkdir .env
+touch .env/development.env
+touch .env/production.env
+</pre>
+<ul>
+<li>Add the following variables to 'development.env' file</li>
+</ul>
+<p>For production environment, use environment variables from 'production.env' file</p>
+<pre class="code literal-block"><span class="nv">DEBUG</span><span class="o">=</span><span class="s2">"True"</span>
+<span class="nv">SECRET_KEY</span><span class="o">=</span>your_secret_key
+<span class="nv">ALLOWED_HOSTS</span><span class="o">=</span> <span class="s2">"127.0.0.1, localhost"</span>
+</pre>
+<ul>
+<li>Run the migrations</li>
+</ul>
+<pre class="code literal-block">python manage.py makemigrations
+python manage.py migrate --run-syncdb
+</pre>
+<ul>
+<li>Create a superuser</li>
+</ul>
+<pre class="code literal-block">python manage.py createsuperuser
+</pre>
+<ul>
+<li>Collect static files</li>
+</ul>
+<pre class="code literal-block">python manage.py collectstatic
+</pre>
+<ul>
+<li>You can test out the application by running the following command:</li>
+</ul>
+<pre class="code literal-block">python manage.py runserver <span class="m">0</span>.0.0.0:8000
+</pre>
+<ul>
+<li>Open your browser and go to http://localhost:8000</li>
+</ul>
+<h4>Deployment</h4>
+<ul>
+<li>Install gunicorn</li>
+</ul>
+<pre class="code literal-block">pip install gunicorn
+</pre>
+<ul>
+<li>Create gunicorn systemd service files for production environment</li>
+</ul>
+<pre class="code literal-block">sudo vi  /etc/systemd/system/gunicorn.service
+</pre>
+<ul>
+<li>Add the following content to the 'gunicorn.service' file</li>
+</ul>
+<pre class="code literal-block"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>gunicorn daemon
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="nv">User</span><span class="o">=</span>user
+<span class="nv">Group</span><span class="o">=</span>user
+<span class="nv">EnvironmentFile</span><span class="o">=</span>/path/to/bohca_venv/bohca/.env/production.env
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/path/to/bohca_venv/bohca
+<span class="nv">ExecStart</span><span class="o">=</span>/path/to/bohca_venv/bin/gunicorn --workers <span class="m">3</span> --bind <span class="m">0</span>.0.0.0:8000 bohca.wsgi:application
+<span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -s HUP <span class="nv">$MAINPID</span>
+<span class="nv">KillMode</span><span class="o">=</span>mixed
+<span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre>
+<ul>
+<li>Start the gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl start gunicorn
+</pre>
+<ul>
+<li>Enable the gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl <span class="nb">enable</span> gunicorn
+</pre>
+<ul>
+<li>Check the status of the gunicorn service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl status gunicorn
+</pre>
+<ul>
+<li>Create nginx configuration file for production environment</li>
+</ul>
+<pre class="code literal-block">sudo vi /etc/nginx/sites-available/bohca
+</pre>
+<ul>
+<li>Add the following content to the bohca file</li>
+</ul>
+<pre class="code literal-block">server <span class="o">{</span>
+    listen <span class="m">80</span><span class="p">;</span>
+    server_name your_domain_name<span class="p">;</span>
+
+    <span class="nv">location</span> <span class="o">=</span> /favicon.ico <span class="o">{</span> access_log off<span class="p">;</span> log_not_found off<span class="p">;</span> <span class="o">}</span>
+    location /static/ <span class="o">{</span>
+        root /path/to/bohca_venv/bohca/staticfiles<span class="p">;</span>
+    <span class="o">}</span>
+
+    location / <span class="o">{</span>
+        include proxy_params<span class="p">;</span>
+        <span class="c1"># proxy_pass gunicorn_socket or http://;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre>
+<ul>
+<li>Enable the bohca configuration file</li>
+</ul>
+<pre class="code literal-block">sudo ln -s /etc/nginx/sites-available/bohca /etc/nginx/sites-enabled
+</pre>
+<ul>
+<li>Test the nginx configuration file</li>
+</ul>
+<pre class="code literal-block">sudo nginx -t
+</pre>
+<ul>
+<li>Restart the nginx service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl restart nginx
+</pre>
+<ul>
+<li>Check the status of the nginx service</li>
+</ul>
+<pre class="code literal-block">sudo systemctl status nginx
+</pre>
+<h4>License</h4>
+<p>GNU General Public License v3.0</p>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../feeder-rss-feed-reader/" rel="prev" title="feeder - RSS feed reader">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../nspctl-management-tool-for-systemd-nspawn-containers/" rel="next" title="nspctl for systemd-nspawn containers">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div data-title="bohca - yet another bookmanager" id="utterances-thread"></div>
+        <script src="https://utteranc.es/client.js" repo="mofm/blog.piesso.com" issue-term="title" label="Comments" theme="github-light" crossorigin="anonymous"></script></section></article><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:emre.eryilmaz@piesso.com">mofm</a> - Powered by         <a href="https://getnikola.com" rel="nofollow" target="_blank">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script src="https://polyfill.io/v3/polyfill.js?features=Intl.RelativeTimeFormat.%7Elocale.en"></script><script src="../../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        luxon.Settings.defaultLocale = "en";
+        fancydates(2, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
+        </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

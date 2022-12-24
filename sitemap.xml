@@ -55,7 +55,7 @@
  </url>
  <url>
   <loc>https://blog.piesso.com/archive.html</loc>
-  <lastmod>2022-01-06T21:24:00Z</lastmod>
+  <lastmod>2022-12-24T20:23:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/categories/</loc>
@@ -239,11 +239,11 @@
  </url>
  <url>
   <loc>https://blog.piesso.com/index-23.html</loc>
-  <lastmod>2022-01-06T21:24:00Z</lastmod>
+  <lastmod>2022-12-24T19:52:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-24.html</loc>
-  <lastmod>2022-01-06T21:24:00Z</lastmod>
+  <lastmod>2022-12-24T20:23:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/index-3.html</loc>
@@ -360,6 +360,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/block-ads-and-malware-via-bind9-rpz/</loc>
   <lastmod>2021-12-15T19:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/bohca-yet-another-bookmanager/</loc>
+  <lastmod>2022-12-24T19:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/break-i/</loc>
@@ -524,6 +528,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/failed-to-load-module/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/feeder-rss-feed-reader/</loc>
+  <lastmod>2022-12-24T19:52:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/firefox-ipv6/</loc>
@@ -830,8 +838,16 @@
   <lastmod>2020-12-05T11:57:00Z</lastmod>
  </url>
  <url>
+  <loc>https://blog.piesso.com/posts/meta-econ-openembeddedyocto-layer/</loc>
+  <lastmod>2022-12-24T20:12:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://blog.piesso.com/posts/mku-ozgur-yazilim-ve-linux-eposta-listesi/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/mv-kernel-kernel-build-tool-for-microvm/</loc>
+  <lastmod>2022-12-24T20:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/nagios-png-to-gd2/</loc>
@@ -844,6 +860,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/nginx-reverse-proxy-cache/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/nspctl-management-tool-for-systemd-nspawn-containers/</loc>
+  <lastmod>2022-12-24T20:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/opendns-dinamik-ip-updater/</loc>
@@ -1092,6 +1112,10 @@
  <url>
   <loc>https://blog.piesso.com/posts/test-icin-buyuk-dosyalar-olusturmak/</loc>
   <lastmod>2020-12-05T11:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://blog.piesso.com/posts/tinit-tiny-init-for-microvm/</loc>
+  <lastmod>2022-12-24T20:23:00Z</lastmod>
  </url>
  <url>
   <loc>https://blog.piesso.com/posts/tinycore-linux/</loc>
